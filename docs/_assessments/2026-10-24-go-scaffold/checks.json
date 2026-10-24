@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "scope": "M1-01; AT-14/17 partial",
+  "go_version": "go version go1.26.10 linux/amd64",
+  "commands": {
+    "make build": 0,
+    "make test": 0,
+    "make check": 0,
+    "make test-race": 0,
+    "make test-integration": 0
+  },
+  "clean_build": {
+    "command": "make build",
+    "exit_code": 0,
+    "isolated_copy_without_ignored_files": true
+  },
+  "process_signals": [
+    "SIGTERM",
+    "SIGINT"
+  ],
+  "postgres_environment_only": true,
+  "postgres_version_num": 170011,
+  "test_project_resources_removed": true,
+  "go_format": "passed",
+  "shell_syntax": "passed",
+  "compose_config": "passed",
+  "implementation_files_not_ignored": true,
+  "binary_ignored": true,
+  "oracle_operations": "none",
+  "tool_sha256": {
+    "go.mod": "2c4225c90bb40dea2ca44ca3d97594ef547d7c7d36f5a601ef2731c1263183fb",
+    ".go-version": "5ae79ef74661d43e70de64fdaad7531cab44185357110f441268bafae5e74956",
+    "Makefile": "9bc494217bc38fc749628fa4fb1b94a472cc02ef225f10e33b41b7471b3d3e58",
+    "compose.yaml": "57ed2d49d4c116a673a08b723f7ee20ea86e302fec33831b0ba8d208dc9124f4",
+    ".env.example": "1327e02a902c37f8b1a964ee934fd15fa52698e76e4b0455493c8b90534ff205",
+    "scripts/test-postgres.sh": "48ad9ed6184709d035d37af1d05428413be5599456f1a948ea848136d3173583",
+    "cmd/slovnyk/main.go": "fb76a0840c1ae0e9e22614564bcb12ac7bce324c3989a2b0a427d0025e76c2b5",
+    "cmd/slovnyk/main_test.go": "e4ef6cd625405fedbb5ea68c2db5faebd952fe1c18ac4684dc05162ceccad34b",
+    "internal/ops/http_test.go": "1264c93561e53ed4259d47b3a5092a0c384404ac7508a54c8141f18edfa53f3f",
+    "internal/ops/http.go": "f63d8ce96a9a4dfe8a2931d7fd6cdf61787d916c3df8285d8c5f091b7bf3cc55",
+    "internal/ops/config_test.go": "71a49077b66dfd986346c1cab62730439afa94cccb61cf4489e5c4b56c449ead",
+    "internal/ops/config.go": "0c392e9857d6447d7841b65a9609b4ab8af106e897294b3499883a39a2979471"
+  },
+  "binary_sha256": "9495bd498beacdec2a32968b5be27e01efe263b537dcad9d9d938bb378e68e88",
+  "limitations": [
+    "No storage/schema/active dataset/artifact readiness checks",
+    "PostgreSQL smoke does not test application schema or transactions",
+    "No search, UI, import or publication yet"
+  ],
+  "active_markdown_links_and_whitespace": "passed"
+}

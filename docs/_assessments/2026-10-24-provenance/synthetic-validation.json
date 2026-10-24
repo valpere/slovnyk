@@ -1,0 +1,11 @@
+{
+  "command": "python3 -m unittest discover -s docs/_assessments/2026-10-24-provenance -v",
+  "exit_code": 0,
+  "output": "test_foreign_keys_reject_cross_dataset_provenance (test_probe.StorageTests.test_foreign_keys_reject_cross_dataset_provenance) ... ok\ntest_full_round_trip_preserves_raw_values_and_does_not_publish (test_probe.StorageTests.test_full_round_trip_preserves_raw_values_and_does_not_publish) ... ok\ntest_hash_collision_stops_before_validation_and_publication (test_probe.StorageTests.test_hash_collision_stops_before_validation_and_publication) ... ok\ntest_tuple_digest_encoding_has_length_boundaries (test_probe.StorageTests.test_tuple_digest_encoding_has_length_boundaries) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.413s\n\nOK\n",
+  "tool_sha256": {
+    "schema.sql": "2b0c4f7ff1ea99b8bf531ddd31625a9a327edaa40b9cc4dd477819bbbb76d98a",
+    "probe.py": "b128129007051dee56da9c7023ba1f0698d4c5c67dec85315d3fedfd8689d4d7",
+    "load.py": "01682c4646e258a4b4601c03f3703fac3ec609921fba20229f5f9d8dc9acadd8",
+    "test_probe.py": "5ec63800a6693def3ed6440a37cc43229075cbecd60ec422b614e225f06b6f00"
+  }
+}

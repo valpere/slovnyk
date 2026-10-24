@@ -1,0 +1,95 @@
+{
+  "python": "3.12.3",
+  "sqlite": "3.45.1",
+  "unicode": "15.0.0",
+  "platform": "Linux-6.11.0-29-generic-x86_64-with-glibc2.39",
+  "files_records": {
+    "slovnyk_en-us_fr-fr.csv.gz": 358927,
+    "slovnyk_en-us_de-de.csv.gz": 360698,
+    "slovnyk_fr-fr_en-us.csv.gz": 290888,
+    "slovnyk_de-de_en-us.csv.gz": 274104
+  },
+  "records": 1284617,
+  "sample_pairs": [
+    "de-de->en-us",
+    "en-us->de-de",
+    "en-us->fr-fr",
+    "fr-fr->en-us"
+  ],
+  "import_s": 6.636,
+  "bytes_with_hash_and_pair_indexes": 220966912,
+  "bytes_with_additional_lookup_index": 309301248,
+  "lookup_index_build_s": 0.757,
+  "max_process_rss_kib_linux": 40428,
+  "bounded_indexes": {
+    "exact": {
+      "queries": 50,
+      "p50_ms": 0.032,
+      "p95_ms": 0.046,
+      "max_ms": 0.052,
+      "plan": [
+        "SEARCH translations USING INDEX exact_hash (sl=? AND tl=? AND key_hash=?)",
+        "USE TEMP B-TREE FOR RIGHT PART OF ORDER BY"
+      ]
+    },
+    "prefix": {
+      "queries": 50,
+      "p50_ms": 33.743,
+      "p95_ms": 35.87,
+      "max_ms": 36.837,
+      "plan": [
+        "SEARCH translations USING INDEX pair_only (sl=? AND tl=?)",
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    },
+    "infix": {
+      "queries": 50,
+      "p50_ms": 36.616,
+      "p95_ms": 40.073,
+      "max_ms": 42.396,
+      "plan": [
+        "SEARCH translations USING INDEX pair_only (sl=? AND tl=?)",
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    }
+  },
+  "additional_covering_index": {
+    "exact": {
+      "queries": 50,
+      "p50_ms": 0.025,
+      "p95_ms": 0.043,
+      "max_ms": 0.056,
+      "plan": [
+        "SEARCH translations USING INDEX lookup_order (sl=? AND tl=? AND key=?)"
+      ]
+    },
+    "prefix": {
+      "queries": 50,
+      "p50_ms": 0.06,
+      "p95_ms": 0.084,
+      "max_ms": 0.091,
+      "plan": [
+        "SEARCH translations USING COVERING INDEX lookup_order (sl=? AND tl=? AND key>? AND key<?)"
+      ]
+    },
+    "infix": {
+      "queries": 50,
+      "p50_ms": 24.122,
+      "p95_ms": 27.756,
+      "max_ms": 28.033,
+      "plan": [
+        "SEARCH translations USING COVERING INDEX lookup_order (sl=? AND tl=?)"
+      ]
+    }
+  },
+  "readonly_open_records": 1284617,
+  "limitations": [
+    "Local developer machine, not Oracle Micro; OS page cache is uncontrolled",
+    "8 MiB SQLite cache per connection is not a process/OS memory limit",
+    "Single connection; serial SQL calls, no HTTP or 10 requests/s load test",
+    "Four largest compressed files, not the complete corpus",
+    "No production deduplication, provenance, dataset publication, or parser acceptance",
+    "Covering index is an experiment, not an approved change to DATA_MODEL",
+    "Python Unicode normalization is not a selected production implementation"
+  ]
+}

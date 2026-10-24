@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "requirements": 18,
+  "trace_rows": 18,
+  "unique_acceptance_checks": 18,
+  "explicit_component_links_valid": true,
+  "use_case_links_valid": true,
+  "markdown_file_links_valid": true,
+  "application_tests": "not implemented; not run"
+}

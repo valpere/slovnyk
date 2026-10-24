@@ -1,0 +1,31 @@
+{
+  "identity": "Native Codex reviewers inherit parent model; exact model identifier not exposed. Same family, not three distinct families.",
+  "coverage": "All 12 documents available in frozen snapshot; declared specialist focus below.",
+  "reviews": [
+    {
+      "agent": "migration_review",
+      "focus": "migration/import/schema/publication",
+      "round1_confirmed": [
+        "Immutable export refs/no-clobber missing",
+        "Filesystem fsync durability missing"
+      ],
+      "final": "both fixed; no new concrete regressions"
+    },
+    {
+      "agent": "legacy_review",
+      "focus": "legacy URL compatibility",
+      "round1_confirmed": [
+        "UI context lost on dwn/loc redirects",
+        "Permanent redirect caches changing active CSV alias"
+      ],
+      "final": "both fixed; no new concrete regressions"
+    },
+    {
+      "agent": "lookup_review",
+      "focus": "lookup/Unicode/cursors/limits",
+      "round1": "prior 7 issues addressed; HTTP error precedence ambiguity",
+      "final": "precedence clarified; no blocking defects/regressions found"
+    }
+  ],
+  "application_tests": "not implemented; not run"
+}

@@ -1,0 +1,63 @@
+{
+  "findings": [
+    {
+      "severity": "high",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 70,
+      "trigger": "Replay gzip від початку перевіряє prefix bytes/identity та пропускає вже committed ordinals; не додає origins повторно.",
+      "impact": "For gzip without reliable seek, replaying from the beginning and skipping committed ordinals by logical record index is unsafe if the parser's record boundaries depend on decompressed byte offsets or if a prior attempt committed a batch but the checkpoint was not persisted atomically with the batch. A crash between batch commit and checkpoint commit can cause the next attempt to re-read the same ordinals and either duplicate origins or, worse, silently skip records if the ordinal mapping shifts due to parser state. This violates the lossless/retry guarantee in FR-08/AT-08.",
+      "evidence": "IMPORT_CONTRACT.md:70-74 says 'Batch records, origins, issues і checkpoint комітяться однією транзакцією' but then says replay 'пропускає вже committed ordinals'. If batch and checkpoint are in the same transaction, there is no window; if they are not, the skip logic is ambiguous. The contract does not specify how ordinal-to-record mapping is made stable across replays for a streaming gzip parser.",
+      "suggested_fix": "Clarify that batch records and checkpoint are committed in the same transaction (as stated at line 71), and that replay uses the checkpoint to resume from the last committed ordinal, not by re-parsing and skipping. If re-parsing is required, specify that the parser must be deterministic and that ordinal assignment is based on a stable logical record counter independent of decompressed byte position, with a verification step that prefix bytes match the manifest hash before skipping."
+    },
+    {
+      "severity": "high",
+      "file": "docs/LOOKUP_CONTRACT.md",
+      "line": 56,
+      "trigger": "З cursor: спочатку перевірити bounded token і HMAC, вибрати dataset з cursor, завантажити його normalizer і лише після цього перевіряти locales/pair та нормалізувати q.",
+      "impact": "The cursor contains a fingerprint of normalization_version, from, to, mode, normalized_q, and limit, but the contract does not specify that the server must verify the cursor's fingerprint matches the current request parameters before using the cursor's dataset. If a client sends a cursor from a different query (e.g., different from/to or mode) with a valid HMAC, the server could apply the cursor's dataset and normalizer to the new query, potentially returning results from the wrong dataset or with the wrong normalization, violating the dataset pin guarantee in FR-04.",
+      "evidence": "LOOKUP_CONTRACT.md:65-70 defines the cursor payload including fingerprint, but line 56 says to load the dataset from the cursor and only then check locales/pair and normalize q. There is no explicit step to compare the cursor fingerprint against the current request's from/to/mode/normalized_q/limit before using the cursor's dataset.",
+      "suggested_fix": "Add an explicit step: after HMAC validation and before using the cursor's dataset, recompute the fingerprint from the current request's normalization_version, from, to, mode, normalized_q, and limit, and compare it to the cursor's fingerprint. If they differ, return 400 (parameters changed). Only if they match should the server proceed with the cursor's dataset."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/DATA_MODEL.md",
+      "line": 38,
+      "trigger": "UNIQUE (dataset_id,tuple_hash) з обов'язковою collision check до merge.",
+      "impact": "The schema uses a UNIQUE constraint on (dataset_id, tuple_hash) but the contract requires that different tuples with the same hash stop import/verify as a collision. If the UNIQUE constraint is enforced by the database, a collision would cause a constraint violation on the second insert, which could be misinterpreted as a duplicate rather than a hash collision. The contract does not specify how the collision check is performed before the merge/insert, leaving a risk that a collision is silently treated as a duplicate or causes an ambiguous import failure.",
+      "evidence": "DATA_MODEL.md:26 says 'Різні tuples з одним hash зупиняють імпорт/verify як collision', but line 38 defines UNIQUE (dataset_id,tuple_hash) without specifying that the collision check must compare all four raw fields before relying on the unique constraint. The import logic in IMPORT_CONTRACT.md does not describe a pre-insert collision detection step.",
+      "suggested_fix": "Specify that before inserting a translation, the importer must query for an existing row with the same (dataset_id, tuple_hash) and compare all four raw fields. If they differ, abort with an explicit collision error. If they match, treat as duplicate. The UNIQUE constraint is a backstop, not the primary collision detection mechanism."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LEGACY_COMPATIBILITY.md",
+      "line": 43,
+      "trigger": "Unknown keys (включно з hl) ігноруються, не стають aliases hn.",
+      "impact": "The legacy adapter ignores unknown keys, but the new /search endpoint also ignores unknown query keys (LOOKUP_CONTRACT.md:25). However, the legacy adapter maps `hn=sel` to a 200 HTML response without redirect, while the new endpoint uses `mode=exact|mask`. If a legacy client sends `hn=sel&iw=...` with an unknown key that changes the intended behavior (e.g., a typo in `hn`), the adapter could silently fall through to a default handler, potentially returning a successful result for a malformed request, violating the requirement that unknown handlers return 404 (LEGACY_COMPATIBILITY.md:30).",
+      "evidence": "LEGACY_COMPATIBILITY.md:30 says 'unknown/empty hn → 404; більше немає прихованого hom fallback', but line 43 says unknown keys are ignored. If `hn` is misspelled as `h` or `hnn`, it becomes an unknown key and is ignored, leaving `hn` missing, which line 24 maps to a 308 redirect to `/`. This contradicts the 404 for unknown hn and could mask client errors.",
+      "suggested_fix": "Clarify that `hn` is a known key and any value other than the allowlisted handlers (hom, sel, pre, dwn, loc, top) is an unknown handler → 404, not ignored. Unknown keys other than `hn` may be ignored, but `hn` must be validated explicitly before the missing-hn default is applied."
+    },
+    {
+      "severity": "low",
+      "file": "docs/HLD.md",
+      "line": 155,
+      "trigger": "Публікація перевіряє наявність артефактів і validation report, бере DB lock, перевіряє expected generation та змінює active pointer і generation одним commit.",
+      "impact": "The publication transaction checks artifact availability and validation report before taking the DB lock, but the contract does not specify that the artifact files are immutable after verification. If an artifact file is modified or deleted between the pre-lock check and the commit, the active pointer could reference a missing or corrupted export, violating the guarantee that the active dataset never references an incomplete file (HLD.md:159).",
+      "evidence": "HLD.md:153-155 describes export preparation with temp file → hash → atomic rename, but the publication step at line 155 only says it 'перевіряє наявність артефактів' before the lock. There is no re-verification of artifact hashes or immutability after the lock is acquired and before the commit.",
+      "suggested_fix": "Specify that after acquiring the publication lock, the service re-checks artifact existence and SHA-256 hashes (or relies on filesystem immutability guarantees) before committing the active pointer change. Alternatively, store artifact hashes in the database and verify them as part of the same transaction."
+    },
+    {
+      "severity": "low",
+      "file": "docs/LOOKUP_CONTRACT.md",
+      "line": 77,
+      "trigger": "Renderer зобов'язаний перевіряти цю верхню межу; oversized шаблон/entry — явна 503, не обрізання тексту.",
+      "impact": "The contract requires a 503 error if an oversized template or entry cannot fit within the 1 MiB response budget, but it does not specify how the server should handle the case where the first entry alone exceeds the budget (e.g., two 64 KiB fields plus HTML escaping overhead exceeding 1 MiB is unlikely, but a template bug or a future larger field could trigger this). Returning 503 for a valid query due to a rendering issue could mask a data problem and is not clearly distinguished from a DB timeout or unavailable service.",
+      "evidence": "LOOKUP_CONTRACT.md:75-79 defines the 1 MiB budget and reserves 128 KiB for templates/continuation/error UI, but line 78 says an oversized entry is a 503. The error table at lines 18-19 lists 503 for 'Немає active dataset / DB unavailable / DB timeout', not for rendering overflow. This creates ambiguity about whether a rendering overflow is a client error (400), a server error (503), or a data error (500).",
+      "suggested_fix": "Clarify that an oversized entry or template is a server-side configuration/data error and should be logged as a 500 or a distinct 503 with a specific error code, not conflated with DB unavailability. Add a test fixture for an entry that exceeds the budget to ensure the error path is explicit and does not truncate data."
+    }
+  ],
+  "limitations": [
+    "Deferred open questions OQ-02/03/05/06 are acknowledged in the documentation and not treated as automatic findings.",
+    "No implementation or application tests exist yet, so findings are based solely on documentation consistency and contract analysis.",
+    "The review does not verify production facts or legacy system behavior beyond what is documented in the supplied files."
+  ]
+}

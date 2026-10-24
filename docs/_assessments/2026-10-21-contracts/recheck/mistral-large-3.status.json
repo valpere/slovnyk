@@ -1,0 +1,11 @@
+{
+  "requested_model": "mistral-large-3:675b-cloud",
+  "status": "complete",
+  "actual_model": "mistral-large-3:675b",
+  "done": true,
+  "done_reason": "stop",
+  "prompt_eval_count": 24178,
+  "eval_count": 2092,
+  "findings": 6,
+  "seconds": 42.921
+}

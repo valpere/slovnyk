@@ -1,35 +1,144 @@
-!Build/
-.last_cover_stats
-/META.yml
-/META.json
-/MYMETA.*
-*.o
-*.pm.tdy
-*.bs
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 
-# Devel::Cover
-cover_db/
+# Test binary, built with `go test -c`
+*.test
 
-# Devel::NYTProf
-nytprof.out
+# Code coverage profiles and other test artifacts
+*.out
+coverage.*
+*.coverprofile
+profile.cov
 
-# Dist::Zilla
-/.build/
+# Dependency directories (remove the comment below to include it)
+vendor/
 
-# Module::Build
-_build/
-Build
-Build.bat
+# Go workspace file
+go.work
+go.work.sum
 
-# Module::Install
-inc/
+# env file
+.env
 
-# ExtUtils::MakeMaker
-/blib/
-/_eumm/
-/*.gz
-/Makefile
-/Makefile.old
-/MANIFEST.bak
-/pm_to_blib
-/*.zip
+# Editor/IDE
+.idea/
+.vscode/
+
+bin/
+agent
+agent.log
+
+# Override global `.*` rule to track project dotfiles
+!.github/
+!.github/**
+!.claude/
+!.claude/**
+!.golangci.yml
+!.env.example
+
+# Local-only Claude Code overrides (secrets, per-machine hooks)
+.claude/settings.local.json
+
+# Local-only telemetry from /fix-review
+.claude/skills/fix-review/telemetry.jsonl
+
+# Weekly dreaming reports — tracked so the [applied YYYY-MM-DD] annotation
+# history survives across machines. Same convention as ~/wrk/common.
+#.claude/dreaming/reports/   ← intentionally NOT ignored
+
+# Run log only (per-machine scratch, not part of the report):
+.claude/dreaming/reports/.dreaming.log
+
+# Temporary git worktrees created by subagents during /ship
+.claude/worktrees/
+
+# Spec and plan workflow artifacts — local only, not repo history
+.claude/specs/
+.claude/plans/
+
+chromium/
+sbin/
+graphify-out/
+
+# Serena MCP — local tool config/cache, not shared repo state
+.serena/
+
+# Session recall — per-project, local-only context log
+.claude/session-log.md
+
+# Session recall index — per-project, local-only
+.claude/sessions.db
+.claude/sessions.db-shm
+.claude/sessions.db-wal
+
+# ScheduleWakeup lock file — per-session runtime state, not repo history
+.claude/scheduled_tasks.lock
+
+# Playwright MCP scratch artifacts (console logs, page snapshots)
+.playwright-mcp/
+
+# Antigravity CLI local session state
+.antigravitycli/
+
+# Self-learning pattern store — track docs, exclude raw logs
+_patterns/mistakes.jsonl
+_patterns/wins.jsonl
+
+tmp/
+# Persistent local datasets and experiment databases; see data/README.md.
+/data/experiments/
+/data/artifacts/
+dwn/
+dwn
+mnt
+
+# secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Go build artifacts
+/bin/
+*.test
+*.out
+coverage.*
+
+# reviewer process logs (keep the .md reports, drop the raw logs)
+docs/investigation/.log-*.txt
+
+# Subagent working scratch — transient, not repo history (keep .agents/README.md)
+.agents/plan.md
+.agents/changes.md
+.agents/test-report.md
+.agents/summary.md
+.agents/*.tmp
+
+# opencode local session state
+.opencode/
+
+# consilium reports — per-run scratch, not repo history
+minions/consilium-out/
+
+# docker-compose deploy secrets (SA key, etc.) — never commit
+secrets/
+backups/
+
+# Client guide: built artifacts (reproducible via docs/client-guide/build.sh) and the
+# obsolete Meta-Live mini-guide (photos of the client's screen; Live is done).
+docs/client-guide/out/
+docs/client-guide/meta-live-steps/
+docs/client-guide/screenshots/.work/
+docs/client-guide/c7.html
+
+# Synthetic gzip golden fixture; override the global archive ignore rule.
+!/testdata/import/corpus.csv.gz
+
+# Preserve exact parser fixture bytes and their intentional CR whitespace.
+!.gitattributes

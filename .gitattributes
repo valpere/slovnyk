@@ -1,0 +1,4 @@
+# Exact parser fixtures deliberately contain CRLF and a bare CR at EOF.
+# Preserve their bytes and permit CR at end of line during patch checks.
+testdata/import/corpus.csv -text whitespace=cr-at-eol
+testdata/import/invalid/bare-cr.csv -text whitespace=cr-at-eol

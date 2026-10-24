@@ -1,0 +1,15 @@
+{
+  "git_diff_check": "passed",
+  "relative_markdown_file_links": "passed",
+  "markdown_scope": [
+    "README.md",
+    "docs/*.md",
+    "docs/_assessments/2026-10-24-provenance/*.md"
+  ],
+  "historical_snapshots": "unchanged; excluded from active-document link check",
+  "python_syntax_and_trailing_whitespace": "passed",
+  "recorded_tool_hashes": "matched",
+  "result_invariants": "passed",
+  "oracle_operations": "none",
+  "local_development_reconfirmed_by_user": "2026-10-24"
+}

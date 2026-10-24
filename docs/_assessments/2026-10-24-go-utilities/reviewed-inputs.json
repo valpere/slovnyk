@@ -1,0 +1,30 @@
+{
+  "baseline": "823150e127d0068ffc92a199e19686b4d0f3d9f5",
+  "review": "sequential self-review; not independent",
+  "sha256": {
+    ".github/workflows/ci.yml": "83730e86d7ad58bdffac60e84839e06cb612fcb3ee00e7431a4e185d4bcf9c5e",
+    "Makefile": "10ff34560157c730ec86b1cf1a401e730a80feb4e61702ae594cf39e4b08f795",
+    "README.md": "28f48ab48a0defdb21cb724f9ad38e9f9eda1a8f5618bd8542d0d75371a604a1",
+    "data/README.md": "bbe52559dc4a70a78cb9138b19e5710ab7dde5f6a723f5e013a2dd5dd48ca412",
+    "docs/DECISIONS.md": "881e8c3f72d4b54c89b8152031679b6c0f11fb34fb74b3f28ac74fe93aecd9c6",
+    "docs/TRACEABILITY.md": "3c5a60c739eefde4a1fc5473dad142a482bd871f51b3037eb8521b2b51107111",
+    "minions/README.md": "37b233db964037cdf4d9da485a4ab2d81556ae0205de0a8f98f59b0975550c36",
+    "minions/check-repository/main.go": "774555320c40b45426e9816f6e374838cc510ed807344b90e4ef4b1c0849e163",
+    "minions/internal/support/support.go": "7c3d5fe36a3e91723485a0ca4de22de663e8c9d8b3c4dbc1a6b22359f626f7a4",
+    "tests/README.md": "6718d1aff5c7cb709a28643f27aa6e421c86afdf14da2c6802ddb0f68e0310cc",
+    "tests/check-patch.sh": "6b9159e9a5db88849ab21a7c38e696fb84267a6b605dd7097e85295236085439",
+    "tests/postgres.sh": "208b590c058840433e955fbc0b8814c9a9ae7784da50d04297794ddd967bf50b",
+    "tests/processsmoke/failure_test.go": "2b9c4bcbf13fcc9d359b60ba7723fad2daee60b619df491884a531775f633b25",
+    "tests/processsmoke/smoke_test.go": "066e4c656be424d7c49c6d886239946d3afa0a3b29d89389b2b1ea81f8d852e3",
+    "tests/repository/check.go": "1a67c56a94bf0cdd1d868d68d7ccad8e02821f1278524a2bba285c0a8254ae87",
+    "tests/repository/check_test.go": "45b162757d44ff2843194af56a21adfcf580da28355808a66923b288a7e494d1",
+    "utilities/README.md": "0a6d1ad221c5968273cebf2c79337117c2df89ba972b8004e060fb73e2efd51b",
+    "utilities/prepare-artifacts/main.go": "be90bb629d1c58ada75972ff6dfbb56af0276478e50a9a8a68f4e773e2a9076a",
+    "utilities/prepare-artifacts/main_test.go": "2298ece2b3f2dd045ec3567b42009635181ecaf904c06ba9ed34416733e211eb"
+  },
+  "deleted": [
+    "minions/check-repository.py",
+    "minions/prepare-artifacts.py",
+    "minions/smoke-http.py"
+  ]
+}

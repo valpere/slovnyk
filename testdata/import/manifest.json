@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source": {
+    "kind": "csv_snapshot",
+    "authority": "synthetic",
+    "snapshot_date": "unknown",
+    "rights_status": "owner_confirmed"
+  },
+  "artifacts": [
+    {
+      "sha256": "2c47e8239cd6449fb4a75da39c08b62096630f4360af142da4af929f991643f4",
+      "bytes": 232,
+      "name": "corpus.csv.gz",
+      "format": "csv4.gz",
+      "pair": null,
+      "multi_pair": true
+    }
+  ],
+  "locales": [
+    "uk-ua",
+    "sr-sp",
+    "sr-rs",
+    "en-us"
+  ],
+  "expected_pairs": [
+    {
+      "from": "uk-ua",
+      "to": "en-us"
+    },
+    {
+      "from": "sr-sp",
+      "to": "sr-rs"
+    },
+    {
+      "from": "sr-rs",
+      "to": "sr-rs"
+    },
+    {
+      "from": "en-us",
+      "to": "uk-ua"
+    }
+  ],
+  "parser_version": "lossless-csv4-v1",
+  "mapping_version": "identity-v1",
+  "normalization_version": "nfc-fold-nfc-v1;xtext=0.43.0;nfc=15.0.0;fold=15.0.0;trim=whitespace-15.0",
+  "admission_limits": {
+    "field_bytes": 65536,
+    "record_bytes": 1048576,
+    "artifact_bytes": 17179869184
+  },
+  "known_gaps": [],
+  "exceptions": []
+}

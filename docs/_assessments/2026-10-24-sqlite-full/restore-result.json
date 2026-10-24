@@ -1,0 +1,19 @@
+{
+  "source_sha256": "cba459aa8b5d5e8ac1cc31712c8244c4c6cbf6de2fda107421b467a688277354",
+  "restored_sha256": "cba459aa8b5d5e8ac1cc31712c8244c4c6cbf6de2fda107421b467a688277354",
+  "hashes_equal": true,
+  "source_bytes": 13349707776,
+  "restored_bytes": 13349707776,
+  "copy_s": 105.241,
+  "total_s": 127.065,
+  "sqlite_quick_check": [
+    "ok"
+  ],
+  "restored_records": 56455068,
+  "limitations": [
+    "Same developer host and filesystem, not an off-host backup",
+    "Closed experimental DB, not a live production backup",
+    "No service, DNS, secrets or target-server recovery tested",
+    "quick_check is not the full SQLite integrity_check"
+  ]
+}

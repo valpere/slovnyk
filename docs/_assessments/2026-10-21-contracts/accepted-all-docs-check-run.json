@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/tmp/slovnyk-tumanomir-_m9yzerc/tumanomir",
+    "check",
+    "--format",
+    "json",
+    "--k-drift-max",
+    "0",
+    "docs"
+  ],
+  "exit_code": 0,
+  "stderr": ""
+}

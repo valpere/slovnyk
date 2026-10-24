@@ -1,0 +1,1 @@
+{"result":{"k_drift":{"requirements":18,"hanging":0,"hanging_ids":null,"value":0},"d_const":{"constraint_markers":36,"prose_tokens":8331,"value":0.004302617425600574},"k_drift_verdict":"ok","d_const_verdict":"warn"},"thresholds":{"k_drift_max":0,"d_const_min":0.35,"d_pair_max":0.3}}

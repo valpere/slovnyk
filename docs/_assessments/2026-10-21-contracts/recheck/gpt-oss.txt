@@ -1,0 +1,62 @@
+{
+  "findings": [
+    {
+      "severity": "high",
+      "file": "docs/HLD.md",
+      "line": 30,
+      "trigger": "`slovnyk dataset publish <id>` command listed without `--expected-generation` flag",
+      "impact": "Publish can succeed with stale generation, enabling ABA race conditions where two operators publish concurrently and the later one overwrites the earlier without detection, violating atomicity guarantees.",
+      "evidence": "Lines 30‑35 list CLI commands; the publish command lacks the required `--expected-generation N` flag that is mandated in IMPORT_CONTRACT.md (line 109).",
+      "suggested_fix": "Update the CLI spec to `slovnyk dataset publish <id> --expected-generation <N>` and enforce the flag in the implementation; add the same flag to the rollback command."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/DATA_MODEL.md",
+      "line": 38,
+      "trigger": "`translations` table references locales but has no foreign‑key constraint to `dataset_pairs`",
+      "impact": "A translation could be inserted with a source/target locale pair that is not declared in `dataset_pairs`, breaking catalog invariants and causing lookup to return results for unsupported language pairs.",
+      "evidence": "Table definition line 38 shows `translations` PK `(dataset_id,id)` with a composite FK to `pair`, but the FK is described only textually, not enforced in the schema.",
+      "suggested_fix": "Add an explicit foreign‑key constraint `FOREIGN KEY (dataset_id, source_locale, target_locale) REFERENCES dataset_pairs(dataset_id, source_locale, target_locale)` to the `translations` table DDL."
+    },
+    {
+      "severity": "high",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 41,
+      "trigger": "Failed gzip artifact may be partially committed before the failure is detected",
+      "impact": "Dataset can contain a subset of records from a corrupted file, violating the loss‑less import guarantee and making later verification/reconciliation ambiguous.",
+      "evidence": "Lines 41‑46 describe that a file failure blocks ready, but lines 75‑81 state that batch records, origins, issues and checkpoint are committed in a single transaction without stating atomicity per artifact.",
+      "suggested_fix": "Require that each artifact is processed in its own transaction and that the transaction is rolled back entirely on any parsing or checksum failure; document this atomic‑per‑artifact rule in the contract."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 65,
+      "trigger": "Advisory lock retry loop has no timeout or back‑off policy",
+      "impact": "If a previous import process crashes and the advisory lock is not released promptly, subsequent import attempts may block indefinitely, causing service outage and preventing recovery actions.",
+      "evidence": "Lines 65‑70 describe that a new attempt waits for the lock to be released but do not specify a maximum wait time or fallback behavior.",
+      "suggested_fix": "Introduce a bounded wait (e.g., 30 seconds) with exponential back‑off and a clear error if the lock cannot be acquired, and document this in the contract."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LEGACY.md",
+      "line": 39,
+      "trigger": "Legacy SQL uses column `inp_lwrd` which is absent from the stored DDL snapshot",
+      "impact": "During migration the import parser may miss or misinterpret this column, leading to incomplete or incorrect data ingestion and potential loss of translation entries.",
+      "evidence": "Lines 39‑41 note that `inp_lwrd` appears in legacy queries but is not present in the captured DDL, and the document warns not to run the old DDL as migration.",
+      "suggested_fix": "Add a step in the migration plan to verify the actual schema of the legacy database, capture any missing columns (e.g., `inp_lwrd`), and extend the import mapping to handle them or document their exclusion explicitly."
+    },
+    {
+      "severity": "low",
+      "file": "docs/LEGACY_COMPATIBILITY.md",
+      "line": 53,
+      "trigger": "Short locale aliases `uk → uk-ua` and `en → en-us` may mask distinct locales required by requirements",
+      "impact": "A request using the short code `en` will be mapped to `en-us`, making it impossible to address `en-gb` as a separate language, contrary to REQ‑FR‑01 which mandates distinct handling of `en‑gb` and `en‑us`.",
+      "evidence": "Lines 53‑55 define the short‑code mapping; REQ‑FR‑01 (line 22 in REQUIREMENTS.md) explicitly requires `en‑gb` and `en‑us` to be treated as separate locales.",
+      "suggested_fix": "Restrict short‑code aliases to locales that are unambiguous (e.g., only `uk` → `uk-ua`) and reject or require explicit full codes for any language where multiple variants exist, returning a 400 error for ambiguous short codes."
+    }
+  ],
+  "limitations": [
+    "Analysis is based solely on the supplied documentation; runtime behavior, existing code, or external systems were not examined.",
+    "Findings assume the documents are the authoritative source; any undocumented implementation details could affect the risks identified."
+  ]
+}

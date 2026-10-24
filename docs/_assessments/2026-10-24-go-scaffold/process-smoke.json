@@ -1,0 +1,59 @@
+{
+  "binary": "bin/slovnyk",
+  "results": [
+    {
+      "signal": "SIGTERM",
+      "exit_code": 0,
+      "http": [
+        {
+          "method": "GET",
+          "path": "/healthz",
+          "status": 200
+        },
+        {
+          "method": "HEAD",
+          "path": "/healthz",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/readyz",
+          "status": 503
+        }
+      ],
+      "events": [
+        "http_started",
+        "http_draining",
+        "http_stopped"
+      ],
+      "query_text_not_logged": true
+    },
+    {
+      "signal": "SIGINT",
+      "exit_code": 0,
+      "http": [
+        {
+          "method": "GET",
+          "path": "/healthz",
+          "status": 200
+        },
+        {
+          "method": "HEAD",
+          "path": "/healthz",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/readyz",
+          "status": 503
+        }
+      ],
+      "events": [
+        "http_started",
+        "http_draining",
+        "http_stopped"
+      ],
+      "query_text_not_logged": true
+    }
+  ]
+}

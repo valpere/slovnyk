@@ -1,0 +1,62 @@
+{
+  "findings": [
+    {
+      "severity": "high",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 46,
+      "trigger": "concatenated members decoded as one stream, trailing non‑gzip bytes — failure.",
+      "impact": "Valid gzip files that contain multiple concatenated members (allowed by the gzip spec) will be rejected, causing loss of otherwise importable translation records and breaking compatibility with legacy archives.",
+      "evidence": "Line 46‑48 of IMPORT_CONTRACT.md state that concatenated gzip members are treated as a failure and abort the import.",
+      "suggested_fix": "Update the parser to accept concatenated gzip members as a single logical stream (as per RFC 1952). Process each member sequentially and only fail on actual corruption or trailing non‑gzip bytes after the final member."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 61,
+      "trigger": "One writer on fingerprint under DB lock; loss of process/DB connection — retryable interruption: lock released, new attempt continues loading/validating only with unchanged manifest.",
+      "impact": "If the database connection drops while the advisory lock is held, the lock may remain held, causing subsequent import attempts to deadlock and stall the import pipeline.",
+      "evidence": "Lines 61‑68 describe the lock strategy but do not specify the lock type or guarantee its release on connection loss.",
+      "suggested_fix": "Use PostgreSQL advisory locks (e.g., pg_advisory_xact_lock) that are automatically released on transaction abort, and add a timeout/retry mechanism. Document that the lock is advisory and ensure the import runner releases it explicitly on failure."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LEGACY_COMPATIBILITY.md",
+      "line": 48,
+      "trigger": "Short code mapping limited to `uk → uk-ua` and `en → en-us`; other short codes → 400.",
+      "impact": "Legacy URLs that use other short locale codes (e.g., `sr` or any future short alias) will return 400, breaking existing external links and causing loss of access to valid translations.",
+      "evidence": "Lines 48‑50 of LEGACY_COMPATIBILITY.md define strict short‑code handling.",
+      "suggested_fix": "Extend the short‑code allowlist to include all short codes present in the legacy dataset or map unknown short codes to a 400 with a clear error message, but document the allowed set in the contract. Alternatively, treat unknown short codes as full codes and reject only if they are not present in the dataset."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LOOKUP_CONTRACT.md",
+      "line": 65,
+      "trigger": "Cursor token includes `limit` field; any change to the `limit` parameter between requests results in a signature mismatch → 400.",
+      "impact": "Clients that dynamically adjust page size (e.g., UI allowing user to change results per page) will receive a 400 error on the next page, leading to a poor user experience and unnecessary request restarts.",
+      "evidence": "Lines 65‑68 of LOOKUP_CONTRACT.md describe the cursor payload and the error handling for mismatched parameters.",
+      "suggested_fix": "Either omit `limit` from the cursor fingerprint (allowing the server to honor a new limit) or document that the limit must remain constant for the lifetime of a cursor and provide a clear client‑side guideline."
+    },
+    {
+      "severity": "low",
+      "file": "docs/DATA_MODEL.md",
+      "line": 38,
+      "trigger": "`translations` table primary key defined as `(dataset_id, id)` without specifying how `id` is generated (e.g., SERIAL/BIGSERIAL).",
+      "impact": "If `id` values are not guaranteed to be monotonic and unique, cursor anchoring may become nondeterministic, causing pagination gaps or duplicate entries across pages.",
+      "evidence": "Line 38 of DATA_MODEL.md shows the PK definition but no column type or generation strategy.",
+      "suggested_fix": "Define `id` as `BIGSERIAL` (or use a sequence) to ensure a unique, ever‑increasing identifier for each translation row."
+    },
+    {
+      "severity": "low",
+      "file": "docs/LEGACY_COMPATIBILITY.md",
+      "line": 31,
+      "trigger": "Legacy `/csv/{filename}` redirects to a version‑pinned export URL that may expose the original filename rather than an opaque export identifier.",
+      "impact": "Exposing the original filename can leak internal naming conventions and may enable path‑traversal attacks if the redirect target is not strictly validated, potentially allowing unauthorized file access.",
+      "evidence": "Lines 31‑33 of LEGACY_COMPATIBILITY.md describe the redirect behavior without specifying that the target must be an opaque ID.",
+      "suggested_fix": "Change the redirect to point to the `/downloads/{export_id}` endpoint using the opaque export identifier generated during publication. Validate that the filename maps to a known artifact hash before issuing the redirect."
+    }
+  ],
+  "limitations": [
+    "Analysis is based solely on the provided documentation; actual implementation details (e.g., lock mechanisms, column types) may differ.",
+    "Findings assume the contracts are implemented as described; deviations in code could mitigate or exacerbate the identified risks."
+  ]
+}

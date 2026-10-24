@@ -1,0 +1,13 @@
+﻿"uk-ua","en-us","Слово","word"
+"uk-ua","en-us","Слово","word"
+"uk-ua","en-us","СЛОВО","term"
+"en-us","uk-ua","Straße","вулиця"
+"sr-rs","sr-rs","реч","реч"
+"en-us","uk-ua","É","акцент"
+"en-us","uk-ua"," edge "," краї "
+"en-us","uk-ua","*?%_\","маска"
+"en-us","uk-ua","a,""b","CRLF
+CRLF
+end"
+"en-us","uk-ua","👩‍💻","emoji"
+"sr-sp","sr-rs","reč","реч"

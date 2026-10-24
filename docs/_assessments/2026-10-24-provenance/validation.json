@@ -1,0 +1,17 @@
+{
+  "validated": true,
+  "ledger_records_checked": 56455068,
+  "files_checked": 992,
+  "dataset_state": "validating",
+  "active_dataset": null,
+  "generation": 0,
+  "publication_events": 0,
+  "elapsed_s": 9.393,
+  "tool_sha256": {
+    "analyze.py": "542a3af8fc22a0dc73139f566829afb09775b486bc93b431633a8b3b40f1d820",
+    "load.py": "01682c4646e258a4b4601c03f3703fac3ec609921fba20229f5f9d8dc9acadd8",
+    "probe.py": "b128129007051dee56da9c7023ba1f0698d4c5c67dec85315d3fedfd8689d4d7",
+    "test_probe.py": "5ec63800a6693def3ed6440a37cc43229075cbecd60ec422b614e225f06b6f00",
+    "validate.py": "fd124127c4aade3111bd737fdb8b3645128725dead4d9d37d12c1abe1f0b0df8"
+  }
+}

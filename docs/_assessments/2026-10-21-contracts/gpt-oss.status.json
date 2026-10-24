@@ -1,0 +1,11 @@
+{
+  "requested_model": "gpt-oss:120b-cloud",
+  "status": "complete",
+  "actual_model": "gpt-oss:120b",
+  "done": true,
+  "done_reason": "stop",
+  "prompt_eval_count": 20800,
+  "eval_count": 6465,
+  "findings": 6,
+  "seconds": 28.239
+}

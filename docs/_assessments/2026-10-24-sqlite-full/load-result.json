@@ -1,0 +1,46 @@
+{
+  "offered_queries_per_second": 10,
+  "queries": 300,
+  "max_workers": 4,
+  "elapsed_s": 29.92,
+  "mix": "80% exact (including misses), 10% prefix, 10% infix",
+  "sample_pairs": 4,
+  "metrics_including_scheduling_queue": {
+    "exact": {
+      "queries": 240,
+      "p50_ms": 0.161,
+      "p95_ms": 0.374,
+      "max_ms": 0.759,
+      "errors": 0
+    },
+    "prefix": {
+      "queries": 30,
+      "p50_ms": 0.212,
+      "p95_ms": 0.402,
+      "max_ms": 0.557,
+      "errors": 0
+    },
+    "infix": {
+      "queries": 30,
+      "p50_ms": 22.746,
+      "p95_ms": 24.853,
+      "max_ms": 28.353,
+      "errors": 0
+    },
+    "all": {
+      "queries": 300,
+      "p50_ms": 0.168,
+      "p95_ms": 22.746,
+      "max_ms": 28.353,
+      "errors": 0
+    }
+  },
+  "errors": [],
+  "limitations": [
+    "Developer machine; uncontrolled warm OS page cache",
+    "Samples only from four largest pairs in full-corpus database",
+    "SQL only, no HTTP/rendering/cursors/publication or bot traffic",
+    "Exploratory profile, not an approved acceptance workload",
+    "SQLite progress callback is not a hard wall-clock I/O timeout"
+  ]
+}
