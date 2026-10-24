@@ -110,9 +110,9 @@ HTTP читає лише runtime tables; оператор імпортує/пу�
 login не використовувати для HTTP. Небезпечні наявні групи відхиляються.
 Жодних автоматичних down migrations, GC або видалення datasets немає.
 
-Для readiness задайте разом `SLOVNYK_HTTP_DSN` (LOGIN групи `slovnyk_http`)
-і `SLOVNYK_ARTIFACT_ROOT`. На startup, recovery та новій generation перевіряються
-schema, ready report, hashes і round-trip усіх активних exports. До успіху — 503.
+Для HTTP storage задайте разом `SLOVNYK_HTTP_DSN` (LOGIN групи `slovnyk_http`)
+і `SLOVNYK_ARTIFACT_ROOT`, а також cursor keyring (див. нижче). На startup, recovery та новій generation перевіряються
+schema, ready report, hashes і round-trip усіх активних exports. До успіху readiness — 503.
 Pointer перевіряється щосекунди; втрата БД скидає readiness. HTTP mount artifacts
 має бути read-only, final files незмінні, GC вимкнений. Перевірені bytes
 кешуються до recovery/нової generation, тому зовнішні зміни файлів заборонені.
@@ -219,7 +219,7 @@ M1-03 реалізовано: схема PostgreSQL, міграційний CLI,
 транзакційний ledger/provenance і retry. M1-05 реалізовано: reconciliation,
 durable exports/report, publication/rollback CAS та HTTP readiness.
 M1-06 реалізовано: application service exact/mask і підписана cursor-пагінація.
-Наступна задача — M1-07: HTTP lookup, UI, локалізація та downloads.
+M1-07 розпочато: HTTP lookup і bounded rendering; локалізація, каталог, SEO та downloads ще відкриті.
 Старий проєкт залишається незмінним; Oracle не задіяний.
 
 ## Рев’ю, коміти та CI
@@ -243,18 +243,28 @@ workflow має лише `contents: read`, без secrets, production чи brows
 `internal/lookup.Service.Search` приймає typed request і caller-owned PostgreSQL
 connection під HTTP read-only role. Exact/mask, C sort/seek, raw grouping,
 retained dataset pin і спільний двосекундний SQL deadline перевірені на synthetic
-даних. `/search` ще не підключений; запуск `serve` не надає пошукового UI.
+даних. `serve` надає `/` та `/search`: HTML-форму без JS і `format=plain`.
+Це англомовний development UI з явними кодами мов, ще без каталогу,
+локалізації/налаштувань, SEO-сторінок і downloads; M1-07 залишається відкритим.
 
 `lookup.NewSigner` приймає active key ID і keyring: 1–16 ключів по 32–64 bytes;
 використовуйте випадкові секретні ключі з щонайменше 256 bits entropy.
-Попередні ключі зберігайте протягом підтримки їхніх cursors. CLI/env provisioning
-для HTTP буде в M1-07; synthetic ключ golden fixture не призначений для запуску.
+Попередні ключі зберігайте протягом підтримки їхніх cursors. З HTTP storage
+обов'язково задайте `SLOVNYK_CURSOR_ACTIVE_KID` і `SLOVNYK_CURSOR_KEYS`:
+список `kid:hex,kid:hex` без пробілів, 32–64 decoded bytes на ключ.
+Для нового секрету: `openssl rand -hex 32`; не комітьте результат.
+Наприклад, keyring із новим і попереднім ключами: `v2:<hex>,v1:<hex>`,
+active KID — `v2`. Synthetic ключ golden fixture не призначений для запуску.
 Cursor містить ID останнього включеного запису, без raw texts, максимум 2048 bytes.
 
-Service резервує 896 KiB для escaped entries і 128 KiB для UI. Фактичний renderer
-у M1-07 повинен перевірити весь serialized body до headers (межа 1 MiB), а HTTP
-adapter — передати спільний deadline також у connection acquisition. Typed
-`Limit=0` означає default 50; explicit HTTP `limit=0` має відхилятися adapter.
+Service резервує 896 KiB для escaped entries і 128 KiB для UI. Renderer
+буферизує весь HTML/plain body до headers, не більше 1 MiB; перевищення
+повертає коротку 503, без часткових записів. HTTP backend обмежує одночасні
+search connections до 8; очікування slot, connect і lookup ділять deadline 2 s.
+Typed `Limit=0` означає default 50; explicit HTTP `limit=0` відхиляється.
+Raw request-target понад 32 KiB → 414; невалідні/дубльовані параметри → 400.
+Search responses мають `no-store` і `noindex, follow`; probes залишаються JSON.
+Поки без storage працюють форма й health, непорожній пошук/readiness → 503.
 `make test-integration` включає lookup tests; bounded fuzz:
 
 ```sh

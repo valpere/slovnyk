@@ -1,15 +1,20 @@
 package ops
 
 import (
+	"encoding/hex"
 	"errors"
 	"log/slog"
 	"net"
 	"strconv"
+	"strings"
 	"time"
+
+	"github.com/valpere/slovnyk/internal/lookup"
 )
 
 // Config separates read-only HTTP storage from operator and migration credentials.
 type Config struct {
+	CursorSigner    *lookup.Signer
 	HTTPDSN         string
 	ArtifactRoot    string
 	HTTPAddr        string
@@ -56,6 +61,27 @@ func LoadConfig(getenv func(string) string) (Config, error) {
 	cfg.ArtifactRoot = getenv("SLOVNYK_ARTIFACT_ROOT")
 	if (cfg.HTTPDSN == "") != (cfg.ArtifactRoot == "") {
 		return Config{}, errors.New("SLOVNYK_HTTP_DSN and SLOVNYK_ARTIFACT_ROOT must be set together")
+	}
+	keysText, active := getenv("SLOVNYK_CURSOR_KEYS"), getenv("SLOVNYK_CURSOR_ACTIVE_KID")
+	if keysText != "" || active != "" || cfg.HTTPDSN != "" {
+		safeError := errors.New("invalid SLOVNYK_CURSOR_KEYS or SLOVNYK_CURSOR_ACTIVE_KID: configure a bounded keyring and active key")
+		if len(keysText) > 4096 {
+			return Config{}, safeError
+		}
+		keys := map[string][]byte{}
+		for _, item := range strings.Split(keysText, ",") {
+			kid, encoded, ok := strings.Cut(item, ":")
+			key, err := hex.DecodeString(encoded)
+			if !ok || err != nil || keys[kid] != nil {
+				return Config{}, safeError
+			}
+			keys[kid] = key
+		}
+		signer, err := lookup.NewSigner(active, keys)
+		if err != nil {
+			return Config{}, safeError
+		}
+		cfg.CursorSigner = signer
 	}
 	return cfg, nil
 }
