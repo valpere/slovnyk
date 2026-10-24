@@ -2,7 +2,7 @@
 
 Конкретизація FUN-LOOKUP/UI. M1-06 реалізує application search/cursor service;
 HTTP parsing і bounded HTML/plain rendering реалізовані в першому зрізі M1-07;
-локалізація, каталог/налаштування форми залишаються відкритими.
+каталог і локалізація/налаштування форми реалізовані в наступному зрізі.
 Основний результат — server-rendered HTML без JavaScript.
 
 ## HTTP та помилки
@@ -47,9 +47,36 @@ format не входить у cursor fingerprint. UI не змінює слов�
 На першому візиті без збереженої пари форма пропонує мову браузера →
 англійську; для англомовного браузера — англійську → українську. Пропозицію
 можна змінити; вона доступна лише за наявності напрямку в активному dataset.
-Інакше форма пропонує обрати доступний напрямок. Mapping регіональних
-кодів у цій пропозиції ще потребує визначення й не змінює raw locale codes. Форма передає пару явно: `/search` не підставляє відсутні `from`/`to`
+Інакше форма пропонує обрати доступний напрямок. Для регіональних кодів точний source browser tag має пріоритет; інакше
+primary language має визначити єдину наявну пару з потрібною target language.
+Неоднозначність не дає пропозиції; browser `nb` допускає наявний legacy
+`no-*` напрямок. Raw locale codes не переписуються. Форма передає пару явно: `/search` не підставляє відсутні `from`/`to`
 зі збережених налаштувань і не змінює пару з cursor.
+
+## Каталог і налаштування форми
+
+`GET /languages` (HTML/plain) показує напрямки й unique tuple counts із ready,
+раніше published dataset. Порожня форма читає active pointer один раз; після
+пошуку каталог використовує pin результату/cursor, без нового active lookup.
+До 256 locales і 4096 pairs; перевищення або SQL failure → unavailable, без
+обрізаного каталогу. `/languages` повертає 503; порожня форма або вже успішний
+пошук зберігають 200 з явним повідомленням про недоступний каталог.
+Search і catalog acquisition/SQL ділять один outer deadline 2 s та 8 slots.
+Увесь HTML/plain body обмежений 1 MiB, включно з каталогом і 31 UI choice.
+
+`slovnyk_ui` зберігає лише явний підтримуваний вибір; `slovnyk_pair` — явно
+передану наявну пару (base64url двох raw codes із NUL separator). Cookies
+host-only, `Path=/`, `Max-Age=31536000`, HttpOnly, SameSite=Lax; Secure для TLS
+або production hostnames. Автоматичний вибір не записує cookies. Пара лише
+prefill, жоден cookie не змінює endpoint/cursor. Навіть частковий явний from/to
+вимикає автоматичне доповнення. Невалідні cookies ігноруються. Content-Language
+показує фактичний UI; responses мають Vary: Accept-Language, Cookie і no-store.
+
+31 embedded JSON catalog зі статусом ai-draft зберігає PO provenance та origins
+кожної фрази; див. [ресурси](../web/README.md). Це не мовне приймання OQ-06.
+Browser matching: x/text High/Exact; непідтримувані мови/scripts → en. Відсутній
+Accept-Language дає English UI/пропозицію English → Ukrainian; malformed,
+zero-weight-only або wildcard header не створює пропозиції пари.
 
 ## Нормалізація та маски
 

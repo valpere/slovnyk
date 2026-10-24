@@ -50,7 +50,8 @@ func Run(ctx context.Context, cfg Config, logger *slog.Logger) error {
 	probes := readinessHandler(status.ready.Load)
 	mux.Handle("/healthz", probes)
 	mux.Handle("/readyz", probes)
-	mux.Handle("/", httpui.New(searchBackend(cfg), cfg.CursorSigner))
+	search, catalog := httpBackends(cfg)
+	mux.Handle("/", httpui.New(search, cfg.CursorSigner, httpui.WithCatalog(catalog)))
 	server := &http.Server{
 		Handler:           httpui.LimitTarget(mux),
 		ReadHeaderTimeout: 5 * time.Second,

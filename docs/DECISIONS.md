@@ -540,3 +540,18 @@ fixtures не змінено. Push CI не підміняє PR CI; merge не а
 
 Три Python-команди вилучено; історичні Python artifacts досліджень незмінні.
 Правило постійне для наступних робіт. AGENTS.md не переписується.
+
+
+## M1-07: каталог і локалізація — 2026-10-24
+
+Технічна реалізація погодженого browser/manual flow: embedded JSON для всіх
+31 legacy language families, English fallback, PO/AI provenance кожної фрази.
+Каталоги ai-draft; OQ-06 не закрито. Runtime не читає старий checkout.
+UI й пара зберігаються окремими host-only cookies на рік; автоматичний вибір
+не записується. Regional proposal: точний source browser tag, інакше єдиний
+наявний напрямок за primary languages; при неоднозначності вибір лишається
+порожнім. Це технічна конкретизація, не нове погодження користувача.
+Каталог pinned до результату пошуку; bounded 256 locales/4096 pairs,
+перевищення fail-closed. Спільний outer DB deadline 2 s та 8 connection slots.
+[Перевірки й self-review](_assessments/2026-10-24-catalog-localization/REPORT.md).
+SEO/downloads та production приймання залишаються відкритими.

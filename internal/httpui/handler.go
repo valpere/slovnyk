@@ -3,45 +3,127 @@ package httpui
 import (
 	"bytes"
 	"context"
+	_ "embed"
 	"errors"
 	"html/template"
 	"io"
 	"net/http"
+	"net/url"
 	"strconv"
 
+	"github.com/valpere/slovnyk/internal/catalog"
+	"github.com/valpere/slovnyk/internal/i18n"
 	"github.com/valpere/slovnyk/internal/lookup"
 )
 
 type SearchFunc func(context.Context, lookup.Request) (lookup.Page, error)
 
-// New exposes the first HTTP slice of M1-07. This English development UI is not
-// the completed localization/catalog/SEO/downloads milestone.
-func New(search SearchFunc, signer *lookup.Signer) http.Handler {
+type CatalogFunc func(context.Context, string) (catalog.Snapshot, error)
+type Option func(*options)
+type options struct{ catalog CatalogFunc }
+
+func WithCatalog(read CatalogFunc) Option { return func(o *options) { o.catalog = read } }
+
+// New serves search, language inventory, and localized no-JavaScript forms.
+func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler {
+	config := options{}
+	for _, apply := range opts {
+		apply(&config)
+	}
 	mux := http.NewServeMux()
 	serve := func(w http.ResponseWriter, r *http.Request) {
 		parsed, status := parse(r, signer)
-		data := view{Request: parsed.Search}
+		lang, manual := i18n.Select(parsed.UI, cookie(r, uiCookie), r.Header.Get("Accept-Language"))
+		data := view{Request: parsed.Search, Lang: lang, Text: i18n.Messages(lang), IsLanguages: r.URL.Path == "/languages", UIAction: r.URL.Path}
+		for _, c := range i18n.Choices() {
+			data.UILocales = append(data.UILocales, choice{Code: c.Code, Label: c.Name, Selected: c.Code == lang})
+		}
+		var changes []*http.Cookie
+		// One outer deadline includes search, catalog and both connection acquisitions.
+		ctx, cancel := context.WithTimeout(r.Context(), lookup.DBTimeout)
+		defer cancel()
+		dataset := ""
 		if status != 200 {
-			data = view{Message: "Invalid search parameters. Check the query and language pair."}
-		} else if !parsed.Empty {
-			if search == nil {
-				status = 503
-				data.Message = message(lookup.ErrUnavailable)
-			} else {
-				page, err := search(r.Context(), parsed.Search)
-				status = lookup.Status(err)
-				if err != nil {
-					data.Message = message(err)
+			data.Request = lookup.Request{}
+			data.Message = data.Text["invalid"]
+		} else {
+			if manual {
+				changes = append(changes, preference(r, uiCookie, lang))
+			}
+			if !parsed.Empty && !data.IsLanguages {
+				if search == nil {
+					status = 503
+					data.Message = data.Text["unavailable"]
 				} else {
-					data.Groups = page.Groups
-					if len(page.Groups) == 0 {
-						data.Message = "No matches. Try a mask: * matches any sequence; ? matches one character."
-					}
-					if page.HasMore {
-						data.Next = nextURL(parsed, page.Cursor)
+					page, err := search(ctx, parsed.Search)
+					status = lookup.Status(err)
+					if err != nil {
+						data.Message = data.Text[messageKey(err)]
+					} else {
+						dataset = page.Dataset
+						data.Groups = page.Groups
+						if len(page.Groups) == 0 {
+							data.Message = data.Text["no_matches"]
+						}
+						if page.HasMore {
+							data.Next = nextURL(parsed, page.Cursor)
+						}
 					}
 				}
 			}
+			if status == 200 && config.catalog != nil {
+				inventory, err := config.catalog(ctx, dataset)
+				if err != nil {
+					data.Notice = data.Text["catalog_unavailable"]
+					if data.IsLanguages {
+						status = 503
+					}
+				} else {
+					data.HasCatalog = true
+					if parsed.Empty && !data.IsLanguages && !parsed.FromSet && !parsed.ToSet {
+						from, to, saved := savedPair(r)
+						if saved {
+							if inventory.Has(from, to) {
+								data.Request.From, data.Request.To = from, to
+							} else {
+								data.Notice = data.Text["pair_unavailable"]
+							}
+						} else {
+							data.Request.From, data.Request.To = propose(inventory, r.Header.Get("Accept-Language"))
+						}
+					}
+					if parsed.FromSet && parsed.ToSet && inventory.Has(parsed.Search.From, parsed.Search.To) {
+						changes = append(changes, preference(r, pairCookie, encodePair(parsed.Search.From, parsed.Search.To)))
+					}
+					data.FromChoices = languageChoices(inventory.Locales, data.Request.From)
+					data.ToChoices = languageChoices(inventory.Locales, data.Request.To)
+					if data.IsLanguages {
+						for _, p := range inventory.Pairs {
+							q := url.Values{"from": {p.From}, "to": {p.To}}
+							data.Pairs = append(data.Pairs, pairView{From: i18n.Native(p.From), To: i18n.Native(p.To), Count: p.Count, URL: "/?" + q.Encode()})
+						}
+					}
+				}
+			} else if status == 200 {
+				data.Notice = data.Text["catalog_unavailable"]
+				if data.IsLanguages {
+					status = 503
+				}
+			}
+		}
+		// Language switching preserves only the parsed request, including its cursor.
+		// No hidden ui on search: automatic browser selection must not become a
+		// persisted manual choice merely because the visitor submits a search.
+		for _, p := range []field{{"from", data.Request.From}, {"to", data.Request.To}, {"q", data.Request.Q}, {"cursor", parsed.Search.Cursor}} {
+			if p.Value != "" {
+				data.UIFields = append(data.UIFields, p)
+			}
+		}
+		if data.Request.Mode != "" {
+			data.UIFields = append(data.UIFields, field{"mode", string(data.Request.Mode)})
+		}
+		if data.Request.Limit != 0 {
+			data.UIFields = append(data.UIFields, field{"limit", strconv.Itoa(data.Request.Limit)})
 		}
 		body := &boundedBuffer{}
 		var err error
@@ -56,10 +138,16 @@ func New(search SearchFunc, signer *lookup.Signer) http.Handler {
 			status = 503
 			contentType = "text/plain; charset=utf-8"
 			body = &boundedBuffer{}
-			_, _ = io.WriteString(body, "Response unavailable. Please try again.\n")
+			_, _ = io.WriteString(body, data.Text["render_error"]+"\n")
+			changes = nil
+		}
+		for _, c := range changes {
+			http.SetCookie(w, c)
 		}
 		w.Header().Set("Content-Type", contentType)
 		w.Header().Set("Content-Length", strconv.Itoa(body.Len()))
+		w.Header().Set("Content-Language", lang)
+		w.Header().Set("Vary", "Accept-Language, Cookie")
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		w.Header().Set("X-Robots-Tag", "noindex, follow")
@@ -71,13 +159,43 @@ func New(search SearchFunc, signer *lookup.Signer) http.Handler {
 	}
 	mux.HandleFunc("GET /{$}", serve)
 	mux.HandleFunc("GET /search", serve)
+	mux.HandleFunc("GET /languages", serve)
 	return LimitTarget(mux)
 }
 
+type choice struct {
+	Code, Label string
+	Selected    bool
+}
+type field struct{ Name, Value string }
+type pairView struct {
+	From, To, URL string
+	Count         int64
+}
 type view struct {
-	Request       lookup.Request
-	Groups        []lookup.Group
-	Message, Next string
+	Request                               lookup.Request
+	Groups                                []lookup.Group
+	Message, Notice, Next, Lang, UIAction string
+	Text                                  map[string]string
+	HasCatalog, IsLanguages               bool
+	FromChoices, ToChoices, UILocales     []choice
+	Pairs                                 []pairView
+	UIFields                              []field
+}
+
+func languageChoices(codes []string, selected string) []choice {
+	out := []choice{}
+	found := false
+	for _, code := range codes {
+		out = append(out, choice{Code: code, Label: i18n.Native(code), Selected: code == selected})
+		if code == selected {
+			found = true
+		}
+	}
+	if selected != "" && !found {
+		out = append(out, choice{Code: selected, Label: selected, Selected: true})
+	}
+	return out
 }
 
 // The writer refuses excess bytes before allocating or committing any headers.
@@ -92,6 +210,19 @@ func (b *boundedBuffer) Write(p []byte) (int, error) {
 func (b *boundedBuffer) WriteString(s string) (int, error) { return b.Write([]byte(s)) }
 
 func plain(w io.Writer, v view) error {
+	if v.Notice != "" {
+		if _, e := io.WriteString(w, v.Notice+"\n"); e != nil {
+			return e
+		}
+	}
+	for _, p := range v.Pairs {
+		if v.IsLanguages {
+			if _, e := io.WriteString(w, p.From+" → "+p.To+"\t"+strconv.FormatInt(p.Count, 10)+"\n"); e != nil {
+				return e
+			}
+		}
+	}
+
 	if v.Message != "" {
 		if _, e := io.WriteString(w, v.Message+"\n"); e != nil {
 			return e
@@ -108,40 +239,31 @@ func plain(w io.Writer, v view) error {
 		}
 	}
 	if v.Next != "" {
-		_, e := io.WriteString(w, "Next: "+v.Next+"\n")
+		_, e := io.WriteString(w, v.Text["next"]+": "+v.Next+"\n")
 		return e
 	}
 	return nil
 }
-func message(err error) string {
+func messageKey(err error) string {
 	switch {
 	case errors.Is(err, lookup.ErrCursor):
-		return "Invalid continuation link. Start a new search."
+		return "cursor"
 	case errors.Is(err, lookup.ErrGone):
-		return "This dictionary version is unavailable. Start a new search."
+		return "gone"
 	case errors.Is(err, lookup.ErrLocale):
-		return "Unknown language code. Check the language pair."
+		return "locale"
 	case errors.Is(err, lookup.ErrPair):
-		return "This translation direction is unavailable. Choose another language pair."
+		return "pair"
 	case errors.Is(err, lookup.ErrInput):
-		return "Invalid search parameters. Check the query and language pair."
+		return "invalid"
 	default:
-		return "Search is temporarily unavailable. Please try again."
+		return "unavailable"
 	}
 }
 
-var pageTemplate = template.Must(template.New("search").Parse(`<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Slovnyk · Dictionary</title>
-<style>
-:root{font-family:system-ui,sans-serif;color:#172b36;background:#f5f7f8;line-height:1.6}*{box-sizing:border-box}body{margin:0}main{max-width:52rem;margin:4rem auto;padding:0 1.25rem}h1{letter-spacing:-.04em;font-size:2.8rem;line-height:1.1}p{color:#425563}form,section{background:#fff;border:1px solid #d4dfe4;border-radius:1rem;padding:1.5rem;margin:1.5rem 0}label{display:block;font-weight:600}input{width:100%;padding:.75rem;border:1px solid #738b98;border-radius:.5rem;font:inherit;margin:.3rem 0 1rem}.pair{display:flex;gap:1rem}.pair label{flex:1;min-width:0}button,.next{display:inline-block;background:#075985;color:#fff;border:0;border-radius:.5rem;padding:.8rem 1.4rem;font:inherit;font-weight:600;cursor:pointer}a{color:#075985}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #c35d00;outline-offset:3px}.word{white-space:pre-wrap;overflow-wrap:anywhere}h2{font-size:1.3rem}li{margin:.5rem 0}@media(max-width:32rem){main{margin:2rem auto}.pair{display:block}}
-</style></head><body><main><h1>Slovnyk</h1><p>A multilingual dictionary. Find a word or explore with a mask.</p>
-<form action="/search" method="get"><label for="q">Word or mask</label><input id="q" name="q" value="{{.Request.Q}}" maxlength="1024" autofocus>
-<div class="pair"><label>From language code<input name="from" value="{{.Request.From}}" placeholder="uk-ua" required></label><label>To language code<input name="to" value="{{.Request.To}}" placeholder="en-gb" required></label></div>
-<input type="hidden" name="mode" value="{{if .Request.Mode}}{{.Request.Mode}}{{else}}auto{{end}}"><input type="hidden" name="limit" value="{{if .Request.Limit}}{{.Request.Limit}}{{else}}50{{end}}"><button type="submit">Translate</button></form>
-{{if .Message}}<p role="status">{{.Message}}</p>{{end}}
-{{range .Groups}}<section><h2 class="word">{{.Source}}</h2><ul>{{range .Translations}}<li class="word">{{.}}</li>{{end}}</ul></section>{{end}}
-{{if .Next}}<a class="next" href="{{.Next}}" rel="next">More translations</a>{{end}}
-</main></body></html>`))
+//go:embed search.html
+var pageHTML string
+var pageTemplate = template.Must(template.New("search").Parse(pageHTML))
 
 // LimitTarget runs before routing: ServeMux may otherwise redirect an oversized
 // target with a noncanonical path before the search handler can reject it.

@@ -311,3 +311,24 @@ Follow-up transport review: [звіт](_assessments/2026-10-24-http-target/REPOR
 до canonical redirects: query 24 KiB → 200, понад 32 KiB → 414, включно з
 `//search`. `make check test test-race test-smoke` повторно PASS після зміни.
 Go parser має окремий hard ceiling 64 KiB для request line + headers.
+
+## M1-07 — каталог, локалізація й налаштування, 2026-10-24
+
+Наступний зріз покриває частину FR-05 / AT-05, FR-01 language inventory;
+M1-07 загалом залишається in progress.
+
+| Покрита частина | Фактичні перевірки |
+|---|---|
+| Browser/manual fallback, ресурси | `internal/i18n/i18n_test.go`: 31 catalog × 22 keys, 84 PO texts і 598 AI texts, provenance, mask hints, English fallback, manual priority, regional/script matching, nb-NO regression |
+| Cookies, початкова/збережена пара | `internal/httpui/preferences_test.go`: незалежність UI/pair, річні host-only cookies, Secure/HttpOnly/SameSite, invalid/unsupported preferences, explicit/partial pair, unavailable saved pair без заміни, ambiguity і raw regional codes |
+| Каталог і помилки | `TestCatalogRouteAndPinnedSearch`, `TestUnconfiguredCatalogNotice`, `TestCatalogFailurePreservesSearch`: HTML/plain inventory/counts, спільний pin/deadline, localized notices, 503 catalog vs 200 existing results/form |
+| Реальний PostgreSQL + HTTP role | `internal/ops/readiness_integration_test.go`: imported/verified/published synthetic dataset, catalog read під slovnyk_http, browser proposal і manual cookie, continuation зі зміною format/UI, pinned catalog під AccessExclusive lock active pointer; initial read timeout і unknown dataset → unavailable |
+| Actual process | `tests/processsmoke/smoke_test.go`: `/languages` GET/HEAD без storage → 503, `/?ui=uk` → localized HTML/cookie; попередні lifecycle/privacy/target checks збережено |
+
+`make check test test-race test-smoke` і `make test-integration` — PASS, exit 0.
+Лише disposable PostgreSQL 17.11 і synthetic fixtures; не capacity test.
+[Self-review та screenshots](_assessments/2026-10-24-catalog-localization/REPORT.md):
+наявний Chromium CDP 9222, page scripts disabled, synthetic handler fixture,
+uk desktop/mobile, language catalog, German 320px layout. Це visual check,
+не повний browser/accessibility acceptance. OQ-06 (мовна якість), фінальний
+дизайн, SEO/downloads, production p95 і corpus migration лишаються відкритими.

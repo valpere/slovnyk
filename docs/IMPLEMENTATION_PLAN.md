@@ -160,9 +160,9 @@ publish, changed parameters/anchors, key rotation, long fields/byte budget
 
 **Status: in progress.** Перший зріз: `internal/httpui/`, HTTP backend і keyring
 у `internal/ops/`; `/`, `/search`, HTML/plain, validation precedence, escaping,
-1 MiB body guard і спільний acquisition/SQL deadline. Development UI поки
-англійський з явними кодами мов. Каталог, localization/cookies/пропозиція пари,
-SEO та downloads ще не реалізовані; це не завершення FR-05 або M1-07.
+1 MiB body guard і спільний acquisition/SQL deadline. Наступний зріз додає
+каталог, 31 AI-draft UI catalog, cookies та пропозицію пари без JS.
+SEO/downloads, мовне приймання OQ-06 та фінальне FR-05 ще відкриті.
 
 - Додати `/`, `/search`, `/languages`, `/downloads` та version-pinned artifact handler;
   HTML без JS і `format=plain` за контрактом. UI — лаконічний пошуковий інструмент за FR-05; конкретні макети ще не погоджено.
@@ -177,7 +177,8 @@ SEO та downloads ще не реалізовані; це не завершен�
   у форму без JS; явні `from`/`to` мають пріоритет, недоступну пару не замінювати мовчки.
   На першому візиті пропонувати мову браузера → англійську, для англомовного
   браузера — англійську → українську, лише за наявності напрямку; інакше
-  показувати вибір доступних напрямків. Mapping регіональних кодів ще уточнити.
+  показувати вибір доступних напрямків. Регіональний mapping визначено в LOOKUP_CONTRACT: точний source, інакше
+  єдиний напрямок за primary languages; неоднозначність без автопропозиції.
   Сучасний i18n дозволений; резервна мова — англійська (`en`). Готовність
   локалей — OQ-06.
 - Додати bounded rendering: row limit і serialized byte limit, continuation від

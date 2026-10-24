@@ -219,7 +219,7 @@ M1-03 реалізовано: схема PostgreSQL, міграційний CLI,
 транзакційний ledger/provenance і retry. M1-05 реалізовано: reconciliation,
 durable exports/report, publication/rollback CAS та HTTP readiness.
 M1-06 реалізовано: application service exact/mask і підписана cursor-пагінація.
-M1-07 розпочато: HTTP lookup і bounded rendering; локалізація, каталог, SEO та downloads ще відкриті.
+M1-07 in progress: HTTP lookup, каталог, локалізація й налаштування форми реалізовані; SEO та downloads ще відкриті.
 Старий проєкт залишається незмінним; Oracle не задіяний.
 
 ## Рев’ю, коміти та CI
@@ -244,8 +244,14 @@ workflow має лише `contents: read`, без secrets, production чи brows
 connection під HTTP read-only role. Exact/mask, C sort/seek, raw grouping,
 retained dataset pin і спільний двосекундний SQL deadline перевірені на synthetic
 даних. `serve` надає `/` та `/search`: HTML-форму без JS і `format=plain`.
-Це англомовний development UI з явними кодами мов, ще без каталогу,
-локалізації/налаштувань, SEO-сторінок і downloads; M1-07 залишається відкритим.
+`/languages` показує наявні напрямки та кількість перекладів. UI має 31
+вбудований [каталог перекладів](web/README.md): придатні PO-фрази та нові
+AI-переклади, поки зі статусом `ai-draft`; мовне приймання OQ-06 відкрите.
+Явний `ui` → збережений ручний вибір → мова браузера → `en`. Ручний UI
+і остання наявна пара зберігаються окремими cookies на рік, без JS. Форма
+пропонує browser → English або English → Ukrainian лише за наявності
+однозначного напрямку; `/search` завжди потребує явної пари. Недоступна
+збережена пара показує підказку вибрати іншу. SEO/downloads ще не реалізовані.
 
 `lookup.NewSigner` приймає active key ID і keyring: 1–16 ключів по 32–64 bytes;
 використовуйте випадкові секретні ключі з щонайменше 256 bits entropy.
@@ -260,11 +266,12 @@ Cursor містить ID останнього включеного запису,
 Service резервує 896 KiB для escaped entries і 128 KiB для UI. Renderer
 буферизує весь HTML/plain body до headers, не більше 1 MiB; перевищення
 повертає коротку 503, без часткових записів. HTTP backend обмежує одночасні
-search connections до 8; очікування slot, connect і lookup ділять deadline 2 s.
+search/catalog connections до 8; slot, connect, lookup і каталог ділять deadline 2 s.
 Typed `Limit=0` означає default 50; explicit HTTP `limit=0` відхиляється.
 Raw request-target понад 32 KiB → 414; невалідні/дубльовані параметри → 400.
 Search responses мають `no-store` і `noindex, follow`; probes залишаються JSON.
-Поки без storage працюють форма й health, непорожній пошук/readiness → 503.
+Без storage працюють локалізована форма й health; непорожній пошук, каталог
+і readiness → 503. Порожня форма залишається 200 з повідомленням про каталог.
 `make test-integration` включає lookup tests; bounded fuzz:
 
 ```sh
