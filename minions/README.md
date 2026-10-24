@@ -11,7 +11,7 @@ Make targets запускаються з кореня репозиторію.
 | `check-repository.py` | `make check` або `python3 minions/check-repository.py` | Активні Markdown-посилання, кінцеві пробіли, Python syntax посіпак, ignore локальних даних, доступність scripts для Git |
 | `smoke-http.py` | `make test-smoke` або `python3 minions/smoke-http.py` після build | Власний процес на випадковому loopback port; GET/HEAD health, readiness, SIGTERM/SIGINT, відсутність query text у lifecycle logs |
 | `prepare-artifacts.py` | `python3 minions/prepare-artifacts.py data/artifacts` | Створює root і fsync ancestor directories до verify; не змінює наявні files |
-| `test-postgres.sh` | `make test-integration` | Ізольований PostgreSQL: version, migrate CLI, schema/privileges/transaction/import/retry/publication/readiness/CLI tests; видалення власних контейнера/мережі/volume |
+| `test-postgres.sh` | `make test-integration` | Ізольований PostgreSQL: version, migrate CLI, schema/privileges/transaction/import/retry/publication/lookup/readiness/CLI tests; видалення власних контейнера/мережі/volume |
 
 Успіх → exit 0, невдала перевірка → ненульовий exit. JSON останніх запусків:
 `tmp/minions/repository-check.json` і `tmp/minions/http-smoke.json`;
@@ -33,7 +33,7 @@ HTTP smoke без storage config перевіряє readiness=503,
 Він не перевіряє пошук, graceful drain активного запиту чи production capacity;
 drain/deadline перевіряють Go unit tests. PostgreSQL tests перевіряють
 schema/transactions, staged import/retry, verify/export/publication/CAS і
-readiness recovery під HTTP role. Жоден
+lookup/cursor/deadline і readiness recovery під HTTP role. Жоден
 посіпака не підключається до Oracle. Для PostgreSQL runner також потрібен Go;
 його DSN завжди генерується для власного контейнера, без fallback на наявний.
 
@@ -44,6 +44,6 @@ readiness recovery під HTTP role. Жоден
 після перенесення інструментів. `test-postgres.sh` перенесено зі `scripts/`;
 inline Markdown/ignore та process-smoke перевірки оформлено окремими посіпаками.
 
-Schema, importer, publication, ops та CLI suites запускаються послідовно: schema tests
+Schema, importer, publication, lookup, ops та CLI suites запускаються послідовно: schema tests
 перебудовують лише власну disposable схему. Healthcheck використовує TCP,
 щоб не прийняти тимчасовий Unix-socket init-сервер за готову БД.

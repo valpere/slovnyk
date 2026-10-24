@@ -253,3 +253,25 @@ AT-07/08/09/11/18 покриті частково; повний corpus, verify/e
 Повний corpus та power-loss/production durability gate не запускалися.
 Loss approval adapter ще попереду; strict M1 path не обходить ready gate.
 M1-01–05 done; M1-06–08 open. Наступна задача — M1-06.
+
+## M1-06 — application search/cursor, 2026-10-24
+
+Реалізація: `internal/lookup/`, `internal/storage/postgres/page.go`;
+HTTP parsing/rendering залишаються M1-07.
+
+| Покрита частина | Фактичні test paths / сценарії |
+|---|---|
+| AT-02/03/04/15 subset | `internal/lookup/lookup_integration_test.go: TestSearchModesAndStablePages`: exact/mask auto, explicit exact wildcard, Unicode/folding, literal `%`/`_`/backslash, same-locale, C ordering, raw grouping і paging без втрат/повторів |
+| Pinned dataset/version, AT-04 subset | `TestCursorPinAuthorizationAndChanges`: retained старий dataset після publish, changed params/limit, signed missing/unpublished dataset, wrong pair/filter anchor, unavailable normalizer |
+| Bounded pages/cursor, AT-15 subset | `TestByteBudgetAndLongAnchor`: 64 KiB fields, expanded keys, whole entries, last-included cursor, terminal page |
+| DB deadline, AT-16 subset | `TestWholeLookupDeadlineAndRecovery`: pin delay + actual PostgreSQL lock, загальні 2 s → 503, recovery на новому connection; не production p95 |
+| Cursor integrity | `internal/lookup/cursor_test.go`: `TestCursorGolden`, `TestCursorRejectsAlterations`, `TestKeyRotationAndCopies`, `FuzzCursor`; independent Python golden в `testdata/lookup/cursor-v1.json` |
+| Validation/errors/budget | `internal/lookup/lookup_test.go`: `TestValidationBeforeStorage`, `TestFingerprintEffectiveMode`, `TestLargestEscapedEntryFits`, `TestErrorStatuses` |
+
+`make check`, `make test`, `make test-race`, `make test-smoke` та
+`make test-integration` — **PASS**, exit 0. Інтеграційний runner використовував
+власну disposable PostgreSQL 17.11, після завершення видалив її ресурси.
+Bounded `FuzzCursor` з `-fuzztime=10s -parallel=2` — **PASS**, 69 183 executions.
+Runtime logs: `tmp/m1-06/` (ignored). [Звіт і review scope](_assessments/2026-10-24-lookup/REPORT.md).
+Final HTTP response size/escaping, acquisition deadline та повні AT ще відкриті.
+M1-01–06 done; наступний M1-07. Oracle і повний corpus не задіяні.

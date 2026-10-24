@@ -1,0 +1,25 @@
+{
+  "baseline": "05fdc91c92931bdfb23ce271c47b80bbf5edb30e",
+  "review": "sequential self-review, code-review skill; not independent",
+  "sha256": {
+    "README.md": "69e03ea4fd14a736e11ded222825b4c65f2768ea80fd42057a94d20135afa174",
+    "docs/DECISIONS.md": "fa8bb03707cfe070b7112f60e9b1954d18933ab6d0cbb85f9dc4d80b0d15b48a",
+    "docs/HLD.md": "69d07d3e102f8234b0ba056a888cce1b7b6460cbfd7a41893256b5383b851d3c",
+    "docs/IMPLEMENTATION_PLAN.md": "75b1c2906bf33a5d8f7449bccb2cd3621f056f978b6d85fae35e0bc49bda8d32",
+    "docs/INDEX.md": "d7d6b30ee8522f4ee931fbdfc9bf493773faacef0381827182d4ea9955dde845",
+    "docs/LOOKUP_CONTRACT.md": "d878aaa919f71a720a0f455f01d9b2f3c4ec53b5a7d97f08f9d3aeb638cefa53",
+    "docs/TRACEABILITY.md": "fd49b66167933e2e98f8be09cdc959e5a16d8326b94496e3f90e85c46875caa6",
+    "internal/lookup/cursor.go": "9b90bfd4edbae278d31a449796ca255070e8e56d16a4c2cc4f066cfa3f270bf2",
+    "internal/lookup/cursor_test.go": "ac478a1cb35afac393ae72f21530cc84760780b52d2045bc1f17e66f0738b646",
+    "internal/lookup/lookup.go": "b7a37e836112c1ea52887202e683cbc13bac57bf8bb15c64d0b112aa8c811887",
+    "internal/lookup/lookup_integration_test.go": "4ace58106e1ccf61049fe3769de17c491b0a6731cd2eaae2553b05639a92edb1",
+    "internal/lookup/lookup_test.go": "2b5a777f943d7edd93ff34118d60ec72ca6f221a0d287015817568ad1480d7b8",
+    "internal/normalization/normalization.go": "ec8a18c833ccb94bab996aed1b3683113b5e58ba38bdcceb24f34218f40fc2bc",
+    "internal/storage/postgres/exact.go": "f37468b44b6a29dbbf98ae21b2ee09f89dddb322be38fc81829d474e8b716f1a",
+    "internal/storage/postgres/page.go": "eab10f9f26f5357d4295f93fe0c1ab622375af4403910550a4e1048bc53a44b8",
+    "minions/README.md": "7261c0acd17bfb6d836f515d0109d1c5dc08f6af896061c5c2211748ac3f2f2f",
+    "minions/test-postgres.sh": "208b590c058840433e955fbc0b8814c9a9ae7784da50d04297794ddd967bf50b",
+    "testdata/README.md": "db0de5372b19fc0b9ecf8751140e8a259bb80d1d5196f2d2a18ce86f250ca2dd",
+    "testdata/lookup/cursor-v1.json": "59e89d0ded578aa8ec17f96bbb4bb3907af8af85cec7c85b535502e8f99b0442"
+  }
+}

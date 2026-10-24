@@ -1,6 +1,6 @@
 # План реалізації M1
 
-Статус на 2026-10-24: **M1-01–05 done**, M1-06–08 open.
+Статус на 2026-10-24: **M1-01–06 done**, M1-07–08 open.
 Це порядок виконання [джерела істини](INDEX.md), а не нові поведінкові вимоги.
 У разі суперечності звірити REQUIREMENTS і детальні контракти та виправити план.
 Позначати задачу виконаною лише з посиланнями на реалізацію й фактичні перевірки.
@@ -136,6 +136,14 @@ rollback і negative isolation; child-process artifact crashes та recovery tes
 
 ### M1-06 — Пошук і cursor
 
+**Status: done, 2026-10-24 (synthetic service subset).** `internal/lookup/`,
+`internal/storage/postgres/page.go`, golden cursor і real PostgreSQL tests.
+Перевірені C seek без пропусків/повторів, Unicode masks, retained dataset після
+publish, changed parameters/anchors, key rotation, long fields/byte budget
+і спільний deadline з actual driver cancellation.
+[Звіт](_assessments/2026-10-24-lookup/REPORT.md). HTTP parsing/rendering,
+фактичний serialized body limit та acquisition deadline — M1-07; p95 — M3.
+
 - Реалізувати exact/mask SQL, стабільний C sort/seek і загальний DB deadline.
 - Додати bounded signed anchor cursor, fingerprint, key IDs, published-retained
   dataset check та dataset normalizer до locale/pair validation.
@@ -229,6 +237,6 @@ M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/ro
 Для кожної M1-задачі записувати status (`open`, `in progress`, `done`, `blocked`),
 implementation/test paths, перевірені сценарії та нерозв'язані питання.
 Commit hashes додавати лише якщо commits фактично створені.
-Поточний status: **M1-01–05 done; M1-06–08 open**. Наступна задача — M1-06.
+Поточний status: **M1-01–06 done; M1-07–08 open**. Наступна задача — M1-07.
 Runtime звіти можна тримати в `tmp/`;
 довговічний стан задач і підтверджене покриття — тут і в TRACEABILITY.

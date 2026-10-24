@@ -89,15 +89,11 @@ func Compile(raw string, mode Mode) (Query, error) {
 	if mode != Auto && mode != Exact && mode != Mask {
 		return Query{}, errors.New("invalid_mode")
 	}
-	if len(raw) > 8192 || !utf8.ValidString(raw) || utf8.RuneCountInString(raw) > 1024 {
-		return Query{}, errors.New("invalid_query_size_or_encoding")
+	var err error
+	raw, err = Validate(raw)
+	if err != nil {
+		return Query{}, err
 	}
-	for _, r := range raw {
-		if r == 0 || r == 127 || (r < 32 && r != '\t' && r != '\n' && r != '\r') {
-			return Query{}, errors.New("invalid_query_control")
-		}
-	}
-	raw = strings.TrimFunc(raw, whiteSpace)
 	if mode == Auto {
 		mode = Exact
 		if strings.ContainsAny(raw, "*?") {
@@ -134,4 +130,18 @@ func Like(mask string) string {
 func whiteSpace(r rune) bool {
 	return (r >= 0x9 && r <= 0xd) || r == 0x20 || r == 0x85 || r == 0xa0 || r == 0x1680 ||
 		(r >= 0x2000 && r <= 0x200a) || r == 0x2028 || r == 0x2029 || r == 0x202f || r == 0x205f || r == 0x3000
+}
+
+// Validate checks decoded query size/encoding/controls and trims the versioned
+// edge whitespace set without normalizing. Dataset selection precedes Compile.
+func Validate(raw string) (string, error) {
+	if len(raw) > 8192 || !utf8.ValidString(raw) || utf8.RuneCountInString(raw) > 1024 {
+		return "", errors.New("invalid_query_size_or_encoding")
+	}
+	for _, r := range raw {
+		if r == 0 || r == 127 || (r < 32 && r != '\t' && r != '\n' && r != '\r') {
+			return "", errors.New("invalid_query_control")
+		}
+	}
+	return strings.TrimFunc(raw, whiteSpace), nil
 }

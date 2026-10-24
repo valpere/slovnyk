@@ -502,3 +502,18 @@ adapter усі rejections/issues/gaps/exceptions блокують ready. Поп�
 TRACEABILITY. Це synthetic subset, без повного Go corpus або production gate.
 M1-01–05 done; далі M1-06 search/cursor. Oracle/legacy/експериментальні дані
 та AGENTS.md незмінні. Браузер не запускався.
+
+## M1-06 — application search та cursor, 2026-10-24
+
+Реалізовано exact/mask, C sort/seek, grouping raw написань, signed bounded anchor
+cursor, key rotation і fingerprint. Продовження використовує published/retained
+набір із token навіть після нового active зі зміненим каталогом/normalizer.
+Query нормалізується лише після перевірки версії pinned dataset; unavailable
+version → 410 для cursor, 503 для нового пошуку. Спільний deadline — 2 s на SQL.
+
+Пошук поки доступний як Go application service: HTTP presence/transport parsing,
+UI/localization, connection acquisition deadline та final serialized-body check
+залишаються M1-07. Service має conservative escaped-entry budget, не обрізає
+raw тексти. [Звіт і review scope](_assessments/2026-10-24-lookup/REPORT.md);
+фактичні tests — TRACEABILITY. M1-01–06 done; наступний M1-07.
+Реальний corpus, Oracle та експериментальні БД не використовувалися.

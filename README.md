@@ -216,7 +216,8 @@ M1-03 реалізовано: схема PostgreSQL, міграційний CLI,
 та реальні transaction tests. M1-04 реалізовано: inspect/run CLI, staged import,
 транзакційний ledger/provenance і retry. M1-05 реалізовано: reconciliation,
 durable exports/report, publication/rollback CAS та HTTP readiness.
-Наступна задача — M1-06, пошук і cursor; HTTP lookup та UI ще попереду.
+M1-06 реалізовано: application service exact/mask і підписана cursor-пагінація.
+Наступна задача — M1-07: HTTP lookup, UI, локалізація та downloads.
 Старий проєкт залишається незмінним; Oracle не задіяний.
 
 ## Рев’ю, коміти та CI
@@ -233,3 +234,29 @@ workflow має лише `contents: read`, без secrets, production чи brows
 потрібні для відтворення hashes; активні документи перевіряються окремо.
 Зелений CI не замінює рев’ю; branch protection не налаштовується цим workflow.
 [Рев’ю початкової реалізації](docs/_assessments/2026-10-24-bootstrap-review/REPORT.md).
+
+## Пошук і cursor: реалізований service layer
+
+`internal/lookup.Service.Search` приймає typed request і caller-owned PostgreSQL
+connection під HTTP read-only role. Exact/mask, C sort/seek, raw grouping,
+retained dataset pin і спільний двосекундний SQL deadline перевірені на synthetic
+даних. `/search` ще не підключений; запуск `serve` не надає пошукового UI.
+
+`lookup.NewSigner` приймає active key ID і keyring: 1–16 ключів по 32–64 bytes;
+використовуйте випадкові секретні ключі з щонайменше 256 bits entropy.
+Попередні ключі зберігайте протягом підтримки їхніх cursors. CLI/env provisioning
+для HTTP буде в M1-07; synthetic ключ golden fixture не призначений для запуску.
+Cursor містить ID останнього включеного запису, без raw texts, максимум 2048 bytes.
+
+Service резервує 896 KiB для escaped entries і 128 KiB для UI. Фактичний renderer
+у M1-07 повинен перевірити весь serialized body до headers (межа 1 MiB), а HTTP
+adapter — передати спільний deadline також у connection acquisition. Typed
+`Limit=0` означає default 50; explicit HTTP `limit=0` має відхилятися adapter.
+`make test-integration` включає lookup tests; bounded fuzz:
+
+```sh
+go test ./internal/lookup -run '^$' -fuzz '^FuzzCursor$' -fuzztime=10s -parallel=2
+```
+
+[Рев’ю та перевірки M1-06](docs/_assessments/2026-10-24-lookup/REPORT.md).
+Це synthetic coverage, без підтвердження повного corpus чи production p95.

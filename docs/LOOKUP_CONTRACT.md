@@ -1,6 +1,7 @@
 # Контракт пошуку V1
 
-Конкретизація FUN-LOOKUP/UI; API нижче — цільовий, ще не реалізований.
+Конкретизація FUN-LOOKUP/UI. M1-06 реалізує application search/cursor service;
+HTTP API та rendering нижче залишаються ціллю M1-07.
 Основний результат — server-rendered HTML без JavaScript.
 
 ## HTTP та помилки
@@ -109,7 +110,13 @@ to, effective_mode, normalized_q, decimal_limit`. `effective_mode` — визн�
 за dataset+anchor ID та перевіряє, що anchor належить парі й відповідає фільтру.
 HMAC constant-time check; unknown kid → 400. Old signing keys зберігаються на
 весь строк підтримки cursors; заміна ключа без retention робить старі tokens invalid.
-Формат token і serialization мають golden fixtures до реалізації.
+V1 wire format: `base64url(payload) + "." + base64url(HMAC)`, без padding.
+Canonical JSON має ключі в лексичному порядку: `anchor_translation_id`,
+`dataset_id`, `fingerprint`, `kid`, `limit`, `version`; без whitespace/newline,
+з escaping `encoding/json`. Length prefix fingerprint — uint64 big-endian byte
+length перед кожним UTF-8 значенням. Fingerprint записаний lowercase hex.
+Невідомі/повторені ключі й неканонічне кодування відхиляються. Expiry у V1 немає.
+Незалежний golden fixture: `testdata/lookup/cursor-v1.json`.
 
 Page обмежена limit **і 1 MiB serialized response body**. Формувати bounded buffer
 до headers, включати лише цілі entries; reserve для templates/continuation/error
@@ -137,3 +144,19 @@ AT-02/03/04/05/15/16 доповнюються fixtures: fold expansions, compose
 ZWJ, automatic mode detection, explicit exact override, literal SQL metacharacters, edge spaces, long fields, byte-limited pages,
 forged/oversized cursor, changed params/limit, key rotation, new active зі зміненим
 каталогом/normalizer, retained old dataset, відсутній old dataset → 410.
+
+## Межа реалізації M1-06
+
+`internal/lookup.Service.Search` отримує вже розібраний typed request і позичає
+caller-owned connection. Порожні typed Mode/Limit означають auto/50; на HTTP
+adapter M1-07 покладені parameter-presence, duplicate/transport/format checks,
+відхилення explicit empty fields і `limit=0`, localization та rendering.
+Service перевіряє query bounds без нормалізації до pin/version resolution.
+Зараз підтримується лише скомпільована `normalization.Version`.
+
+Для entries service рахує escaped source/target + 64 bytes markup на запис
+у бюджеті 896 KiB. Це не заміна перевірки остаточного HTML/plain body; renderer
+має вкластися в 1 MiB разом із UI. Двосекундний service context охоплює всі його
+SQL; майбутній HTTP adapter має включати acquisition у той самий deadline.
+[Фактичні перевірки](_assessments/2026-10-24-lookup/REPORT.md) — synthetic subset,
+без production capacity acceptance.

@@ -6,6 +6,8 @@
 M1-03 додає `internal/storage/postgres`, embedded SQL і `slovnyk migrate`;
 M1-04 додає `internal/importer` і `import inspect/run` до стану `validating`;
 M1-05 додає `internal/artifacts`, `internal/publication`, dataset CLI та HTTP readiness.
+M1-06 додає `internal/lookup` і `postgres.ReadPage`: exact/mask, signed cursor,
+C seek, pinned metadata й спільний SQL deadline; HTTP adapter — M1-07.
 Нормативна поведінка — у [REQUIREMENTS](REQUIREMENTS.md).
 
 ## Компоненти та майбутня структура
@@ -246,7 +248,8 @@ report/hash та exports round-trip — на startup, reconnect і зміні ge
 Результат кешується лише для immutable retained artifacts; mount read-only,
 GC вимкнений. Помилки БД скидають readiness; recovery виконує повну перевірку.
 Операторських HTTP routes немає. SIGINT/SIGTERM скасовує monitor і запускає
-bounded graceful shutdown. Пошук/cursor ще не реалізовані.
+bounded graceful shutdown. Search/cursor service реалізовано в M1-06;
+HTTP lookup/rendering ще не підключені (M1-07).
 
 Backup складається з консистентного snapshot нової БД і всіх artifacts,
 на які він посилається, плюс manifests/config versions. До завершення backup

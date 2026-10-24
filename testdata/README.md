@@ -27,3 +27,9 @@ Runtime Go tables окремо закріплено як Unicode 15.0.0.
 
 Запуск: `make test`; обмежений fuzz — наприклад
 `go test ./internal/importdata -run '^$' -fuzz '^FuzzCSV$' -fuzztime=15s -parallel=2`.
+
+`lookup/cursor-v1.json` фіксує canonical payload, fingerprint і HMAC token V1.
+Його bytes отримані незалежно Python `json` (sorted keys, compact separators),
+`struct`, `hashlib`, `hmac` і `base64`. `key_hex` — відкритий synthetic test key,
+ніколи не production secret. Не оновлюйте golden автоматично при розбіжності;
+спочатку перевірте контракт wire format та сумісність чинних cursors.

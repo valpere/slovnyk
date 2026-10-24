@@ -16,7 +16,7 @@ type Translation struct {
 
 // Exact reads an initial bounded page using both the indexed hash and residual
 // key equality. The application must pin/authorize dataset and set its overall
-// lookup deadline; cursor seek and HTTP handling are supplied by M1-06.
+// lookup deadline; cursor seek is supplied by ReadPage and internal/lookup.
 func Exact(ctx context.Context, conn *pgx.Conn, dataset, from, to, key string, limit int) ([]Translation, error) {
 	if limit < 1 || limit > 100 {
 		return nil, ErrConfig
