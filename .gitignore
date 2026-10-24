@@ -139,3 +139,6 @@ docs/client-guide/c7.html
 
 # Synthetic gzip golden fixture; override the global archive ignore rule.
 !/testdata/import/corpus.csv.gz
+
+# Preserve exact parser fixture bytes and their intentional CR whitespace.
+!.gitattributes

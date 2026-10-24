@@ -517,3 +517,12 @@ UI/localization, connection acquisition deadline та final serialized-body chec
 raw тексти. [Звіт і review scope](_assessments/2026-10-24-lookup/REPORT.md);
 фактичні tests — TRACEABILITY. M1-01–06 done; наступний M1-07.
 Реальний corpus, Oracle та експериментальні БД не використовувалися.
+
+## Review → PR → CI перед перенесенням утиліт — 2026-10-24
+
+Користувач доручив спочатку оформити review → PR → CI, потім переписати
+Python-посіпак на Go й перенести в utilities. Відкрито PR #1 із наявними
+review reports M1-01–06; додано CONTRIBUTING та PR template. Перший PR CI
+виявив intentional CRLF/bare-CR fixtures у повному main→HEAD diff.
+Локально відтворено exit 2 до вузького .gitattributes та exit 0 після;
+fixtures не змінено. Push CI не підміняє PR CI; merge не авторизований.
