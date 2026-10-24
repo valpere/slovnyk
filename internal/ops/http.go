@@ -7,6 +7,8 @@ import (
 	"net"
 	"net/http"
 	"time"
+
+	"github.com/valpere/slovnyk/internal/httpui"
 )
 
 func newHandler() http.Handler { return readinessHandler(func() bool { return false }) }
@@ -44,8 +46,13 @@ func Run(ctx context.Context, cfg Config, logger *slog.Logger) error {
 	defer cancel()
 	status := startReadiness(monitorCtx, cfg)
 	defer func() { cancel(); <-status.done }()
+	mux := http.NewServeMux()
+	probes := readinessHandler(status.ready.Load)
+	mux.Handle("/healthz", probes)
+	mux.Handle("/readyz", probes)
+	mux.Handle("/", httpui.New(searchBackend(cfg), cfg.CursorSigner))
 	server := &http.Server{
-		Handler:           readinessHandler(status.ready.Load),
+		Handler:           mux,
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       15 * time.Second,
 		WriteTimeout:      15 * time.Second,

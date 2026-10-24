@@ -54,3 +54,25 @@ func TestStorageSettingsMustBePaired(t *testing.T) {
 		}
 	}
 }
+
+func TestCursorKeyringConfiguration(t *testing.T) {
+	key := strings.Repeat("ab", 32) // synthetic test key only
+	base := map[string]string{"SLOVNYK_HTTP_DSN": "synthetic-dsn", "SLOVNYK_ARTIFACT_ROOT": "synthetic-root", "SLOVNYK_CURSOR_ACTIVE_KID": "new", "SLOVNYK_CURSOR_KEYS": "old:" + key + ",new:" + key}
+	cfg, err := LoadConfig(func(k string) string { return base[k] })
+	if err != nil || cfg.CursorSigner == nil {
+		t.Fatal("valid key rotation config rejected", err)
+	}
+	for _, tc := range []struct{ active, keys string }{
+		{"", ""}, {"missing", "new:" + key}, {"new", "new:synthetic-secret"}, {"new", "new:" + key + ",new:" + key}, {"new", "new:" + strings.Repeat("ab", 31)}, {"new", "new:" + strings.Repeat("ab", 65)}, {"bad kid", "bad kid:" + key}, {"new", strings.Repeat("synthetic-secret", 400)},
+	} {
+		values := map[string]string{}
+		for k, v := range base {
+			values[k] = v
+		}
+		values["SLOVNYK_CURSOR_ACTIVE_KID"], values["SLOVNYK_CURSOR_KEYS"] = tc.active, tc.keys
+		_, err := LoadConfig(func(k string) string { return values[k] })
+		if err == nil || strings.Contains(err.Error(), "synthetic-secret") {
+			t.Fatal("invalid keyring accepted or exposed", err)
+		}
+	}
+}

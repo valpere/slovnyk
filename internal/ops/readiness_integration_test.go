@@ -8,12 +8,15 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/valpere/slovnyk/internal/httpui"
 	"github.com/valpere/slovnyk/internal/importdata"
 	"github.com/valpere/slovnyk/internal/importer"
+	"github.com/valpere/slovnyk/internal/lookup"
 	"github.com/valpere/slovnyk/internal/publication"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
 )
@@ -89,6 +92,47 @@ func TestReadinessRecoveryWithHTTPRole(t *testing.T) {
 	if role != "slovnyk_http" {
 		t.Fatal("test must use HTTP credentials")
 	}
+	// Exercise the real HTTP adapter with the restricted role and a published
+	// synthetic dataset. Continuation switches format without changing its pin.
+	signer, e := lookup.NewSigner("test", map[string][]byte{"test": []byte(strings.Repeat("x", 32))})
+	if e != nil {
+		t.Fatal(e)
+	}
+	handler := httpui.New(searchBackend(Config{HTTPDSN: httpDSN, CursorSigner: signer}), signer)
+	first := httptest.NewRecorder()
+	handler.ServeHTTP(first, httptest.NewRequest("GET", "/search?from=uk-ua&to=en-us&q="+url.QueryEscape("слово")+"&limit=1&format=plain", nil))
+	if first.Code != 200 || !strings.Contains(first.Body.String(), "Next: /search?") {
+		t.Fatal("HTTP search failed", first.Code, first.Body.String())
+	}
+	_, continuation, ok := strings.Cut(first.Body.String(), "Next: ")
+	if !ok {
+		t.Fatal("missing continuation")
+	}
+	next, e := url.Parse(strings.TrimSpace(continuation))
+	if e != nil {
+		t.Fatal(e)
+	}
+	params := next.Query()
+	params.Set("format", "html")
+	next.RawQuery = params.Encode()
+	secondPage := httptest.NewRecorder()
+	handler.ServeHTTP(secondPage, httptest.NewRequest("GET", next.String(), nil))
+	if secondPage.Code != 200 || !strings.Contains(secondPage.Body.String(), "word") || strings.Contains(secondPage.Body.String(), `rel="next"`) {
+		t.Fatal("HTTP continuation failed", secondPage.Code, secondPage.Body.String())
+	}
+	for _, tc := range []struct {
+		query  string
+		status int
+	}{
+		{"from=missing&to=en-us&q=x", 400}, {"from=en-us&to=en-us&q=x", 404}, {"from=uk-ua&to=en-us&q=not-in-fixture", 200},
+	} {
+		response := httptest.NewRecorder()
+		handler.ServeHTTP(response, httptest.NewRequest("GET", "/search?"+tc.query, nil))
+		if response.Code != tc.status {
+			t.Fatal("HTTP catalog status", tc.query, response.Code)
+		}
+	}
+
 	renamed := root + "-offline"
 	if e = os.Rename(root, renamed); e != nil {
 		t.Fatal(e)

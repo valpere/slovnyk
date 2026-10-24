@@ -1,7 +1,8 @@
 # Контракт пошуку V1
 
 Конкретизація FUN-LOOKUP/UI. M1-06 реалізує application search/cursor service;
-HTTP API та rendering нижче залишаються ціллю M1-07.
+HTTP parsing і bounded HTML/plain rendering реалізовані в першому зрізі M1-07;
+локалізація, каталог/налаштування форми залишаються відкритими.
 Основний результат — server-rendered HTML без JavaScript.
 
 ## HTTP та помилки

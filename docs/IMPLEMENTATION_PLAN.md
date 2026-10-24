@@ -158,6 +158,12 @@ publish, changed parameters/anchors, key rotation, long fields/byte budget
 
 ### M1-07 — Вебформа, локалізація, SEO та synthetic downloads
 
+**Status: in progress.** Перший зріз: `internal/httpui/`, HTTP backend і keyring
+у `internal/ops/`; `/`, `/search`, HTML/plain, validation precedence, escaping,
+1 MiB body guard і спільний acquisition/SQL deadline. Development UI поки
+англійський з явними кодами мов. Каталог, localization/cookies/пропозиція пари,
+SEO та downloads ще не реалізовані; це не завершення FR-05 або M1-07.
+
 - Додати `/`, `/search`, `/languages`, `/downloads` та version-pinned artifact handler;
   HTML без JS і `format=plain` за контрактом. UI — лаконічний пошуковий інструмент за FR-05; конкретні макети ще не погоджено.
 - Додати synthetic словникові сторінки й перевірки FR-14 / AT-19 після

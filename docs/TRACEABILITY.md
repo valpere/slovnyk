@@ -286,3 +286,22 @@ Regression paths: `tests/repository/check_test.go`,
 `utilities/prepare-artifacts/main_test.go`, `tests/processsmoke/*_test.go`.
 Деталі, review scope та результати — у [звіті](_assessments/2026-10-24-go-utilities/REPORT.md).
 Це обслуговування tooling, не нове AT-покриття пошукового UI.
+
+## M1-07 — перший HTTP зріз, 2026-10-24
+
+M1-07 **in progress**; це не повне AT-05/19 або готовий локалізований UI.
+
+| Покрита частина | Фактичні перевірки |
+|---|---|
+| AT-02/03/04/15 HTTP subset | `internal/httpui/handler_test.go`: validation precedence до backend, empty form, duplicates, invalid encoding/NUL/controls/size, single URL decode, escaping, HTML/plain continuation, 400/404/410/503, HEAD |
+| Остаточний body limit | `TestFinalBodyBudget`: HTML expansion/plain overflow → коротка 503 до headers; boundary 1 MiB; без часткового успішного body |
+| HTTP role + SQL | `internal/ops/readiness_integration_test.go: TestReadinessRecoveryWithHTTPRole`: synthetic publish, lookup і наступна сторінка під `slovnyk_http`, зміна формату між сторінками, locale/pair/no-match statuses |
+| Connection deadline | `internal/ops/search_test.go`: canceled context і TCP peer, що не завершує PostgreSQL handshake; connect вкладається у спільні 2 s, не storage default 5 s |
+| Config/process | `TestCursorKeyringConfiguration`: rotation, missing/invalid/duplicate keys і safe errors; `tests/processsmoke/smoke_test.go`: actual binary routes, health/readiness, SIGINT/SIGTERM, query не потрапляє в logs |
+
+`make check`, `make test`, `make test-race`, `make test-smoke`,
+`make test-integration` — **PASS**, exit 0. Лише disposable local PostgreSQL 17.11
+та synthetic data. [Self-review і screenshots](_assessments/2026-10-24-http-lookup/REPORT.md).
+Chromium CDP 9222, page scripts disabled: desktop/mobile форма; не повний browser
+acceptance або перевірка всіх accessibility станів. Локалізація, catalog/cookies,
+SEO, downloads, production p95 і повний corpus залишаються відкритими.

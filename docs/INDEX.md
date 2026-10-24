@@ -56,7 +56,9 @@ M1-05 реалізовано: reconciliation, durable exports/report, publish/ro
 і HTTP readiness; [звіт](_assessments/2026-10-24-publication/REPORT.md).
 M1-06 реалізовано: exact/mask application service, dataset-pinned signed cursor,
 C seek і спільний DB deadline; [звіт](_assessments/2026-10-24-lookup/REPORT.md).
-HTTP-пошук, UI та production-міграція ще попереду; далі M1-07.
+M1-07 in progress: HTTP-пошук і bounded HTML/plain UI реалізовано;
+локалізація, каталог, SEO/downloads та production-міграція ще попереду.
+[Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів
 і структурних відхилень за перевіреними правилами V1. Виявлено 118 009
