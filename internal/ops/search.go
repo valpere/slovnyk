@@ -4,37 +4,61 @@ import (
 	"context"
 	"time"
 
+	"github.com/jackc/pgx/v5"
+	"github.com/valpere/slovnyk/internal/catalog"
 	"github.com/valpere/slovnyk/internal/httpui"
 	"github.com/valpere/slovnyk/internal/lookup"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
 )
 
-// searchBackend bounds concurrent dedicated connections. Waiting for admission,
-// connection establishment and every lookup query share one two-second budget.
-func searchBackend(cfg Config) httpui.SearchFunc {
+func searchBackend(cfg Config) httpui.SearchFunc { search, _ := httpBackends(cfg); return search }
+
+// Search and catalog share eight dedicated connection slots. Admission,
+// connection establishment and SQL honor the caller's outer two-second budget.
+func httpBackends(cfg Config) (httpui.SearchFunc, httpui.CatalogFunc) {
 	service, err := lookup.New(cfg.CursorSigner)
 	if err != nil || cfg.HTTPDSN == "" {
-		return nil
+		return nil, nil
 	}
 	slots := make(chan struct{}, 8)
-	return func(parent context.Context, r lookup.Request) (lookup.Page, error) {
-		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
-		defer cancel()
+	borrow := func(ctx context.Context) (*pgx.Conn, func(), error) {
 		select {
 		case slots <- struct{}{}:
 		case <-ctx.Done():
-			return lookup.Page{}, lookup.ErrUnavailable
+			return nil, nil, lookup.ErrUnavailable
 		}
-		defer func() { <-slots }()
-		conn, err := postgres.Connect(ctx, cfg.HTTPDSN)
+		c, err := postgres.Connect(ctx, cfg.HTTPDSN)
 		if err != nil {
-			return lookup.Page{}, lookup.ErrUnavailable
+			<-slots
+			return nil, nil, lookup.ErrUnavailable
 		}
-		defer func() {
-			cleanup, stop := context.WithTimeout(context.Background(), time.Second)
-			defer stop()
-			_ = conn.Close(cleanup)
-		}()
-		return service.Search(ctx, conn, r)
+		release := func() {
+			defer func() { <-slots }()
+			cleanup, cancel := context.WithTimeout(context.Background(), time.Second)
+			defer cancel()
+			_ = c.Close(cleanup)
+		}
+		return c, release, nil
 	}
+	search := func(parent context.Context, r lookup.Request) (lookup.Page, error) {
+		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
+		defer cancel()
+		c, release, err := borrow(ctx)
+		if err != nil {
+			return lookup.Page{}, err
+		}
+		defer release()
+		return service.Search(ctx, c, r)
+	}
+	read := func(parent context.Context, dataset string) (catalog.Snapshot, error) {
+		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
+		defer cancel()
+		c, release, err := borrow(ctx)
+		if err != nil {
+			return catalog.Snapshot{}, err
+		}
+		defer release()
+		return catalog.Read(ctx, c, dataset)
+	}
+	return search, read
 }

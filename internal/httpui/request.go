@@ -15,9 +15,11 @@ import (
 const MaxTargetBytes = 32 << 10
 
 type request struct {
-	Search lookup.Request
-	Plain  bool
-	Empty  bool
+	Search         lookup.Request
+	Plain          bool
+	Empty          bool
+	UI             string
+	FromSet, ToSet bool
 }
 
 // parse decodes the query exactly once, including ignored parameters. It does
@@ -50,6 +52,9 @@ func parse(r *http.Request, signer *lookup.Signer) (request, int) {
 			return out, 400
 		}
 	}
+	out.UI = values.Get("ui")
+	_, out.FromSet = values["from"]
+	_, out.ToSet = values["to"]
 	if vs, ok := values["mode"]; ok {
 		out.Search.Mode = normalization.Mode(vs[0])
 		if out.Search.Mode != normalization.Auto && out.Search.Mode != normalization.Exact && out.Search.Mode != normalization.Mask {
@@ -103,6 +108,9 @@ func validText(s string) bool { return utf8.ValidString(s) && !strings.ContainsR
 // nextURL uses validated, decoded values only; unknown query keys are discarded.
 func nextURL(r request, cursor string) string {
 	q := url.Values{"from": {r.Search.From}, "to": {r.Search.To}, "q": {r.Search.Q}, "mode": {string(r.Search.Mode)}, "limit": {strconv.Itoa(r.Search.Limit)}, "cursor": {cursor}}
+	if r.UI != "" {
+		q.Set("ui", r.UI)
+	}
 	if r.Plain {
 		q.Set("format", "plain")
 	}

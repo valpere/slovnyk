@@ -4,6 +4,7 @@ package ops
 
 import (
 	"context"
+	"errors"
 	"net/http/httptest"
 	"net/url"
 	"os"
@@ -98,13 +99,14 @@ func TestReadinessRecoveryWithHTTPRole(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
-	handler := httpui.New(searchBackend(Config{HTTPDSN: httpDSN, CursorSigner: signer}), signer)
+	search, readCatalog := httpBackends(Config{HTTPDSN: httpDSN, CursorSigner: signer})
+	handler := httpui.New(search, signer, httpui.WithCatalog(readCatalog))
 	first := httptest.NewRecorder()
 	handler.ServeHTTP(first, httptest.NewRequest("GET", "/search?from=uk-ua&to=en-us&q="+url.QueryEscape("слово")+"&limit=1&format=plain", nil))
-	if first.Code != 200 || !strings.Contains(first.Body.String(), "Next: /search?") {
+	if first.Code != 200 || !strings.Contains(first.Body.String(), "More translations: /search?") {
 		t.Fatal("HTTP search failed", first.Code, first.Body.String())
 	}
-	_, continuation, ok := strings.Cut(first.Body.String(), "Next: ")
+	_, continuation, ok := strings.Cut(first.Body.String(), "More translations: ")
 	if !ok {
 		t.Fatal("missing continuation")
 	}
@@ -114,10 +116,11 @@ func TestReadinessRecoveryWithHTTPRole(t *testing.T) {
 	}
 	params := next.Query()
 	params.Set("format", "html")
+	params.Set("ui", "uk")
 	next.RawQuery = params.Encode()
 	secondPage := httptest.NewRecorder()
 	handler.ServeHTTP(secondPage, httptest.NewRequest("GET", next.String(), nil))
-	if secondPage.Code != 200 || !strings.Contains(secondPage.Body.String(), "word") || strings.Contains(secondPage.Body.String(), `rel="next"`) {
+	if secondPage.Header().Get("Content-Language") != "uk" || secondPage.Code != 200 || !strings.Contains(secondPage.Body.String(), "word") || strings.Contains(secondPage.Body.String(), `rel="next"`) {
 		t.Fatal("HTTP continuation failed", secondPage.Code, secondPage.Body.String())
 	}
 	for _, tc := range []struct {
@@ -131,6 +134,51 @@ func TestReadinessRecoveryWithHTTPRole(t *testing.T) {
 		if response.Code != tc.status {
 			t.Fatal("HTTP catalog status", tc.query, response.Code)
 		}
+	}
+
+	// Inventory reads use the same restricted HTTP role. The lookup pin must
+	// remain usable without consulting active_dataset during a publication lock.
+	inventory, err := readCatalog(ctx, report.Dataset)
+	if err != nil || inventory.Dataset != report.Dataset || !inventory.Has("uk-ua", "en-us") {
+		t.Fatal("published catalog unavailable to HTTP role", err)
+	}
+	languages := httptest.NewRecorder()
+	handler.ServeHTTP(languages, httptest.NewRequest("GET", "/languages?ui=uk", nil))
+	if languages.Code != 200 || !strings.Contains(languages.Body.String(), "uk-ua") || languages.Header().Get("Content-Language") != "uk" {
+		t.Fatal("localized catalog failed", languages.Code)
+	}
+	if len(languages.Result().Cookies()) != 1 || languages.Result().Cookies()[0].Name != "slovnyk_ui" {
+		t.Fatal("manual UI preference was not persisted")
+	}
+	form := httptest.NewRecorder()
+	browser := httptest.NewRequest("GET", "/", nil)
+	browser.Header.Set("Accept-Language", "uk-UA")
+	handler.ServeHTTP(form, browser)
+	if form.Code != 200 || !strings.Contains(form.Body.String(), `value="uk-ua" selected`) || !strings.Contains(form.Body.String(), `value="en-us" selected`) || len(form.Result().Cookies()) != 0 {
+		t.Fatal("browser pair proposal failed", form.Code)
+	}
+	lock, err := connect().Begin(ctx)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer lock.Rollback(context.Background())
+	if _, err = lock.Exec(ctx, "LOCK TABLE slovnyk.active_dataset IN ACCESS EXCLUSIVE MODE"); err != nil {
+		t.Fatal(err)
+	}
+	if _, err = readCatalog(ctx, report.Dataset); err != nil {
+		t.Fatal("pinned inventory consulted active pointer", err)
+	}
+	blocked, stopBlocked := context.WithTimeout(ctx, 100*time.Millisecond)
+	_, err = readCatalog(blocked, "")
+	stopBlocked()
+	if !errors.Is(err, lookup.ErrUnavailable) {
+		t.Fatal("initial inventory did not honor deadline", err)
+	}
+	if err = lock.Rollback(ctx); err != nil {
+		t.Fatal(err)
+	}
+	if _, err = readCatalog(ctx, "00000000-0000-4000-8000-000000000000"); !errors.Is(err, lookup.ErrUnavailable) {
+		t.Fatal("unknown dataset exposed", err)
 	}
 
 	renamed := root + "-offline"

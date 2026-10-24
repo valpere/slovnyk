@@ -12,7 +12,7 @@ test:
 	$(GO) test ./...
 
 check:
-	@files="$$(gofmt -l cmd internal migrations utilities tests minions)" || exit 1; test -z "$$files" || { printf '%s\n' "$$files"; echo 'Run gofmt -w on the listed Go files' >&2; exit 1; }
+	@files="$$(gofmt -l cmd internal migrations utilities tests minions web)" || exit 1; test -z "$$files" || { printf '%s\n' "$$files"; echo 'Run gofmt -w on the listed Go files' >&2; exit 1; }
 	$(GO) vet ./...
 	./tests/check-patch.sh
 	$(GO) test ./tests/repository -count=1
