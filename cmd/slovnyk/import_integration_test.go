@@ -1,0 +1,79 @@
+//go:build integration
+
+package main
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"net/url"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/valpere/slovnyk/internal/importdata"
+	"github.com/valpere/slovnyk/internal/importer"
+	"github.com/valpere/slovnyk/internal/storage/postgres"
+)
+
+func TestImportRunCLI(t *testing.T) {
+	dsn := os.Getenv("SLOVNYK_TEST_DSN")
+	if dsn == "" {
+		t.Fatal("SLOVNYK_TEST_DSN required")
+	}
+	u, e := url.Parse(dsn)
+	if e != nil {
+		t.Fatal("invalid test DSN")
+	}
+	admin, e := postgres.Connect(context.Background(), dsn)
+	if e != nil {
+		t.Fatal(e)
+	}
+	defer admin.Close(context.Background())
+	if _, e = admin.Exec(context.Background(), "CREATE ROLE slovnyk_cli_test LOGIN PASSWORD 'synthetic-cli-only' IN ROLE slovnyk_operator"); e != nil {
+		t.Fatal(e)
+	}
+	u.User = url.UserPassword("slovnyk_cli_test", "synthetic-cli-only")
+	b, e := os.ReadFile("../../testdata/import/manifest.json")
+	if e != nil {
+		t.Fatal(e)
+	}
+	m, e := importdata.ParseManifest(b)
+	if e != nil {
+		t.Fatal(e)
+	}
+	m.Source.Authority = "CLI integration"
+	b, _ = json.Marshal(m)
+	if e = os.MkdirAll("../../tmp/m1-04", 0700); e != nil {
+		t.Fatal(e)
+	}
+	dir, e := os.MkdirTemp("../../tmp/m1-04", "cli-")
+	if e != nil {
+		t.Fatal(e)
+	}
+	defer os.RemoveAll(dir)
+	path := filepath.Join(dir, "manifest.json")
+	if e = os.WriteFile(path, b, 0600); e != nil {
+		t.Fatal(e)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	for attempt := 0; attempt < 2; attempt++ {
+		var out bytes.Buffer
+		code := run(ctx, []string{"import", "run", "--manifest", path, "--source", "../../testdata/import", "--batch-size", "2"}, func(key string) string {
+			if key == "SLOVNYK_OPERATOR_DSN" {
+				return u.String()
+			}
+			return ""
+		}, &out)
+		var r importer.Report
+		if e = json.Unmarshal(out.Bytes(), &r); e != nil {
+			t.Fatal(e)
+		}
+		if code != 0 || r.State != "validating" || r.Files[0].Unique != 10 || r.Files[0].Duplicate != 1 || !r.Files[0].Complete || strings.Contains(out.String(), "synthetic-test-only") || strings.Contains(out.String(), "synthetic-cli-only") {
+			t.Fatalf("exit=%d %+v", code, r)
+		}
+	}
+}

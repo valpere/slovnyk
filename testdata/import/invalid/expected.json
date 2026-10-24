@@ -1,0 +1,7 @@
+{
+  "blank.csv": "field_count",
+  "nul.csv": "nul",
+  "invalid-utf8.csv": "invalid_utf8",
+  "unclosed.csv": "csv_syntax",
+  "bare-cr.csv": "csv_syntax"
+}
