@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "canonical_documents": 12,
+  "requirements": 18,
+  "trace_rows": 18,
+  "acceptance_ids": 18,
+  "local_file_links": "pass",
+  "trailing_whitespace": "pass",
+  "final_snapshot_matches_working_tree": true,
+  "application_tests": "not implemented; not run"
+}

@@ -1,0 +1,73 @@
+{
+  "offered_queries_per_second": 10.0,
+  "queries": 100,
+  "max_workers": 4,
+  "elapsed_s": 12.189,
+  "cgroup_constraints": {
+    "cpu.max": "12500 100000",
+    "memory.max": "805306368"
+  },
+  "mix": "80% exact (including misses), 10% prefix, 10% infix",
+  "sample_pairs": 4,
+  "metrics_including_scheduling_queue": {
+    "exact": {
+      "queries": 80,
+      "p50_ms": 488.976,
+      "p95_ms": 889.72,
+      "max_ms": 994.247,
+      "errors": 0
+    },
+    "prefix": {
+      "queries": 10,
+      "p50_ms": 2089.403,
+      "p95_ms": 2288.747,
+      "max_ms": 2288.747,
+      "errors": 10
+    },
+    "infix": {
+      "queries": 10,
+      "p50_ms": 2188.936,
+      "p95_ms": 2288.881,
+      "max_ms": 2288.881,
+      "errors": 10
+    },
+    "all": {
+      "queries": 100,
+      "p50_ms": 589.279,
+      "p95_ms": 2194.194,
+      "max_ms": 2288.881,
+      "errors": 20
+    }
+  },
+  "errors": [
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted",
+    "OperationalError: interrupted"
+  ],
+  "limitations": [
+    "Developer machine; uncontrolled warm OS page cache; shared cached pages may be charged outside this cgroup",
+    "TEMP view aliases full-model columns; queries read one experimental validating dataset",
+    "CPU quota on Ryzen does not reproduce Oracle CPU, I/O or noisy neighbours",
+    "Samples only from four largest pairs in full-corpus database",
+    "SQL only, no HTTP/rendering/cursors/publication or bot traffic",
+    "Exploratory profile, not an approved acceptance workload",
+    "SQLite progress callback is not a hard wall-clock I/O timeout"
+  ]
+}

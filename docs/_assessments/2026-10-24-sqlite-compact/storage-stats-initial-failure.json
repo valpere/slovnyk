@@ -1,0 +1,5 @@
+{
+  "exit_code": 1,
+  "error": "Page accounting mismatch",
+  "resolved": "Account for one reserved lock-byte page; dictionary data unchanged"
+}

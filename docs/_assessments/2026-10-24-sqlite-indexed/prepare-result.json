@@ -1,0 +1,84 @@
+{
+  "complete": true,
+  "phases_s": {
+    "copy_and_verify": 368.191,
+    "index_build": 103.513,
+    "analyze_new_index": 6.845
+  },
+  "source_sha256": "126572105baf8ef7030559a81a58f03820ed92be04bb136f7486b95ef57ded75",
+  "copy_sha256_before_index": "126572105baf8ef7030559a81a58f03820ed92be04bb136f7486b95ef57ded75",
+  "bytes_before": 27424055296,
+  "index_sql": "CREATE INDEX lookup_order ON translations(\n                dataset_id,source_locale,target_locale,source_key COLLATE BINARY,\n                source_text COLLATE BINARY,target_text COLLATE BINARY,id)",
+  "query_plans": {
+    "exact": [
+      [
+        5,
+        0,
+        0,
+        "SEARCH main.translations USING INDEX lookup_order (dataset_id=? AND source_locale=? AND target_locale=? AND source_key=?)"
+      ],
+      [
+        8,
+        0,
+        0,
+        "SCALAR SUBQUERY 3"
+      ],
+      [
+        16,
+        8,
+        0,
+        "SCAN main.datasets"
+      ]
+    ],
+    "prefix": [
+      [
+        4,
+        0,
+        0,
+        "SEARCH main.translations USING COVERING INDEX lookup_order (dataset_id=? AND source_locale=? AND target_locale=? AND source_key>? AND source_key<?)"
+      ],
+      [
+        7,
+        0,
+        0,
+        "SCALAR SUBQUERY 3"
+      ],
+      [
+        15,
+        7,
+        0,
+        "SCAN main.datasets"
+      ]
+    ],
+    "infix": [
+      [
+        4,
+        0,
+        0,
+        "SEARCH main.translations USING COVERING INDEX lookup_order (dataset_id=? AND source_locale=? AND target_locale=?)"
+      ],
+      [
+        7,
+        0,
+        0,
+        "SCALAR SUBQUERY 3"
+      ],
+      [
+        15,
+        7,
+        0,
+        "SCAN main.datasets"
+      ]
+    ]
+  },
+  "translations": 56455068,
+  "dataset_states": [
+    "validating"
+  ],
+  "active_pointer": [
+    null,
+    0
+  ],
+  "bytes_after": 31848861696,
+  "bytes_added": 4424806400
+}

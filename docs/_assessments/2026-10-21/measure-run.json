@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/tmp/slovnyk-tumanomir-_m9yzerc/tumanomir",
+    "measure",
+    "--format",
+    "json",
+    "--instrument",
+    "ollama:gpt-oss:120b-cloud",
+    "-n",
+    "5",
+    "--temp",
+    "1",
+    "--sim-threshold",
+    "0.95",
+    "--num-ctx",
+    "65536",
+    "--num-predict",
+    "8192",
+    "--think=false",
+    "--timeout",
+    "60s",
+    "/home/val/wrk/projects/slovnyk/slovnyk/docs/_assessments/2026-10-21/measurement-input.md"
+  ],
+  "exit_code": 1,
+  "seconds": 51.429091773003165
+}

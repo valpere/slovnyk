@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/tmp/slovnyk-tumanomir-_m9yzerc/tumanomir",
+    "check",
+    "--format",
+    "json",
+    "--k-drift-max",
+    "0",
+    "docs/REQUIREMENTS.md"
+  ],
+  "exit_code": 0,
+  "stderr": "",
+  "binary_sha256": "443b6af194e3dfe15c0af9bae7ef48833fb0612961e210712861800e13c8fb6a"
+}

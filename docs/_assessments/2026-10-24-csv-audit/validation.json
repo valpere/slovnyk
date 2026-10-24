@@ -1,0 +1,13 @@
+{
+  "record_accounting_all_files": true,
+  "locale_and_record_limits_checked": true,
+  "one_unique_pair_per_file": true,
+  "no_duplicate_compressed_hashes": true,
+  "diagnostic_unit_tests_exit_code": 0,
+  "test_output": "test_admission_uses_utf8_bytes_and_preserves_whitespace (test_audit.AuditTests.test_admission_uses_utf8_bytes_and_preserves_whitespace) ... ok\ntest_duplicates_are_separate_from_normalization_collisions (test_audit.AuditTests.test_duplicates_are_separate_from_normalization_collisions) ... ok\ntest_embedded_crlf_quotes_bom_and_final_record_without_newline (test_audit.AuditTests.test_embedded_crlf_quotes_bom_and_final_record_without_newline) ... ok\ntest_empty_physical_record_and_wrong_field_count_not_skipped (test_audit.AuditTests.test_empty_physical_record_and_wrong_field_count_not_skipped) ... ok\ntest_malformed_quotes_and_bare_cr_are_fatal (test_audit.AuditTests.test_malformed_quotes_and_bare_cr_are_fatal) ... ok\ntest_members_utf8_and_gzip_integrity (test_audit.AuditTests.test_members_utf8_and_gzip_integrity) ... ok\ntest_strict_member_boundaries_reject_zero_padding (test_audit.AuditTests.test_strict_member_boundaries_reject_zero_padding) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.005s\n\nOK\n",
+  "tool_sha256": {
+    "audit.py": "a70a8b27c45a2bae1939ef59d4890c6561e1dc6f513b026c52219d1ea8147f18",
+    "verify_snapshot.py": "9b87095c372eca4de400e63e38c7fafb904c543317a9727975145a2e5811cc5f",
+    "test_audit.py": "3ff2089c9b8e050786981d6e456eb74dffed5f428d6c35e35162311e77a7f931"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "query_plans": {
+    "exact": [
+      [
+        5,
+        0,
+        0,
+        "SEARCH main.translations USING INDEX lookup_order (dataset_id=? AND source_locale=? AND target_locale=? AND source_key=?)"
+      ],
+      [
+        8,
+        0,
+        0,
+        "SCALAR SUBQUERY 3"
+      ],
+      [
+        16,
+        8,
+        0,
+        "SCAN main.datasets"
+      ]
+    ],
+    "prefix": [
+      [
+        4,
+        0,
+        0,
+        "SEARCH main.translations USING COVERING INDEX lookup_order (dataset_id=? AND source_locale=? AND target_locale=? AND source_key>? AND source_key<?)"
+      ],
+      [
+        7,
+        0,
+        0,
+        "SCALAR SUBQUERY 3"
+      ],
+      [
+        15,
+        7,
+        0,
+        "SCAN main.datasets"
+      ]
+    ],
+    "infix": [
+      [
+        4,
+        0,
+        0,
+        "SEARCH main.translations USING COVERING INDEX lookup_order (dataset_id=? AND source_locale=? AND target_locale=?)"
+      ],
+      [
+        7,
+        0,
+        0,
+        "SCALAR SUBQUERY 3"
+      ],
+      [
+        15,
+        7,
+        0,
+        "SCAN main.datasets"
+      ]
+    ]
+  },
+  "objects": {
+    "sqlite_schema": {
+      "pages": 3,
+      "bytes": 12288
+    },
+    "datasets": {
+      "pages": 33,
+      "bytes": 135168
+    },
+    "sqlite_autoindex_datasets_1": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "sqlite_autoindex_datasets_2": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "active_dataset": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "dataset_locales": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "dataset_pairs": {
+      "pages": 7,
+      "bytes": 28672
+    },
+    "source_files": {
+      "pages": 28,
+      "bytes": 114688
+    },
+    "sqlite_autoindex_source_files_2": {
+      "pages": 12,
+      "bytes": 49152
+    },
+    "translations": {
+      "pages": 1985096,
+      "bytes": 8130953216
+    },
+    "import_records": {
+      "pages": 383851,
+      "bytes": 1572253696
+    },
+    "translation_origins": {
+      "pages": 884710,
+      "bytes": 3623772160
+    },
+    "import_runs": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "import_issues": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "legacy_query_snapshots": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "publication_events": {
+      "pages": 1,
+      "bytes": 4096
+    },
+    "exports": {
+      "pages": 29,
+      "bytes": 118784
+    },
+    "tuple_identity": {
+      "pages": 594834,
+      "bytes": 2436440064
+    },
+    "exact_lookup": {
+      "pages": 762134,
+      "bytes": 3121700864
+    },
+    "lookup_order": {
+      "pages": 855147,
+      "bytes": 3502682112
+    },
+    "sqlite_stat1": {
+      "pages": 1,
+      "bytes": 4096
+    }
+  },
+  "page_size": 4096,
+  "page_count": 5465894,
+  "free_pages": 0,
+  "lock_byte_pages": 1,
+  "bytes": 22388301824,
+  "elapsed_s": 5.58
+}

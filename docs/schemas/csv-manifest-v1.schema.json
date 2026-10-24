@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://slovnyk.org/schemas/csv-manifest-v1.json",
+  "title": "Slovnyk CSV snapshot manifest V1",
+  "description": "All fields required. Additional semantic constraints: unique artifact hashes/names, unique locales/pairs/exception locators; pair membership; exact runtime-supported normalizer; locale UTF-8 byte lengths. Exceptions are inventory only, not owner approval or permission to bypass a fatal file failure.",
+  "$defs": {
+    "locale": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[^\u0000]+$",
+      "description": "At most 64 UTF-8 bytes, enforced by Go validator; raw legacy code, no BCP-47 mapping."
+    },
+    "pair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/locale"
+        },
+        "to": {
+          "$ref": "#/$defs/locale"
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sha256",
+        "bytes",
+        "name",
+        "format",
+        "pair",
+        "multi_pair"
+      ],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9223372036854775807
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Canonical POSIX relative path; no empty, dot, dot-dot, backslash, NUL or symlink components. Runtime validates filesystem containment."
+        },
+        "format": {
+          "const": "csv4.gz"
+        },
+        "pair": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/pair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "multi_pair": {
+          "type": "boolean"
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "pair": {
+              "$ref": "#/$defs/pair"
+            },
+            "multi_pair": {
+              "const": false
+            }
+          }
+        },
+        {
+          "properties": {
+            "pair": {
+              "type": "null"
+            },
+            "multi_pair": {
+              "const": true
+            }
+          }
+        }
+      ]
+    },
+    "exception": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_sha256",
+        "ordinal",
+        "reason",
+        "decision"
+      ],
+      "properties": {
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "ordinal": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "enum": [
+            "exclude_record",
+            "exclude_artifact"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "decision": {
+              "const": "exclude_record"
+            },
+            "ordinal": {
+              "minimum": 1
+            }
+          }
+        },
+        {
+          "properties": {
+            "decision": {
+              "const": "exclude_artifact"
+            },
+            "ordinal": {
+              "const": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source",
+    "artifacts",
+    "locales",
+    "expected_pairs",
+    "parser_version",
+    "mapping_version",
+    "normalization_version",
+    "admission_limits",
+    "known_gaps",
+    "exceptions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "authority",
+        "snapshot_date",
+        "rights_status"
+      ],
+      "properties": {
+        "kind": {
+          "const": "csv_snapshot"
+        },
+        "authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "snapshot_date": {
+          "anyOf": [
+            {
+              "const": "unknown"
+            },
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            }
+          ]
+        },
+        "rights_status": {
+          "enum": [
+            "owner_confirmed",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "locales": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/locale"
+      },
+      "uniqueItems": true
+    },
+    "expected_pairs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/pair"
+      },
+      "uniqueItems": true
+    },
+    "parser_version": {
+      "const": "lossless-csv4-v1"
+    },
+    "mapping_version": {
+      "const": "identity-v1"
+    },
+    "normalization_version": {
+      "const": "nfc-fold-nfc-v1;xtext=0.43.0;nfc=15.0.0;fold=15.0.0;trim=whitespace-15.0"
+    },
+    "admission_limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field_bytes",
+        "record_bytes",
+        "artifact_bytes"
+      ],
+      "properties": {
+        "field_bytes": {
+          "const": 65536
+        },
+        "record_bytes": {
+          "const": 1048576
+        },
+        "artifact_bytes": {
+          "const": 17179869184
+        }
+      }
+    },
+    "known_gaps": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "$ref": "#/$defs/exception"
+      }
+    }
+  }
+}

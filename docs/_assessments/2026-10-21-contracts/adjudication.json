@@ -1,0 +1,326 @@
+[
+  {
+    "round": "round1",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 1,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 70,
+    "status": "dismissed",
+    "reason": "Batch/checkpoint already atomic. Versioned parser and deterministic ordinal now explicit; replay from beginning is intentional for gzip."
+  },
+  {
+    "round": "round1",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 2,
+    "reported_file": "docs/LOOKUP_CONTRACT.md",
+    "reported_line": 56,
+    "status": "dismissed",
+    "reason": "Changed parameters already 400. Added explicit recompute AFTER pinned normalizer; proposed recompute before dataset is not adopted because version comes from dataset."
+  },
+  {
+    "round": "round1",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 3,
+    "reported_file": "docs/DATA_MODEL.md",
+    "reported_line": 38,
+    "status": "dismissed",
+    "reason": "DATA_MODEL already requires all four raw fields equality and collision failure. Added import procedure clarification."
+  },
+  {
+    "round": "round1",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 4,
+    "reported_file": "docs/LEGACY_COMPATIBILITY.md",
+    "reported_line": 43,
+    "status": "dismissed",
+    "reason": "Unknown key differs from unknown value of hn; missing hn intentionally selects home. No contradiction."
+  },
+  {
+    "round": "round1",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 5,
+    "reported_file": "docs/HLD.md",
+    "reported_line": 155,
+    "status": "confirmed",
+    "reason": "Export immutability missing; overlaps native export overwrite finding. Fixed immutable refs, no-clobber, hash checks and no GC."
+  },
+  {
+    "round": "round1",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 6,
+    "reported_file": "docs/LOOKUP_CONTRACT.md",
+    "reported_line": 77,
+    "status": "dismissed",
+    "reason": "503 render error already explicit; added distinct diagnostic code for clarity."
+  },
+  {
+    "round": "round1",
+    "reviewer": "gpt-oss",
+    "finding": 1,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 46,
+    "status": "dismissed",
+    "reason": "Finding reverses actual text: concatenated gzip members are explicitly accepted."
+  },
+  {
+    "round": "round1",
+    "reviewer": "gpt-oss",
+    "finding": 2,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 61,
+    "status": "dismissed",
+    "reason": "No proof of retained lock after dead session. Clarified dedicated session advisory lock, termination, bounded wait and release semantics."
+  },
+  {
+    "round": "round1",
+    "reviewer": "gpt-oss",
+    "finding": 3,
+    "reported_file": "docs/LEGACY_COMPATIBILITY.md",
+    "reported_line": 48,
+    "status": "dismissed",
+    "reason": "Fixed minimal alias allowlist and unknown 400 are explicit proposal, not accidental regression outside declared compatibility scope."
+  },
+  {
+    "round": "round1",
+    "reviewer": "gpt-oss",
+    "finding": 4,
+    "reported_file": "docs/LOOKUP_CONTRACT.md",
+    "reported_line": 65,
+    "status": "dismissed",
+    "reason": "Limit binding is intentional. Clarified new limit starts fresh search without cursor."
+  },
+  {
+    "round": "round1",
+    "reviewer": "gpt-oss",
+    "finding": 5,
+    "reported_file": "docs/DATA_MODEL.md",
+    "reported_line": 38,
+    "status": "dismissed",
+    "reason": "Positive bigint and composite PK already guarantee unique IDs; monotonicity is not necessary for fixed total sort and immutable dataset."
+  },
+  {
+    "round": "round1",
+    "reviewer": "gpt-oss",
+    "finding": 6,
+    "reported_file": "docs/LEGACY_COMPATIBILITY.md",
+    "reported_line": 31,
+    "status": "dismissed",
+    "reason": "Opaque export ID mandated in HLD FUN-EXPORT; allowlist/no filesystem construction explicit. Clarified target IDs."
+  },
+  {
+    "round": "round1",
+    "reviewer": "mistral-large-3",
+    "finding": 1,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 36,
+    "status": "dismissed",
+    "reason": "Contract explicitly forbids encoding/csv.Reader and requires custom lossless parser/fixtures; no implementation exists to violate it."
+  },
+  {
+    "round": "round1",
+    "reviewer": "mistral-large-3",
+    "finding": 2,
+    "reported_file": "docs/DATA_MODEL.md",
+    "reported_line": 38,
+    "status": "dismissed",
+    "reason": "Raw equality and explicit collision failure already mandatory; importer clarification added."
+  },
+  {
+    "round": "round1",
+    "reviewer": "mistral-large-3",
+    "finding": 3,
+    "reported_file": "docs/LOOKUP_CONTRACT.md",
+    "reported_line": 65,
+    "status": "dismissed",
+    "reason": "Automatic GC disabled in V1; unavailable old dataset intentionally 410. Arbitrary 30-day promise has no basis."
+  },
+  {
+    "round": "round1",
+    "reviewer": "mistral-large-3",
+    "finding": 4,
+    "reported_file": "docs/LEGACY_COMPATIBILITY.md",
+    "reported_line": 45,
+    "status": "dismissed",
+    "reason": "Exact full code precedence and alias mapping already specified; en-gb remains distinct."
+  },
+  {
+    "round": "round1",
+    "reviewer": "mistral-large-3",
+    "finding": 5,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 80,
+    "status": "dismissed",
+    "reason": "Artifact exclusion already requires new manifest and explicit documented loss decision; no silent path exists in contract."
+  },
+  {
+    "round": "round1",
+    "reviewer": "mistral-large-3",
+    "finding": 6,
+    "reported_file": "docs/MIGRATION.md",
+    "reported_line": 28,
+    "status": "dismissed",
+    "reason": "V1 mapping explicitly identity in DATA_MODEL/HLD; sr-sp remapping not enabled."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 1,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 79,
+    "status": "dismissed",
+    "reason": "Fingerprint includes bytes/parser versions; source immutable; replay re-parses deterministic records and verifies prefix identity. Interrupted replay fixtures mandated. No demonstrated counterexample under contract."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 2,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 99,
+    "status": "dismissed",
+    "reason": "Atomic NO-CLOBBER installation is explicit; non-atomic check/rename would violate contract. OS primitive and crash test are explicitly implementation tasks, not unspecified semantics."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 3,
+    "reported_file": "docs/LOOKUP_CONTRACT.md",
+    "reported_line": 64,
+    "status": "dismissed",
+    "reason": "Limit binding and preserved limit in generated continuation URL already explicit; omitting it when sending 100 cursor intentionally 400."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 4,
+    "reported_file": "docs/DATA_MODEL.md",
+    "reported_line": 38,
+    "status": "dismissed",
+    "reason": "One writer per dataset under dedicated session lock excludes hypothesized concurrent inserts; raw equality check mandatory."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 5,
+    "reported_file": "docs/LEGACY_COMPATIBILITY.md",
+    "reported_line": 31,
+    "status": "dismissed",
+    "reason": "Manifest allowlist is declared scope; absent active artifact/pair intentionally 404. Not claiming all historical filenames survive pair removal."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "deepseek-v4-pro",
+    "finding": 6,
+    "reported_file": "docs/LOOKUP_CONTRACT.md",
+    "reported_line": 83,
+    "status": "dismissed",
+    "reason": "First-entry overflow has explicit 503 code; two 64KiB fields with max 6x HTML escaping plus 128KiB reserve fit 1MiB. Suggestion to exceed budget would break bound."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "gpt-oss",
+    "finding": 1,
+    "reported_file": "docs/HLD.md",
+    "reported_line": 30,
+    "status": "confirmed",
+    "reason": "HLD sample commands omitted mandatory CAS flag. Fixed both publish and rollback examples; severity downgraded to low documentation consistency, not proof of runtime ABA bug."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "gpt-oss",
+    "finding": 2,
+    "reported_file": "docs/DATA_MODEL.md",
+    "reported_line": 38,
+    "status": "dismissed",
+    "reason": "Composite FK to pair already mandated in DATA_MODEL. Document is deliberately not executable DDL."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "gpt-oss",
+    "finding": 3,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 41,
+    "status": "dismissed",
+    "reason": "Partial batches remain staging; failed file blocks ready. Per-artifact giant transaction not required and would undermine bounded batch design."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "gpt-oss",
+    "finding": 4,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 65,
+    "status": "dismissed",
+    "reason": "Text explicitly says bounded lock wait; numeric tuning belongs deployment implementation. No indefinite wait permitted."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "gpt-oss",
+    "finding": 5,
+    "reported_file": "docs/LEGACY.md",
+    "reported_line": 39,
+    "status": "dismissed",
+    "reason": "MIGRATION step 1 explicitly requires actual schema audit and consistent snapshot; OQ-02 acknowledged."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "gpt-oss",
+    "finding": 6,
+    "reported_file": "docs/LEGACY_COMPATIBILITY.md",
+    "reported_line": 53,
+    "status": "dismissed",
+    "reason": "Full code en-gb is explicitly preserved and takes precedence; short en mapping is deliberate adapter default, not locale merge."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "mistral-large-3",
+    "finding": 1,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 76,
+    "status": "dismissed",
+    "reason": "Manifest fingerprint explicitly includes parser and format; changed version produces new dataset. Finding asks for existing requirement."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "mistral-large-3",
+    "finding": 2,
+    "reported_file": "docs/DATA_MODEL.md",
+    "reported_line": 38,
+    "status": "dismissed",
+    "reason": "IMPORT_CONTRACT explicitly compares all four raw fields before merge and fails collision."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "mistral-large-3",
+    "finding": 3,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 109,
+    "status": "dismissed",
+    "reason": "CAS increments generation monotonically, rejects stale N, explicitly addresses ABA in same paragraph."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "mistral-large-3",
+    "finding": 4,
+    "reported_file": "docs/LOOKUP_CONTRACT.md",
+    "reported_line": 59,
+    "status": "dismissed",
+    "reason": "Pinned dataset used for ALL catalog/key/search queries, immutable datasets retained. Active changes cannot mix rows under specified contract."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "mistral-large-3",
+    "finding": 5,
+    "reported_file": "docs/IMPORT_CONTRACT.md",
+    "reported_line": 95,
+    "status": "dismissed",
+    "reason": "Requirements FR-10 and import ready/failed rules block publication on unresolved verification failures."
+  },
+  {
+    "round": "recheck",
+    "reviewer": "mistral-large-3",
+    "finding": 6,
+    "reported_file": "docs/LEGACY_COMPATIBILITY.md",
+    "reported_line": 54,
+    "status": "dismissed",
+    "reason": "Underscore normalization restricted intentionally to legacy adapter. New endpoint uses exact dataset codes and unknown code 400; expanding behavior is a product change, not bug."
+  }
+]

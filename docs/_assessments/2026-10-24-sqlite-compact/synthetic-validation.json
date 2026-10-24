@@ -1,0 +1,16 @@
+{
+  "command": "python3 -m unittest discover -s docs/_assessments/2026-10-24-sqlite-compact -v",
+  "exit_code": 0,
+  "tests_passed": 3,
+  "elapsed_s_reported": 0.764,
+  "tests": [
+    "all_logical_rows_survive_compact_keys",
+    "comparison_detects_raw_origin_corruption",
+    "integer_artifact_keys_cannot_cross_datasets"
+  ],
+  "tool_sha256": {
+    "probe.py": "1c9ae54ca4a76c35c7fedb9a02a54b532ec31e35fe8e9ac145d215cb5058a159",
+    "schema.sql": "21d10ac0197042216628dda7ea628d0104349dc881a38be15aef9eac2a4cbf9a",
+    "test_probe.py": "a2e9c214503e8b100ca4c286587247d6b23aa4626154b9d0bff12df5de488800"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "offered_queries_per_second": 10.0,
+  "queries": 100,
+  "max_workers": 4,
+  "elapsed_s": 10.236,
+  "cgroup_constraints": {
+    "memory.max": "max"
+  },
+  "mix": "80% exact (including misses), 10% prefix, 10% infix",
+  "sample_pairs": 4,
+  "metrics_including_scheduling_queue": {
+    "exact": {
+      "queries": 80,
+      "p50_ms": 0.19,
+      "p95_ms": 1.726,
+      "max_ms": 2.188,
+      "errors": 0
+    },
+    "prefix": {
+      "queries": 10,
+      "p50_ms": 411.059,
+      "p95_ms": 442.363,
+      "max_ms": 442.363,
+      "errors": 0
+    },
+    "infix": {
+      "queries": 10,
+      "p50_ms": 411.613,
+      "p95_ms": 432.987,
+      "max_ms": 432.987,
+      "errors": 0
+    },
+    "all": {
+      "queries": 100,
+      "p50_ms": 0.205,
+      "p95_ms": 430.974,
+      "max_ms": 442.363,
+      "errors": 0
+    }
+  },
+  "errors": [],
+  "limitations": [
+    "Developer machine; uncontrolled warm OS page cache; shared cached pages may be charged outside this cgroup",
+    "TEMP view aliases full-model columns; queries read one experimental validating dataset",
+    "CPU quota on Ryzen does not reproduce Oracle CPU, I/O or noisy neighbours",
+    "Samples only from four largest pairs in full-corpus database",
+    "SQL only, no HTTP/rendering/cursors/publication or bot traffic",
+    "Exploratory profile, not an approved acceptance workload",
+    "SQLite progress callback is not a hard wall-clock I/O timeout"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "before": {
+    "exact": [
+      [
+        4,
+        0,
+        0,
+        "SEARCH translations USING PRIMARY KEY (dataset_id=?)"
+      ],
+      [
+        38,
+        0,
+        0,
+        "USE TEMP B-TREE FOR RIGHT PART OF ORDER BY"
+      ]
+    ],
+    "prefix": [
+      [
+        4,
+        0,
+        0,
+        "SEARCH translations USING PRIMARY KEY (dataset_id=?)"
+      ],
+      [
+        30,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "infix": [
+      [
+        4,
+        0,
+        0,
+        "SEARCH translations USING PRIMARY KEY (dataset_id=?)"
+      ],
+      [
+        30,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ]
+  },
+  "bytes_before": 27424051200,
+  "after": {
+    "exact": [
+      [
+        5,
+        0,
+        0,
+        "SEARCH translations USING INDEX exact_lookup (dataset_id=? AND source_locale=? AND target_locale=? AND key_hash=?)"
+      ],
+      [
+        43,
+        0,
+        0,
+        "USE TEMP B-TREE FOR RIGHT PART OF ORDER BY"
+      ]
+    ],
+    "prefix": [
+      [
+        5,
+        0,
+        0,
+        "SEARCH translations USING INDEX exact_lookup (dataset_id=? AND source_locale=? AND target_locale=?)"
+      ],
+      [
+        35,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "infix": [
+      [
+        5,
+        0,
+        0,
+        "SEARCH translations USING INDEX exact_lookup (dataset_id=? AND source_locale=? AND target_locale=?)"
+      ],
+      [
+        35,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ]
+  },
+  "elapsed_s": 31.518,
+  "bytes_after": 27424055296,
+  "limitation": "Only optimizer statistics changed; full-corpus source reconciliation preceded this step"
+}

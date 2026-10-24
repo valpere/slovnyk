@@ -1,0 +1,64 @@
+{
+  "findings": [
+    {
+      "severity": "high",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 79,
+      "trigger": "Replay gzip від початку перевіряє prefix bytes/identity та пропускає вже committed ordinals; не додає origins повторно.",
+      "impact": "Lossless retry cannot be guaranteed for gzip artifacts without reliable seek. If the parser restarts from the beginning and skips committed ordinals, it must re-parse and re-validate all preceding records to reach the checkpoint. Any non-determinism in decompression, parser state, or ordinal assignment after a crash could cause silent misalignment between committed ordinals and replayed records, leading to data loss or incorrect provenance.",
+      "evidence": "IMPORT_CONTRACT.md:79-80 states 'Replay gzip від початку перевіряє prefix bytes/identity та пропускає вже committed ordinals' but does not specify how prefix identity is verified against the manifest hash or how ordinal determinism is proven across parser restarts. HLD.md:141-142 acknowledges 'Для gzip без надійного seek повтор може читати від початку' but does not define a verification mechanism.",
+      "suggested_fix": "Require that replay from start re-parses all records and verifies a running digest or record count against committed checkpoint data before skipping ordinals. Specify that ordinal assignment must be proven deterministic via golden fixtures for interrupted gzip streams, and that any mismatch between replayed prefix and committed ordinals must fail the attempt rather than skip silently."
+    },
+    {
+      "severity": "high",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 99,
+      "trigger": "Якщо final path існує, перевірити bytes/hash і використати лише тотожний файл; інакше failure.",
+      "impact": "The no-clobber installation rule creates a race condition with publication concurrency. If two operators run export for the same dataset concurrently, both may check that the final path does not exist, then both attempt atomic rename. One will succeed and the other will fail, but the failure is indistinguishable from a legitimate hash mismatch. This can cause spurious publication failures or, worse, if the check-then-rename is not atomic, a stale artifact could be referenced.",
+      "evidence": "IMPORT_CONTRACT.md:95-100 describes 'atomic no-clobber installation' but does not specify an atomic check-and-install primitive. The sequence 'Якщо final path існує, перевірити bytes/hash і використати лише тотожний файл; інакше failure' implies a TOCTOU window between existence check and rename.",
+      "suggested_fix": "Specify an atomic no-clobber primitive (e.g., renameat2 with RENAME_NOREPLACE on Linux, or link+unlink pattern) and require that concurrent export attempts for the same dataset/export ID are serialized by a DB lock or advisory lock. Document the exact OS-specific syscall or library function to be used and add a crash test for concurrent export."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LOOKUP_CONTRACT.md",
+      "line": 64,
+      "trigger": "Limit незмінний у ланцюжку cursor; новий limit починає новий пошук без cursor.",
+      "impact": "The cursor fingerprint includes decimal_limit (line 75), but the contract states that a new limit starts a new search without cursor. This means a client cannot change the page size mid-pagination without losing position. More critically, if the server enforces that limit in cursor must match the current request limit, then a client that omits limit (defaulting to 50) on a continuation URL from a cursor created with limit=100 will get a 400 error, breaking the legacy continuation URL contract.",
+      "evidence": "LOOKUP_CONTRACT.md:64 states 'Limit незмінний у ланцюжку cursor; новий limit починає новий пошук без cursor' but line 75 includes 'decimal_limit' in the fingerprint. LEGACY_COMPATIBILITY.md:64-65 says continuation URL includes 'limit' but does not specify that it must match the original cursor's limit.",
+      "suggested_fix": "Clarify whether limit is part of the cursor fingerprint or a request parameter that can be changed. If limit is fixed per cursor chain, document that continuation URLs must preserve the original limit and that changing limit requires a new search. If limit can change, remove it from the fingerprint and specify how the server handles a limit change without breaking the anchor position."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/DATA_MODEL.md",
+      "line": 38,
+      "trigger": "UNIQUE (dataset_id,tuple_hash) з обов'язковою collision check до merge.",
+      "impact": "The UNIQUE constraint on tuple_hash alone does not prevent two different tuples with the same hash from being inserted if the collision check is not performed atomically with the insert. A concurrent insert of two colliding tuples could both pass the pre-insert collision check and then one fails on the UNIQUE constraint, but the failure is indistinguishable from a duplicate tuple. This could cause a legitimate collision to be misclassified as a duplicate, leading to data loss.",
+      "evidence": "DATA_MODEL.md:38 specifies 'UNIQUE (dataset_id,tuple_hash) з обов'язковою collision check до merge' but does not specify that the collision check and insert must be in the same transaction with appropriate locking. IMPORT_CONTRACT.md:77-78 says 'При tuple_hash match до insert/merge порівняти всі чотири raw поля; різниця → явний collision failure' but does not address concurrent inserts.",
+      "suggested_fix": "Require that the collision check and insert/merge occur in a single transaction with row-level locking or serializable isolation. Specify that the UNIQUE constraint violation handler must distinguish between a duplicate tuple (all four fields equal) and a hash collision (fields differ) by re-reading the existing row and comparing raw fields, and that a collision must abort the import with a clear error."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LEGACY_COMPATIBILITY.md",
+      "line": 31,
+      "trigger": "Тільки точний legacy name з manifest active dataset → 302 на version-pinned export URL; unknown → 404",
+      "impact": "The legacy CSV URL redirect depends on the active dataset's manifest containing the exact legacy filename. If the active dataset changes (new publication), the legacy filename may no longer exist in the new manifest, causing previously working legacy URLs to return 404. This breaks the compatibility guarantee for old links after a dataset update.",
+      "evidence": "LEGACY_COMPATIBILITY.md:31 states the redirect is based on 'manifest active dataset' but does not specify that legacy filenames must be preserved across dataset versions or that a mapping from legacy names to export IDs must be maintained in publication history. HLD.md:163 says 'Старі версії зберігаються для cursor і rollback' but does not mention legacy URL resolution.",
+      "suggested_fix": "Specify that legacy CSV filenames must be resolvable across dataset versions, either by maintaining a stable mapping in the publication history or by requiring that new datasets preserve legacy filenames for the same pairs. Document the behavior when a legacy filename is not present in the active dataset but exists in a retained version."
+    },
+    {
+      "severity": "low",
+      "file": "docs/LOOKUP_CONTRACT.md",
+      "line": 83,
+      "trigger": "Page обмежена limit і 1 MiB serialized response body.",
+      "impact": "The 1 MiB response body limit combined with the 128 KiB reserve for templates/continuation/error UI means that a single entry with two 64 KiB fields (128 KiB raw) plus HTML escaping overhead could exceed the available budget for a page of 50 entries. The contract states that one entry must fit, but does not specify how the server should handle a page where the first entry alone exceeds the remaining budget after reserve.",
+      "evidence": "LOOKUP_CONTRACT.md:83-86 states 'Page обмежена limit і 1 MiB serialized response body' and 'reserve для templates/continuation/error UI — 128 KiB, а один entry з двома полями до 64 KiB має вміститися з HTML escaping' but does not define the minimum number of entries that must be returned or the behavior when even one entry cannot fit.",
+      "suggested_fix": "Clarify that the server must always return at least one entry if any match exists, even if it exceeds the 1 MiB budget, and that the render_budget_exceeded error is only for cases where the template overhead alone exceeds the budget. Alternatively, specify a minimum entry budget that guarantees at least one entry can always be returned."
+    }
+  ],
+  "limitations": [
+    "Review is based solely on the supplied documentation; no implementation or tests exist to validate the contracts.",
+    "Deferred open questions OQ-02/03/05/06 are acknowledged as not blocking the Go skeleton and synthetic fixtures, and are not treated as automatic findings.",
+    "The review does not assess production facts or actual legacy system behavior beyond what is documented in LEGACY.md.",
+    "No tools were used; findings are based on static analysis of the documentation for internal inconsistencies and correctness risks."
+  ]
+}

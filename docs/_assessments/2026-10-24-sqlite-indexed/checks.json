@@ -1,0 +1,20 @@
+{
+  "validated": true,
+  "copy_hashes_match": true,
+  "row_count_and_publication_state": "passed",
+  "plan_checks": "prefix/infix covering index; no temp sort",
+  "workload_errors": {
+    "load-unrestricted.json": 0,
+    "load-constrained.json": 0
+  },
+  "cgroup_limits_verified": true,
+  "all_local_data_ignored": true,
+  "git_diff_check": "passed",
+  "active_markdown_links_and_whitespace": "passed",
+  "python_syntax": "passed",
+  "oracle_operations": "none",
+  "tool_sha256": {
+    "prepare.py": "8f41b36a03f91163aa15c4b9e932c9e1b224844d13415104511e0178e934a2a1",
+    "../2026-10-24-provenance/load.py": "01682c4646e258a4b4601c03f3703fac3ec609921fba20229f5f9d8dc9acadd8"
+  }
+}

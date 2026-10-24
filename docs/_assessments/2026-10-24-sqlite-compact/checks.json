@@ -1,0 +1,27 @@
+{
+  "validated": true,
+  "synthetic_tests_passed": 3,
+  "synthetic_tool_hashes_unchanged": true,
+  "logical_equality": "all recorded rows; full comparison passed",
+  "foreign_key_check": "ok",
+  "page_accounting": "passed, including one reserved lock-byte page",
+  "plans": "prefix/infix covering index; no temporary sort",
+  "workload_errors": {
+    "unrestricted": 0,
+    "constrained": 0
+  },
+  "cgroup_limits_verified": true,
+  "previous_database_sizes_unchanged": true,
+  "ignored_local_data_files": 1002,
+  "git_diff_check": "passed",
+  "python_syntax": "passed",
+  "oracle_operations": "none",
+  "tool_sha256": {
+    "probe.py": "1c9ae54ca4a76c35c7fedb9a02a54b532ec31e35fe8e9ac145d215cb5058a159",
+    "schema.sql": "21d10ac0197042216628dda7ea628d0104349dc881a38be15aef9eac2a4cbf9a",
+    "test_probe.py": "a2e9c214503e8b100ca4c286587247d6b23aa4626154b9d0bff12df5de488800",
+    "storage_stats.py": "7df7c6a239873485d25e18841650afb6c63fbc533fa7676f85057a0c43784795",
+    "../2026-10-24-provenance/load.py": "01682c4646e258a4b4601c03f3703fac3ec609921fba20229f5f9d8dc9acadd8"
+  },
+  "active_markdown_links_and_whitespace": "passed"
+}

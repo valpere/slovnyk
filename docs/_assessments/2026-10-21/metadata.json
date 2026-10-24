@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-21",
+  "tool_commit": "b8dfe2efb03fefb5a42da76cd29f2b44b2f1bdda",
+  "tool_binary": "/tmp/slovnyk-tumanomir-_m9yzerc/tumanomir",
+  "tool_sha256": "443b6af194e3dfe15c0af9bae7ef48833fb0612961e210712861800e13c8fb6a",
+  "before_sha256": {
+    "ARCHITECTURE.md": "0b601983dc325ab9ab70de0097112988a61096a1602c1643db0c55fcc25c8810",
+    "HLD.md": "173ddc71fe2d83c17fee3ec5bd3fb77b2aaa535da5438f941eafae69675a0297",
+    "INDEX.md": "43a7f403cf0088587fe07c94f62ee2b49d89811d75f9df47f11b8875b2e9062d",
+    "LEGACY.md": "9d48c1dc03bf4201e65f05976cbd27ce53fad6796b1364e9fb3a4540888b259b",
+    "MIGRATION.md": "540d3a3e308ded1a19d9246fd4ac25c1c238eb546ae411ac2b0f6c943ee5dcbb",
+    "REQUIREMENTS.md": "b0b0aae67016f6f6ebfbb7024bc5c62e614e9e8d5be44b63c990fd39bca9a6c6",
+    "TRACEABILITY.md": "de58fcedb119b5f06b54a7de63b6457f05c93b10a6a425e7d864c811c15ab45e",
+    "USE_CASES.md": "dcac6cc61886e8d6022135835280819f34b1dff50f0de7c31f52c339c5287420"
+  },
+  "after_sha256": {
+    "ARCHITECTURE.md": "0b601983dc325ab9ab70de0097112988a61096a1602c1643db0c55fcc25c8810",
+    "HLD.md": "0551fb742f36119316e53530c4e4d99331995f8eeb8808230c5bee38916bf129",
+    "INDEX.md": "43a7f403cf0088587fe07c94f62ee2b49d89811d75f9df47f11b8875b2e9062d",
+    "LEGACY.md": "9d48c1dc03bf4201e65f05976cbd27ce53fad6796b1364e9fb3a4540888b259b",
+    "MIGRATION.md": "540d3a3e308ded1a19d9246fd4ac25c1c238eb546ae411ac2b0f6c943ee5dcbb",
+    "REQUIREMENTS.md": "07c606246ed77e2ce1af17d09069cd09262fca7ee4d097408f8eba35f701e95e",
+    "TRACEABILITY.md": "de58fcedb119b5f06b54a7de63b6457f05c93b10a6a425e7d864c811c15ab45e",
+    "USE_CASES.md": "dcac6cc61886e8d6022135835280819f34b1dff50f0de7c31f52c339c5287420"
+  },
+  "measurement_input_sha256": "5face9a113354cabd38a2dee5be9fe8739210cf7c01180f4d07f1bb7af5d1bb2",
+  "model_registration": {
+    "name": "gpt-oss:120b-cloud",
+    "remote_model": "gpt-oss:120b",
+    "remote_host": "https://ollama.com",
+    "digest": "ac7f7a1e778577c4418f6a25e46e0b45dced6746c75422d4b343aa1495a022ed",
+    "modified_at": "2026-09-21T11:06:14.024613625+03:00"
+  },
+  "model_weights_pinned": false,
+  "scope": "Eight canonical docs in after/; entire concatenated measurement-input.md; no report/archive inputs.",
+  "snapshot_links": "Snapshots preserve original bytes; relative Markdown links resolve from original docs locations, not archive subdirectory."
+}

@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "phases_s": {
+    "conversion": 241.157,
+    "indexes_and_analyze": 289.871,
+    "foreign_key_check": 62.762,
+    "logical_equality": 227.755
+  },
+  "bytes_before_indexes": 13327474688,
+  "foreign_key_check": "ok",
+  "compared_rows": {
+    "translations": 56455068,
+    "import_records": 56455068,
+    "translation_origins": 56455068,
+    "dataset_locales": 32,
+    "dataset_pairs": 992,
+    "source_files": 992,
+    "import_runs": 1,
+    "exports": 992,
+    "import_issues": 0,
+    "legacy_query_snapshots": 0,
+    "publication_events": 0
+  },
+  "bytes_before": 27424055296,
+  "bytes_after": 22388301824,
+  "total_s": 821.666,
+  "peak_process_rss_KiB_linux": 565244,
+  "dataset_state": "validating",
+  "active_dataset": null,
+  "generation": 0
+}

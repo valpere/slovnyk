@@ -1,0 +1,65 @@
+```json
+{
+  "findings": [
+    {
+      "severity": "high",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 36,
+      "trigger": "CSV parser behavior with embedded CRLF",
+      "impact": "Potential data corruption during import if using standard Go `encoding/csv.Reader` which normalizes CRLF inside quoted fields, violating lossless requirement.",
+      "evidence": "Line 36-37: \"Не використовувати `encoding/csv.Reader` як lossless parser: він нормалізує CRLF усередині поля.\" Line 29-30: \"LF або CRLF поза лапками завершують record; усередині лапок LF/CRLF/CR зберігаються буквально.\"",
+      "suggested_fix": "Implement a custom CSV parser that strictly adheres to the quoted CRLF/LF/CR preservation rules specified. Include fixtures for quoted CRLF/LF/CR (line 101) in parser tests."
+    },
+    {
+      "severity": "high",
+      "file": "docs/DATA_MODEL.md",
+      "line": 38,
+      "trigger": "Duplicate tuple_hash collision handling",
+      "impact": "Data loss risk if different tuples produce the same hash and the system silently merges them, violating the identity preservation requirement (REQ-FR-02).",
+      "evidence": "Line 38: \"UNIQUE (dataset_id,tuple_hash) з обов'язковою collision check до merge.\" Line 25-26: \"Різні tuples з одним hash зупиняють імпорт/verify як collision.\" Line 61-62 in HLD.md: \"hash collision має зупинити verify з явною помилкою, а не злити різні записи.\"",
+      "suggested_fix": "Enforce explicit collision detection during import/verify by comparing raw tuple fields when hashes match. Document this as a mandatory pre-publication check (AT-09)."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LOOKUP_CONTRACT.md",
+      "line": 65,
+      "trigger": "Cursor dataset pinning and retention policy gap",
+      "impact": "User-facing 410 errors if old datasets are garbage-collected before cursor expiration, breaking pagination for long-running queries.",
+      "evidence": "Line 58-59: \"Dataset з token має бути раніше опублікований і retained; довільний staging ID не дає доступу до даних.\" Line 96-97 in IMPORT_CONTRACT.md: \"GC/retention не виконується автоматично у V1.\" No explicit retention policy for cursor support duration.",
+      "suggested_fix": "Define a minimum retention period for published datasets (e.g., 30 days) to ensure cursor stability. Document this in the cursor contract and add a warning in the 410 response about dataset expiration."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/LEGACY_COMPATIBILITY.md",
+      "line": 45,
+      "trigger": "Locale code aliasing inconsistency",
+      "impact": "Potential 400 errors for valid legacy URLs if alias resolution conflicts with explicit full codes (e.g., `en-gb` vs `en`).",
+      "evidence": "Line 48-51: \"Fixed short aliases: `uk → uk-ua`, `en → en-us`; інші короткі коди → 400 до явного розширення таблиці. Якщо exact повний код існує, він має пріоритет; en-gb ніколи не зливається з en-us.\" Line 11-12 in LEGACY.md: \"Missing il → ul (:318), missing ol → en-us.\"",
+      "suggested_fix": "Clarify alias resolution order: 1) exact full code match, 2) short alias expansion, 3) fallback. Document this in LEGACY_COMPATIBILITY.md and add fixtures for `en-gb` vs `en` (AT-12)."
+    },
+    {
+      "severity": "medium",
+      "file": "docs/IMPORT_CONTRACT.md",
+      "line": 80,
+      "trigger": "Exception handling for entire artifacts",
+      "impact": "Data loss if an entire artifact is excluded without documenting the loss, violating REQ-FR-09 (accounting for all records).",
+      "evidence": "Line 80-81: \"Виключення цілого artifact потребує нового manifest зі збереженим описом excluded source та звітом втрати.\" Line 41 in REQUIREMENTS.md: \"Будь-яка втрата має reason, locator і явне рішення.\"",
+      "suggested_fix": "Require explicit operator confirmation for artifact-level exclusions and enforce a manifest update with a loss report. Add this to the import CLI workflow (e.g., `--exclude-artifact` flag with mandatory reason)."
+    },
+    {
+      "severity": "low",
+      "file": "docs/MIGRATION.md",
+      "line": 28,
+      "trigger": "Legacy locale alias handling ambiguity",
+      "impact": "Inconsistent locale code mapping if the old `sr-sp → sr-rs` alias is applied without versioned control, risking silent data corruption.",
+      "evidence": "Line 28-29: \"Старий alias `sr-sp → sr-rs` не застосовувати до всіх джерел без перевірки та версійного mapping.\" Line 19 in LEGACY.md: \"має alias `sr-sp → sr-rs`.\"",
+      "suggested_fix": "Document alias handling as a versioned mapping rule in the manifest (e.g., `mapping_version: 1` with explicit alias table). Require operator review for legacy aliases during import (AT-11)."
+    }
+  ],
+  "limitations": [
+    "No implementation or test code was available for review; findings are based solely on documentation.",
+    "Deferred OQ-02/03/05/06 were acknowledged and not treated as automatic findings.",
+    "Legacy database schema and live data were not audited; findings assume documented constraints hold."
+  ]
+}
+```

@@ -1,0 +1,28 @@
+{
+  "models": [
+    "gpt-oss:120b-cloud",
+    "mistral-large-3:675b-cloud",
+    "deepseek-v4-pro:cloud"
+  ],
+  "transport": "local Ollama /api/chat, cloud generation only",
+  "timeout_seconds": 200,
+  "temperature": 0.2,
+  "num_ctx": 65536,
+  "num_predict": 8192,
+  "coverage": [
+    "ARCHITECTURE.md",
+    "DATA_MODEL.md",
+    "HLD.md",
+    "IMPORT_CONTRACT.md",
+    "INDEX.md",
+    "LEGACY.md",
+    "LEGACY_COMPATIBILITY.md",
+    "LOOKUP_CONTRACT.md",
+    "MIGRATION.md",
+    "REQUIREMENTS.md",
+    "TRACEABILITY.md",
+    "USE_CASES.md"
+  ],
+  "prompt_bytes": 95854,
+  "timestamp": "2026-10-21T14:34:18.710544+00:00"
+}

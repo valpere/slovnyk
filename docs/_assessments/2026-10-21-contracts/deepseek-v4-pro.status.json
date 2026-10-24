@@ -1,0 +1,11 @@
+{
+  "requested_model": "deepseek-v4-pro:cloud",
+  "status": "complete",
+  "actual_model": "deepseek-v4-pro",
+  "done": true,
+  "done_reason": "stop",
+  "prompt_eval_count": 23764,
+  "eval_count": 2277,
+  "findings": 6,
+  "seconds": 15.434
+}
