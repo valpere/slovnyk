@@ -145,3 +145,14 @@ func TestValidCursorWithEmptyQueryRejected(t *testing.T) {
 		t.Fatal("empty cursor query accepted", status)
 	}
 }
+
+func TestTargetLimitBeforeRouting(t *testing.T) {
+	handler := New(nil, nil)
+	for _, path := range []string{"/search", "//search", "/a/../search"} {
+		response := httptest.NewRecorder()
+		handler.ServeHTTP(response, httptest.NewRequest("GET", path+"?ignored="+strings.Repeat("x", MaxTargetBytes), nil))
+		if response.Code != 414 || response.Header().Get("Location") != "" {
+			t.Fatal("oversized target routed or redirected", path, response.Code)
+		}
+	}
+}

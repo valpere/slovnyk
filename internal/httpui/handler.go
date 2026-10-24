@@ -71,7 +71,7 @@ func New(search SearchFunc, signer *lookup.Signer) http.Handler {
 	}
 	mux.HandleFunc("GET /{$}", serve)
 	mux.HandleFunc("GET /search", serve)
-	return mux
+	return LimitTarget(mux)
 }
 
 type view struct {
@@ -142,3 +142,17 @@ var pageTemplate = template.Must(template.New("search").Parse(`<!doctype html>
 {{range .Groups}}<section><h2 class="word">{{.Source}}</h2><ul>{{range .Translations}}<li class="word">{{.}}</li>{{end}}</ul></section>{{end}}
 {{if .Next}}<a class="next" href="{{.Next}}" rel="next">More translations</a>{{end}}
 </main></body></html>`))
+
+// LimitTarget runs before routing: ServeMux may otherwise redirect an oversized
+// target with a noncanonical path before the search handler can reject it.
+func LimitTarget(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if len(r.RequestURI) > MaxTargetBytes {
+			w.Header().Set("Cache-Control", "no-store")
+			w.Header().Set("X-Robots-Tag", "noindex, follow")
+			http.Error(w, "Request target is too long.", http.StatusRequestURITooLong)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
+}

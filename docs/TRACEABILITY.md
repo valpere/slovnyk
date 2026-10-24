@@ -305,3 +305,9 @@ M1-07 **in progress**; це не повне AT-05/19 або готовий ло�
 Chromium CDP 9222, page scripts disabled: desktop/mobile форма; не повний browser
 acceptance або перевірка всіх accessibility станів. Локалізація, catalog/cookies,
 SEO, downloads, production p95 і повний corpus залишаються відкритими.
+
+Follow-up transport review: [звіт](_assessments/2026-10-24-http-target/REPORT.md).
+`TestTargetLimitBeforeRouting` та actual process smoke перевірили target guard
+до canonical redirects: query 24 KiB → 200, понад 32 KiB → 414, включно з
+`//search`. `make check test test-race test-smoke` повторно PASS після зміни.
+Go parser має окремий hard ceiling 64 KiB для request line + headers.

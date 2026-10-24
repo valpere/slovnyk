@@ -52,13 +52,14 @@ func Run(ctx context.Context, cfg Config, logger *slog.Logger) error {
 	mux.Handle("/readyz", probes)
 	mux.Handle("/", httpui.New(searchBackend(cfg), cfg.CursorSigner))
 	server := &http.Server{
-		Handler:           mux,
+		Handler:           httpui.LimitTarget(mux),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       15 * time.Second,
 		WriteTimeout:      15 * time.Second,
 		IdleTimeout:       60 * time.Second,
-		MaxHeaderBytes:    16 << 10,
-		ErrorLog:          slog.NewLogLogger(logger.Handler(), slog.LevelError),
+		// Allow the 32 KiB request-target boundary to reach the 414 guard.
+		MaxHeaderBytes: 64 << 10,
+		ErrorLog:       slog.NewLogLogger(logger.Handler(), slog.LevelError),
 	}
 	return serve(ctx, listener, server, cfg.ShutdownTimeout, logger)
 }
