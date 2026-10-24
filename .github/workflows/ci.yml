@@ -28,7 +28,7 @@ jobs:
       - name: Check committed patch
         env:
           CI_DIFF_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: ./minions/check-patch.sh "$CI_DIFF_BASE"
+        run: ./tests/check-patch.sh "$CI_DIFF_BASE"
       - run: make check
       - run: make test
       - run: make test-race

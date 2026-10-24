@@ -142,7 +142,7 @@ cross-dataset reference rejection. Фактичні шляхи й hashes — у 
 
 Implementation: [cmd/slovnyk/main.go](../cmd/slovnyk/main.go),
 [internal/ops](../internal/ops/), [compose.yaml](../compose.yaml),
-[Makefile](../Makefile), [PostgreSQL smoke](../minions/test-postgres.sh).
+[Makefile](../Makefile), [PostgreSQL smoke](../tests/postgres.sh).
 
 | Частина критерію | Реальна перевірка | Результат |
 |---|---|---|
@@ -193,7 +193,7 @@ retry і publication. M1-03–08 open; жоден повний acceptance не �
 
 Implementation: [SQL](../migrations/000001_initial.sql),
 [storage](../internal/storage/postgres/), `cmd/slovnyk` migration command,
-[ізольований runner](../minions/test-postgres.sh).
+[ізольований runner](../tests/postgres.sh).
 
 | Частина критерію | Реальна перевірка | Результат |
 |---|---|---|
@@ -275,3 +275,14 @@ Bounded `FuzzCursor` з `-fuzztime=10s -parallel=2` — **PASS**, 69 183 executi
 Runtime logs: `tmp/m1-06/` (ignored). [Звіт і review scope](_assessments/2026-10-24-lookup/REPORT.md).
 Final HTTP response size/escaping, acquisition deadline та повні AT ще відкриті.
 M1-01–06 done; наступний M1-07. Oracle і повний corpus не задіяні.
+
+## Go tooling та review → PR → CI — 2026-10-24
+
+За прямою вказівкою користувача tools розділено за призначенням:
+`utilities/prepare-artifacts` — загальнодоступна service utility;
+`tests/` — стандартні checks для людей/CI; `minions/` — особисті помічники агента.
+Три Python-команди переписано на Go, shell test runners перенесено в `tests/`.
+Regression paths: `tests/repository/check_test.go`,
+`utilities/prepare-artifacts/main_test.go`, `tests/processsmoke/*_test.go`.
+Деталі, review scope та результати — у [звіті](_assessments/2026-10-24-go-utilities/REPORT.md).
+Це обслуговування tooling, не нове AT-покриття пошукового UI.

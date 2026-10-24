@@ -29,7 +29,7 @@ storage budget та перевірка HTTP/цільового сервера з
 
 ## Локальний запуск
 
-Потрібні Go **1.26.10**, Make, Python 3.10+ для посіпак; для окремої dev/test PostgreSQL — Docker із
+Потрібні Go **1.26.10** і Make; для окремої dev/test PostgreSQL — Docker із
 Compose v2+. Module path `github.com/valpere/slovnyk` відповідає Git remote.
 Unicode NFC/full case folding використовують `golang.org/x/text v0.43.0`,
 закріплений у `go.mod` / `go.sum` (Unicode 15.0.0 для Go 1.26).
@@ -155,7 +155,7 @@ prefix перевіряються, origins не дублюються. Lock wait 
 з hard links і fsync (Linux baseline); не object/network storage.
 
 ```sh
-python3 minions/prepare-artifacts.py data/artifacts
+go run ./utilities/prepare-artifacts data/artifacts
 ./bin/slovnyk dataset verify <dataset-id> --source testdata/import --artifacts data/artifacts
 ./bin/slovnyk dataset export <dataset-id> --artifacts data/artifacts
 ./bin/slovnyk dataset publish <dataset-id> --artifacts data/artifacts --expected-generation 0 --operator-ref local-owner
@@ -180,9 +180,11 @@ exit 0 — успіх, 1 — невдала операція, 2 — неправ
 
 ## Посіпаки й тимчасові файли
 
-Повторно використовувані скрипти живуть у [minions/](minions/README.md).
-Тимчасові скрипти, fixtures та результати запусків — у `tmp/`; корисні
-повторювані скрипти переносимо звідти до `minions/`. Дані експериментів
+Утиліти для роботи сервісу, доступні всім, живуть у [utilities/](utilities/README.md).
+Проєктні перевірки для людей і CI — у [tests/](tests/README.md).
+[minions/](minions/README.md) містить виключно особистих помічників агента;
+сервіс і CI від них не залежать. Мова реалізації не визначає категорію.
+Python runtime для цих команд більше не потрібний. Тимчасові речі — `tmp/`. Дані експериментів
 залишаються у постійному ignored `data/experiments/`. Історичні інструменти
 у `docs/_assessments/` зберігаються разом зі своїми звітами.
 
@@ -222,6 +224,7 @@ M1-06 реалізовано: application service exact/mask і підписан
 
 ## Рев’ю, коміти та CI
 
+Порядок роботи: [review → PR → CI](docs/CONTRIBUTING.md).
 Після кожного завершеного етапу: рев’ю змін, потрібні локальні перевірки,
 сфокусований локальний commit. Результат рев’ю та обмеження зберігати разом
 із документацією етапу; виправлення повторно перевіряти до commit.

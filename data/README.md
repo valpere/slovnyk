@@ -29,6 +29,6 @@
 
 `data/artifacts/` — окремий ignored root нової реалізації для immutable exports
 та verification reports, не експериментальні SQLite exports. Provisioning:
-`python3 minions/prepare-artifacts.py data/artifacts`. Ready/publication зберігають
+`go run ./utilities/prepare-artifacts data/artifacts`. Ready/publication зберігають
 посилання сюди; не очищати разом із `tmp/`, не змінювати final bytes, GC вимкнений.
 HTTP отримує read-only mount. Backup має включати БД і всі referenced artifacts.
