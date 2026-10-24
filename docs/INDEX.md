@@ -52,7 +52,9 @@ M1-03 реалізовано: нова PostgreSQL schema, migration CLI, privile
 primitives; [звіт](_assessments/2026-10-24-postgres-schema/REPORT.md).
 M1-04 реалізовано: inspect/run CLI, staged CSV import, ledger/provenance,
 session lock і retry; [звіт](_assessments/2026-10-24-staged-import/REPORT.md).
-HTTP-пошук, UI, verify/publication та production-міграція ще попереду; далі M1-05.
+M1-05 реалізовано: reconciliation, durable exports/report, publish/rollback CAS
+і HTTP readiness; [звіт](_assessments/2026-10-24-publication/REPORT.md).
+HTTP-пошук, UI та production-міграція ще попереду; далі M1-06.
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів
 і структурних відхилень за перевіреними правилами V1. Виявлено 118 009

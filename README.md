@@ -47,9 +47,9 @@ curl -i http://127.0.0.1:8080/healthz
 curl -i http://127.0.0.1:8080/readyz
 ```
 
-`/healthz` → 200; `/readyz` → 503 із `storage_not_initialized`.
-Каркас ще не підключається до БД: schema/active dataset/artifact readiness
-буде реалізовано разом зі storage/publication. Пошуку й UI наразі немає.
+`/healthz` → 200; без storage config `/readyz` → 503 із `storage_not_initialized`.
+З read-only HTTP DSN readiness перевіряє schema, active dataset та artifacts
+(інструкція нижче). Пошуку й UI наразі немає.
 Ctrl+C або SIGTERM припиняє приймання запитів і очікує активні до 10 s;
 перевищення deadline закриває з'єднання та завершує процес із кодом 1.
 Неправильна команда/config → exit 2; коректне завершення → exit 0.
@@ -68,7 +68,7 @@ make run
 `SLOVNYK_LOG_LEVEL` (`debug/info/warn/error`, default `info`) та
 `SLOVNYK_SHUTDOWN_TIMEOUT` (додатна Go duration, default `10s`).
 `.env` автоматично читає лише Compose; Go-процес використовує environment.
-Логи — JSON у stderr, без access log і текстів пошуку. HTTP DSN поки не використовується; CLI має явні окремі DSNs.
+Логи — JSON у stderr, без access log і текстів пошуку. HTTP та CLI використовують окремі явні DSNs; credentials не логуються.
 
 ## Окрема dev/test БД
 
@@ -110,9 +110,12 @@ HTTP читає лише runtime tables; оператор імпортує/пу�
 login не використовувати для HTTP. Небезпечні наявні групи відхиляються.
 Жодних автоматичних down migrations, GC або видалення datasets немає.
 
-`serve` поки не підключає storage: `/readyz` лишається 503
-`storage_not_initialized`. `CheckSchema` реалізовано як storage primitive;
-повний DB/active/artifact readiness буде підключено разом із publication.
+Для readiness задайте разом `SLOVNYK_HTTP_DSN` (LOGIN групи `slovnyk_http`)
+і `SLOVNYK_ARTIFACT_ROOT`. На startup, recovery та новій generation перевіряються
+schema, ready report, hashes і round-trip усіх активних exports. До успіху — 503.
+Pointer перевіряється щосекунди; втрата БД скидає readiness. HTTP mount artifacts
+має бути read-only, final files незмінні, GC вимкнений. Перевірені bytes
+кешуються до recovery/нової generation, тому зовнішні зміни файлів заборонені.
 
 ## Інвентаризація та staged import
 
@@ -142,8 +145,38 @@ Exit 0 із rejected records не є погодженням втрат або г
 4 MiB. Повторіть ту саму команду після interruption: fingerprint і committed
 prefix перевіряються, origins не дублюються. Lock wait — до 5 s. Для terminal
 `failed` потрібен новий manifest/версія правил; source не змінювати в процесі.
-Успіх лишає набір у `validating`, active dataset незмінний. Verify/exports/publish
-ще попереду; [реалізація й результати](docs/_assessments/2026-10-24-staged-import/REPORT.md).
+Успіх лишає набір у `validating`, active dataset незмінний;
+[реалізація й результати](docs/_assessments/2026-10-24-staged-import/REPORT.md).
+
+## Verify, exports та публікація
+
+Потрібні operator DSN і незмінний snapshot, використаний для import. Усі flags
+ідуть після dataset ID. Artifact root — окрема надійна локальна filesystem
+з hard links і fsync (Linux baseline); не object/network storage.
+
+```sh
+python3 minions/prepare-artifacts.py data/artifacts
+./bin/slovnyk dataset verify <dataset-id> --source testdata/import --artifacts data/artifacts
+./bin/slovnyk dataset export <dataset-id> --artifacts data/artifacts
+./bin/slovnyk dataset publish <dataset-id> --artifacts data/artifacts --expected-generation 0 --operator-ref local-owner
+./bin/slovnyk dataset rollback <previous-id> --artifacts data/artifacts --expected-generation <current-generation> --operator-ref local-owner
+```
+
+`verify` звіряє source hashes/EOF, ledger, origins, metadata та counters; створює
+окремий lossless CSV4.gz для кожної пари й immutable JSON report, тоді ставить
+`ready`. Файли й батьківські directories синхронізовані до DB commit. Повторний
+verify/export ready dataset повертає той самий перевірений inventory, без заміни
+bytes. Збій до commit лишає `validating` і допустимі orphan files; повторіть verify.
+Root і артефакти не видаляти та не перезаписувати; `data/artifacts/` ignored.
+
+`publish`/`rollback` вимагають фактичну поточну generation із `slovnyk.active_dataset`;
+0 — лише перша публікація. Конфлікт повертається без зміни pointer/history.
+Rollback дозволено лише до раніше опублікованої збереженої версії. JSON — stdout;
+exit 0 — успіх, 1 — невдала операція, 2 — неправильні аргументи/відсутня config.
+Нині будь-які rejected records, issues, known gaps чи exceptions блокують ready:
+адаптер окремого погодження власником звіту втрат ще попереду, `force ready` немає.
+Це synthetic M1; повний Go corpus import та production durability не перевірені.
+[Реалізація, рев’ю та обмеження](docs/_assessments/2026-10-24-publication/REPORT.md).
 
 ## Посіпаки й тимчасові файли
 
@@ -181,8 +214,9 @@ M1-02 реалізовано: versioned normalization/mask compiler, lossless CS
 strict manifest V1 і [синтетичні fixtures](testdata/README.md).
 M1-03 реалізовано: схема PostgreSQL, міграційний CLI, constraints, ролі
 та реальні transaction tests. M1-04 реалізовано: inspect/run CLI, staged import,
-транзакційний ledger/provenance і retry. HTTP lookup та publication ще попереду.
-Наступна задача — M1-05, verify/exports/publish/rollback.
+транзакційний ledger/provenance і retry. M1-05 реалізовано: reconciliation,
+durable exports/report, publication/rollback CAS та HTTP readiness.
+Наступна задача — M1-06, пошук і cursor; HTTP lookup та UI ще попереду.
 Старий проєкт залишається незмінним; Oracle не задіяний.
 
 ## Рев’ю, коміти та CI

@@ -22,7 +22,7 @@ func mainCode() int {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 	output := io.Writer(os.Stderr)
-	if len(os.Args) > 1 && os.Args[1] == "import" {
+	if len(os.Args) > 1 && (os.Args[1] == "import" || os.Args[1] == "dataset") {
 		output = os.Stdout
 	}
 	return run(ctx, os.Args[1:], os.Getenv, output)
@@ -31,6 +31,9 @@ func mainCode() int {
 func run(ctx context.Context, args []string, getenv func(string) string, output io.Writer) int {
 	if len(args) > 0 && args[0] == "import" {
 		return runImport(ctx, args[1:], getenv, output)
+	}
+	if len(args) > 0 && args[0] == "dataset" {
+		return runDataset(ctx, args[1:], getenv, output)
 	}
 	logger := slog.New(slog.NewJSONHandler(output, nil))
 	if len(args) == 1 && args[0] == "migrate" {
@@ -61,7 +64,7 @@ func run(ctx context.Context, args []string, getenv func(string) string, output 
 		return 0
 	}
 	if len(args) != 1 || args[0] != "serve" {
-		logger.Error("usage: slovnyk serve|migrate|import", "event", "invalid_command")
+		logger.Error("usage: slovnyk serve|migrate|import|dataset", "event", "invalid_command")
 		return 2
 	}
 	cfg, err := ops.LoadConfig(getenv)

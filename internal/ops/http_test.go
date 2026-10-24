@@ -142,3 +142,11 @@ func TestListenerFailure(t *testing.T) {
 		t.Fatalf("expected safe listener error, got %v", err)
 	}
 }
+
+func TestReadyHandler(t *testing.T) {
+	r := httptest.NewRecorder()
+	readinessHandler(func() bool { return true }).ServeHTTP(r, httptest.NewRequest("GET", "/readyz", nil))
+	if r.Code != 200 || r.Body.String() != `{"status":"ready"}`+"\n" {
+		t.Fatalf("%d %s", r.Code, r.Body.String())
+	}
+}

@@ -94,6 +94,7 @@ _patterns/wins.jsonl
 tmp/
 # Persistent local datasets and experiment databases; see data/README.md.
 /data/experiments/
+/data/artifacts/
 dwn/
 dwn
 mnt

@@ -1,0 +1,134 @@
+{
+  "baseline": "47739920abe34309854132424c75a42ec2a3c186",
+  "scope": "M1-05 staged changes; report and this inventory excluded",
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "d0e7bc85eb8b429f1e7b603f0979656a9def0210668d32d449d66e786cd30f93"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "0b765b59ac70c503f5005c33da842f683883322e43d1d373536b043219091d20"
+    },
+    {
+      "path": "README.md",
+      "sha256": "29ad3fd61082df4f8302e9a3930bb44c0f8356cf08b448d061317e4668f5d8df"
+    },
+    {
+      "path": "cmd/slovnyk/dataset.go",
+      "sha256": "9b853d340b778240ba2d1aa210dfbaa0a074db8b765ac46f9fb1ade0b2650682"
+    },
+    {
+      "path": "cmd/slovnyk/dataset_test.go",
+      "sha256": "b77584f3267087f2c73c9667eb5829f03ee007e221ce63380e936d86183f9cef"
+    },
+    {
+      "path": "cmd/slovnyk/import_integration_test.go",
+      "sha256": "7791e38d094cf9b81eca932abbc2e29c8c66fcb88fc5c00ef7d57696140364ee"
+    },
+    {
+      "path": "cmd/slovnyk/main.go",
+      "sha256": "79089c11b0bad750d0056f2ab704f677326543b7a2edecb3cf5aa823e6a8b460"
+    },
+    {
+      "path": "data/README.md",
+      "sha256": "650d3569d8ffc60018c3ea642902bf88727e8fb26a1ba1207f857c59e9077f82"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "sha256": "f2a8357c8fd0fa94b7e5a41cd2e7e46b6cd660ce23fa9d83b9bbf5ec888ea450"
+    },
+    {
+      "path": "docs/HLD.md",
+      "sha256": "e03f44699de87dee8904566e8076c93afab38979b82049003cd98cd71ddeaaf7"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PLAN.md",
+      "sha256": "605e831a2c4b62f378bab7801ef9283c40154cc82f382636c3da20b6cc239e2d"
+    },
+    {
+      "path": "docs/IMPORT_CONTRACT.md",
+      "sha256": "3c8b0f322534d60327789505cdc743e65181d6b878c264ee3dc1a1b8efc1f8b3"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "sha256": "6a1ffa73e7d1dad3c08e6b0bcf768dc7221591c82666f51dc8bb38b42b920014"
+    },
+    {
+      "path": "docs/TRACEABILITY.md",
+      "sha256": "74c6512ede3eeb0bd94503043dce3e5c5c5edfe2857efe9ad39693fbbc3f1a3f"
+    },
+    {
+      "path": "internal/artifacts/store.go",
+      "sha256": "13d3f968084518048997a68805faec160e560e34d72184ba53a1fe8868dd171a"
+    },
+    {
+      "path": "internal/artifacts/store_linux_test.go",
+      "sha256": "ba43c5061ca5888b3bca71b024561bf2a47c1ce514829ed0fcf5a7e739076b69"
+    },
+    {
+      "path": "internal/artifacts/store_test.go",
+      "sha256": "d9fa7673ad22f921a8dea7a6ff5597e6fde752585ee150fdb102820b667b61a7"
+    },
+    {
+      "path": "internal/importer/batch.go",
+      "sha256": "95e5ed98d723ec15f99a85c807578c56d623600b1d0b319ff8ead517249d0ac9"
+    },
+    {
+      "path": "internal/importer/importer.go",
+      "sha256": "3177a90b363b2229ab7508eeeb1ffdf6e221def945b64db08c13e782a5bbd1b3"
+    },
+    {
+      "path": "internal/importer/reconcile.go",
+      "sha256": "81b992967fe13fc7d9d13e00783af942a1fc3b4cca00822433ce2fa5dd96b1a0"
+    },
+    {
+      "path": "internal/ops/config.go",
+      "sha256": "c9d9301c0aec16fccd1d4c036ff6f3ba0930a75f2e4214745f4f18f9ea005697"
+    },
+    {
+      "path": "internal/ops/config_test.go",
+      "sha256": "4e888224a7ffe4fa19598c9340bd6f6e35ed0f3a94173b560e47f331cf805d6f"
+    },
+    {
+      "path": "internal/ops/http.go",
+      "sha256": "e6f3b2eb270d94d2bf979f2e7062dacd9960bff6d1f8bca1d78f95499c4420d0"
+    },
+    {
+      "path": "internal/ops/http_test.go",
+      "sha256": "738eb4b9909f04f16f6251a935ca45b3450e703fe7a6206390eb042cd7965a6b"
+    },
+    {
+      "path": "internal/ops/readiness.go",
+      "sha256": "8839434e2f3960449603c3d7b77833b3a33e5fcdca23bdb6cea05dce077c8feb"
+    },
+    {
+      "path": "internal/ops/readiness_integration_test.go",
+      "sha256": "bea145c1accd5a9960c29086fedfced584cb303ef3c4a52100c30cf7196b0667"
+    },
+    {
+      "path": "internal/publication/publication.go",
+      "sha256": "0d84b2d3e548338bc3444f58d40857255ce1ed79d58d56943cfd8572e6dfc1dd"
+    },
+    {
+      "path": "internal/publication/publication_integration_test.go",
+      "sha256": "dd4276a9029776aa38b4d2e5601120dcdba244f62a05d768b4485a01da5ed84d"
+    },
+    {
+      "path": "internal/publication/verify.go",
+      "sha256": "45c0259cc6f28efe41adcff49fea1047a5ef1366c592111e1b8c703160046aba"
+    },
+    {
+      "path": "minions/README.md",
+      "sha256": "664fa9a603f2adc36fb42b6fdf0b84590a0505592d37a98caec911b0a5a24757"
+    },
+    {
+      "path": "minions/prepare-artifacts.py",
+      "sha256": "4acf85e02ef9f49f910146b11a0cb8ff3038ecd5a45bf6070ecf102faac251e4"
+    },
+    {
+      "path": "minions/test-postgres.sh",
+      "sha256": "920df3900827e97cb37d1415dfac386af9da7a07c0410441920b0aaca23ee4bc"
+    }
+  ]
+}

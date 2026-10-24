@@ -9,14 +9,18 @@ import (
 	"time"
 )
 
-func newHandler() http.Handler {
+func newHandler() http.Handler { return readinessHandler(func() bool { return false }) }
+
+func readinessHandler(ready func() bool) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
 		writeStatus(w, http.StatusOK, `{"status":"ok"}`)
 	})
 	mux.HandleFunc("GET /readyz", func(w http.ResponseWriter, r *http.Request) {
-		// M1-03/05 add storage, schema and verified active-artifact checks.
-		// A live process must never imply a ready dictionary.
+		if ready() {
+			writeStatus(w, http.StatusOK, `{"status":"ready"}`)
+			return
+		}
 		writeStatus(w, http.StatusServiceUnavailable, `{"status":"not_ready","reason":"storage_not_initialized"}`)
 	})
 	return mux
@@ -36,8 +40,12 @@ func Run(ctx context.Context, cfg Config, logger *slog.Logger) error {
 		// Do not log arbitrary runtime input through net.OpError.
 		return errors.New("HTTP listener unavailable")
 	}
+	monitorCtx, cancel := context.WithCancel(ctx)
+	defer cancel()
+	status := startReadiness(monitorCtx, cfg)
+	defer func() { cancel(); <-status.done }()
 	server := &http.Server{
-		Handler:           newHandler(),
+		Handler:           readinessHandler(status.ready.Load),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       15 * time.Second,
 		WriteTimeout:      15 * time.Second,

@@ -473,3 +473,9 @@ func issueReports(issues map[string]int64) []IssueReport {
 	}
 	return result
 }
+
+// AcquireWriter shares the versioned import/verify session lock. The caller
+// owns a dedicated connection and must close it on EVERY exit path.
+func AcquireWriter(ctx context.Context, c *pgx.Conn, fp [32]byte) error {
+	return acquire(ctx, c, lockKeyV1(fp), 5*time.Second)
+}

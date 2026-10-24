@@ -2,10 +2,10 @@
 
 Це цільова будова нового застосунку. M1-01 реалізує `cmd/slovnyk`,
 `internal/ops` і `slovnyk serve`; M1-02 — `internal/normalization` та
-`internal/importdata` як спільні format/key primitives. Решта CLI заплановані.
+`internal/importdata` як спільні format/key primitives.
 M1-03 додає `internal/storage/postgres`, embedded SQL і `slovnyk migrate`;
 M1-04 додає `internal/importer` і `import inspect/run` до стану `validating`;
-verify/export/publication CLI ще попереду.
+M1-05 додає `internal/artifacts`, `internal/publication`, dataset CLI та HTTP readiness.
 Нормативна поведінка — у [REQUIREMENTS](REQUIREMENTS.md).
 
 ## Компоненти та майбутня структура
@@ -17,6 +17,7 @@ internal/lookup/          # запит, нормалізація, результ
 internal/normalization/   # реалізовані versioned keys/query/mask primitives
 internal/importdata/      # реалізовані CSV4, manifest і tuple digests
 internal/importer/        # inventory, parsers, staging, reconciliation
+internal/artifacts/       # immutable local files, no-clobber install/fsync
 internal/publication/     # verify, publish, rollback, export
 internal/storage/postgres/
 internal/httpui/          # handlers, locale fallback
@@ -31,18 +32,17 @@ docs/
 
 Go HTTP і CLI використовують ті самі application services. В HTTP немає
 операторських routes. `serve` доступна за [README](../README.md);
-`serve`, `migrate`, `import inspect/run` нижче вже реалізовані;
-`dataset` commands — запропонований інтерфейс M1-05:
+Наведені CLI commands реалізовані; paths і credentials — за README:
 
 ```text
 slovnyk serve
 slovnyk migrate
 slovnyk import inspect --manifest <path> --source <directory>
 slovnyk import run --manifest <path> --source <directory> [--batch-size 100]
-slovnyk dataset verify <id>
-slovnyk dataset export <id>
-slovnyk dataset publish <id> --expected-generation <N>
-slovnyk dataset rollback <previous-id> --expected-generation <N>
+slovnyk dataset verify <id> --source <directory> --artifacts <directory>
+slovnyk dataset export <id> --artifacts <directory>
+slovnyk dataset publish <id> --artifacts <directory> --expected-generation <N> --operator-ref <ref>
+slovnyk dataset rollback <previous-id> --artifacts <directory> --expected-generation <N> --operator-ref <ref>
 ```
 
 <a id="fun-catalog"></a>
@@ -240,12 +240,13 @@ rights gate для публічного доступу не потрібен. M1
 очікує перевірки active artifact references/hashes за IMPORT_CONTRACT. CLI відрізняє exit 0 успіх,
 ненульовий результат перевірки й execution error; звіт містить їх явно.
 
-Поточний HTTP-каркас M1-01–04: `/readyz` завжди 503 із
-`storage_not_initialized`, без підключення до БД. Повний readiness вище
-залишається для підключення в M1-05. M1-03 реалізує connect/schema-check
-primitives, явний migration CLI та exact storage query; dataset/retention/cursor
-validation додає application service. HTTP налаштування й JSON lifecycle logs
-реалізовано в `internal/ops`; SIGINT/SIGTERM запускає bounded graceful shutdown.
+M1-05 підключає `SLOVNYK_HTTP_DSN` та `SLOVNYK_ARTIFACT_ROOT` разом.
+Без них readiness=503. Фоновий monitor перевіряє pointer щосекунди, а schema,
+report/hash та exports round-trip — на startup, reconnect і зміні generation.
+Результат кешується лише для immutable retained artifacts; mount read-only,
+GC вимкнений. Помилки БД скидають readiness; recovery виконує повну перевірку.
+Операторських HTTP routes немає. SIGINT/SIGTERM скасовує monitor і запускає
+bounded graceful shutdown. Пошук/cursor ще не реалізовані.
 
 Backup складається з консистентного snapshot нової БД і всіх artifacts,
 на які він посилається, плюс manifests/config versions. До завершення backup

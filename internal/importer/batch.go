@@ -120,25 +120,8 @@ func commitBatch(ctx context.Context, c *pgx.Conn, id, run string, a importdata.
 		return ErrStorage
 	}
 	defer rollback(tx)
-	rows := make([][]any, 0, len(records))
-	for _, r := range records {
-		t := r.Fields
-		var key string
-		var kh, th []byte
-		if r.Reason == "" {
-			key = normalization.Key(t[2])
-			k := normalization.KeyHash(key)
-			h := importdata.TupleHash(t)
-			kh = k[:]
-			th = h[:]
-		} else {
-			t = importdata.Tuple{}
-		}
-		rows = append(rows, []any{r.Ordinal, r.Offset, t[0], t[1], t[2], t[3], key, kh, th, r.Reason})
-	}
-	_, e = tx.CopyFrom(ctx, pgx.Identifier{"pg_temp", "slovnyk_import_batch"}, []string{"ordinal", "byte_offset", "from_code", "to_code", "source_text", "target_text", "source_key", "key_hash", "tuple_hash", "reason"}, pgx.CopyFromRows(rows))
-	if e != nil {
-		return ErrStorage
+	if e = copyRecords(ctx, tx, records); e != nil {
+		return e
 	}
 	if opt.afterStage != nil {
 		if e = opt.afterStage(ctx, tx); e != nil {
@@ -147,22 +130,8 @@ func commitBatch(ctx context.Context, c *pgx.Conn, id, run string, a importdata.
 	}
 	var bad bool
 	if replay {
-		e = tx.QueryRow(ctx, `SELECT EXISTS(SELECT 1 FROM pg_temp.slovnyk_import_batch b
-   LEFT JOIN slovnyk.import_records r ON r.dataset_id=$1 AND r.artifact_hash=$2 AND r.ordinal=b.ordinal
-   LEFT JOIN slovnyk.translations t ON t.dataset_id=r.dataset_id AND t.id=r.translation_id
-   LEFT JOIN slovnyk.translation_origins o ON o.dataset_id=r.dataset_id AND o.artifact_hash=r.artifact_hash AND o.ordinal=r.ordinal
-   WHERE r.ordinal IS NULL OR
-   (b.reason<>'' AND (r.outcome<>'rejected' OR r.issue_code IS DISTINCT FROM b.reason)) OR
-   (b.reason='' AND (r.outcome='rejected' OR t.id IS NULL OR o.ordinal IS NULL OR
-    (t.source_locale,t.target_locale,t.source_text,t.target_text,t.source_key,t.tuple_hash) IS DISTINCT FROM
-    (b.from_code,b.to_code,b.source_text,b.target_text,b.source_key,b.tuple_hash) OR
-    (o.source_locale,o.target_locale,o.source_text,o.target_text,o.source_locator) IS DISTINCT FROM
-    (b.from_code,b.to_code,b.source_text,b.target_text,$3::text||':'||b.ordinal::text))))`, id, digest(a), a.SHA256).Scan(&bad)
-		if e != nil {
-			return ErrStorage
-		}
-		if bad {
-			return ErrReplay
+		if e = checkReplay(ctx, tx, id, a); e != nil {
+			return e
 		}
 		if e = tx.Commit(ctx); e != nil {
 			return ErrStorage
@@ -237,6 +206,53 @@ func commitBatch(ctx context.Context, c *pgx.Conn, id, run string, a importdata.
 	}
 	if e = tx.Commit(ctx); e != nil {
 		return ErrStorage
+	}
+	return nil
+}
+
+func copyRecords(ctx context.Context, tx pgx.Tx, records []importdata.Record) error {
+	rows := make([][]any, 0, len(records))
+	for _, r := range records {
+		t := r.Fields
+		var key string
+		var kh, th []byte
+		if r.Reason == "" {
+			key = normalization.Key(t[2])
+			k := normalization.KeyHash(key)
+			h := importdata.TupleHash(t)
+			kh = k[:]
+			th = h[:]
+		} else {
+			t = importdata.Tuple{}
+		}
+		rows = append(rows, []any{r.Ordinal, r.Offset, t[0], t[1], t[2], t[3], key, kh, th, r.Reason})
+	}
+	_, e := tx.CopyFrom(ctx, pgx.Identifier{"pg_temp", "slovnyk_import_batch"}, []string{"ordinal", "byte_offset", "from_code", "to_code", "source_text", "target_text", "source_key", "key_hash", "tuple_hash", "reason"}, pgx.CopyFromRows(rows))
+	if e != nil {
+		return ErrStorage
+	}
+
+	return nil
+}
+
+func checkReplay(ctx context.Context, tx pgx.Tx, id string, a importdata.Artifact) error {
+	var bad bool
+	e := tx.QueryRow(ctx, `SELECT EXISTS(SELECT 1 FROM pg_temp.slovnyk_import_batch b
+   LEFT JOIN slovnyk.import_records r ON r.dataset_id=$1 AND r.artifact_hash=$2 AND r.ordinal=b.ordinal
+   LEFT JOIN slovnyk.translations t ON t.dataset_id=r.dataset_id AND t.id=r.translation_id
+   LEFT JOIN slovnyk.translation_origins o ON o.dataset_id=r.dataset_id AND o.artifact_hash=r.artifact_hash AND o.ordinal=r.ordinal
+   WHERE r.ordinal IS NULL OR
+   (b.reason<>'' AND (r.outcome<>'rejected' OR r.issue_code IS DISTINCT FROM b.reason)) OR
+   (b.reason='' AND (r.outcome='rejected' OR t.id IS NULL OR o.ordinal IS NULL OR
+    (t.source_locale,t.target_locale,t.source_text,t.target_text,t.source_key,t.tuple_hash) IS DISTINCT FROM
+    (b.from_code,b.to_code,b.source_text,b.target_text,b.source_key,b.tuple_hash) OR
+    (o.source_locale,o.target_locale,o.source_text,o.target_text,o.source_locator) IS DISTINCT FROM
+    (b.from_code,b.to_code,b.source_text,b.target_text,$3::text||':'||b.ordinal::text))))`, id, digest(a), a.SHA256).Scan(&bad)
+	if e != nil {
+		return ErrStorage
+	}
+	if bad {
+		return ErrReplay
 	}
 	return nil
 }

@@ -1,6 +1,6 @@
 # План реалізації M1
 
-Статус на 2026-10-24: **M1-01–04 done**, M1-05–08 open.
+Статус на 2026-10-24: **M1-01–05 done**, M1-06–08 open.
 Це порядок виконання [джерела істини](INDEX.md), а не нові поведінкові вимоги.
 У разі суперечності звірити REQUIREMENTS і детальні контракти та виправити план.
 Позначати задачу виконаною лише з посиланнями на реалізацію й фактичні перевірки.
@@ -114,6 +114,13 @@ active dataset незмінний. AT-07/08/09/11/18 — лише synthetic CSV 
 
 ### M1-05 — Verify, незмінні exports, publish та rollback
 
+**Status: done, 2026-10-24 (synthetic CSV subset).** `internal/publication/`,
+`internal/artifacts/`, importer reconciliation, dataset CLI і HTTP readiness.
+Real PostgreSQL: ready/publish, повторний inventory, concurrency CAS, stale/ABA,
+rollback і negative isolation; child-process artifact crashes та recovery tests.
+[Звіт](_assessments/2026-10-24-publication/REPORT.md). Approval-loss adapter,
+повний Go corpus і production durability gate залишаються відкритими.
+
 - Реалізувати reconciliation counts/digests/origins, CSV4.gz round-trip і звіт,
   прив'язаний до fingerprint та export hashes. Жодного `force ready`.
 - Готувати versioned artifacts через fsync + atomic no-clobber installation
@@ -222,6 +229,6 @@ M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/ro
 Для кожної M1-задачі записувати status (`open`, `in progress`, `done`, `blocked`),
 implementation/test paths, перевірені сценарії та нерозв'язані питання.
 Commit hashes додавати лише якщо commits фактично створені.
-Поточний status: **M1-01–04 done; M1-05–08 open**. Наступна задача — M1-05.
+Поточний status: **M1-01–05 done; M1-06–08 open**. Наступна задача — M1-06.
 Runtime звіти можна тримати в `tmp/`;
 довговічний стан задач і підтверджене покриття — тут і в TRACEABILITY.

@@ -24,3 +24,11 @@
 Інструменти та звіти зберігаються в `docs/_assessments/`.
 Для нових запусків створювати окрему директорію в `data/experiments/`,
 не перезаписувати наявні результати. `tmp/` використовувати для scratch-файлів.
+
+## Runtime artifacts
+
+`data/artifacts/` — окремий ignored root нової реалізації для immutable exports
+та verification reports, не експериментальні SQLite exports. Provisioning:
+`python3 minions/prepare-artifacts.py data/artifacts`. Ready/publication зберігають
+посилання сюди; не очищати разом із `tmp/`, не змінювати final bytes, GC вимкнений.
+HTTP отримує read-only mount. Backup має включати БД і всі referenced artifacts.

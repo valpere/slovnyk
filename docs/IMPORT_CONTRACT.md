@@ -136,6 +136,16 @@ Exceptions мають перелічувати конкретні hashes/locator
 загальне «ігнорувати помилки» недопустиме. Виключення цілого artifact потребує
 нового manifest зі збереженим описом excluded source та звітом втрати.
 
+## Поточний CSV verify adapter (M1-05)
+
+Реалізовано strict clean path: усі rejected records, issues, known gaps та
+exceptions блокують ready. Опис exceptions у manifest не замінює погодження
+власника. Окремий approval-loss adapter залишається потрібним до production
+запуску з погодженими втратами; попередні правила погодження не змінюються.
+CSV metadata звіряється як NULL count/status, порожні legacy queries та
+identity-v1 provenance. Контроль exact/literal-mask SQL виконується для першого
+наявного tuple кожної пари; повний пошуковий сервіс — M1-06.
+
 ## Verify та active pointer
 
 Verify звіряє всі artifacts, tuple bytes, counts, origins, FK, per-pair sorted

@@ -484,3 +484,21 @@ CSV, експериментальні БД та `AGENTS.md` не змінюва�
 додано workflow для push/PR/manual з unit/race/smoke і disposable PostgreSQL.
 Публікація workflow у робочу гілку потрібна для реального GitHub CI запуску;
 пряме злиття в main і зміна branch protection не входять у цю дію.
+
+## M1-05 — verify, retained artifacts та publication, 2026-10-24
+
+Реалізовано synthetic CSV path: reconciliation source/ledger/origins/counts,
+per-pair lossless exports/digests/report, durable no-clobber installation,
+ready gate, publish/rollback generation CAS і history. HTTP readiness перевіряє
+active references/hashes під read-only role на startup/recovery/new generation;
+bytes кешуються лише для immutable/no-GC storage. Новий artifact root
+`data/artifacts/` ignored, окремо від експериментів; provisioning — посіпака
+`minions/prepare-artifacts.py`. CLI та configuration описані в README.
+
+Винятки не є самостійним погодженням втрат: до реалізації окремого owner-approval
+adapter усі rejections/issues/gaps/exceptions блокують ready. Попереднє рішення
+власника про можливість запуску з погодженими втратами зберігається.
+[Звіт і рев’ю](_assessments/2026-10-24-publication/REPORT.md), фактичні paths —
+TRACEABILITY. Це synthetic subset, без повного Go corpus або production gate.
+M1-01–05 done; далі M1-06 search/cursor. Oracle/legacy/експериментальні дані
+та AGENTS.md незмінні. Браузер не запускався.

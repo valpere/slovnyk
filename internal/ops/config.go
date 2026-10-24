@@ -8,8 +8,10 @@ import (
 	"time"
 )
 
-// Config contains only HTTP process settings. Storage is introduced separately.
+// Config separates read-only HTTP storage from operator and migration credentials.
 type Config struct {
+	HTTPDSN         string
+	ArtifactRoot    string
 	HTTPAddr        string
 	LogLevel        slog.Level
 	ShutdownTimeout time.Duration
@@ -49,6 +51,11 @@ func LoadConfig(getenv func(string) string) (Config, error) {
 			return Config{}, errors.New("invalid SLOVNYK_SHUTDOWN_TIMEOUT: expected positive duration")
 		}
 		cfg.ShutdownTimeout = duration
+	}
+	cfg.HTTPDSN = getenv("SLOVNYK_HTTP_DSN")
+	cfg.ArtifactRoot = getenv("SLOVNYK_ARTIFACT_ROOT")
+	if (cfg.HTTPDSN == "") != (cfg.ArtifactRoot == "") {
+		return Config{}, errors.New("SLOVNYK_HTTP_DSN and SLOVNYK_ARTIFACT_ROOT must be set together")
 	}
 	return cfg, nil
 }

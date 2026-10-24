@@ -40,3 +40,17 @@ func TestConfigErrorsNeverContainValues(t *testing.T) {
 		}
 	}
 }
+
+func TestStorageSettingsMustBePaired(t *testing.T) {
+	for _, key := range []string{"SLOVNYK_HTTP_DSN", "SLOVNYK_ARTIFACT_ROOT"} {
+		_, e := LoadConfig(func(k string) string {
+			if k == key {
+				return "secret-value"
+			}
+			return ""
+		})
+		if e == nil || strings.Contains(e.Error(), "secret-value") {
+			t.Fatal("unpaired storage config accepted or exposed", e)
+		}
+	}
+}

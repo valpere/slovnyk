@@ -233,3 +233,23 @@ JSON містить completion/issue/accounting status; `inspect` не обіц�
 Runtime logs — `tmp/m1-04/`; synthetic runtime fixtures також там.
 AT-07/08/09/11/18 покриті частково; повний corpus, verify/exports/ready/CAS
 і production capacity ще не перевірені. M1-01–04 done; M1-05–08 open.
+
+## M1-05 — synthetic verification/publication, 2026-10-24
+
+Реалізація: `internal/importer/reconcile.go`, `internal/artifacts/`,
+`internal/publication/`, `cmd/slovnyk/dataset.go`, `internal/ops/readiness.go`.
+
+| Перевірка | Фактичний test path / сценарій |
+|---|---|
+| AT-06 subset | `internal/publication/publication_integration_test.go`: source/ledger/origins/counts/metadata reconciliation, 4 per-pair exports, raw tuple digest + CSV4.gz round-trip; repeat verify/export; empty pair; rejected/gap/failed/corrupt fixtures |
+| AT-10 subset | `internal/artifacts/store_test.go`: real child-process crashes на file installation boundaries, no-clobber inode reuse; verifier child exit before ready commit, transaction rollback; CAS concurrency/stale/ABA/retained rollback |
+| AT-09/18 subset | `internal/ops/readiness_integration_test.go`: HTTP read-only role, 503→200 recovery, corrupt-file restart remains 503; `cmd/slovnyk/import_integration_test.go`: operator CLI positive verify/export/publish, stale generation |
+| Regular-file guard | `internal/artifacts/store_linux_test.go`: FIFO відхиляється до blocking open |
+| Configuration/privacy | `internal/ops/config_test.go`, `cmd/slovnyk/dataset_test.go`: paired HTTP settings, required generation/ref, safe bounded errors |
+
+Фінальні `make check`, `test`, `test-race`, `test-smoke`, `test-integration` —
+**PASS**, локально на disposable PostgreSQL 17.11; точний review scope — у
+[звіті](_assessments/2026-10-24-publication/REPORT.md).
+Повний corpus та power-loss/production durability gate не запускалися.
+Loss approval adapter ще попереду; strict M1 path не обходить ready gate.
+M1-01–05 done; M1-06–08 open. Наступна задача — M1-06.
