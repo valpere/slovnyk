@@ -1,0 +1,7 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 47.701,
+  "stop_reason": "row_target",
+  "initial_parsed": 0,
+  "committed_delta": 55000
+}

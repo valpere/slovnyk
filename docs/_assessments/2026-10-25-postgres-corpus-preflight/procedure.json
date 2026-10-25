@@ -1,0 +1,25 @@
+{
+  "command": [
+    "bin/slovnyk",
+    "import",
+    "run",
+    "--manifest",
+    "data/experiments/csv-manifest-2026-10-25/manifest.json",
+    "--source",
+    "data/experiments/csv-manifest-2026-10-25/snapshot",
+    "--batch-size",
+    "1000"
+  ],
+  "dsn_channel": "SLOVNYK_OPERATOR_DSN environment, local restricted operator",
+  "go_version": "go1.26.10 linux/amd64",
+  "interrupt_signal": "SIGINT",
+  "poll_interval_seconds": 2,
+  "expected_cli_exit_code_per_attempt": 1,
+  "stderr_bytes_per_attempt": [
+    0,
+    0
+  ],
+  "prefix_digest_method": "SHA-256 over concatenated hex SHA-256 of each PostgreSQL to_jsonb(row)::text; ordered by artifact_hash/ordinal for ledger and origins, by id for translations; restricted to first checkpoint bounds",
+  "manual_database_changes_after_first_interrupt": false,
+  "manifest_sha256_after": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01"
+}

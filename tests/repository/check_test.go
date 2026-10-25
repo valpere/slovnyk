@@ -76,14 +76,68 @@ func TestIgnoreChecksIncludeTrackedSourcesAndNewlines(t *testing.T) {
 		}
 	}
 	writeIgnore("/data/experiments/\n")
-	if r := check(root, []string{"README.md"}); !r.Passed || r.IgnoredDataFiles != 1 {
+	if r := check(root, []string{"README.md"}); !r.Passed || r.IgnoredDataFiles != 0 || len(r.IgnoredDataRoots) != 1 {
 		t.Fatalf("%+v", r)
+	}
+	if paths, err := ignored(root, []string{"data/experiments/a\nb"}); err != nil || !paths["data/experiments/a\nb"] {
+		t.Fatalf("newline path lost: %v %v", paths, err)
 	}
 	writeIgnore("/utilities/\n")
 	r := check(root, []string{"README.md"})
 	errors := strings.Join(r.Errors, "\n")
 	if r.Passed || !strings.Contains(errors, "Local data is not ignored") || !strings.Contains(errors, "Source ignored: utilities/tool/main.go") {
 		t.Fatalf("%+v", r)
+	}
+}
+
+func TestPrivateDataRootAndUnignoredChild(t *testing.T) {
+	root := scratch(t)
+	git := exec.Command("git", "init", "-q")
+	git.Dir = root
+	if output, err := git.CombinedOutput(); err != nil {
+		t.Fatalf("git init: %s %v", output, err)
+	}
+	for _, name := range []string{"README.md", "data/README.md"} {
+		if err := os.MkdirAll(filepath.Dir(filepath.Join(root, name)), 0700); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(root, name), []byte("ok\n"), 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	private := filepath.Join(root, "data/experiments/.pgdata")
+	if err := os.MkdirAll(private, 0700); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chmod(private, 0000); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = os.Chmod(private, 0700) })
+	ignore := filepath.Join(root, ".gitignore")
+	if err := os.WriteFile(ignore, []byte("/data/experiments/\n"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	r := check(root, []string{"README.md"})
+	if !r.Passed || len(r.IgnoredDataRoots) != 1 || r.IgnoredDataRoots[0] != "data/experiments/" || r.IgnoredDataFiles != 0 {
+		t.Fatalf("private data root was traversed: %+v", r)
+	}
+	// If the parent is not excluded, a child exception must still be inspected.
+	if err := os.Chmod(private, 0700); err != nil {
+		t.Fatal(err)
+	}
+	visible := filepath.Join(root, "data/experiments/visible")
+	if err := os.Mkdir(visible, 0700); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(visible, "leak.csv"), []byte("synthetic\n"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(ignore, []byte("/data/experiments/*\n!/data/experiments/visible/\n"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	r = check(root, []string{"README.md"})
+	if r.Passed || len(r.IgnoredDataRoots) != 0 || !strings.Contains(strings.Join(r.Errors, "\n"), "Local data is not ignored: data/experiments/visible/leak.csv") {
+		t.Fatalf("unignored child hidden: %+v", r)
 	}
 }
 

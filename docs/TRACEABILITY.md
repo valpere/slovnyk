@@ -556,3 +556,27 @@ data/experiments/csv-manifest-2026-10-25/snapshot` — **PASS**, exit 0.
 Попередні synthetic negative tests FR-07 і transaction tests FR-08 лишаються
 окремими доказами; цей запуск їх не повторює. Мовна якість, історична повнота,
 normalization/DB reconciliation та production acceptance не доведені.
+
+## FR-08 — bounded PostgreSQL corpus interrupt/retry, 2026-10-25
+
+Actual CLI/runtime main `574ec3f3b06227be707c55ce3e989b675b32b7e5`, повний
+manifest попереднього inspect, restricted operator, batch 1000, новий local cluster.
+
+| Покрита частина | Фактична перевірка |
+|---|---|
+| Real-data checkpoint/replay | SIGINT після 55 000 committed; повтор із тим самим fingerprint/dataset ID → 114 000, окремий attempt ID; counts і SHA-256 попереднього prefix у ledger/origins/translations незмінні |
+| Atomic accounting | parsed = accepted_unique = ledger = origins = translations = pair unique sum; duplicates/rejected/issues = 0, active null/generation 0 в обох checkpoints |
+| Abandoned writer | Після SIGINT writer session відсутня; CLI error `import_interrupted`, report недоступний; наступний lock holder позначив попередній `running` attempt як `interrupted / writer_disconnected` |
+| Isolation/lifecycle | PostgreSQL 17.11, 1 CPU/512 MiB, loopback random port, окремий bind pgdata; operator без elevated role attributes; власні container/network прибрані, data збережені |
+
+[Actual reports, SQL snapshots, digests, initial harness correction](_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md).
+Обидва CLI exit 1 очікувані через SIGINT; retry/assertions harness — PASS, exit 0.
+Це 114 000 записів першого файла, 0 complete files; не clean-vs-retry
+повного корпусу, verify/publication, full reconciliation чи capacity acceptance.
+
+Developer check regression: `tests/repository/check_test.go:
+TestPrivateDataRootAndUnignoredChild` — private DB subtree пропускається тільки
+при ignored parent; contents-only glob з unignored child не приховує data leak.
+Tracked source/newline-path checks збережені. Після переходу local bind data на
+`.pgdata/`: `go test -race ./tests/repository -count=1 -v`, `make check test`,
+`git diff --check` — **PASS**, exit 0. PostgreSQL permissions не змінено.

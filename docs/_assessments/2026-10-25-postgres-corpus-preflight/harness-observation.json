@@ -1,0 +1,7 @@
+{
+  "initial_harness_assertion_failed": true,
+  "assertion": "expected immediate import_runs interrupted after SIGINT",
+  "observed": "attempt 1 running, no live writer, CLI import_interrupted and null files",
+  "correction": "verify abandoned attempt transitions to interrupted/writer_disconnected on next lock holder; no database rows manually changed",
+  "retry_and_prefix_assertions_passed": true
+}

@@ -86,8 +86,12 @@ M2 preparation: Go utility [prepare-csv-manifest](../utilities/README.md#під�
 Повний Go `import inspect` цієї копії пройшов: 992 complete/checksum-verified files,
 56 455 068 parsed occurrences, 0 rejected; per-file counts збігаються з аудитом.
 [Evidence](_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
-Distinct tuples тут не рахуються; Go PostgreSQL import та production acceptance
+Distinct tuples тут не рахуються; повний Go PostgreSQL import та production acceptance
 ще не виконані.
+Наступна [bounded PostgreSQL проба](_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md)
+закомітила 114 000 записів того самого manifest: interrupt/retry зберіг counts і
+digests перших 55 000; active dataset порожній. Це частина першого файла,
+не повний import/reconciliation або capacity acceptance.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів

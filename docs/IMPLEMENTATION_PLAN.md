@@ -235,6 +235,10 @@ immutable копія 992 CSV.gz; hashes/bytes звірені з попередн
 hashes, 56 455 068 occurrences, 0 rejected; per-file counts збігаються з аудитом.
 [Звіт](_assessments/2026-10-25-go-corpus-inspect/REPORT.md). Staged PostgreSQL import,
 retry/reconciliation та exports повного корпусу цим не перевірено.
+Bounded PostgreSQL preflight на тому самому manifest: 55 000 → SIGINT → retry →
+114 000 committed records, prefix digests збережені; 0 complete files, active null.
+[Evidence](_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md).
+Local pgdata збережено; full-corpus import, verify й resource acceptance відкриті.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

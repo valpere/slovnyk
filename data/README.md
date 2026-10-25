@@ -58,3 +58,18 @@ per-file counts збігаються з аудитом. Metadata-only копії
 [звіті](../docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
 Результати не перезаписувати; повторний запуск потребує нової директорії.
 Це не distinct tuple count, PostgreSQL import, verify або publication.
+
+## PostgreSQL corpus preflight
+
+`experiments/postgres-corpus-preflight-2026-10-25/` містить окремий `.pgdata/`,
+private `credentials.json`, Compose `override.yaml` та metadata-only результати
+двох контрольовано перерваних CLI запусків. 114 000 committed records того самого
+manifest, стан `loading`, active null, 0 complete files. Prefix 55 000 records
+зберіг counts/digests після retry. [Evidence](../docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md).
+
+Власні container/network прибрані; bind data і credentials залишені для
+продовження. Не видаляйте/не копіюйте live pgdata й не перезаписуйте результати.
+Для повторного запуску container потрібні той самий image, project/config та
+локальні credentials; після цього — та сама import command/environment.
+Credentials, pgdata та raw dictionary contents не входять у Git.
+Це не готовий dataset або backup; estimate місця з однієї пари не є capacity gate.
