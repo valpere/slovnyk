@@ -7,6 +7,7 @@ import (
 	"io"
 
 	"github.com/valpere/slovnyk/internal/publication"
+	"github.com/valpere/slovnyk/internal/sitemaps"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
 )
 
@@ -16,10 +17,10 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 		return status
 	}
 	if len(args) < 2 || !publication.ValidID(args[1]) {
-		return fail("usage: slovnyk dataset verify|export|publish|rollback ID --artifacts DIRECTORY", 2)
+		return fail("usage: slovnyk dataset verify|export|sitemap|publish|rollback ID --artifacts DIRECTORY", 2)
 	}
 	command, id := args[0], args[1]
-	if command != "verify" && command != "export" && command != "publish" && command != "rollback" {
+	if command != "verify" && command != "export" && command != "sitemap" && command != "publish" && command != "rollback" {
 		return fail("invalid_dataset_command", 2)
 	}
 	flags := flag.NewFlagSet("dataset", flag.ContinueOnError)
@@ -56,6 +57,8 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 	switch command {
 	case "verify":
 		result, e = publication.Verify(ctx, c, id, *source, *root, publication.Options{})
+	case "sitemap":
+		result, e = sitemaps.Generate(ctx, c, id, *root)
 	case "export":
 		result, e = publication.Export(ctx, c, id, *root)
 	default:
@@ -64,7 +67,7 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 	if e != nil {
 		code := "dataset_operation_failed"
 		switch e {
-		case publication.ErrArguments, publication.ErrConflict, publication.ErrState, publication.ErrVerification, publication.ErrStorage:
+		case sitemaps.ErrArguments, sitemaps.ErrState, sitemaps.ErrStorage, sitemaps.ErrEmpty, sitemaps.ErrLimit, publication.ErrArguments, publication.ErrConflict, publication.ErrState, publication.ErrVerification, publication.ErrStorage:
 			code = e.Error()
 		}
 		return fail(code, 1)

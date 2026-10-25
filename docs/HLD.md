@@ -43,6 +43,7 @@ slovnyk import inspect --manifest <path> --source <directory>
 slovnyk import run --manifest <path> --source <directory> [--batch-size 100]
 slovnyk dataset verify <id> --source <directory> --artifacts <directory>
 slovnyk dataset export <id> --artifacts <directory>
+slovnyk dataset sitemap <id> --artifacts <directory>
 slovnyk dataset publish <id> --artifacts <directory> --expected-generation <N> --operator-ref <ref>
 slovnyk dataset rollback <previous-id> --artifacts <directory> --expected-generation <N> --operator-ref <ref>
 ```
@@ -235,7 +236,11 @@ rights gate для публічного доступу не потрібен. M1
 та має пріоритет над збереженою парою. M1 synthetic route `/word/<entry-id>`
 використовує stable hash raw-написання й мовної пари за [SEO_PLAN](SEO_PLAN.md).
 Indexable сторінка читає active dataset; noindex continuation pin-ить retained
-dataset. Контракт `/search`, ліміти й pinned cursor залишаються чинними.
+dataset. Операторська `dataset sitemap` pre-generates immutable XML shards,
+index і JSON inventory для explicit ready dataset; storage — shared fsync/no-clobber
+artifact store. Контракт, root-level майбутні URL та межі — [SEO_PLAN](SEO_PLAN.md).
+HTTP serving/inventory registration ще не реалізовані; publication не змінено.
+Контракт `/search`, ліміти й pinned cursor залишаються чинними.
 Перевірити discovery, canonical, взаємодію з автолокалізацією та навантаження
 роботів; індексація не може залежати від cookie або JavaScript.
 

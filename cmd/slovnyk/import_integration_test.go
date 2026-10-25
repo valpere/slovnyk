@@ -125,7 +125,7 @@ func TestDatasetCLI(t *testing.T) {
 		}
 		return ""
 	}
-	for _, command := range []string{"verify", "export"} {
+	for _, command := range []string{"verify", "export", "sitemap"} {
 		args := []string{"dataset", command, staged.Dataset, "--artifacts", dir}
 		if command == "verify" {
 			args = append(args, "--source", "../../testdata/import")

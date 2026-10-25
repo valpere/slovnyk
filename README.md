@@ -159,6 +159,7 @@ prefix перевіряються, origins не дублюються. Lock wait 
 go run ./utilities/prepare-artifacts data/artifacts
 ./bin/slovnyk dataset verify <dataset-id> --source testdata/import --artifacts data/artifacts
 ./bin/slovnyk dataset export <dataset-id> --artifacts data/artifacts
+./bin/slovnyk dataset sitemap <dataset-id> --artifacts data/artifacts
 ./bin/slovnyk dataset publish <dataset-id> --artifacts data/artifacts --expected-generation 0 --operator-ref local-owner
 ./bin/slovnyk dataset rollback <previous-id> --artifacts data/artifacts --expected-generation <current-generation> --operator-ref local-owner
 ```
@@ -278,7 +279,8 @@ AI-переклади, поки зі статусом `ai-draft`; мовне п�
 і остання наявна пара зберігаються окремими cookies на рік, без JS. Форма
 пропонує browser → English або English → Ukrainian лише за наявності
 однозначного напрямку; `/search` завжди потребує явної пари. Недоступна
-збережена пара показує підказку вибрати іншу. Словникові сторінки та downloads описано нижче; повний sitemap ще не реалізовано.
+збережена пара показує підказку вибрати іншу. Словникові сторінки, downloads
+та офлайн-генерацію sitemap описано нижче; HTTP-видача sitemap ще не реалізована.
 
 `lookup.NewSigner` приймає active key ID і keyring: 1–16 ключів по 32–64 bytes;
 використовуйте випадкові секретні ключі з щонайменше 256 bits entropy.
@@ -345,5 +347,15 @@ expression index, не змінюючи V1 manifest/raw data. HTTP не мігр
 host `slovnyk.org.ua` отримує 308 на fixed primary origin зі збереженням path
 і query. Налаштування TLS/edge перевіряються при deployment.
 
-Це synthetic M1 subset FR-14 / AT-19: повний offline sitemap, crawl/resource
-budget і production acceptance ще відкриті. [Контракт та джерела](docs/SEO_PLAN.md).
+Для `ready` dataset команда `dataset sitemap` потоково створює XML shards
+(до 50 000 URL), index та durable JSON inventory із path/bytes/SHA256 у
+`datasets/<dataset-id>/sitemaps/`. Працює до публікації, active pointer не змінює.
+JSON stdout містить inventory та `report` ref; повтор дає ті самі hashes,
+наявні файли перевіряються й не перезаписуються. Порожній dataset → exit 1
+`sitemap_empty_dataset`. Після interruption повторіть команду; можливі orphan
+fragments, cleanup не автоматичний.
+
+Це offline artifacts: HTTP routes та robots discovery ще не підключені,
+publication/readiness їх не вимагають. Повний корпус, SQL sort/temp disk cost,
+crawl/resource budget і production acceptance ще відкриті.
+[Контракт, формат та джерела](docs/SEO_PLAN.md).

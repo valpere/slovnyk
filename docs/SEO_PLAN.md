@@ -70,22 +70,61 @@ Migration 000002 додає fixed-size expression index та SQL/Go identity par
 стару фізичну schema сервер відхиляє. Додатковий disk/import cost та час
 побудови індексу на повному корпусі потребують M2 rehearsal.
 
+## Офлайн-генерація sitemap
+
+`slovnyk dataset sitemap <dataset-id> --artifacts <existing-root>` використовує
+`SLOVNYK_OPERATOR_DSN` і фізичну schema 2. Лише immutable `ready` dataset,
+включно з ще не published: команда не змінює state, active pointer або generation.
+Невідомий/не ready dataset відхиляється. Порожній ready dataset повертає
+`sitemap_empty_dataset`, без порожнього XML index.
+
+SQL читає DISTINCT raw entry hashes у byte order; Go потоково пише унікальні
+`https://slovnyk.org/word/<entry-id>`, без cursor/dataset/UI query. Переклади
+одного raw source/пари дають одну адресу; case/NFC/пробіли та інша пара — окремі.
+UTF-8 XML містить стандартний namespace; timestamps/lastmod не вигадуються.
+До 50 000 URL на shard, до 50 000 shards на index, кожен XML не більше
+52 428 800 bytes. Фіксована довжина адрес утримує shard нижче 6 MiB.
+Ці межі та root scope відповідають [Sitemaps protocol](https://www.sitemaps.org/protocol.html).
+Index посилається на майбутні root-level адреси
+`https://slovnyk.org/sitemap-<dataset-id>-<shard-sha256>.xml`: вкладений sitemap
+за базовим протоколом не може охоплювати сусідній `/word/`.
+
+Локальні файли: `datasets/<dataset-id>/sitemaps/<sha256>.xml` у artifact root.
+Після всіх shards/index останнім встановлюється `<sha256>.json` — manifest v1
+із dataset, URL count, counts та path/bytes/SHA256 кожного shard і index.
+CLI JSON повертає ці поля й `report` ref. Exit 0 — повний inventory, 1 — збій,
+2 — аргументи/config; помилки не містять DSN, source text або SQL details.
+Файли встановлюються через shared no-clobber/fsync store; незмінний повторний
+запуск дає ті самі bytes/hashes та повторно перевіряє наявні файли. Після збою
+можливі unreferenced fragments; повторіть команду. Немає auto-delete чи DB receipt.
+
+Go тримає поточний hash, write buffer та bounded inventory shards, без списку
+всіх URL. DISTINCT/ORDER BY можуть вимагати PostgreSQL sort/spill; повний корпус,
+DB RAM/temp disk, час та загальний disk cost ще не виміряно. Команда підтримує
+скасування через SIGINT/SIGTERM; фіксованого total execution deadline немає.
+
+**HTTP-видачу ще не реалізовано**: ці URL не обслуговуються, robots не рекламує
+index, publication/readiness не вимагають sitemap. Наступний зріз має зв'язати
+перевірений inventory з published dataset і забезпечити version-pinned serving,
+atomic active discovery та поведінку retained files/rollback без HTTP full scan.
+Генерація ready dataset сама по собі не дозволяє публікацію його вмісту.
+
 ## Наступна робота
 
-- Повний sitemap/index для наявного вмісту: version-pinned pre-generation
-  та discovery всього корпусу. Не сканувати корпус на кожен HTTP-запит.
+- HTTP sitemap/index discovery для published вмісту на основі готових offline
+  artifacts; publication/rollback/retention та integrity checks. Без HTTP full scan.
 - Виміряти навантаження роботів разом із пошуком. Бюджет індексації не
   випливає з оцінки користувацького піку 10 запитів/с. Правила кешування,
   обмеження частоти та витрати RAM/диска ще не визначені.
 
-Пропозиції щодо повного discovery, caching і crawler budgets ще не
+HTTP discovery, caching і crawler budgets ще не
 реалізовано; вони не є новими продуктовими погодженнями.
 
 ## Деталі, що залишаються відкритими
 
 Склад сторінки погоджено: переклади лише однією обраною мовою. M1 визначає
 stable URL, raw identity, active/retained behavior, canonical та continuation.
-Потрібні повний offline sitemap/index discovery, ресурсний budget індексу й
+Потрібні HTTP sitemap/index discovery, full-corpus rehearsal, ресурсний budget індексу й
 crawling, фінальні мовне/дизайн/accessibility приймання та deployment redirects.
 Поточний `/search` залишається пошуком в одній напрямленій парі; його
 поведінка цим документом не змінюється.

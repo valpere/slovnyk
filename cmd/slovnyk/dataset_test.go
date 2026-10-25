@@ -15,6 +15,9 @@ func TestDatasetArgumentsAndSecrets(t *testing.T) {
 		{"dataset", "export", id, "--artifacts", "tmp", "--source", "sensitive-source"},
 		{"dataset", "verify", id, "--artifacts", "tmp", "--source", "sensitive-source"},
 		{"dataset", "publish", "sensitive-invalid-id"},
+		{"dataset", "sitemap", id, "--artifacts", "tmp", "--source", "sensitive-source"},
+		{"dataset", "sitemap", id, "--artifacts", "tmp", "--expected-generation", "0"},
+		{"dataset", "sitemap", id, "--artifacts", "tmp"},
 	} {
 		var out bytes.Buffer
 		code := run(context.Background(), args, func(key string) string {
