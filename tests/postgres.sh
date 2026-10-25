@@ -28,5 +28,6 @@ SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/entries -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/sitemaps -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/ops -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./cmd/slovnyk -count=1 -v
-SLOVNYK_TEST_DSN="$dsn" go test -race -tags integration ./tests/serviceflow -count=1 -v
-printf '%s\n' 'PostgreSQL migrations, privileges, transactions, import/retry, publication, lookup, readiness, CLI and service lifecycle checks passed.'
+container=$(docker compose -p "$project" ps -q db)
+SLOVNYK_TEST_DSN="$dsn" SLOVNYK_TEST_DB_CONTAINER="$container" go test -race -tags integration ./tests/serviceflow -count=1 -v
+printf '%s\n' 'PostgreSQL migrations, privileges, transactions, import/retry, publication, lookup, readiness, CLI, service lifecycle and local backup/restore checks passed.'

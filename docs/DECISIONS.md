@@ -637,3 +637,19 @@ GET submit, RTL/LTR rows, 320px layouts та accessibility landmarks перев�
 [Evidence/self-review](_assessments/2026-10-25-multilingual-accessibility/REPORT.md).
 Це не остаточне схвалення дизайну, перекладів чи всебічної доступності;
 M1-07 лишається in progress. Oracle, legacy та real corpus не зачіпалися.
+
+## Локальна backup/restore репетиція, 2026-10-25
+
+FR-13/AT-13 synthetic subset: actual CLI створює A/B, custom PostgreSQL dump
+і artifacts/source copies відновлюються у нову БД/root того самого disposable
+cluster. Усі таблиці звіряються за counts/digests; HTTP acceptance виконується
+при недоступній вихідній БД, зі старим keyring. Без файлів readiness 503; із
+повним комплектом — active/retained search/article/download/sitemap працюють,
+HTTP write denial та операторський retry зберігаються.
+
+[BACKUP_RESTORE](BACKUP_RESTORE.md) фіксує склад комплекту та необхідну паузу
+всіх operator writers під час DB/files snapshot. Це developer/CI test,
+не production backup utility; [звіт](_assessments/2026-10-25-backup-restore/REPORT.md).
+Off-host location, fresh-cluster roles, secure config/keyring recovery, RPO,
+full-corpus timing та RTO <=24 h залишаються відкритими. Oracle/legacy/real
+corpus не задіяні; остаточне M1 UI/мовне приймання не закривається цим зрізом.

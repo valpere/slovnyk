@@ -471,3 +471,25 @@ Preview використовував actual HTTP handler із synthetic callback
 PostgreSQL код не змінено; локальний integration suite для цього зрізу не
 повторювався. Screen reader speech, інші browser engines, повний accessibility
 аудит, фінальне мовне/дизайн приймання та M2/M3 не підтверджені.
+
+## FR-13 — локальна backup/restore репетиція, 2026-10-25
+
+AT-13 synthetic subset; окрема БД/root у тому самому disposable cluster.
+
+| Покрита частина | Фактична перевірка |
+|---|---|
+| Повнота БД | `tests/serviceflow/restore_test.go: tableInventory/restoreFixture`: custom dump/restore, counts і length-prefixed SHA-256 sorted JSON rows кожної таблиці, включно з manifests/provenance/ledger/reports/active generation/history |
+| Файли | `restoreFixture`: всі artifact/source relative paths, sizes і SHA-256 збігаються після копіювання у нові roots; 10 artifacts і 4 CSV/manifest source files |
+| Відновлений сервіс | `tests/serviceflow/lifecycle_test.go: TestServiceLifecycle`: actual binary читає нову БД, поки вихідна недоступна; byte-identical exact/mask search, search/article continuations, active download; retained B download hash і shard, active sitemap hashes/cache |
+| Неповний комплект і права | Той самий lifecycle: empty artifact root → health 200, readiness/sitemap/download 503; повний root → ready, HTTP UPDATE denied, actual operator CLI повторює sitemap registration зі сталим report |
+
+`make build check test test-race test-smoke`,
+`go vet -tags integration ./tests/serviceflow` і `make test-integration` —
+**PASS**, exit 0. Final integration включає restored mask comparison та
+race-enabled harness. Локальний PostgreSQL 17.11; runner прибрав власні
+container/network/volume. Logs: `tmp/backup-restore/checks.log`,
+`tmp/backup-restore/final-integration.log` (ignored).
+[Self-review і межі](_assessments/2026-10-25-backup-restore/REPORT.md),
+[процедура](BACKUP_RESTORE.md). Fresh-cluster roles, off-host transfer, secure
+keyring/config recovery, full-corpus capacity і RTO <=24 h не перевірено;
+FR-13/AT-13 повністю не закриті. Production runtime/schema не змінено.

@@ -374,3 +374,17 @@ startup/recovery/нова generation перевіряє hashes зареєстр�
 Повний корпус, SQL sort/temp disk cost,
 crawl/resource budget і production acceptance ще відкриті.
 [Контракт, формат та джерела](docs/SEO_PLAN.md).
+
+## Локальна репетиція backup/restore
+
+`make test-integration` також відновлює synthetic A/B у нову БД та окремий
+artifact root: custom dump, усі таблиці/provenance, CSV sources, exports і
+sitemaps. Вихідна БД під час приймання недоступна; перевіряються counts/hashes,
+старі cursors, HTTP results/files і restricted privileges. DB-only копія без
+artifacts не проходить readiness. Host `pg_dump`/`pg_restore` не потрібні:
+runner використовує PostgreSQL tools свого disposable контейнера.
+
+[Склад комплекту та порядок restore](docs/BACKUP_RESTORE.md),
+[результати й межі](docs/_assessments/2026-10-25-backup-restore/REPORT.md).
+Це локальна synthetic перевірка в одному cluster, не off-host backup або доказ
+RTO <=24 h для повного корпусу. Oracle й production не задіяні.

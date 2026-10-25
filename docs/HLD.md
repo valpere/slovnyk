@@ -283,3 +283,13 @@ GC заборонений; restore перевіряє всі references і hashe
 не більше 24 годин; це потребує перевірки репетицією. Старі snapshots
 не видаляються автоматично. Деталі репетиції,
 перемикання та відкату — у [MIGRATION](MIGRATION.md).
+
+### Локальна перевірка restore
+
+FR-13: [BACKUP_RESTORE](BACKUP_RESTORE.md) описує узгоджений DB/files snapshot
+із паузою всіх operator writers, нову restore target та склад комплекту.
+Synthetic `TestServiceLifecycle` перевіряє custom dump/restore, всі table
+counts/digests, artifacts і CSV sources, active/retained HTTP behavior та
+restricted roles при недоступній вихідній БД. Schema/production runtime
+не змінюються. Fresh-cluster bootstrap, off-host restore та full-corpus RTO
+залишаються окремими acceptance gates.
