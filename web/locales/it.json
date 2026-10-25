@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Dizionario multilingue",
@@ -62,6 +63,7 @@
     "bytes": "Byte",
     "download": "Scarica",
     "downloads_unavailable": "I download non sono temporaneamente disponibili. Riprova.",
-    "file_not_found": "File non trovato."
+    "file_not_found": "File non trovato.",
+    "skip_content": "Vai al contenuto"
   }
 }

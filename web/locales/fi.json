@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Monikielinen sanakirja",
@@ -62,6 +63,7 @@
     "bytes": "Tavut",
     "download": "Lataa",
     "downloads_unavailable": "Lataukset eivät ole tilapäisesti saatavilla. Yritä uudelleen.",
-    "file_not_found": "Tiedostoa ei löytynyt."
+    "file_not_found": "Tiedostoa ei löytynyt.",
+    "skip_content": "Siirry sisältöön"
   }
 }

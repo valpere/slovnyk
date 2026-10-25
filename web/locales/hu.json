@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "a többnyelvű szótár",
@@ -62,6 +63,7 @@
     "bytes": "Bájt",
     "download": "Letöltés",
     "downloads_unavailable": "A letöltések átmenetileg nem érhetők el. Próbálja újra.",
-    "file_not_found": "A fájl nem található."
+    "file_not_found": "A fájl nem található.",
+    "skip_content": "Ugrás a tartalomra"
   }
 }

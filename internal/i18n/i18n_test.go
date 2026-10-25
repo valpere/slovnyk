@@ -52,7 +52,7 @@ func TestCatalogCompletenessAndProvenance(t *testing.T) {
 		if err != nil || len(hash) != 32 || meta.Status != "ai-draft" || !strings.HasPrefix(meta.LegacyFile, "slovnyk.") {
 			t.Fatal("missing provenance", c.Code)
 		}
-		if len(meta.Messages) != 28 || len(meta.Origins) != 28 {
+		if len(meta.Messages) != 29 || len(meta.Origins) != 29 {
 			t.Fatal("incomplete translation inventory", c.Code)
 		}
 		for key, value := range meta.Messages {

@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Daudzvalodu vārdnīca",
@@ -62,6 +63,7 @@
     "bytes": "Baiti",
     "download": "Lejupielādēt",
     "downloads_unavailable": "Lejupielādes īslaicīgi nav pieejamas. Mēģiniet vēlreiz.",
-    "file_not_found": "Fails nav atrasts."
+    "file_not_found": "Fails nav atrasts.",
+    "skip_content": "Pāriet uz saturu"
   }
 }

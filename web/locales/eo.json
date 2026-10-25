@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Multalingva vortaro",
@@ -62,6 +63,7 @@
     "bytes": "Bajtoj",
     "download": "Elŝuti",
     "downloads_unavailable": "Elŝutoj provizore ne disponeblas. Provu denove.",
-    "file_not_found": "Dosiero ne trovita."
+    "file_not_found": "Dosiero ne trovita.",
+    "skip_content": "Salti al enhavo"
   }
 }

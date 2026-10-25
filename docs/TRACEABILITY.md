@@ -453,3 +453,21 @@ container/network/volume. Logs: `tmp/http-sitemaps-final-checks.log`,
 Повний corpus/crawler capacity, readiness hashing cost і production acceptance
 не доведені. Inventory optional для publication, HTTP mount immutable/read-only.
 [Self-review](_assessments/2026-10-25-http-sitemaps/REPORT.md).
+
+## M1-07 — Багатомовна доступність, 2026-10-25
+
+FR-05 / AT-05, technical synthetic subset; M1-07 лишається in progress.
+
+| Покрита частина | Фактична перевірка |
+|---|---|
+| Keyboard/no-JS search | Chromium/CDP 9222: перший Tab фокусує локалізований skip link, Enter → main, Tab → query; synthetic Arabic query через keyboard submit створює GET `/search` з точною парою й текстом |
+| Language/direction | DOM/computed styles: Ukrainian UI, `ar-SA` source з RTL, `en-US` target; German UI з Arabic/Latin target rows у різних напрямках; нерозбірні tags → explicit unknown language |
+| Landmarks/reflow | Browser accessibility tree містить main/navigation/search; layout metrics без horizontal overflow при 320px для search, article з long/multiline текстом, languages, downloads, no-match і failure; desktop 1280px |
+| Translation integrity/regressions | `internal/i18n/i18n_test.go: TestCatalogCompletenessAndProvenance` — 31 draft catalogs × 29 keys; наявні HTTP escaping, plain/HTML, errors, continuation і final body budget tests |
+
+`make build check test test-race test-smoke` — **PASS**, exit 0. Browser checks —
+PASS, exit 0. [Report і screenshots](_assessments/2026-10-25-multilingual-accessibility/REPORT.md).
+Preview використовував actual HTTP handler із synthetic callbacks без БД.
+PostgreSQL код не змінено; локальний integration suite для цього зрізу не
+повторювався. Screen reader speech, інші browser engines, повний accessibility
+аудит, фінальне мовне/дизайн приймання та M2/M3 не підтверджені.

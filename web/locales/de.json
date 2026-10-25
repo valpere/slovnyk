@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Das mehrsprachige Wörterbuch",
@@ -62,6 +63,7 @@
     "bytes": "Bytes",
     "download": "Herunterladen",
     "downloads_unavailable": "Downloads sind vorübergehend nicht verfügbar. Versuchen Sie es erneut.",
-    "file_not_found": "Datei nicht gefunden."
+    "file_not_found": "Datei nicht gefunden.",
+    "skip_content": "Zum Inhalt springen"
   }
 }

@@ -67,6 +67,9 @@ canonical і search discovery реалізовані за [SEO_PLAN](SEO_PLAN.md
 [self-review](_assessments/2026-10-25-offline-sitemaps/REPORT.md).
 HTTP sitemap discovery та schema 3 inventory реалізовано локально,
 [self-review](_assessments/2026-10-25-http-sitemaps/REPORT.md).
+Клавіатурний перехід до вмісту й окремі language/direction annotations
+перевірено через наявний Chromium без page JS,
+[звіт](_assessments/2026-10-25-multilingual-accessibility/REPORT.md).
 Повний corpus/crawl acceptance та production-міграція ще попереду.
 M1-08 synthetic наскрізне CLI/HTTP відтворення реалізовано:
 [звіт](_assessments/2026-10-25-service-lifecycle/REPORT.md),
