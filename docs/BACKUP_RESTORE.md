@@ -42,10 +42,17 @@ RTO <=24 h для повного корпусу.
    `slovnyk_operator` з NOLOGIN/NOSUPERUSER/NOCREATEDB/NOCREATEROLE/
    NOREPLICATION/NOBYPASSRLS, як у migration 1. Створити окремі LOGINs/memberships.
    Restore owner має бути окремим від HTTP/operator; не давати їм ownership.
+   Створити цільову БД з цим owner. Для перевіреного шляху owner має NOLOGIN/
+   NOSUPERUSER/NOCREATEDB/NOCREATEROLE/NOREPLICATION/NOBYPASSRLS; адміністративний
+   restore connection має право `SET ROLE` на нього. Не копіювати старі cluster
+   globals або grants адміністратора application LOGINs.
 3. Звірити backup inventory, відновити schema/data/ACL через
-   `pg_restore --no-owner --exit-on-error --single-transaction` із явною новою
-   database target. Успішний dump вже містить schema та migration ledger:
-   попереднє створення application tables через `migrate` не потрібне.
+   `pg_restore --no-owner --role=<new-schema-owner> --exit-on-error --single-transaction`
+   із явною новою database target. Успішний dump вже містить schema та migration ledger:
+   попереднє створення application tables через `migrate` не потрібне. Без потрібних
+   grantee roles restore має завершитися помилкою; не обходити її через `--no-acl`,
+   інакше робочі privileges не відновляться. Після усунення причини повторити
+   restore й перевірити відсутність часткової schema після невдалого запуску.
 4. Відновити всі файли зі збереженням relative paths; звірити hashes/bytes.
    Запустити той самий release/keyring із restricted HTTP LOGIN і read-only
    artifact mount. Не переносити traffic до проходження readiness і control checks.
@@ -69,7 +76,13 @@ make test-integration
 `pg_dump` та `pg_restore` виконуються у власному закріпленому PostgreSQL 17.11
 контейнері runner; host PostgreSQL tools не потрібні.
 
-Нова БД створюється у тому самому disposable cluster, де group roles уже є.
+Runner створює **другий порожній cluster** у своєму Compose project із окремим
+volume і loopback port. Cluster system identifiers мають відрізнятися; source
+owner і application groups на цілі спочатку відсутні. Перший restore без groups
+завершується помилкою та не залишає application schema. Після provision нових
+groups/LOGINs той самий dump відновлюється під новим NOLOGIN non-superuser owner.
+Schema, relations, functions і types мають саме цього owner.
+
 Counts і length-prefixed SHA-256 sorted JSON rows **кожної** таблиці збігаються;
 усі artifact/source paths, sizes та hashes також. Цей table digest — test oracle,
 не публічний версійний migration digest. Послідовностей у поточній schema немає;
@@ -77,12 +90,15 @@ Counts і length-prefixed SHA-256 sorted JSON rows **кожної** таблиц
 
 Оригінальна БД під час HTTP-приймання недоступна. Порожній artifact root дає
 health 200/readiness 503; повна копія запускається, відтворює responses/cursors,
-retained A/B files, sitemap і restricted-role behavior. Оператор повторює sitemap
-registration без зміни report. Fixture keyring заданий тестом; secret escrow,
-fresh-cluster role provisioning, off-host transfer і повний corpus тут не перевірені.
-Cleanup видаляє лише власні процеси, БД/LOGINs, container/volume та scratch backup.
+retained A/B files, sitemap і restricted-role behavior: SQLSTATE 42501 для
+HTTP UPDATE/DDL/register та operator direct inventory DELETE/DDL. Оператор повторює sitemap
+registration без зміни report; SECURITY DEFINER працює з новим owner. Fixture
+keyring заданий тестом; secret escrow, off-host transfer і повний corpus тут
+не перевірені. Обидва clusters залишаються на одному developer/CI host.
+Cleanup видаляє лише власні процеси, БД/LOGINs, обидва containers/volumes та scratch backup.
 Це developer/CI test, не операторська backup utility й не посіпака агента.
 
 [Фактичний звіт](_assessments/2026-10-25-backup-restore/REPORT.md),
+[Fresh-cluster доповнення](_assessments/2026-10-25-fresh-cluster-restore/REPORT.md),
 [TRACEABILITY](TRACEABILITY.md). Production readiness, storage capacity та
 погоджене RTO залишаються відкритими.

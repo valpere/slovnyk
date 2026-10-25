@@ -26,6 +26,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/valpere/slovnyk/internal/entries"
 	"github.com/valpere/slovnyk/internal/importdata"
 	"github.com/valpere/slovnyk/internal/importer"
@@ -193,7 +194,7 @@ func TestServiceLifecycle(t *testing.T) {
 				t.Error("cannot read process log")
 				return
 			}
-			for _, secret := range []string{"flow-private-word", "synthetic-flow-only", "postgresql://", "q="} {
+			for _, secret := range []string{"flow-private-word", "synthetic-flow-only", "synthetic-restore-only", "postgresql://", "q="} {
 				if bytes.Contains(raw, []byte(secret)) {
 					t.Error("private input in process log")
 				}
@@ -476,14 +477,9 @@ func TestServiceLifecycle(t *testing.T) {
 	stop()
 	// Freeze all fixture writers, dump the DB and copy immutable files, then
 	// recover into a fresh DB/root. Never reuse the original DB for restored HTTP.
-	restoredDB, restoredRoot := restoreFixture(t, ctx, admin, migrationDSN, artifactRoot, dir)
+	restoredHTTP, restoredOperator, restoredRoot := restoreFixture(t, ctx, admin, migrationDSN, artifactRoot, dir)
 	originalDSN, originalRoot := httpDSN, artifactRoot
-	restoreURL, err := url.Parse(httpDSN)
-	if err != nil {
-		t.Fatal("invalid fixture HTTP configuration")
-	}
-	restoreURL.Path = "/" + restoredDB
-	httpDSN = restoreURL.String()
+	httpDSN = restoredHTTP
 	if _, err := admin.Exec(ctx, "ALTER DATABASE "+pgx.Identifier{db}.Sanitize()+" ALLOW_CONNECTIONS false"); err != nil {
 		t.Fatal("cannot isolate original database during restore acceptance")
 	}
@@ -528,17 +524,26 @@ func TestServiceLifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatal("restored HTTP login unavailable")
 	}
-	if _, err := probe.Exec(ctx, `UPDATE slovnyk.active_dataset SET generation=generation+1`); err == nil {
-		t.Fatal("restored HTTP login can mutate active pointer")
+	deny := func(conn *pgx.Conn, sql string) {
+		t.Helper()
+		_, err := conn.Exec(ctx, sql)
+		if denied, ok := err.(*pgconn.PgError); !ok || denied.Code != "42501" {
+			t.Fatal("restored role did not receive insufficient_privilege")
+		}
 	}
+	deny(probe, `UPDATE slovnyk.active_dataset SET generation=generation+1`)
+	deny(probe, `SELECT slovnyk.register_sitemap(NULL,NULL,NULL,NULL,NULL,NULL,NULL)`)
+	deny(probe, `CREATE TABLE slovnyk.restore_forbidden(id integer)`)
 	_ = probe.Close(ctx)
-	restoreURL, err = url.Parse(operatorDSN)
+	probe, err = pgx.Connect(ctx, restoredOperator)
 	if err != nil {
-		t.Fatal("invalid fixture operator configuration")
+		t.Fatal("restored operator login unavailable")
 	}
-	restoreURL.Path = "/" + restoredDB
+	deny(probe, `DELETE FROM slovnyk.sitemap_inventory`)
+	deny(probe, `CREATE TABLE slovnyk.restore_forbidden(id integer)`)
+	_ = probe.Close(ctx)
 	var repeated sitemaps.Result
-	if err := json.Unmarshal(cli(0, []string{"SLOVNYK_OPERATOR_DSN=" + restoreURL.String()}, "dataset", "sitemap", a.Dataset, "--artifacts", restoredRoot), &repeated); err != nil || repeated.Report != sitemapReports[a.Dataset].Report {
+	if err := json.Unmarshal(cli(0, []string{"SLOVNYK_OPERATOR_DSN=" + restoredOperator}, "dataset", "sitemap", a.Dataset, "--artifacts", restoredRoot), &repeated); err != nil || repeated.Report != sitemapReports[a.Dataset].Report {
 		t.Fatal("restored operator cannot retry registered sitemap")
 	}
 	stop()

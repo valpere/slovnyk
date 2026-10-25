@@ -653,3 +653,18 @@ HTTP write denial та операторський retry зберігаються
 Off-host location, fresh-cluster roles, secure config/keyring recovery, RPO,
 full-corpus timing та RTO <=24 h залишаються відкритими. Oracle/legacy/real
 corpus не задіяні; остаточне M1 UI/мовне приймання не закривається цим зрізом.
+
+## Fresh-cluster restore, 2026-10-25
+
+Продовження локальної FR-13/AT-13 репетиції: окремий disposable PostgreSQL
+cluster без source owner/application roles. Після створення нового NOLOGIN
+non-superuser owner restore без grantee groups відхиляється атомарно; bootstrap
+groups і LOGINs дозволяє повторити той самий archive. Schema/relations/functions/
+types належать новому owner, restricted HTTP/operator та SECURITY DEFINER retry
+перевіряються реальним binary. Runtime/schema не змінено.
+
+Це закриває попередню локальну межу «roles уже існують у тому самому cluster»;
+обидва clusters усе ще працюють на одному developer/CI host. Off-host transfer,
+secret/config recovery, full-corpus capacity, RPO/retention і RTO залишаються
+відкритими. [Evidence/self-review](_assessments/2026-10-25-fresh-cluster-restore/REPORT.md),
+[процедура](BACKUP_RESTORE.md). Oracle/legacy/реальні дані не задіяні.

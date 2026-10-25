@@ -493,3 +493,26 @@ container/network/volume. Logs: `tmp/backup-restore/checks.log`,
 [процедура](BACKUP_RESTORE.md). Fresh-cluster roles, off-host transfer, secure
 keyring/config recovery, full-corpus capacity і RTO <=24 h не перевірено;
 FR-13/AT-13 повністю не закриті. Production runtime/schema не змінено.
+
+## FR-13 — restore в окремий чистий cluster, 2026-10-25
+
+Продовження AT-13 synthetic subset; попереднє обмеження same-cluster roles
+усунено локально, off-host/full-corpus acceptance залишається відкритим.
+
+| Покрита частина | Фактична перевірка |
+|---|---|
+| Ізоляція | `tests/postgres.sh`: другий Compose project/container/volume і random loopback port; `tests/serviceflow/restore_test.go: restoreFixture`: різні container IDs/system identifiers, відсутні source owner/application groups |
+| Atomic failure/retry | `restoreFixture`: restore без grantee groups → error, application schema відсутня; provision groups/LOGINs → повторний restore того самого archive успішний |
+| Ownership/roles | `restoreFixture`: NOLOGIN non-superuser owner нової БД; `pg_restore --role` і ownership schema/relations/functions/types; без superuser/CREATEDB/CREATEROLE/replication/BYPASSRLS у owner/service roles |
+| ACL/SECURITY DEFINER | `tests/serviceflow/lifecycle_test.go: TestServiceLifecycle`: нові HTTP/operator LOGINs іншого cluster; SQLSTATE 42501 для HTTP UPDATE/DDL/register, operator inventory DELETE/DDL; actual CLI sitemap retry працює без зміни report |
+| Дані й HTTP | Ті самі counts/digests усіх 17 таблиць, 10 artifacts і 4 source files, exact/mask/article/cursors/download/sitemap; вихідна БД недоступна під час restored acceptance; missing-files readiness 503 |
+
+`make build check test test-race test-smoke`,
+`go vet -tags integration ./tests/serviceflow`, `make test-integration` —
+**PASS**, exit 0. Final integration включає type ownership і точні permission
+SQLSTATE assertions; race-enabled harness, PostgreSQL 17.11. Обидва власні
+containers/networks/volumes прибрані. Logs: `tmp/fresh-cluster-restore/checks.log`,
+`tmp/fresh-cluster-restore/final-integration.log` (ignored).
+[Self-review](_assessments/2026-10-25-fresh-cluster-restore/REPORT.md),
+[процедура](BACKUP_RESTORE.md). Off-host transfer/durability, secure keyring/config
+recovery, full-corpus capacity, RPO/retention і RTO <=24 h не доведені.
