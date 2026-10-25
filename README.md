@@ -219,7 +219,7 @@ M1-03 реалізовано: схема PostgreSQL, міграційний CLI,
 транзакційний ledger/provenance і retry. M1-05 реалізовано: reconciliation,
 durable exports/report, publication/rollback CAS та HTTP readiness.
 M1-06 реалізовано: application service exact/mask і підписана cursor-пагінація.
-M1-07 in progress: HTTP lookup, каталог, локалізація й налаштування форми реалізовані; SEO ще відкрите; synthetic downloads реалізовані.
+M1-07 in progress: HTTP lookup, каталог, локалізація й налаштування форми реалізовані; synthetic downloads і словникові SEO-сторінки реалізовані; повний sitemap/crawl acceptance ще відкриті.
 Старий проєкт залишається незмінним; Oracle не задіяний.
 
 ## Рев’ю, коміти та CI
@@ -251,7 +251,7 @@ AI-переклади, поки зі статусом `ai-draft`; мовне п�
 і остання наявна пара зберігаються окремими cookies на рік, без JS. Форма
 пропонує browser → English або English → Ukrainian лише за наявності
 однозначного напрямку; `/search` завжди потребує явної пари. Недоступна
-збережена пара показує підказку вибрати іншу. SEO ще не реалізовано; downloads описано нижче.
+збережена пара показує підказку вибрати іншу. Словникові сторінки та downloads описано нижче; повний sitemap ще не реалізовано.
 
 `lookup.NewSigner` приймає active key ID і keyring: 1–16 ключів по 32–64 bytes;
 використовуйте випадкові секретні ключі з щонайменше 256 bits entropy.
@@ -301,3 +301,22 @@ hashes виконуються publication/startup/recovery, без повтор�
 помилки — [DOWNLOAD_CONTRACT](docs/DOWNLOAD_CONTRACT.md). `make test-integration`
 перевіряє synthetic downloads/CSV/hash/retained URLs під HTTP role; production
 corpus, capacity та restore цим зрізом не підтверджено.
+
+## Постійні словникові сторінки
+
+`/word/<entry-id>` показує одне raw-написання та переклади однією мовою
+призначення. Посилання є в заголовку кожної групи результатів пошуку.
+64-character hash враховує raw source, from і to; URL лишається сталим між
+публікаціями. Bare URL читає active dataset; signed continuation pin-ить
+retained dataset і має noindex. Cookies/Accept-Language не змінюють статтю.
+Canonical використовує `https://slovnyk.org`, UI визначається source code з
+fallback en. Ручний вибір UI зі статті веде на головну сторінку.
+
+Після оновлення binary виконайте `migrate`: фізична schema version 2 додає
+expression index, не змінюючи V1 manifest/raw data. HTTP не мігрує автоматично.
+`/robots.txt` дозволяє crawling, `/search` залишається noindex. Додатковий
+host `slovnyk.org.ua` отримує 308 на fixed primary origin зі збереженням path
+і query. Налаштування TLS/edge перевіряються при deployment.
+
+Це synthetic M1 subset FR-14 / AT-19: повний offline sitemap, crawl/resource
+budget і production acceptance ще відкриті. [Контракт та джерела](docs/SEO_PLAN.md).

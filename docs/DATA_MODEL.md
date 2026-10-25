@@ -2,6 +2,10 @@
 
 Статус: M1-03 реалізує цей schema contract у
 [000001_initial.sql](../migrations/000001_initial.sql).
+Фізична schema version тепер 2: [000002_dictionary_pages.sql](../migrations/000002_dictionary_pages.sql)
+додає immutable `entry_id` function та expression index, без зміни raw data
+або версії V1 manifest/tuple/normalization. Schema version БД і manifest
+`schema_version=1` — різні поняття.
 Цей документ визначає ключі й інваріанти; реалізація має забезпечити їх DDL,
 транзакціями та verify. Поведінкові вимоги залишаються у REQUIREMENTS.
 
@@ -28,6 +32,14 @@ Tuple digest рахується з чотирьох полів у порядку
 а не лише hash. Різні tuples з одним hash зупиняють імпорт/verify як collision.
 Нормалізований ключ — NFC → full Unicode case folding → NFC; жодного trim.
 Його hash — SHA-256 UTF-8 ключа. Exact завжди перевіряє ще й рівність ключа.
+
+Dictionary entry ID — SHA-256 від UTF-8 `slovnyk-entry-v1` + NUL, потім
+`source_locale`, `target_locale`, `source_text`, кожне з uint64 big-endian
+byte length перед raw UTF-8 bytes. Dataset, translation ID, target text,
+normalization та UI не входять до identity. Casing, NFC-варіанти й крайні
+пробіли не зливаються. Фіксований hash робить URL bounded навіть для 64 KiB.
+Index `(dataset_id, entry_id(source_locale,target_locale,source_text), id)`
+підтримує сторінку та seek continuation без B-tree над великими raw fields.
 
 ## Таблиці та обов'язкові обмеження
 

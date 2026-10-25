@@ -13,6 +13,7 @@ import (
 
 	"github.com/valpere/slovnyk/internal/catalog"
 	"github.com/valpere/slovnyk/internal/downloads"
+	"github.com/valpere/slovnyk/internal/entries"
 	"github.com/valpere/slovnyk/internal/i18n"
 	"github.com/valpere/slovnyk/internal/lookup"
 )
@@ -25,6 +26,7 @@ type options struct {
 	catalog   CatalogFunc
 	downloads DownloadsFunc
 	export    ExportFunc
+	entry     EntryFunc
 }
 
 func WithCatalog(read CatalogFunc) Option { return func(o *options) { o.catalog = read } }
@@ -170,7 +172,9 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 	mux.HandleFunc("GET /languages", serve)
 	mux.HandleFunc("GET /downloads", serve)
 	mux.HandleFunc("GET /downloads/{dataset}/{export}", exportHandler(config.export))
-	return LimitTarget(mux)
+	mux.HandleFunc("GET /word/{id}", entryHandler(config.entry))
+	mux.HandleFunc("GET /robots.txt", robotsHandler)
+	return LimitTarget(primaryDomain(mux))
 }
 
 type choice struct {
@@ -189,6 +193,10 @@ type view struct {
 	Text                                  map[string]string
 	HasCatalog, IsLanguages, IsDownloads  bool
 	Downloads                             downloads.Manifest
+	IsEntry                               bool
+	Entry                                 entries.Page
+	Title, Description, Canonical         string
+	SourceLang, TargetLang                string
 	FromChoices, ToChoices, UILocales     []choice
 	Pairs                                 []pairView
 	UIFields                              []field
@@ -279,7 +287,10 @@ func messageKey(err error) string {
 
 //go:embed search.html
 var pageHTML string
-var pageTemplate = template.Must(template.New("search").Funcs(template.FuncMap{"native": i18n.Native}).Parse(pageHTML))
+var pageTemplate = template.Must(template.New("search").Funcs(template.FuncMap{
+	"native":   i18n.Native,
+	"entryURL": func(from, to, source string) string { return entries.Path(entries.ID(from, to, source)) },
+}).Parse(pageHTML))
 
 // LimitTarget runs before routing: ServeMux may otherwise redirect an oversized
 // target with a noncanonical path before the search handler can reject it.

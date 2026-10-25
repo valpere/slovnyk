@@ -9,6 +9,7 @@ import (
 	"github.com/valpere/slovnyk/internal/artifacts"
 	"github.com/valpere/slovnyk/internal/catalog"
 	"github.com/valpere/slovnyk/internal/downloads"
+	"github.com/valpere/slovnyk/internal/entries"
 	"github.com/valpere/slovnyk/internal/httpui"
 	"github.com/valpere/slovnyk/internal/lookup"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
@@ -21,9 +22,10 @@ type backends struct {
 	catalog   httpui.CatalogFunc
 	downloads httpui.DownloadsFunc
 	export    httpui.ExportFunc
+	entry     httpui.EntryFunc
 }
 
-// Search, catalog and download metadata share eight connection slots. Admission,
+// Search, catalog, dictionary pages and download metadata share eight slots. Admission,
 // connection establishment and SQL honor the caller's outer two-second budget.
 func httpBackends(cfg Config, ready func() bool) backends {
 	service, err := lookup.New(cfg.CursorSigner)
@@ -109,5 +111,18 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		}
 		return e, f, nil
 	}
-	return backends{search: search, catalog: read, downloads: list, export: open}
+	entry := func(parent context.Context, id, cursor string) (entries.Page, error) {
+		if ready == nil || !ready() {
+			return entries.Page{}, lookup.ErrUnavailable
+		}
+		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
+		defer cancel()
+		c, release, err := borrow(ctx)
+		if err != nil {
+			return entries.Page{}, err
+		}
+		defer release()
+		return entries.Read(ctx, c, cfg.CursorSigner, id, cursor)
+	}
+	return backends{search: search, catalog: read, downloads: list, export: open, entry: entry}
 }
