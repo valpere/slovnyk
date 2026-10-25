@@ -78,3 +78,11 @@ Apache 2.0 зазначена в README старого коду; це окрем
 відхилень за перевіреними правилами немає. Все ще не доведено мовну
 правильність перекладів та історичну повноту старої БД. Джерела незмінні;
 SHA-256, strict gzip boundaries і відповідність пар назвам перевірені.
+
+Доповнення 2026-10-25: directory `csv/` має також один файл
+`slovnyk_en-us_pl-pl.csv.zip` поза раніше аудованими 992 `*.csv.gz`.
+ZIP містить один `slovnyk_en-us_pl-pl.csv` (8 760 795 decompressed bytes).
+SHA-256 decompressed bytes ZIP і відповідного gzip однаковий:
+`55d4600cc6fc1c882ee7bcf37c59cbcaa51dedf11fe6aa74cbc47c8d6862e596`.
+Це додаткова упаковка тих самих bytes, не нові записи або відновлена metadata.
+ZIP/джерело не змінено. [Доказ](_assessments/2026-10-25-csv-manifest/zip-comparison.json).

@@ -392,3 +392,15 @@ groups та відновлені ACL/SECURITY DEFINER перевіряються
 [Fresh-cluster evidence](docs/_assessments/2026-10-25-fresh-cluster-restore/REPORT.md).
 Обидва clusters працюють на одному host; off-host backup і RTO <=24 h для
 повного корпусу ще не доведені. Oracle й production не задіяні.
+
+## Підготовка CSV snapshot manifest
+
+`make utilities` збирає `bin/prepare-csv-manifest`. Для вже замороженої пласкої
+копії `slovnyk_<from>_<to>.csv.gz` він створює новий канонічний V1 manifest
+із hashes/bytes та очікуваними filename pairs, не підключаючись до БД.
+Output має бути поза snapshot; existing manifest не перезаписується.
+[Параметри й порядок inspect](utilities/README.md#підготовка-csv-manifest).
+
+Це підготовка inventory, не CSV validation або migration. У JSON summary явно
+`content_verified=false`; наступний крок — `slovnyk import inspect` з тим самим
+snapshot. [Фактичний corpus inventory та межі](docs/_assessments/2026-10-25-csv-manifest/REPORT.md).

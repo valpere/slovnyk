@@ -80,6 +80,10 @@ FR-13 local synthetic restore перевіряє нову БД/root при не�
 перевіряє restore у другий порожній cluster, bootstrap ролей, новий owner та ACL.
 Обидва clusters локальні; off-host/full-corpus RTO acceptance не закрито.
 M1 загалом ще відкритий: мовне/дизайн-приймання та повний SEO discovery не закрито.
+M2 preparation: Go utility [prepare-csv-manifest](../utilities/README.md#підготовка-csv-manifest)
+створила inventory окремої копії 992 CSV.gz; hashes/bytes збігаються з попереднім
+аудитом, [evidence](_assessments/2026-10-25-csv-manifest/REPORT.md).
+Full-corpus inspect/Go PostgreSQL import та production acceptance ще не виконані.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів
