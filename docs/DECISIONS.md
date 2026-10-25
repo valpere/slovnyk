@@ -683,3 +683,18 @@ metadata не заповнюються вигаданими значеннями
 [звіті](_assessments/2026-10-25-csv-manifest/REPORT.md). Utility відхиляє сторонні
 файли, а не ігнорує їх. Full-corpus inspect/Go PostgreSQL import, verify,
 publication і M1 UI/мовне acceptance залишаються відкритими. Oracle не задіяний.
+
+## Повний Go inspect, 2026-10-25
+
+Після merge PR #12 виконано actual `bin/slovnyk import inspect` на окремій
+незмінній копії 992 CSV.gz із підготовленим V1 manifest. Усі файли complete та
+checksum-verified; 56 455 068 parsed occurrences, 0 rejected, issues відсутні.
+Набір hashes і кількості у кожному файлі збігаються з попереднім аудитом.
+Fingerprint лишився `ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01`.
+[Звіт і metadata-only evidence](_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
+
+Це закриває перевірку доступних streams новим parser, але не M2 загалом:
+inspect не рахує distinct tuples і не перевіряє staged PostgreSQL writes/retry,
+normalization reconciliation, exports, ready/publication або historical completeness.
+Oracle/БД/browser не задіяні; джерела незмінні. Окреме локальне середовище для
+повного PostgreSQL import і його resource budget — наступний крок.

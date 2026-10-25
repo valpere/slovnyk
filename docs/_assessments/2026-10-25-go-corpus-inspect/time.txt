@@ -1,0 +1,23 @@
+	Command being timed: "bin/slovnyk import inspect --manifest data/experiments/csv-manifest-2026-10-25/manifest.json --source data/experiments/csv-manifest-2026-10-25/snapshot"
+	User time (seconds): 25.32
+	System time (seconds): 0.51
+	Percent of CPU this job got: 104%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:24.70
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 20020
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 85305
+	Voluntary context switches: 53988
+	Involuntary context switches: 3091
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 392
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

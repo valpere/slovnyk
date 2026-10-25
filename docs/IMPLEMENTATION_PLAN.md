@@ -231,6 +231,10 @@ Preparation subset 2026-10-25: Go `utilities/prepare-csv-manifest` і окрем
 immutable копія 992 CSV.gz; hashes/bytes звірені з попереднім audit, manifest
 підготовлено без нового full-corpus inspect/Go PostgreSQL import.
 [Evidence](_assessments/2026-10-25-csv-manifest/REPORT.md). Це не M2 done.
+Наступний зріз: повний Go `import inspect` — 992 файли до EOF із підтвердженими
+hashes, 56 455 068 occurrences, 0 rejected; per-file counts збігаються з аудитом.
+[Звіт](_assessments/2026-10-25-go-corpus-inspect/REPORT.md). Staged PostgreSQL import,
+retry/reconciliation та exports повного корпусу цим не перевірено.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

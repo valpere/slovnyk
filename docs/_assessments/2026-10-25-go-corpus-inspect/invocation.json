@@ -1,0 +1,17 @@
+{
+  "revision": "7da1a4915b268e75d7f389487301f0cc55d7d7e9",
+  "binary_sha256": "ce45a394b63254355cc1c4d2db531b1f65e6432f8713842e7faeccc69027b9b7",
+  "manifest_sha256_before": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+  "go_version": "go version go1.26.10 linux/amd64",
+  "platform": "Linux-6.11.0-29-generic-x86_64-with-glibc2.39",
+  "command": [
+    "bin/slovnyk",
+    "import",
+    "inspect",
+    "--manifest",
+    "data/experiments/csv-manifest-2026-10-25/manifest.json",
+    "--source",
+    "data/experiments/csv-manifest-2026-10-25/snapshot"
+  ],
+  "started_at_utc": "2026-10-25T08:37:05.509095+00:00"
+}

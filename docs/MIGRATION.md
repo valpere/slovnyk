@@ -32,6 +32,10 @@ Snapshot date лишається unknown, якщо точна дата неві�
 потрібен окремий `import inspect`; manifest не є validation report.
 [Фактична репетиція](_assessments/2026-10-25-csv-manifest/REPORT.md) звірила всі
 992 compressed hashes/bytes, без імпорту у нову PostgreSQL БД.
+Окремий [повний Go inspect](_assessments/2026-10-25-go-corpus-inspect/REPORT.md)
+перевірив gzip/CSV та EOF/checksums усіх цих файлів: 56 455 068 parsed occurrences,
+0 rejected, збіг кількостей у кожному файлі з аудитом. Це не staged import,
+distinct tuple reconciliation або дозвіл на publication.
 
 ## 2. Повний аудит
 

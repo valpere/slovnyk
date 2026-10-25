@@ -46,5 +46,15 @@ Snapshot date — `unknown`; mtime не використано як дату д�
 той самий SHA-256 decompressed bytes, що відповідний CSV.gz. ZIP залишився
 у legacy; новий snapshot має явний формат CSV4.gz. Жодних унікальних даних цим
 вибором не вилучено. [Доказ і межі](../docs/_assessments/2026-10-25-csv-manifest/REPORT.md).
-Це лише inventory: новий full-corpus inspect, PostgreSQL import, verify та
-publication не виконано. CSV contents у Git не входять.
+Ця репетиція підготувала лише inventory; наступну перевірку описано нижче.
+CSV contents у Git не входять.
+
+## Повний Go inspect
+
+`experiments/go-inspect-2026-10-25/` зберігає `inspect.json`, invocation/execution
+metadata, `time.txt` і `comparison.json`. Перевірено саме snapshot/manifest вище:
+992 complete/checksum-verified files, 56 455 068 parsed occurrences, 0 rejected;
+per-file counts збігаються з аудитом. Metadata-only копії результатів у
+[звіті](../docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
+Результати не перезаписувати; повторний запуск потребує нової директорії.
+Це не distinct tuple count, PostgreSQL import, verify або publication.

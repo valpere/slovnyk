@@ -537,3 +537,22 @@ Local PostgreSQL integration не повторено: runtime/schema/SQL не з
 чинний CI job зберігається. Новий full-corpus inspect, staged PostgreSQL import,
 reconciliation, semantic/historical completeness не доведені. FR-07/08 цілком
 не закриті підготовкою manifest; fingerprint не означає схвалення втрат.
+
+## FR-07/08 — повний Go inspect корпусу, 2026-10-25
+
+Actual binary із main `7da1a4915b268e75d7f389487301f0cc55d7d7e9` після PR #12:
+`bin/slovnyk import inspect --manifest
+data/experiments/csv-manifest-2026-10-25/manifest.json --source
+data/experiments/csv-manifest-2026-10-25/snapshot` — **PASS**, exit 0.
+
+| Покрита частина | Фактична перевірка |
+|---|---|
+| Stream identity/admission | Усі 992 files complete/checksum-verified до EOF; 56 455 068 parsed occurrences, 0 rejected, issues порожні; state `inspected`, без error |
+| Corpus identity | Manifest SHA до/після = report fingerprint; 992 artifact hashes/bytes/names збігаються з audit 2026-10-24; кількість записів збігається окремо для кожного файла |
+| Межі inspect | `distinct_counts_available=false`; accepted_unique/duplicate fields не є вимірюванням distinct tuples у цьому режимі; БД не використовується |
+
+[Report, точний stdout та comparison](_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
+Це input-validation частина M2, не full-corpus staged import/retry або verify.
+Попередні synthetic negative tests FR-07 і transaction tests FR-08 лишаються
+окремими доказами; цей запуск їх не повторює. Мовна якість, історична повнота,
+normalization/DB reconciliation та production acceptance не доведені.
