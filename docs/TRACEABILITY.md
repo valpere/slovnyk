@@ -430,3 +430,26 @@ synthetic records, не послабленням dedup assertion. Logs:
 [Self-review](_assessments/2026-10-25-offline-sitemaps/REPORT.md).
 Повний SQL sort/temp-disk cost, crawler load, HTTP serving, publication inventory
 і production acceptance не перевірені; M1-07 in progress.
+
+## M1-07 — HTTP sitemap discovery, 2026-10-25
+
+FR-14 / AT-19 synthetic discovery subset. Schema 3, без змін raw identity.
+
+| Покрита частина | Фактичні перевірки |
+|---|---|
+| Registry/state/privileges | `internal/sitemaps/sitemaps_integration_test.go: TestReadyDatasetDiscovery`: generated inventory registration/retry, HTTP read, unpublished rejection, active index, same-size corruption → Check failure, direct writes/HTTP register denied, incomplete SQL function call rolls back inventory |
+| Physical upgrade | `internal/storage/postgres/postgres_integration_test.go: TestEntryIndexUpgradePreservesReadyData`: schema 1 → current 3, старий inventory відхилено, ready raw data незмінні |
+| HTTP semantics | `internal/httpui/sitemaps_test.go: TestSitemapHTTP`: GET/HEAD, XML/ETag/cache policies, fixed IDs, cookies/language/forwarded headers не впливають, strict query/path, conditional 304, Range 206/416, safe no-store/noindex errors |
+| Robots/process | `TestRobotsAndPrimaryDomain`: fixed canonical Sitemap directive; `tests/processsmoke/smoke_test.go`: real binary GET/HEAD index без storage → 503 |
+| Publication/recovery | `tests/serviceflow/lifecycle_test.go: TestServiceLifecycle`: actual CLI sitemap before publish, unpublished shard denial, active index A→B→A, retained A, index/shard hashes/cache headers, DB outage/recovery, restart; same-size corrupt registered shard blocks readiness on another restart |
+
+`make build check test test-race test-smoke`,
+`go vet -tags integration ./internal/sitemaps ./internal/ops ./internal/storage/postgres ./tests/serviceflow`
+та `make test-integration` — **PASS**, exit 0. Останній integration run включає
+вузький SQL write API та додатковий restart із same-size corrupt shard.
+Synthetic local PostgreSQL 17.11, окремі LOGINs у lifecycle; runner прибрав
+container/network/volume. Logs: `tmp/http-sitemaps-final-checks.log`,
+`tmp/http-sitemaps-final-integration.log` (ignored).
+Повний corpus/crawler capacity, readiness hashing cost і production acceptance
+не доведені. Inventory optional для publication, HTTP mount immutable/read-only.
+[Self-review](_assessments/2026-10-25-http-sitemaps/REPORT.md).

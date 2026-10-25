@@ -84,7 +84,7 @@ func Generate(ctx context.Context, c *pgx.Conn, id, root string) (Result, error)
 		return Result{}, ErrStorage
 	}
 	defer rows.Close()
-	return generate(ctx, store, id, func() (string, bool, error) {
+	result, err := generate(ctx, store, id, func() (string, bool, error) {
 		if !rows.Next() {
 			return "", false, rows.Err()
 		}
@@ -94,6 +94,14 @@ func Generate(ctx context.Context, c *pgx.Conn, id, root string) (Result, error)
 		}
 		return hex.EncodeToString(hash), true, nil
 	}, maxURLs, maxShards)
+	rows.Close()
+	if err != nil {
+		return Result{}, err
+	}
+	if err := register(ctx, c, result); err != nil {
+		return Result{}, ErrStorage
+	}
+	return result, nil
 }
 
 type nextID func() (string, bool, error)

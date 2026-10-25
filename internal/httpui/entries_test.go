@@ -114,7 +114,7 @@ func TestRobotsAndPrimaryDomain(t *testing.T) {
 	for _, method := range []string{"GET", "HEAD"} {
 		w := httptest.NewRecorder()
 		h.ServeHTTP(w, httptest.NewRequest(method, "https://slovnyk.org/robots.txt", nil))
-		if w.Code != 200 || method == "GET" && w.Body.String() != "User-agent: *\nAllow: /\n" || method == "HEAD" && w.Body.Len() != 0 {
+		if w.Code != 200 || method == "GET" && w.Body.String() != "User-agent: *\nAllow: /\nSitemap: https://slovnyk.org/sitemap.xml\n" || method == "HEAD" && w.Body.Len() != 0 {
 			t.Fatal("robots blocked dictionary crawling")
 		}
 	}

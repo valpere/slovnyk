@@ -608,3 +608,17 @@ Root-level майбутні shard URLs забезпечують scope `/word/`; 
 HTTP discovery, DB inventory registration, publication/readiness gate, retention,
 full-corpus/crawler capacity залишаються наступними задачами; M1-07 не закрито.
 [Контракт](SEO_PLAN.md), [self-review](_assessments/2026-10-25-offline-sitemaps/REPORT.md).
+
+## M1-07: HTTP sitemap discovery — 2026-10-25
+
+Schema 3: optional immutable sitemap inventory; генератор реєструє його після
+durable files вузькою SQL-функцією. HTTP читає active index одним snapshot,
+а shards — лише за registered published dataset/hash. Root-level URLs,
+fixed primary origin, no-store active index, immutable retained shards,
+ETag/HEAD/Range та robots discovery. HTTP не генерує файли й не сканує corpus.
+Startup/recovery/нова generation звіряє hashes зареєстрованих active файлів;
+відсутність inventory поки не забороняє publication/readiness, але index → 503.
+Операторський release порядок verify → sitemap → publish. Auto-GC відсутній.
+Це технічна реалізація FR-14, не зміна продуктового scope; full corpus/crawler
+budget, release gate та мовне/дизайн-приймання ще відкриті.
+[Контракт](SEO_PLAN.md), [self-review](_assessments/2026-10-25-http-sitemaps/REPORT.md).

@@ -73,7 +73,7 @@ Migration 000002 додає fixed-size expression index та SQL/Go identity par
 ## Офлайн-генерація sitemap
 
 `slovnyk dataset sitemap <dataset-id> --artifacts <existing-root>` використовує
-`SLOVNYK_OPERATOR_DSN` і фізичну schema 2. Лише immutable `ready` dataset,
+`SLOVNYK_OPERATOR_DSN` і фізичну schema 3. Лише immutable `ready` dataset,
 включно з ще не published: команда не змінює state, active pointer або generation.
 Невідомий/не ready dataset відхиляється. Порожній ready dataset повертає
 `sitemap_empty_dataset`, без порожнього XML index.
@@ -85,7 +85,7 @@ UTF-8 XML містить стандартний namespace; timestamps/lastmod н
 До 50 000 URL на shard, до 50 000 shards на index, кожен XML не більше
 52 428 800 bytes. Фіксована довжина адрес утримує shard нижче 6 MiB.
 Ці межі та root scope відповідають [Sitemaps protocol](https://www.sitemaps.org/protocol.html).
-Index посилається на майбутні root-level адреси
+Index посилається на root-level адреси
 `https://slovnyk.org/sitemap-<dataset-id>-<shard-sha256>.xml`: вкладений sitemap
 за базовим протоколом не може охоплювати сусідній `/word/`.
 
@@ -96,35 +96,70 @@ CLI JSON повертає ці поля й `report` ref. Exit 0 — повний
 2 — аргументи/config; помилки не містять DSN, source text або SQL details.
 Файли встановлюються через shared no-clobber/fsync store; незмінний повторний
 запуск дає ті самі bytes/hashes та повторно перевіряє наявні файли. Після збою
-можливі unreferenced fragments; повторіть команду. Немає auto-delete чи DB receipt.
+можливі unreferenced fragments; повторіть команду. Після durable files команда транзакційно реєструє inventory у БД; auto-delete немає.
 
 Go тримає поточний hash, write buffer та bounded inventory shards, без списку
 всіх URL. DISTINCT/ORDER BY можуть вимагати PostgreSQL sort/spill; повний корпус,
 DB RAM/temp disk, час та загальний disk cost ще не виміряно. Команда підтримує
 скасування через SIGINT/SIGTERM; фіксованого total execution deadline немає.
 
-**HTTP-видачу ще не реалізовано**: ці URL не обслуговуються, robots не рекламує
-index, publication/readiness не вимагають sitemap. Наступний зріз має зв'язати
-перевірений inventory з published dataset і забезпечити version-pinned serving,
-atomic active discovery та поведінку retained files/rollback без HTTP full scan.
-Генерація ready dataset сама по собі не дозволяє публікацію його вмісту.
+## HTTP sitemap discovery
+
+Schema 3 [migration](../migrations/000003_sitemaps.sql) додає immutable
+`sitemap_inventory` (dataset, report/index refs, total counts) і `sitemap_shards`
+(dataset/hash, bytes, URLs). Шляхи виводяться лише з перевірених UUID/hash.
+Команда реєструє їх через вузьку SECURITY DEFINER SQL-функцію після durable
+files; row lock серіалізує retry, deferred constraint звіряє shard/URL totals.
+Operator має SELECT/EXECUTE, HTTP — лише SELECT; direct INSERT/UPDATE/DELETE
+не дозволені. Повторний report SHA збігається або повертається failure;
+реєстрація не змінює ready data чи publication generation. На SQL failure
+файли/report можуть лишитися, але незареєстрований inventory не видається.
+
+`GET /sitemap.xml` (також HEAD) одним SQL snapshot вибирає index active
+published ready dataset. `Cache-Control: no-store`; conditional ETag перевіряється
+після нового resolve, тому publish/rollback змінює index без filesystem pointer.
+`GET /sitemap-<dataset-id>-<sha256>.xml` видає лише зареєстрований shard published
+ready dataset, включно з retained версіями: `public, max-age=31536000, immutable`.
+Обидва маршрути: XML UTF-8, strong SHA ETag, HEAD/Range/conditional requests,
+без cookies, Accept-Language або forwarded-origin; будь-який query → 400.
+Некоректний/unknown/unpublished shard → 404, відсутній active inventory,
+DB/readiness/file failure → 503. Помилки короткі English, no-store/noindex.
+`robots.txt` рекламує fixed `https://slovnyk.org/sitemap.xml`; без БД лишається 200.
+
+Metadata ділить чинні 8 DB slots і deadline 2 s, після resolve connection
+звільняється. Handler має до 8 відкритих sitemap transfers і rolling write
+deadline 30 s; HTTP не сканує translations/файловий корпус, не перебирає весь
+inventory у Go та не генерує XML. File open перевіряє confinement, regular-file та exact byte size.
+Startup/recovery/нова generation додатково звіряє SHA всіх зареєстрованих active
+sitemap files; HTTP filesystem має бути immutable/read-only, як exports.
+Same-size mutation після цих перевірок не виявляється на кожен HTTP-запит.
+
+Inventory поки optional для сумісності з попередніми ready datasets:
+publication не вимагає його, readiness допускає відсутній реєстр, а `/sitemap.xml`
+тоді повертає 503. Якщо inventory є, missing/corrupt файли блокують readiness.
+Операторський порядок перед release: verify → sitemap → publish; готові файли
+без реєстрації зі старого binary треба повторно згенерувати новою командою.
+Реєстрація після publication не змінює generation: файли перевірені генератором,
+наступна startup/recovery перевірка звірить їх повторно. Auto-GC/retirement немає;
+retained DB inventory та files зберігаються для stable shard URLs/rollback.
+Повний release acceptance має перевірити inventory кожної публікованої версії.
 
 ## Наступна робота
 
-- HTTP sitemap/index discovery для published вмісту на основі готових offline
-  artifacts; publication/rollback/retention та integrity checks. Без HTTP full scan.
+- Full-corpus rehearsal sitemap generation/discovery та release checks готовності
+  inventory; capacity/readiness hash cost на повному corpus ще не виміряно.
 - Виміряти навантаження роботів разом із пошуком. Бюджет індексації не
   випливає з оцінки користувацького піку 10 запитів/с. Правила кешування,
   обмеження частоти та витрати RAM/диска ще не визначені.
 
-HTTP discovery, caching і crawler budgets ще не
-реалізовано; вони не є новими продуктовими погодженнями.
+Crawler budgets та release-політика обов’язкового inventory ще відкриті;
+це не нові продуктові погодження.
 
 ## Деталі, що залишаються відкритими
 
 Склад сторінки погоджено: переклади лише однією обраною мовою. M1 визначає
 stable URL, raw identity, active/retained behavior, canonical та continuation.
-Потрібні HTTP sitemap/index discovery, full-corpus rehearsal, ресурсний budget індексу й
+Потрібні full-corpus rehearsal, ресурсний budget індексу й
 crawling, фінальні мовне/дизайн/accessibility приймання та deployment redirects.
 Поточний `/search` залишається пошуком в одній напрямленій парі; його
 поведінка цим документом не змінюється.

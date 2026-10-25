@@ -113,7 +113,7 @@ func entryHandler(read EntryFunc) http.HandlerFunc {
 }
 
 func robotsHandler(w http.ResponseWriter, r *http.Request) {
-	const body = "User-agent: *\nAllow: /\n"
+	const body = "User-agent: *\nAllow: /\nSitemap: https://slovnyk.org/sitemap.xml\n"
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.Header().Set("Content-Length", strconv.Itoa(len(body)))
 	w.Header().Set("Cache-Control", "public, max-age=3600")

@@ -27,6 +27,7 @@ type options struct {
 	downloads DownloadsFunc
 	export    ExportFunc
 	entry     EntryFunc
+	sitemap   SitemapFunc
 }
 
 func WithCatalog(read CatalogFunc) Option { return func(o *options) { o.catalog = read } }
@@ -174,6 +175,9 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 	mux.HandleFunc("GET /downloads/{dataset}/{export}", exportHandler(config.export))
 	mux.HandleFunc("GET /word/{id}", entryHandler(config.entry))
 	mux.HandleFunc("GET /robots.txt", robotsHandler)
+	sitemap := sitemapHandler(config.sitemap)
+	mux.HandleFunc("GET /sitemap.xml", sitemap)
+	mux.HandleFunc("GET /{sitemap}", sitemap)
 	return LimitTarget(primaryDomain(mux))
 }
 

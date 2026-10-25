@@ -2,10 +2,13 @@
 
 Статус: M1-03 реалізує цей schema contract у
 [000001_initial.sql](../migrations/000001_initial.sql).
-Фізична schema version тепер 2: [000002_dictionary_pages.sql](../migrations/000002_dictionary_pages.sql)
+Фізична schema version 2: [000002_dictionary_pages.sql](../migrations/000002_dictionary_pages.sql)
 додає immutable `entry_id` function та expression index, без зміни raw data
 або версії V1 manifest/tuple/normalization. Schema version БД і manifest
-`schema_version=1` — різні поняття.
+`schema_version=1` — різні поняття. Поточна фізична schema 3:
+[000003_sitemaps.sql](../migrations/000003_sitemaps.sql) додає optional immutable
+sitemap inventory/shard refs та вузьку транзакційну register-функцію,
+без зміни dataset/entry identity. [HTTP/операторський контракт](SEO_PLAN.md#http-sitemap-discovery).
 Цей документ визначає ключі й інваріанти; реалізація має забезпечити їх DDL,
 транзакціями та verify. Поведінкові вимоги залишаються у REQUIREMENTS.
 
