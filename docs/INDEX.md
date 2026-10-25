@@ -59,7 +59,8 @@ C seek і спільний DB deadline; [звіт](_assessments/2026-10-24-looku
 M1-07 in progress: HTTP-пошук і bounded HTML/plain UI реалізовано;
 каталог, локалізація й cookies реалізовані в наступному зрізі,
 [звіт](_assessments/2026-10-24-catalog-localization/REPORT.md).
-SEO/downloads та production-міграція ще попереду.
+Version-pinned synthetic downloads також реалізовано,
+[звіт](_assessments/2026-10-24-downloads/REPORT.md). SEO та production-міграція ще попереду.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів
@@ -95,6 +96,7 @@ LEGACY_COMPATIBILITY зберігає лише історичні спостер
 | [DATA_MODEL.md](DATA_MODEL.md) | Ключі, типи, обмеження та індекси V1 |
 | [IMPORT_CONTRACT.md](IMPORT_CONTRACT.md) | Формати, облік, retry, verify і publication CAS |
 | [SEO_PLAN.md](SEO_PLAN.md) | Індексація в першому релізі; технічний план та відкриті питання |
+| [DOWNLOAD_CONTRACT.md](DOWNLOAD_CONTRACT.md) | HTTP manifest, version-pinned CSV.gz, ranges, integrity і streaming limits |
 | [LOOKUP_CONTRACT.md](LOOKUP_CONTRACT.md) | HTTP, Unicode, bounded cursor та пагінація |
 | [LEGACY_COMPATIBILITY.md](LEGACY_COMPATIBILITY.md) | Історичні факти про старі URL; сумісність скасована |
 | [MIGRATION.md](MIGRATION.md) | Облік даних, перевірка, перемикання й відкат |

@@ -3,8 +3,12 @@
 package ops
 
 import (
+	"bytes"
 	"context"
+	"crypto/sha256"
+	"encoding/hex"
 	"errors"
+	"io"
 	"net/http/httptest"
 	"net/url"
 	"os"
@@ -14,6 +18,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/valpere/slovnyk/internal/downloads"
 	"github.com/valpere/slovnyk/internal/httpui"
 	"github.com/valpere/slovnyk/internal/importdata"
 	"github.com/valpere/slovnyk/internal/importer"
@@ -99,8 +104,9 @@ func TestReadinessRecoveryWithHTTPRole(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
-	search, readCatalog := httpBackends(Config{HTTPDSN: httpDSN, CursorSigner: signer})
-	handler := httpui.New(search, signer, httpui.WithCatalog(readCatalog))
+	backend := httpBackends(Config{HTTPDSN: httpDSN, CursorSigner: signer, ArtifactRoot: root}, func() bool { return true })
+	search, readCatalog := backend.search, backend.catalog
+	handler := httpui.New(search, signer, httpui.WithCatalog(readCatalog), httpui.WithDownloads(backend.downloads, backend.export))
 	first := httptest.NewRecorder()
 	handler.ServeHTTP(first, httptest.NewRequest("GET", "/search?from=uk-ua&to=en-us&q="+url.QueryEscape("слово")+"&limit=1&format=plain", nil))
 	if first.Code != 200 || !strings.Contains(first.Body.String(), "More translations: /search?") {
@@ -179,6 +185,116 @@ func TestReadinessRecoveryWithHTTPRole(t *testing.T) {
 	}
 	if _, err = readCatalog(ctx, "00000000-0000-4000-8000-000000000000"); !errors.Is(err, lookup.ErrUnavailable) {
 		t.Fatal("unknown dataset exposed", err)
+	}
+
+	manifest, err := backend.downloads(ctx)
+	if err != nil || manifest.Dataset != report.Dataset || len(manifest.Exports) != len(report.Pairs) {
+		t.Fatal("download manifest under HTTP role", err)
+	}
+	index := httptest.NewRecorder()
+	handler.ServeHTTP(index, httptest.NewRequest("GET", "/downloads?ui=uk", nil))
+	if index.Code != 200 || !strings.Contains(index.Body.String(), report.Dataset) {
+		t.Fatal("download index", index.Code)
+	}
+	for _, p := range report.Pairs {
+		fileURL := "/downloads/" + report.Dataset + "/" + p.ExportID
+		response := httptest.NewRecorder()
+		handler.ServeHTTP(response, httptest.NewRequest("GET", fileURL, nil))
+		sum := sha256.Sum256(response.Body.Bytes())
+		if response.Code != 200 || hex.EncodeToString(sum[:]) != p.Artifact.SHA256 || int64(response.Body.Len()) != p.Artifact.Bytes {
+			t.Fatal("download bytes/hash mismatch", response.Code)
+		}
+		parser, err := importdata.NewGzipReader(bytes.NewReader(response.Body.Bytes()))
+		if err != nil {
+			t.Fatal(err)
+		}
+		var rows int64
+		for {
+			record, err := parser.Next()
+			if err == io.EOF {
+				break
+			}
+			if err != nil || record.Reason != "" {
+				t.Fatal("invalid downloaded CSV", err)
+			}
+			rows++
+		}
+		if err := parser.Close(); err != nil {
+			t.Fatal(err)
+		}
+		if rows != p.Rows {
+			t.Fatal("download logical row count", rows, p.Rows)
+		}
+		partial := httptest.NewRecorder()
+		req := httptest.NewRequest("GET", fileURL, nil)
+		req.Header.Set("Range", "bytes=0-7")
+		handler.ServeHTTP(partial, req)
+		if partial.Code != 206 || !bytes.Equal(partial.Body.Bytes(), response.Body.Bytes()[:8]) {
+			t.Fatal("download resume failed", partial.Code)
+		}
+		head := httptest.NewRecorder()
+		handler.ServeHTTP(head, httptest.NewRequest("HEAD", fileURL, nil))
+		if head.Code != 200 || head.Body.Len() != 0 {
+			t.Fatal("HEAD download", head.Code)
+		}
+	}
+	// Ready alone is insufficient: an unpublished version must not be exposed.
+	m.Source.Authority = "download-unpublished-integration"
+	unpublished, err := importer.Run(ctx, connect(), m, "../../testdata/import", importer.Options{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	pending, err := publication.Verify(ctx, connect(), unpublished.Dataset, "../../testdata/import", root, publication.Options{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err = downloads.Resolve(ctx, connect(), pending.Dataset, pending.Pairs[0].ExportID); !errors.Is(err, downloads.ErrNotFound) {
+		t.Fatal("unpublished export exposed", err)
+	}
+	// Publish B, then fetch retained A at exactly the same URL and bytes.
+	if _, err = publication.Publish(ctx, connect(), pending.Dataset, root, n+1, "download test", false); err != nil {
+		t.Fatal(err)
+	}
+	retained := httptest.NewRecorder()
+	handler.ServeHTTP(retained, httptest.NewRequest("GET", "/downloads/"+report.Dataset+"/"+report.Pairs[0].ExportID, nil))
+	if retained.Code != 200 {
+		t.Fatal("retained download lost", retained.Code)
+	}
+	sum := sha256.Sum256(retained.Body.Bytes())
+	if hex.EncodeToString(sum[:]) != report.Pairs[0].Artifact.SHA256 {
+		t.Fatal("retained download changed")
+	}
+	if _, err = publication.Publish(ctx, connect(), report.Dataset, root, n+2, "download test rollback", true); err != nil {
+		t.Fatal(err)
+	}
+	// Availability and filesystem confinement are separate from DB identity.
+	blockedBackend := httpBackends(Config{HTTPDSN: httpDSN, CursorSigner: signer, ArtifactRoot: root}, func() bool { return false })
+	if _, err = blockedBackend.downloads(ctx); !errors.Is(err, lookup.ErrUnavailable) {
+		t.Fatal("download bypassed readiness", err)
+	}
+	p := report.Pairs[0]
+	artifactFile := filepath.Join(root, p.Artifact.Path)
+	if err = os.Rename(artifactFile, artifactFile+"-missing"); err != nil {
+		t.Fatal(err)
+	}
+	missing := httptest.NewRecorder()
+	handler.ServeHTTP(missing, httptest.NewRequest("GET", "/downloads/"+report.Dataset+"/"+p.ExportID, nil))
+	if missing.Code != 503 {
+		t.Fatal("missing file presented as success", missing.Code)
+	}
+	if err = os.Symlink(artifactFile+"-missing", artifactFile); err != nil {
+		t.Fatal(err)
+	}
+	linked := httptest.NewRecorder()
+	handler.ServeHTTP(linked, httptest.NewRequest("GET", "/downloads/"+report.Dataset+"/"+p.ExportID, nil))
+	if linked.Code != 503 {
+		t.Fatal("symlink export exposed", linked.Code)
+	}
+	if err = os.Remove(artifactFile); err != nil {
+		t.Fatal(err)
+	}
+	if err = os.Rename(artifactFile+"-missing", artifactFile); err != nil {
+		t.Fatal(err)
 	}
 
 	renamed := root + "-offline"

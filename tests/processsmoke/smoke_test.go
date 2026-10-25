@@ -120,7 +120,7 @@ func probe(root, binary string, signal syscall.Signal) (result, error) {
 	for _, tc := range []struct {
 		method, path string
 		status       int
-	}{{"GET", "/healthz?q=synthetic-secret", 200}, {"HEAD", "/healthz", 200}, {"GET", "/readyz", 503}, {"GET", "/", 200}, {"GET", "/?ui=uk", 200}, {"GET", "/languages", 503}, {"HEAD", "/languages", 503}, {"GET", "/search?ignored=" + strings.Repeat("x", 24<<10), 200}, {"GET", "/search?ignored=" + strings.Repeat("x", 32<<10), 414}, {"GET", "//search?ignored=" + strings.Repeat("x", 32<<10), 414}, {"HEAD", "/search", 200}, {"GET", "/search?q=x", 400}, {"GET", "/search?from=uk-ua&to=en-us&q=synthetic-secret&format=plain", 503}} {
+	}{{"GET", "/healthz?q=synthetic-secret", 200}, {"HEAD", "/healthz", 200}, {"GET", "/readyz", 503}, {"GET", "/", 200}, {"GET", "/?ui=uk", 200}, {"GET", "/languages", 503}, {"GET", "/downloads", 503}, {"HEAD", "/downloads", 503}, {"HEAD", "/downloads/00000000-0000-4000-8000-000000000001/00000000-0000-4000-8000-000000000002", 503}, {"HEAD", "/languages", 503}, {"GET", "/search?ignored=" + strings.Repeat("x", 24<<10), 200}, {"GET", "/search?ignored=" + strings.Repeat("x", 32<<10), 414}, {"GET", "//search?ignored=" + strings.Repeat("x", 32<<10), 414}, {"HEAD", "/search", 200}, {"GET", "/search?q=x", 400}, {"GET", "/search?from=uk-ua&to=en-us&q=synthetic-secret&format=plain", 503}} {
 		req, err := http.NewRequest(tc.method, "http://"+startup.Address+tc.path, nil)
 		if err != nil {
 			return r, errors.New("request_failed")

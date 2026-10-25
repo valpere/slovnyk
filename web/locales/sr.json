@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Вишејезични речник",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Каталог језика привремено није доступан.",
     "pair_unavailable": "Сачувани језички пар није доступан. Изаберите пар.",
     "count": "Преводи",
-    "home": "Почетна"
+    "home": "Почетна",
+    "downloads": "Преузимање речника",
+    "version": "Верзија",
+    "bytes": "Бајтови",
+    "download": "Преузми",
+    "downloads_unavailable": "Преузимања привремено нису доступна. Покушајте поново.",
+    "file_not_found": "Датотека није пронађена."
   }
 }

@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Multalingva vortaro",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "La lingvokatalogo provizore ne disponeblas.",
     "pair_unavailable": "Via konservita lingvoparo ne disponeblas. Elektu paron.",
     "count": "Tradukoj",
-    "home": "Hejmo"
+    "home": "Hejmo",
+    "downloads": "Elŝuto de vortaroj",
+    "version": "Versio",
+    "bytes": "Bajtoj",
+    "download": "Elŝuti",
+    "downloads_unavailable": "Elŝutoj provizore ne disponeblas. Provu denove.",
+    "file_not_found": "Dosiero ne trovita."
   }
 }

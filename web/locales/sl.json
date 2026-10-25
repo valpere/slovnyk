@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Večjezični slovar",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Seznam jezikov začasno ni na voljo.",
     "pair_unavailable": "Shranjeni jezikovni par ni na voljo. Izberite par.",
     "count": "Prevodi",
-    "home": "Domov"
+    "home": "Domov",
+    "downloads": "Prenos slovarjev",
+    "version": "Različica",
+    "bytes": "Bajti",
+    "download": "Prenesi",
+    "downloads_unavailable": "Prenosi začasno niso na voljo. Poskusite znova.",
+    "file_not_found": "Datoteke ni bilo mogoče najti."
   }
 }

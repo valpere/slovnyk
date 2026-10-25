@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Le dictionnaire multilingue",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Le catalogue des langues est temporairement indisponible.",
     "pair_unavailable": "Votre paire de langues enregistrée est indisponible. Choisissez une paire.",
     "count": "Traductions",
-    "home": "Accueil"
+    "home": "Accueil",
+    "downloads": "Télécharger les dictionnaires",
+    "version": "Version",
+    "bytes": "Octets",
+    "download": "Télécharger",
+    "downloads_unavailable": "Les téléchargements sont temporairement indisponibles. Réessayez.",
+    "file_not_found": "Fichier introuvable."
   }
 }

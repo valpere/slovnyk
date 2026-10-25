@@ -475,7 +475,6 @@ CSV, експериментальні БД та `AGENTS.md` не змінюва�
 перевірок. Перед commit перевіряти склад файлів; `tmp/`, реальні corpus/БД,
 секрети й build artifacts не додавати. Push ця вказівка не авторизує.
 
-
 ## Обов'язкові рев’ю та CI — 2026-10-24
 
 Користувач додатково вимагає рев’ю та ввімкнення CI. Кожен завершений етап
@@ -541,7 +540,6 @@ fixtures не змінено. Push CI не підміняє PR CI; merge не а
 Три Python-команди вилучено; історичні Python artifacts досліджень незмінні.
 Правило постійне для наступних робіт. AGENTS.md не переписується.
 
-
 ## M1-07: каталог і локалізація — 2026-10-24
 
 Технічна реалізація погодженого browser/manual flow: embedded JSON для всіх
@@ -555,3 +553,16 @@ UI й пара зберігаються окремими host-only cookies на 
 перевищення fail-closed. Спільний outer DB deadline 2 s та 8 connection slots.
 [Перевірки й self-review](_assessments/2026-10-24-catalog-localization/REPORT.md).
 SEO/downloads та production приймання залишаються відкритими.
+
+## M1-07: version-pinned downloads — 2026-10-24
+
+Реалізовано manifest `/downloads` і opaque dataset/export URL для окремих
+CSV4.gz. Active manifest pin-иться один раз; published retained files доступні
+після нової публікації. Непубліковані ready набори недоступні. Runtime не
+генерує exports і не приймає файлових шляхів від HTTP. Production route
+потребує readiness та immutable read-only files; per-request hash scan не
+виконується. Окремі 8 stream slots, SQL slots звільняються до передачі;
+Range/HEAD/ETag і поновлюваний 30 s write deadline описано в
+[контракті](DOWNLOAD_CONTRACT.md). Це технічна конкретизація FR-06, не нове
+продуктове погодження. [Self-review](_assessments/2026-10-24-downloads/REPORT.md).
+SEO, мовне/дизайн-приймання та production migration ще відкриті.

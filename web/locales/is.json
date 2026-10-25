@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Fjöltyngd orðabók",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Tungumálaskráin er tímabundið ekki tiltæk.",
     "pair_unavailable": "Vistaða tungumálaparið er ekki tiltækt. Veldu par.",
     "count": "Þýðingar",
-    "home": "Heim"
+    "home": "Heim",
+    "downloads": "Niðurhal orðabóka",
+    "version": "Útgáfa",
+    "bytes": "Bæti",
+    "download": "Sækja",
+    "downloads_unavailable": "Niðurhal er ekki tiltækt í bili. Reyndu aftur.",
+    "file_not_found": "Skráin fannst ekki."
   }
 }

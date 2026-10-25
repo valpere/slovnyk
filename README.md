@@ -219,7 +219,7 @@ M1-03 реалізовано: схема PostgreSQL, міграційний CLI,
 транзакційний ledger/provenance і retry. M1-05 реалізовано: reconciliation,
 durable exports/report, publication/rollback CAS та HTTP readiness.
 M1-06 реалізовано: application service exact/mask і підписана cursor-пагінація.
-M1-07 in progress: HTTP lookup, каталог, локалізація й налаштування форми реалізовані; SEO та downloads ще відкриті.
+M1-07 in progress: HTTP lookup, каталог, локалізація й налаштування форми реалізовані; SEO ще відкрите; synthetic downloads реалізовані.
 Старий проєкт залишається незмінним; Oracle не задіяний.
 
 ## Рев’ю, коміти та CI
@@ -251,7 +251,7 @@ AI-переклади, поки зі статусом `ai-draft`; мовне п�
 і остання наявна пара зберігаються окремими cookies на рік, без JS. Форма
 пропонує browser → English або English → Ukrainian лише за наявності
 однозначного напрямку; `/search` завжди потребує явної пари. Недоступна
-збережена пара показує підказку вибрати іншу. SEO/downloads ще не реалізовані.
+збережена пара показує підказку вибрати іншу. SEO ще не реалізовано; downloads описано нижче.
 
 `lookup.NewSigner` приймає active key ID і keyring: 1–16 ключів по 32–64 bytes;
 використовуйте випадкові секретні ключі з щонайменше 256 bits entropy.
@@ -280,3 +280,24 @@ go test ./internal/lookup -run '^$' -fuzz '^FuzzCursor$' -fuzztime=10s -parallel
 
 [Рев’ю та перевірки M1-06](docs/_assessments/2026-10-24-lookup/REPORT.md).
 Це synthetic coverage, без підтвердження повного corpus чи production p95.
+
+## Завантаження словників
+
+`/downloads` показує версію активного набору, наявні напрямки, кількість CSV
+записів, compressed bytes, SHA-256 і посилання на окремі CSV4.gz. Доступний
+також `?format=plain`. Локалізація сторінки й ручні preferences працюють без JS;
+шість нових фраз доповнено ШІ в усіх 31 каталогах зі статусом ai-draft.
+
+Файл адресований `/downloads/<dataset-id>/<export-id>`; URL лишається чинним
+для retained published версії після наступної публікації. Немає raw-path route,
+архіву всього корпусу або доступу до непублікованих наборів. Файли видаються
+як gzip attachments, з ETag/SHA-256, HEAD і byte-range resume. DB connections
+звільняються до streaming; окремо до 8 передач із поновлюваним 30 s write
+budget на chunk. Великі файли не підпадають під 1 MiB page limit.
+
+Downloads потребують readiness і immutable read-only artifact mount. Перевірки
+hashes виконуються publication/startup/recovery, без повторного full-file scan
+на кожне завантаження; file open перевіряє confinement/type/size. Деталі й
+помилки — [DOWNLOAD_CONTRACT](docs/DOWNLOAD_CONTRACT.md). `make test-integration`
+перевіряє synthetic downloads/CSV/hash/retained URLs під HTTP role; production
+corpus, capacity та restore цим зрізом не підтверджено.

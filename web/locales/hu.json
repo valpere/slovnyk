@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "a többnyelvű szótár",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "A nyelvkatalógus átmenetileg nem érhető el.",
     "pair_unavailable": "A mentett nyelvpár nem érhető el. Válasszon nyelvpárt.",
     "count": "Fordítások",
-    "home": "Főoldal"
+    "home": "Főoldal",
+    "downloads": "Szótárak letöltése",
+    "version": "Verzió",
+    "bytes": "Bájt",
+    "download": "Letöltés",
+    "downloads_unavailable": "A letöltések átmenetileg nem érhetők el. Próbálja újra.",
+    "file_not_found": "A fájl nem található."
   }
 }

@@ -162,7 +162,8 @@ publish, changed parameters/anchors, key rotation, long fields/byte budget
 у `internal/ops/`; `/`, `/search`, HTML/plain, validation precedence, escaping,
 1 MiB body guard і спільний acquisition/SQL deadline. Наступний зріз додає
 каталог, 31 AI-draft UI catalog, cookies та пропозицію пари без JS.
-SEO/downloads, мовне приймання OQ-06 та фінальне FR-05 ще відкриті.
+Version-pinned synthetic downloads реалізовані наступним зрізом
+([контракт](DOWNLOAD_CONTRACT.md)). SEO, мовне приймання OQ-06 та фінальне FR-05 ще відкриті.
 
 - Додати `/`, `/search`, `/languages`, `/downloads` та version-pinned artifact handler;
   HTML без JS і `format=plain` за контрактом. UI — лаконічний пошуковий інструмент за FR-05; конкретні макети ще не погоджено.

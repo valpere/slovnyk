@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Πολύγλωσσο λεξικό",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Ο κατάλογος γλωσσών δεν είναι προσωρινά διαθέσιμος.",
     "pair_unavailable": "Το αποθηκευμένο ζεύγος δεν είναι διαθέσιμο. Επιλέξτε ζεύγος.",
     "count": "Μεταφράσεις",
-    "home": "Αρχική"
+    "home": "Αρχική",
+    "downloads": "Λήψη λεξικών",
+    "version": "Έκδοση",
+    "bytes": "Byte",
+    "download": "Λήψη",
+    "downloads_unavailable": "Οι λήψεις δεν είναι προσωρινά διαθέσιμες. Δοκιμάστε ξανά.",
+    "file_not_found": "Το αρχείο δεν βρέθηκε."
   }
 }

@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "vícejazyčný slovník",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Seznam jazyků je dočasně nedostupný.",
     "pair_unavailable": "Uložená jazyková dvojice není dostupná. Vyberte dvojici.",
     "count": "Překlady",
-    "home": "Domů"
+    "home": "Domů",
+    "downloads": "Stažení slovníků",
+    "version": "Verze",
+    "bytes": "Bajty",
+    "download": "Stáhnout",
+    "downloads_unavailable": "Stahování je dočasně nedostupné. Zkuste to znovu.",
+    "file_not_found": "Soubor nebyl nalezen."
   }
 }

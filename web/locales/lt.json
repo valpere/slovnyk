@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Daugiakalbis žodynas",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Kalbų katalogas laikinai nepasiekiamas.",
     "pair_unavailable": "Išsaugota kalbų pora nepasiekiama. Pasirinkite porą.",
     "count": "Vertimai",
-    "home": "Pradžia"
+    "home": "Pradžia",
+    "downloads": "Žodynų atsisiuntimas",
+    "version": "Versija",
+    "bytes": "Baitai",
+    "download": "Atsisiųsti",
+    "downloads_unavailable": "Atsisiuntimai laikinai nepasiekiami. Bandykite dar kartą.",
+    "file_not_found": "Failas nerastas."
   }
 }

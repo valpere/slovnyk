@@ -216,7 +216,9 @@ IMPORT_CONTRACT; готові versioned artifacts не перезаписуют�
 Для кожної наявної напрямленої пари доступний окремий CSV.gz; загальний
 архів корпусу не потрібен. Це не обмежує внутрішню організацію backups.
 `GET /downloads` показує manifest активного набору; файл видається за непрозорим
-ID, не за довільним path. `Content-Disposition: attachment`, тип gzip; SHA-256
+ID, не за довільним path. Реалізовано `/downloads/<dataset-id>/<export-id>`
+для published ready/retained наборів; [DOWNLOAD_CONTRACT](DOWNLOAD_CONTRACT.md)
+визначає pin, readiness, ranges/cache та streaming limits. `Content-Disposition: attachment`, тип gzip; SHA-256
 та logical record count доступні поруч. Export CSV4 є сумісним обміном перекладів,
 а не повним backup метаданих. Відсутня пара → 404. Права на словникові дані підтверджені власником (OQ-05 закрито); окремий
 rights gate для публічного доступу не потрібен. M1 використовує синтетичні fixtures

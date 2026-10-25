@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Многоезичен речник",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Каталогът с езици временно е недостъпен.",
     "pair_unavailable": "Запазената езикова двойка е недостъпна. Изберете двойка.",
     "count": "Преводи",
-    "home": "Начало"
+    "home": "Начало",
+    "downloads": "Изтегляне на речници",
+    "version": "Версия",
+    "bytes": "Байтове",
+    "download": "Изтегляне",
+    "downloads_unavailable": "Изтеглянето временно не е достъпно. Опитайте отново.",
+    "file_not_found": "Файлът не е намерен."
   }
 }

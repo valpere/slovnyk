@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "słownik wielojęzyczny",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Katalog języków jest tymczasowo niedostępny.",
     "pair_unavailable": "Zapisana para języków jest niedostępna. Wybierz parę.",
     "count": "Tłumaczenia",
-    "home": "Strona główna"
+    "home": "Strona główna",
+    "downloads": "Pobieranie słowników",
+    "version": "Wersja",
+    "bytes": "Bajty",
+    "download": "Pobierz",
+    "downloads_unavailable": "Pobieranie jest chwilowo niedostępne. Spróbuj ponownie.",
+    "file_not_found": "Nie znaleziono pliku."
   }
 }
