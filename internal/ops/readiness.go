@@ -7,6 +7,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 	"github.com/valpere/slovnyk/internal/publication"
+	"github.com/valpere/slovnyk/internal/sitemaps"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
 )
 
@@ -64,6 +65,9 @@ func startReadiness(ctx context.Context, cfg Config) *readiness {
 				} else if current != cached {
 					state.ready.Store(false)
 					checked, err := publication.CheckActive(ctx, c, cfg.ArtifactRoot)
+					if err == nil {
+						err = sitemaps.Check(ctx, c, cfg.ArtifactRoot, checked.Dataset)
+					}
 					if err != nil {
 						closeDB()
 					} else {

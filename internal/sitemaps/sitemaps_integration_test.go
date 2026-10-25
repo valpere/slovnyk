@@ -20,6 +20,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/valpere/slovnyk/internal/entries"
 	"github.com/valpere/slovnyk/internal/importdata"
 	"github.com/valpere/slovnyk/internal/importer"
@@ -109,6 +110,9 @@ func TestReadyDatasetDiscovery(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	if _, err := Resolve(ctx, connect("slovnyk_http"), staged.Dataset, result.Shards[0].Artifact.SHA256); !errors.Is(err, ErrNotFound) {
+		t.Fatalf("unpublished sitemap exposed: %v", err)
+	}
 	// Independently construct expected identities from raw fields in the fixture;
 	// SQL DISTINCT must collapse translations of the same raw source and pair.
 	expected := map[string]bool{}
@@ -160,4 +164,62 @@ func TestReadyDatasetDiscovery(t *testing.T) {
 	if err != nil || !reflect.DeepEqual(repeat, result) {
 		t.Fatalf("publication changed sitemap bytes: %v", err)
 	}
+	activeRef, err := Resolve(ctx, connect("slovnyk_http"), "", "")
+	if err != nil || activeRef != result.Index {
+		t.Fatalf("active index: %+v %v", activeRef, err)
+	}
+	shardRef, err := Resolve(ctx, connect("slovnyk_http"), staged.Dataset, result.Shards[0].Artifact.SHA256)
+	if err != nil || shardRef != result.Shards[0].Artifact {
+		t.Fatalf("registered shard: %+v %v", shardRef, err)
+	}
+	if err := Check(ctx, connect("slovnyk_http"), root, staged.Dataset); err != nil {
+		t.Fatal(err)
+	}
+	path := filepath.Join(root, shardRef.Path)
+	original := artifactBytes(t, store, shardRef)
+	if err := os.Chmod(path, 0600); err != nil {
+		t.Fatal(err)
+	}
+	changed := append([]byte(nil), original...)
+	changed[len(changed)-1] ^= 1
+	if err := os.WriteFile(path, changed, 0600); err != nil {
+		t.Fatal(err)
+	}
+	if err := Check(ctx, connect("slovnyk_http"), root, staged.Dataset); err == nil {
+		t.Fatal("same-size corrupt shard accepted")
+	}
+	if err := os.WriteFile(path, original, 0440); err != nil {
+		t.Fatal(err)
+	}
+	expectCode := func(c *pgx.Conn, code, sql string, args ...any) {
+		t.Helper()
+		_, err := c.Exec(ctx, sql, args...)
+		var pe *pgconn.PgError
+		if !errors.As(err, &pe) || pe.Code != code {
+			t.Fatalf("SQLSTATE want %s got %v", code, err)
+		}
+	}
+	for _, role := range []string{"slovnyk_http", "slovnyk_operator"} {
+		expectCode(connect(role), "42501", "UPDATE slovnyk.sitemap_inventory SET url_count=url_count WHERE dataset_id=$1", staged.Dataset)
+		expectCode(connect(role), "42501", "DELETE FROM slovnyk.sitemap_shards WHERE dataset_id=$1", staged.Dataset)
+	}
+	expectCode(connect("slovnyk_http"), "42501", `SELECT slovnyk.register_sitemap($1,sha256('report'::bytea),100,sha256('index'::bytea),100,1,'[]'::jsonb)`, staged.Dataset)
+	expectCode(connect("slovnyk_http"), "42501", `INSERT INTO slovnyk.sitemap_shards VALUES($1,sha256('late'::bytea),100,1)`, staged.Dataset)
+	expectCode(connect("slovnyk_operator"), "42501", `INSERT INTO slovnyk.sitemap_shards VALUES($1,sha256('late'::bytea),100,1)`, staged.Dataset)
+	// An interrupted registration must not leave an inventory or public index.
+	m.Source.Authority = "incomplete sitemap inventory"
+	second, err := importer.Run(ctx, connect("slovnyk_operator"), m, input, importer.Options{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := publication.Verify(ctx, connect("slovnyk_operator"), second.Dataset, input, root, publication.Options{}); err != nil {
+		t.Fatal(err)
+	}
+	expectCode(connect("slovnyk_operator"), "23514", `SELECT slovnyk.register_sitemap($1,sha256('report'::bytea),100,sha256('index'::bytea),100,2,
+ '[{"urls":1,"artifact":{"sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","bytes":100}}]'::jsonb)`, second.Dataset)
+	var partial int
+	if err := owner.QueryRow(ctx, "SELECT count(*) FROM slovnyk.sitemap_inventory WHERE dataset_id=$1", second.Dataset).Scan(&partial); err != nil || partial != 0 {
+		t.Fatal("partial inventory committed", err)
+	}
+
 }

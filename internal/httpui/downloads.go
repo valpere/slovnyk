@@ -58,6 +58,7 @@ func (w transferWriter) WriteHeader(status int) {
 	if status >= 400 {
 		w.Header().Del("Content-Disposition")
 		w.Header().Set("Cache-Control", "no-store")
+		w.Header().Set("X-Robots-Tag", "noindex, follow")
 	}
 	w.ResponseWriter.WriteHeader(status)
 }

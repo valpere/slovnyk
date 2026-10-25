@@ -238,8 +238,12 @@ rights gate для публічного доступу не потрібен. M1
 Indexable сторінка читає active dataset; noindex continuation pin-ить retained
 dataset. Операторська `dataset sitemap` pre-generates immutable XML shards,
 index і JSON inventory для explicit ready dataset; storage — shared fsync/no-clobber
-artifact store. Контракт, root-level майбутні URL та межі — [SEO_PLAN](SEO_PLAN.md).
-HTTP serving/inventory registration ще не реалізовані; publication не змінено.
+artifact store. Контракт, root-level URL та межі — [SEO_PLAN](SEO_PLAN.md).
+Schema 3 реєструє inventory після durable files. `/sitemap.xml` resolve-ить
+active index; root-level shard routes дозволяють лише published registered refs,
+включно з retained versions. Metadata має спільний DB budget; file streaming
+окремий bounded admission, без corpus scans. Robots рекламує fixed primary URL.
+Readiness звіряє зареєстровані active файли; inventory поки optional для publication.
 Контракт `/search`, ліміти й pinned cursor залишаються чинними.
 Перевірити discovery, canonical, взаємодію з автолокалізацією та навантаження
 роботів; індексація не може залежати від cookie або JavaScript.

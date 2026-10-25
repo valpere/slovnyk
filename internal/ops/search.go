@@ -12,6 +12,7 @@ import (
 	"github.com/valpere/slovnyk/internal/entries"
 	"github.com/valpere/slovnyk/internal/httpui"
 	"github.com/valpere/slovnyk/internal/lookup"
+	"github.com/valpere/slovnyk/internal/sitemaps"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
 )
 
@@ -23,6 +24,7 @@ type backends struct {
 	downloads httpui.DownloadsFunc
 	export    httpui.ExportFunc
 	entry     httpui.EntryFunc
+	sitemap   httpui.SitemapFunc
 }
 
 // Search, catalog, dictionary pages and download metadata share eight slots. Admission,
@@ -124,5 +126,31 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		defer release()
 		return entries.Read(ctx, c, cfg.CursorSigner, id, cursor)
 	}
-	return backends{search: search, catalog: read, downloads: list, export: open, entry: entry}
+	sitemap := func(parent context.Context, dataset, hash string) (artifacts.Ref, *os.File, error) {
+		if ready == nil || !ready() {
+			return artifacts.Ref{}, nil, lookup.ErrUnavailable
+		}
+		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
+		defer cancel()
+		c, release, err := borrow(ctx)
+		if err != nil {
+			return artifacts.Ref{}, nil, err
+		}
+		ref, err := sitemaps.Resolve(ctx, c, dataset, hash)
+		release()
+		if err != nil {
+			return artifacts.Ref{}, nil, err
+		}
+		store, err := artifacts.Open(cfg.ArtifactRoot)
+		if err != nil {
+			return artifacts.Ref{}, nil, lookup.ErrUnavailable
+		}
+		defer store.Close()
+		f, err := store.Reader(ref)
+		if err != nil {
+			return artifacts.Ref{}, nil, lookup.ErrUnavailable
+		}
+		return ref, f, nil
+	}
+	return backends{search: search, catalog: read, downloads: list, export: open, entry: entry, sitemap: sitemap}
 }

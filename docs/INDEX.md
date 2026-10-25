@@ -65,7 +65,9 @@ canonical і search discovery реалізовані за [SEO_PLAN](SEO_PLAN.md
 Офлайн-генерація sitemap/index для ready dataset реалізована,
 [контракт](SEO_PLAN.md#офлайн-генерація-sitemap),
 [self-review](_assessments/2026-10-25-offline-sitemaps/REPORT.md).
-HTTP sitemap discovery, повний crawl acceptance та production-міграція ще попереду.
+HTTP sitemap discovery та schema 3 inventory реалізовано локально,
+[self-review](_assessments/2026-10-25-http-sitemaps/REPORT.md).
+Повний corpus/crawl acceptance та production-міграція ще попереду.
 M1-08 synthetic наскрізне CLI/HTTP відтворення реалізовано:
 [звіт](_assessments/2026-10-25-service-lifecycle/REPORT.md),
 [команди](../README.md#наскрізне-відтворення-на-порожній-бд).

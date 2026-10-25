@@ -280,7 +280,7 @@ AI-переклади, поки зі статусом `ai-draft`; мовне п�
 пропонує browser → English або English → Ukrainian лише за наявності
 однозначного напрямку; `/search` завжди потребує явної пари. Недоступна
 збережена пара показує підказку вибрати іншу. Словникові сторінки, downloads
-та офлайн-генерацію sitemap описано нижче; HTTP-видача sitemap ще не реалізована.
+та sitemap discovery описано нижче.
 
 `lookup.NewSigner` приймає active key ID і keyring: 1–16 ключів по 32–64 bytes;
 використовуйте випадкові секретні ключі з щонайменше 256 bits entropy.
@@ -341,8 +341,8 @@ retained dataset і має noindex. Cookies/Accept-Language не змінюют�
 Canonical використовує `https://slovnyk.org`, UI визначається source code з
 fallback en. Ручний вибір UI зі статті веде на головну сторінку.
 
-Після оновлення binary виконайте `migrate`: фізична schema version 2 додає
-expression index, не змінюючи V1 manifest/raw data. HTTP не мігрує автоматично.
+Після оновлення binary виконайте `migrate`: schema 2 додає expression index, schema 3 — реєстр sitemap. V1 manifest/raw
+data не змінюються. Поточний binary вимагає schema 3; HTTP не мігрує автоматично.
 `/robots.txt` дозволяє crawling, `/search` залишається noindex. Додатковий
 host `slovnyk.org.ua` отримує 308 на fixed primary origin зі збереженням path
 і query. Налаштування TLS/edge перевіряються при deployment.
@@ -355,7 +355,16 @@ JSON stdout містить inventory та `report` ref; повтор дає ті
 `sitemap_empty_dataset`. Після interruption повторіть команду; можливі orphan
 fragments, cleanup не автоматичний.
 
-Це offline artifacts: HTTP routes та robots discovery ще не підключені,
-publication/readiness їх не вимагають. Повний корпус, SQL sort/temp disk cost,
+Після durable files команда атомарно реєструє inventory в БД. Виконуйте
+verify → sitemap → publish. `/sitemap.xml` видає index активного published dataset
+із no-store, `/sitemap-<dataset-id>-<sha256>.xml` — його зареєстровані shards із
+immutable caching, також для retained версій. Обидва маршрути підтримують
+HEAD/ETag/Range; robots рекламує основний sitemap URL. Без inventory index → 503;
+неопублікований shard → 404. Query-параметри не приймаються.
+
+Inventory optional для наявних datasets: publication його не вимагає, але
+startup/recovery/нова generation перевіряє hashes зареєстрованих active files.
+Файли для HTTP монтуйте read-only; видалення/GC retained artifacts не реалізовано.
+Повний корпус, SQL sort/temp disk cost,
 crawl/resource budget і production acceptance ще відкриті.
 [Контракт, формат та джерела](docs/SEO_PLAN.md).

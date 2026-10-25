@@ -30,6 +30,7 @@ import (
 	"github.com/valpere/slovnyk/internal/importdata"
 	"github.com/valpere/slovnyk/internal/importer"
 	"github.com/valpere/slovnyk/internal/publication"
+	"github.com/valpere/slovnyk/internal/sitemaps"
 )
 
 func cleanEnv() []string {
@@ -261,6 +262,7 @@ func TestServiceLifecycle(t *testing.T) {
 	}
 	manifest.Locales = []string{"en-us", "uk-ua"}
 	manifest.ExpectedPairs = []importdata.Pair{{From: "en-us", To: "uk-ua"}}
+	sitemapReports := map[string]sitemaps.Result{}
 	stage := func(name string) publication.Report {
 		t.Helper()
 		input := filepath.Join(dir, name)
@@ -305,6 +307,12 @@ func TestServiceLifecycle(t *testing.T) {
 		if e = json.Unmarshal(cli(0, operatorEnv, "dataset", "verify", imported.Dataset, "--source", input, "--artifacts", artifactRoot), &verified); e != nil || verified.Unique != 53 || verified.Rejected != 0 || len(verified.Pairs) != 1 {
 			t.Fatal("invalid verification report")
 		}
+		var sitemap sitemaps.Result
+		if e = json.Unmarshal(cli(0, operatorEnv, "dataset", "sitemap", imported.Dataset, "--artifacts", artifactRoot), &sitemap); e != nil || sitemap.URLs != 1 || len(sitemap.Shards) != 1 {
+			t.Fatal("sitemap CLI inventory", e)
+		}
+		sitemapReports[verified.Dataset] = sitemap
+
 		return verified
 	}
 	publish := func(command string, r publication.Report, generation int64, want int) {
@@ -319,8 +327,26 @@ func TestServiceLifecycle(t *testing.T) {
 			t.Fatal("wrong CAS failure")
 		}
 	}
+	checkSitemap := func(dataset string) {
+		t.Helper()
+		inventory := sitemapReports[dataset]
+		waitStatus(200)
+		index, headers := get("/sitemap.xml", 200)
+		sum := sha256.Sum256(index)
+		if hex.EncodeToString(sum[:]) != inventory.Index.SHA256 || headers.Get("Cache-Control") != "no-store" {
+			t.Fatal("active sitemap index")
+		}
+		shard := inventory.Shards[0]
+		body, headers := get("/sitemap-"+dataset+"-"+shard.Artifact.SHA256+".xml", 200)
+		sum = sha256.Sum256(body)
+		if hex.EncodeToString(sum[:]) != shard.Artifact.SHA256 || !strings.Contains(string(body), "https://slovnyk.org/word/") || !strings.Contains(headers.Get("Cache-Control"), "immutable") {
+			t.Fatal("pinned sitemap shard")
+		}
+	}
 	a := stage("A")
+	get("/sitemap-"+a.Dataset+"-"+sitemapReports[a.Dataset].Shards[0].Artifact.SHA256+".xml", 503)
 	publish("publish", a, 0, 0)
+	checkSitemap(a.Dataset)
 	waitReady()
 	search := "/search?from=en-us&to=uk-ua&q=flow-private-word&limit=1&format=plain&ui=en"
 	first, _ := get(search, 200)
@@ -382,8 +408,11 @@ func TestServiceLifecycle(t *testing.T) {
 	get("/languages", 200)
 	get(search+"&cursor=invalid", 400)
 	b := stage("B")
+	get("/sitemap-"+b.Dataset+"-"+sitemapReports[b.Dataset].Shards[0].Artifact.SHA256+".xml", 404)
 	publish("publish", b, 0, 1)
 	publish("publish", b, 1, 0)
+	checkSitemap(b.Dataset)
+	get("/sitemap-"+a.Dataset+"-"+sitemapReports[a.Dataset].Shards[0].Artifact.SHA256+".xml", 200)
 	waitReady()
 	active, _ := get(search, 200)
 	if !bytes.Contains(active, []byte("B translation 000")) {
@@ -405,6 +434,7 @@ func TestServiceLifecycle(t *testing.T) {
 		t.Fatal("retained download changed")
 	}
 	publish("rollback", a, 2, 0)
+	checkSitemap(a.Dataset)
 	waitReady()
 	restored, _ := get(search, 200)
 	if !bytes.Equal(first, restored) {
@@ -425,6 +455,7 @@ func TestServiceLifecycle(t *testing.T) {
 	waitStatus(503)
 	get("/healthz", 200)
 	get(search, 503)
+	get("/sitemap.xml", 503)
 	if _, err = admin.Exec(ctx, "ALTER DATABASE "+pgx.Identifier{db}.Sanitize()+" ALLOW_CONNECTIONS true"); err != nil {
 		t.Fatal("cannot restore isolated database connections")
 	}
@@ -436,11 +467,31 @@ func TestServiceLifecycle(t *testing.T) {
 	stop()
 	base, stop = start()
 	waitReady()
+	checkSitemap(a.Dataset)
 	restarted, _ := get(nextA, 200)
 	if !bytes.Equal(retained, restarted) {
 		t.Fatal("restart lost cursor/keyring or retained data")
 	}
 	download(fileURL, a.Pairs[0])
 	stop()
-	t.Log("PASS: empty DB → CLI migrate/import/verify/publish A → real HTTP exact/mask/word/download → stale CAS rejection → publish B → retained A → rollback A → DB outage/recovery → process restart; restricted LOGINs and private query logs checked")
+	// A same-size corrupt registered shard must block readiness on restart.
+	shardPath := filepath.Join(artifactRoot, sitemapReports[a.Dataset].Shards[0].Artifact.Path)
+	corrupt, err := os.ReadFile(shardPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	corrupt[len(corrupt)-1] ^= 1
+	if err := os.Chmod(shardPath, 0600); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(shardPath, corrupt, 0600); err != nil {
+		t.Fatal(err)
+	}
+	base, stop = start()
+	get("/healthz", 200)
+	time.Sleep(1200 * time.Millisecond)
+	get("/readyz", 503)
+	get("/sitemap.xml", 503)
+	stop()
+	t.Log("PASS: empty DB → CLI migrate/import/verify/publish A → real HTTP exact/mask/word/download/sitemap → stale CAS rejection → publish B → retained A → rollback A → DB outage/recovery → process restart; restricted LOGINs and private query logs checked")
 }

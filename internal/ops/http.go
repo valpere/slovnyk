@@ -51,7 +51,7 @@ func Run(ctx context.Context, cfg Config, logger *slog.Logger) error {
 	mux.Handle("/healthz", probes)
 	mux.Handle("/readyz", probes)
 	backend := httpBackends(cfg, status.ready.Load)
-	mux.Handle("/", httpui.New(backend.search, cfg.CursorSigner, httpui.WithCatalog(backend.catalog), httpui.WithDownloads(backend.downloads, backend.export), httpui.WithEntries(backend.entry)))
+	mux.Handle("/", httpui.New(backend.search, cfg.CursorSigner, httpui.WithCatalog(backend.catalog), httpui.WithDownloads(backend.downloads, backend.export), httpui.WithEntries(backend.entry), httpui.WithSitemaps(backend.sitemap)))
 	server := &http.Server{
 		Handler:           httpui.LimitTarget(mux),
 		ReadHeaderTimeout: 5 * time.Second,
