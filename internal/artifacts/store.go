@@ -96,7 +96,7 @@ func (s *Store) hit(point string) error {
 // suffix are service-generated identities, never arbitrary HTTP parameters.
 func (s *Store) Install(ctx context.Context, dir, suffix string, write func(io.Writer) error) (Ref, error) {
 	var ref Ref
-	if !valid(dir) || (suffix != ".csv.gz" && suffix != ".json") {
+	if !valid(dir) || (suffix != ".csv.gz" && suffix != ".json" && suffix != ".xml") {
 		return ref, ErrArtifact
 	}
 	if e := s.mkdir(dir); e != nil {

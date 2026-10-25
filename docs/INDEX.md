@@ -61,8 +61,11 @@ M1-07 in progress: HTTP-пошук і bounded HTML/plain UI реалізован
 [звіт](_assessments/2026-10-24-catalog-localization/REPORT.md).
 Version-pinned synthetic downloads також реалізовано,
 [звіт](_assessments/2026-10-24-downloads/REPORT.md). Synthetic SEO pages,
-canonical і search discovery реалізовані за [SEO_PLAN](SEO_PLAN.md);
-повний sitemap/crawl acceptance та production-міграція ще попереду.
+canonical і search discovery реалізовані за [SEO_PLAN](SEO_PLAN.md).
+Офлайн-генерація sitemap/index для ready dataset реалізована,
+[контракт](SEO_PLAN.md#офлайн-генерація-sitemap),
+[self-review](_assessments/2026-10-25-offline-sitemaps/REPORT.md).
+HTTP sitemap discovery, повний crawl acceptance та production-міграція ще попереду.
 M1-08 synthetic наскрізне CLI/HTTP відтворення реалізовано:
 [звіт](_assessments/2026-10-25-service-lifecycle/REPORT.md),
 [команди](../README.md#наскрізне-відтворення-на-порожній-бд).

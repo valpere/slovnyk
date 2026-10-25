@@ -407,3 +407,26 @@ fault scenarios відтворено в одному process-level lifecycle.
 Немає browser/capacity/full corpus/off-host restore/production acceptance;
 M1-07 мовне/дизайн-приймання та full SEO discovery відкриті. Цей зріз не
 закриває всі AT і не змінює вимоги.
+
+## M1-07 — офлайн sitemap, 2026-10-25
+
+FR-14 / AT-19 offline subset; HTTP discovery та full-corpus acceptance відкриті.
+
+| Покрита частина | Фактичні перевірки |
+|---|---|
+| XML, limits, identity | `internal/sitemaps/sitemaps_test.go: TestShardBoundariesAndDeterminism`: 1/50 000/50 001 URL, namespace, fixed canonical URLs/root-level shard links, counts, bytes/SHA, durable manifest, deterministic retry зі збереженням inode |
+| Failure/retry | `TestIncompleteStreamsNeverCommitReport`: empty/invalid/duplicate/decreasing IDs, iterator failure, cancellation, shard limit → без success/report/temp files; `TestCorruptExistingShardFailsClosed`: corrupt existing shard відхиляється без overwrite |
+| SQL та state | `internal/sitemaps/sitemaps_integration_test.go: TestReadyDatasetDiscovery`: operator role, validating/unknown/invalid rejection, ready pre-publication, raw case/NFC/spaces/pair identities, кілька translations → один URL, unchanged active/generation, незмінний результат після publish |
+| CLI та CI | `cmd/slovnyk/import_integration_test.go: TestDatasetCLI`: verify/export/sitemap із JSON dataset; `TestDatasetArgumentsAndSecrets`: invalid flags/DSN без витоку; `tests/postgres.sh` запускає sitemap suite у disposable DB |
+
+`make build check test test-race test-smoke`,
+`go vet -tags integration ./internal/sitemaps ./cmd/slovnyk` та
+`make test-integration` — **PASS**, exit 0. Фінальна integration перевірка
+включає buffered writes/root-level links та весь попередній lifecycle suite.
+Перша fixture не мала різних translations одного source; її замінено спеціальними
+synthetic records, не послабленням dedup assertion. Logs:
+`tmp/offline-sitemaps-checks.log`, `tmp/offline-sitemaps-final-integration.log`
+(ignored). Локальний PostgreSQL 17.11; runner прибрав container/network/volume.
+[Self-review](_assessments/2026-10-25-offline-sitemaps/REPORT.md).
+Повний SQL sort/temp-disk cost, crawler load, HTTP serving, publication inventory
+і production acceptance не перевірені; M1-07 in progress.

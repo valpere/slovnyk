@@ -25,6 +25,7 @@ SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/importer -count=1 -
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/publication -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/lookup -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/entries -count=1 -v
+SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/sitemaps -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/ops -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./cmd/slovnyk -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -race -tags integration ./tests/serviceflow -count=1 -v

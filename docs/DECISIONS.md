@@ -595,3 +595,16 @@ M1-08 synthetic verification done, M1-07 in progress; повне прийман�
 мовні/дизайн рішення, sitemap/crawl, M2 corpus та M3 deployment ще відкриті.
 Нових продуктових рішень цей test slice не вводить.
 [Результати й self-review](_assessments/2026-10-25-service-lifecycle/REPORT.md).
+
+## M1-07: offline sitemap artifacts — 2026-10-25
+
+Технічний зріз FR-14 / AT-19: `dataset sitemap` генерує DISTINCT stable raw
+entry URLs для explicit ready dataset, до publication. Детерміновані UTF-8
+XML shards/index та JSON inventory використовують existing durable artifact store.
+Root-level майбутні shard URLs забезпечують scope `/word/`; fixed primary origin,
+без cursor/UI query або вигаданого lastmod. Порожній dataset відхиляється;
+на збій немає success report, orphan fragments допускаються для retry.
+Це реалізаційне рішення в межах затвердженого SEO, не нове продуктове погодження.
+HTTP discovery, DB inventory registration, publication/readiness gate, retention,
+full-corpus/crawler capacity залишаються наступними задачами; M1-07 не закрито.
+[Контракт](SEO_PLAN.md), [self-review](_assessments/2026-10-25-offline-sitemaps/REPORT.md).
