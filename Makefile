@@ -35,3 +35,4 @@ dev-db-down:
 
 utilities:
 	$(GO) build -trimpath -o bin/prepare-artifacts ./utilities/prepare-artifacts
+	$(GO) build -trimpath -o bin/prepare-csv-manifest ./utilities/prepare-csv-manifest

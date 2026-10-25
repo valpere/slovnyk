@@ -227,6 +227,10 @@ README містить відтворювані команди; [звіт](_asses
 ## Поза M1 та відкриті рішення
 
 M2: повний audit реального CSV-корпусу, імпорт і повна міграційна звірка.
+Preparation subset 2026-10-25: Go `utilities/prepare-csv-manifest` і окрема
+immutable копія 992 CSV.gz; hashes/bytes звірені з попереднім audit, manifest
+підготовлено без нового full-corpus inspect/Go PostgreSQL import.
+[Evidence](_assessments/2026-10-25-csv-manifest/REPORT.md). Це не M2 done.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

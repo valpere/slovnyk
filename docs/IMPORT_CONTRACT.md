@@ -181,3 +181,17 @@ duplicate artifact hashes, repeated tuple з різним metadata, hash collisi
 retry після кожного batch, retry validating, stale publish/rollback та ABA.
 Для DB adapter: NULL/0/negative metadata, timestamp без timezone, schema mismatch.
 Це додаткові критерії AT-06–11/18, не твердження про пройдені тести.
+
+## Підготовка manifest для плаского legacy CSV snapshot
+
+`utilities/prepare-csv-manifest` на Go готує канонічний V1 manifest для вже
+незмінної директорії regular files `slovnyk_<from>_<to>.csv.gz`; це окремий
+operator tool, не новий допустимий layout для всіх manifests. Інші layout та
+multi-pair artifacts залишаються допустимими за контрактом і потребують окремої
+підготовки manifest. [Команда й обмеження](../utilities/README.md#підготовка-csv-manifest).
+
+Hash/size беруться з compressed bytes; filename pair — очікування, не доказ
+contents. Утиліта не декомпресує файли, не створює exceptions і не позначає
+набір ready. Після підготовки обов'язковий `import inspect` з тим самим snapshot,
+а для publication — звичайні staged import/verify. Наявність manifest не схвалює
+rejections або відсутні історичні metadata. Snapshot date не виводиться з mtime.

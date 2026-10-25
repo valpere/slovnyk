@@ -25,6 +25,14 @@ CSV наповнює нову БД; DDL використовується для 
 Результат: source manifest з hashes, форматами, датою snapshot (або unknown),
 правами на дані, відомими прогалинами й погодженим scope. Старі файли readonly.
 
+Для відтворюваної підготовки V1 manifest існує Go utility
+[prepare-csv-manifest](../utilities/README.md#підготовка-csv-manifest): hashes/bytes
+і filename expectations для окремої замороженої пласкої копії CSV.gz.
+Snapshot date лишається unknown, якщо точна дата невідома. Після inventory
+потрібен окремий `import inspect`; manifest не є validation report.
+[Фактична репетиція](_assessments/2026-10-25-csv-manifest/REPORT.md) звірила всі
+992 compressed hashes/bytes, без імпорту у нову PostgreSQL БД.
+
 ## 2. Повний аудит
 
 Структурну частину виконано 2026-10-24: 992 файли, 56 455 068 різних

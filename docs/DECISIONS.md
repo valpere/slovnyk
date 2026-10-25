@@ -668,3 +668,18 @@ types належать новому owner, restricted HTTP/operator та SECURIT
 secret/config recovery, full-corpus capacity, RPO/retention і RTO залишаються
 відкритими. [Evidence/self-review](_assessments/2026-10-25-fresh-cluster-restore/REPORT.md),
 [процедура](BACKUP_RESTORE.md). Oracle/legacy/реальні дані не задіяні.
+
+## Підготовка CSV manifest, 2026-10-25
+
+M2 preparation subset: `utilities/prepare-csv-manifest` створює канонічний V1
+manifest із hashes/bytes і filename pair expectations для замороженої пласкої
+CSV.gz копії. Це operator utility на Go, не посіпака; content validation лишається
+окремим `import inspect`. Exceptions не створюються; unknown snapshot date і
+metadata не заповнюються вигаданими значеннями.
+
+Фактична копія 992 CSV.gz у `data/experiments/csv-manifest-2026-10-25/` звірена
+за hashes/bytes з аудитом 2026-10-24; 32 locales/992 pairs. Окремий legacy ZIP
+побайтово дублює один gzip після decompression; збережений без змін, доказ у
+[звіті](_assessments/2026-10-25-csv-manifest/REPORT.md). Utility відхиляє сторонні
+файли, а не ігнорує їх. Full-corpus inspect/Go PostgreSQL import, verify,
+publication і M1 UI/мовне acceptance залишаються відкритими. Oracle не задіяний.

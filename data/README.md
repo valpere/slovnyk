@@ -32,3 +32,19 @@
 `go run ./utilities/prepare-artifacts data/artifacts`. Ready/publication зберігають
 посилання сюди; не очищати разом із `tmp/`, не змінювати final bytes, GC вимкнений.
 HTTP отримує read-only mount. Backup має включати БД і всі referenced artifacts.
+
+## Manifest репетиції CSV snapshot
+
+`experiments/csv-manifest-2026-10-25/` містить окрему regular-file копію 992
+CSV.gz у `snapshot/` (535 766 648 compressed bytes) і приватний `manifest.json`
+нової Go utility. Hashes/bytes усіх файлів збігаються з аудитом 2026-10-24.
+Fingerprint `ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01`.
+Snapshot date — `unknown`; mtime не використано як дату даних. Копію та manifest
+не перезаписувати; нова версія snapshot/метаданих потребує нового місця.
+
+У legacy directory також є `slovnyk_en-us_pl-pl.csv.zip`: його єдиний CSV має
+той самий SHA-256 decompressed bytes, що відповідний CSV.gz. ZIP залишився
+у legacy; новий snapshot має явний формат CSV4.gz. Жодних унікальних даних цим
+вибором не вилучено. [Доказ і межі](../docs/_assessments/2026-10-25-csv-manifest/REPORT.md).
+Це лише inventory: новий full-corpus inspect, PostgreSQL import, verify та
+publication не виконано. CSV contents у Git не входять.

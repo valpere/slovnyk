@@ -30,6 +30,7 @@ jobs:
           CI_DIFF_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: ./tests/check-patch.sh "$CI_DIFF_BASE"
       - run: make check
+      - run: make utilities
       - run: make test
       - run: make test-race
       - run: make test-smoke

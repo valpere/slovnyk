@@ -1,0 +1,11 @@
+{
+  "zip_sha256": "e09dd4c444c99688bcac65538f30c83e4a373afdac2d4d62b4b951c86cacb24b",
+  "zip_members": [
+    [
+      "slovnyk_en-us_pl-pl.csv",
+      "55d4600cc6fc1c882ee7bcf37c59cbcaa51dedf11fe6aa74cbc47c8d6862e596"
+    ]
+  ],
+  "gzip_decompressed_sha256": "55d4600cc6fc1c882ee7bcf37c59cbcaa51dedf11fe6aa74cbc47c8d6862e596",
+  "identical": true
+}

@@ -516,3 +516,24 @@ containers/networks/volumes прибрані. Logs: `tmp/fresh-cluster-restore/c
 [Self-review](_assessments/2026-10-25-fresh-cluster-restore/REPORT.md),
 [процедура](BACKUP_RESTORE.md). Off-host transfer/durability, secure keyring/config
 recovery, full-corpus capacity, RPO/retention і RTO <=24 h не доведені.
+
+## FR-07/08 — підготовка CSV manifest, 2026-10-25
+
+M2 preparation subset, без зміни ready/publication contract.
+
+| Покрита частина | Фактична перевірка |
+|---|---|
+| V1 identity/inspect interoperability | `utilities/prepare-csv-manifest/main_test.go: TestManifestRoundTripInspectAndDeterminism`: canonical file SHA=fingerprint, інший root/order → ті самі bytes; generated manifest проходить actual `importer.Inspect`, збережені `en-gb/en-us`, `eo-xx/la-va`, self-pair, Unicode/quoted CRLF |
+| Input boundaries | `TestInventoryRejectsUnsafeAndAmbiguousInputs`: порожня директорія, сторонній файл, subdirectory, symlink, FIFO, empty file, ambiguous filename, duplicate hash відхиляються |
+| Inventory ≠ content validation | `TestInventoryDoesNotClaimContentValidation`: non-gzip, pair mismatch, corrupt trailer можна inventory за bytes/hash; наступний actual inspect виявляє failure/rejection |
+| CLI/output safety | `TestCLIOutputIsExclusiveAndOutsideSource`: private canonical output, `content_verified=false`, existing bytes не перезаписуються; source output через alias відхилений; invalid metadata/usage без output або витоку аргументів |
+| Corpus metadata | Built utility: 992 CSV.gz у новій local copy, 535 766 648 bytes, 32 locales/992 pairs; усі compressed SHA/bytes збігаються з audit 2026-10-24; додатковий ZIP має тотожні одному gzip decompressed bytes |
+
+`make build utilities check test test-race test-smoke` — **PASS**, exit 0.
+Після уточнення порядку fixtures: `go test -race
+./utilities/prepare-csv-manifest -count=1 -v` і `make check` — **PASS**, exit 0.
+[Report і corpus metadata](_assessments/2026-10-25-csv-manifest/REPORT.md).
+Local PostgreSQL integration не повторено: runtime/schema/SQL не змінено;
+чинний CI job зберігається. Новий full-corpus inspect, staged PostgreSQL import,
+reconciliation, semantic/historical completeness не доведені. FR-07/08 цілком
+не закриті підготовкою manifest; fingerprint не означає схвалення втрат.
