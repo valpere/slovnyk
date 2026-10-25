@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "многоязычный словарь",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Каталог языков временно недоступен.",
     "pair_unavailable": "Сохранённая языковая пара недоступна. Выберите пару.",
     "count": "Переводы",
-    "home": "Начало"
+    "home": "Начало",
+    "downloads": "Загрузка словарей",
+    "version": "Версия",
+    "bytes": "Байты",
+    "download": "Скачать",
+    "downloads_unavailable": "Загрузки временно недоступны. Попробуйте позже.",
+    "file_not_found": "Файл не найден."
   }
 }

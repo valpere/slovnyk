@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Višejezični rječnik",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Popis jezika privremeno nije dostupan.",
     "pair_unavailable": "Spremljeni jezični par nije dostupan. Odaberite par.",
     "count": "Prijevodi",
-    "home": "Početna"
+    "home": "Početna",
+    "downloads": "Preuzimanje rječnika",
+    "version": "Verzija",
+    "bytes": "Bajtovi",
+    "download": "Preuzmi",
+    "downloads_unavailable": "Preuzimanja su privremeno nedostupna. Pokušajte ponovno.",
+    "file_not_found": "Datoteka nije pronađena."
   }
 }

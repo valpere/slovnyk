@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Dictionarium multilingue",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Index linguarum ad tempus non praesto est.",
     "pair_unavailable": "Par linguarum servatum non praesto est. Par elige.",
     "count": "Versiones",
-    "home": "Initium"
+    "home": "Initium",
+    "downloads": "Dictionaria detrahenda",
+    "version": "Versio",
+    "bytes": "Octeti",
+    "download": "Detrahe",
+    "downloads_unavailable": "Detractio ad tempus non praesto est. Iterum tempta.",
+    "file_not_found": "Fasciculus non inventus est."
   }
 }

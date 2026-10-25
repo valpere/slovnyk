@@ -2,23 +2,33 @@ package ops
 
 import (
 	"context"
+	"os"
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/valpere/slovnyk/internal/artifacts"
 	"github.com/valpere/slovnyk/internal/catalog"
+	"github.com/valpere/slovnyk/internal/downloads"
 	"github.com/valpere/slovnyk/internal/httpui"
 	"github.com/valpere/slovnyk/internal/lookup"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
 )
 
-func searchBackend(cfg Config) httpui.SearchFunc { search, _ := httpBackends(cfg); return search }
+func searchBackend(cfg Config) httpui.SearchFunc { return httpBackends(cfg, nil).search }
 
-// Search and catalog share eight dedicated connection slots. Admission,
+type backends struct {
+	search    httpui.SearchFunc
+	catalog   httpui.CatalogFunc
+	downloads httpui.DownloadsFunc
+	export    httpui.ExportFunc
+}
+
+// Search, catalog and download metadata share eight connection slots. Admission,
 // connection establishment and SQL honor the caller's outer two-second budget.
-func httpBackends(cfg Config) (httpui.SearchFunc, httpui.CatalogFunc) {
+func httpBackends(cfg Config, ready func() bool) backends {
 	service, err := lookup.New(cfg.CursorSigner)
 	if err != nil || cfg.HTTPDSN == "" {
-		return nil, nil
+		return backends{}
 	}
 	slots := make(chan struct{}, 8)
 	borrow := func(ctx context.Context) (*pgx.Conn, func(), error) {
@@ -60,5 +70,44 @@ func httpBackends(cfg Config) (httpui.SearchFunc, httpui.CatalogFunc) {
 		defer release()
 		return catalog.Read(ctx, c, dataset)
 	}
-	return search, read
+	list := func(parent context.Context) (downloads.Manifest, error) {
+		if ready == nil || !ready() {
+			return downloads.Manifest{}, lookup.ErrUnavailable
+		}
+		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
+		defer cancel()
+		c, release, err := borrow(ctx)
+		if err != nil {
+			return downloads.Manifest{}, err
+		}
+		defer release()
+		return downloads.List(ctx, c)
+	}
+	open := func(parent context.Context, dataset, id string) (downloads.Export, *os.File, error) {
+		if ready == nil || !ready() {
+			return downloads.Export{}, nil, lookup.ErrUnavailable
+		}
+		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
+		defer cancel()
+		c, release, err := borrow(ctx)
+		if err != nil {
+			return downloads.Export{}, nil, err
+		}
+		e, err := downloads.Resolve(ctx, c, dataset, id)
+		release() // Streaming must not hold a database connection slot.
+		if err != nil {
+			return downloads.Export{}, nil, err
+		}
+		store, err := artifacts.Open(cfg.ArtifactRoot)
+		if err != nil {
+			return downloads.Export{}, nil, lookup.ErrUnavailable
+		}
+		defer store.Close()
+		f, err := store.Reader(e.Artifact)
+		if err != nil {
+			return downloads.Export{}, nil, lookup.ErrUnavailable
+		}
+		return e, f, nil
+	}
+	return backends{search: search, catalog: read, downloads: list, export: open}
 }

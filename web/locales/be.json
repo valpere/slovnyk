@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "шматмоўны слоўнік",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Каталог моў часова недаступны.",
     "pair_unavailable": "Захаваная моўная пара недаступная. Выберыце пару.",
     "count": "Пераклады",
-    "home": "Пачатак"
+    "home": "Пачатак",
+    "downloads": "Спампаванне слоўнікаў",
+    "version": "Версія",
+    "bytes": "Байты",
+    "download": "Спампаваць",
+    "downloads_unavailable": "Спампаванне часова недаступнае. Паспрабуйце пазней.",
+    "file_not_found": "Файл не знойдзены."
   }
 }

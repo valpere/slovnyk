@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Flerspråkig ordbok",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Språkkatalogen är tillfälligt otillgänglig.",
     "pair_unavailable": "Ditt sparade språkpar är inte tillgängligt. Välj ett språkpar.",
     "count": "Översättningar",
-    "home": "Hem"
+    "home": "Hem",
+    "downloads": "Ladda ned ordböcker",
+    "version": "Version",
+    "bytes": "Byte",
+    "download": "Ladda ned",
+    "downloads_unavailable": "Nedladdningar är tillfälligt otillgängliga. Försök igen.",
+    "file_not_found": "Filen hittades inte."
   }
 }

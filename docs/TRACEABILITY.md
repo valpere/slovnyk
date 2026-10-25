@@ -332,3 +332,25 @@ M1-07 загалом залишається in progress.
 uk desktop/mobile, language catalog, German 320px layout. Це visual check,
 не повний browser/accessibility acceptance. OQ-06 (мовна якість), фінальний
 дизайн, SEO/downloads, production p95 і corpus migration лишаються відкритими.
+
+## M1-07 — завантаження, 2026-10-25
+
+FR-06 / AT-06 synthetic subset; M1-07 загалом лишається in progress.
+
+| Покрита частина | Фактичні перевірки |
+|---|---|
+| Manifest і raw codes | `internal/httpui/downloads_test.go`: `TestDownloadManifest`, `TestPlainManifestPreservesRawLocales` — HTML/plain metadata, локалізація, final body guard, lossless TAB/CR/LF/quotes |
+| File HTTP | `TestExportHTTPRepresentation`: GET/HEAD/ranges/ETag, attachment, immutable cache, error headers, закриття file descriptor |
+| Validation/admission | `TestExportFailuresAndAdmission`: invalid IDs/query до backend, 404/503, максимум 8 передач |
+| Великий stream | `TestLargeExportOutlivesSearchWriteTimeout`: actual HTTP server, valid gzip понад 1 MiB, передача після звичайного total write timeout без truncation |
+| SQL/publication/files | `internal/ops/readiness_integration_test.go`: restricted HTTP role, gzip CSV parsing до EOF, rows/size/SHA, HEAD/range, unpublished rejection, retained download після publication іншого dataset, readiness gate, missing/symlink rejection |
+| Process/resources | `tests/processsmoke/smoke_test.go`: downloads GET/HEAD без storage → 503; `internal/i18n/i18n_test.go`: 31 catalogs × 28 keys, 84 legacy / 784 AI texts |
+
+`make check test test-race test-smoke` та `make test-integration` — **PASS**,
+exit 0. Лише disposable local PostgreSQL 17.11 і synthetic fixtures; runner
+видалив власні container/volume. Logs: `tmp/downloads/final-checks.log` і
+`tmp/downloads/final-integration.log` (ignored). Перша перевірка links виявила
+відсутній report; після його додавання повторний `make check` пройшов.
+[Self-review і screenshots](_assessments/2026-10-24-downloads/REPORT.md).
+Лише local synthetic data; не production acceptance або capacity proof.
+SEO, мовне приймання та production migration залишаються відкритими.

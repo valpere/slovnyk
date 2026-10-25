@@ -12,6 +12,7 @@ import (
 	"strconv"
 
 	"github.com/valpere/slovnyk/internal/catalog"
+	"github.com/valpere/slovnyk/internal/downloads"
 	"github.com/valpere/slovnyk/internal/i18n"
 	"github.com/valpere/slovnyk/internal/lookup"
 )
@@ -20,7 +21,11 @@ type SearchFunc func(context.Context, lookup.Request) (lookup.Page, error)
 
 type CatalogFunc func(context.Context, string) (catalog.Snapshot, error)
 type Option func(*options)
-type options struct{ catalog CatalogFunc }
+type options struct {
+	catalog   CatalogFunc
+	downloads DownloadsFunc
+	export    ExportFunc
+}
 
 func WithCatalog(read CatalogFunc) Option { return func(o *options) { o.catalog = read } }
 
@@ -34,7 +39,7 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 	serve := func(w http.ResponseWriter, r *http.Request) {
 		parsed, status := parse(r, signer)
 		lang, manual := i18n.Select(parsed.UI, cookie(r, uiCookie), r.Header.Get("Accept-Language"))
-		data := view{Request: parsed.Search, Lang: lang, Text: i18n.Messages(lang), IsLanguages: r.URL.Path == "/languages", UIAction: r.URL.Path}
+		data := view{Request: parsed.Search, Lang: lang, Text: i18n.Messages(lang), IsLanguages: r.URL.Path == "/languages", IsDownloads: r.URL.Path == "/downloads", UIAction: r.URL.Path}
 		for _, c := range i18n.Choices() {
 			data.UILocales = append(data.UILocales, choice{Code: c.Code, Label: c.Name, Selected: c.Code == lang})
 		}
@@ -50,7 +55,10 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 			if manual {
 				changes = append(changes, preference(r, uiCookie, lang))
 			}
-			if !parsed.Empty && !data.IsLanguages {
+			if data.IsDownloads {
+				status = downloadView(ctx, config.downloads, &data)
+			}
+			if !parsed.Empty && !data.IsLanguages && !data.IsDownloads {
 				if search == nil {
 					status = 503
 					data.Message = data.Text["unavailable"]
@@ -71,7 +79,7 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 					}
 				}
 			}
-			if status == 200 && config.catalog != nil {
+			if status == 200 && !data.IsDownloads && config.catalog != nil {
 				inventory, err := config.catalog(ctx, dataset)
 				if err != nil {
 					data.Notice = data.Text["catalog_unavailable"]
@@ -104,7 +112,7 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 						}
 					}
 				}
-			} else if status == 200 {
+			} else if status == 200 && !data.IsDownloads {
 				data.Notice = data.Text["catalog_unavailable"]
 				if data.IsLanguages {
 					status = 503
@@ -160,6 +168,8 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 	mux.HandleFunc("GET /{$}", serve)
 	mux.HandleFunc("GET /search", serve)
 	mux.HandleFunc("GET /languages", serve)
+	mux.HandleFunc("GET /downloads", serve)
+	mux.HandleFunc("GET /downloads/{dataset}/{export}", exportHandler(config.export))
 	return LimitTarget(mux)
 }
 
@@ -177,7 +187,8 @@ type view struct {
 	Groups                                []lookup.Group
 	Message, Notice, Next, Lang, UIAction string
 	Text                                  map[string]string
-	HasCatalog, IsLanguages               bool
+	HasCatalog, IsLanguages, IsDownloads  bool
+	Downloads                             downloads.Manifest
 	FromChoices, ToChoices, UILocales     []choice
 	Pairs                                 []pairView
 	UIFields                              []field
@@ -210,6 +221,11 @@ func (b *boundedBuffer) Write(p []byte) (int, error) {
 func (b *boundedBuffer) WriteString(s string) (int, error) { return b.Write([]byte(s)) }
 
 func plain(w io.Writer, v view) error {
+	if v.IsDownloads && v.Downloads.Dataset != "" {
+		if err := plainDownloads(w, v.Downloads); err != nil {
+			return err
+		}
+	}
 	if v.Notice != "" {
 		if _, e := io.WriteString(w, v.Notice+"\n"); e != nil {
 			return e
@@ -263,7 +279,7 @@ func messageKey(err error) string {
 
 //go:embed search.html
 var pageHTML string
-var pageTemplate = template.Must(template.New("search").Parse(pageHTML))
+var pageTemplate = template.Must(template.New("search").Funcs(template.FuncMap{"native": i18n.Native}).Parse(pageHTML))
 
 // LimitTarget runs before routing: ServeMux may otherwise redirect an oversized
 // target with a noncanonical path before the search handler can reject it.

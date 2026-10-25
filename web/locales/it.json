@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Dizionario multilingue",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Il catalogo delle lingue non è temporaneamente disponibile.",
     "pair_unavailable": "La coppia salvata non è disponibile. Scegli una coppia.",
     "count": "Traduzioni",
-    "home": "Home"
+    "home": "Home",
+    "downloads": "Scarica i dizionari",
+    "version": "Versione",
+    "bytes": "Byte",
+    "download": "Scarica",
+    "downloads_unavailable": "I download non sono temporaneamente disponibili. Riprova.",
+    "file_not_found": "File non trovato."
   }
 }

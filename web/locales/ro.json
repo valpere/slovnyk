@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "dicţionar multilingvistic",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Catalogul limbilor este temporar indisponibil.",
     "pair_unavailable": "Perechea de limbi salvată nu este disponibilă. Alegeți o pereche.",
     "count": "Traduceri",
-    "home": "Acasă"
+    "home": "Acasă",
+    "downloads": "Descărcare dicționare",
+    "version": "Versiune",
+    "bytes": "Octeți",
+    "download": "Descarcă",
+    "downloads_unavailable": "Descărcările sunt temporar indisponibile. Încercați din nou.",
+    "file_not_found": "Fișierul nu a fost găsit."
   }
 }

@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "багатомовний словник",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Каталог мов тимчасово недоступний.",
     "pair_unavailable": "Збережена мовна пара недоступна. Оберіть пару.",
     "count": "Переклади",
-    "home": "Початок"
+    "home": "Початок",
+    "downloads": "Завантаження словників",
+    "version": "Версія",
+    "bytes": "Байти",
+    "download": "Завантажити",
+    "downloads_unavailable": "Завантаження тимчасово недоступні. Спробуйте пізніше.",
+    "file_not_found": "Файл не знайдено."
   }
 }

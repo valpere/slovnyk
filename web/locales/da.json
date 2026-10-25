@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "En flersproget ordbog",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Sprogkataloget er midlertidigt utilgængeligt.",
     "pair_unavailable": "Dit gemte sprogpar er utilgængeligt. Vælg et sprogpar.",
     "count": "Oversættelser",
-    "home": "Hjem"
+    "home": "Hjem",
+    "downloads": "Download ordbøger",
+    "version": "Version",
+    "bytes": "Byte",
+    "download": "Download",
+    "downloads_unavailable": "Download er midlertidigt utilgængelig. Prøv igen.",
+    "file_not_found": "Filen blev ikke fundet."
   }
 }

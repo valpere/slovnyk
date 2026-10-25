@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Daudzvalodu vārdnīca",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Valodu katalogs īslaicīgi nav pieejams.",
     "pair_unavailable": "Saglabātais valodu pāris nav pieejams. Izvēlieties pāri.",
     "count": "Tulkojumi",
-    "home": "Sākums"
+    "home": "Sākums",
+    "downloads": "Vārdnīcu lejupielāde",
+    "version": "Versija",
+    "bytes": "Baiti",
+    "download": "Lejupielādēt",
+    "downloads_unavailable": "Lejupielādes īslaicīgi nav pieejamas. Mēģiniet vēlreiz.",
+    "file_not_found": "Fails nav atrasts."
   }
 }

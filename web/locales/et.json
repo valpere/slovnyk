@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "ai"
+    "home": "ai",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "Mitmekeelne sõnastik",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "Keelte loend pole ajutiselt saadaval.",
     "pair_unavailable": "Salvestatud keelepaar pole saadaval. Valige keelepaar.",
     "count": "Tõlked",
-    "home": "Avaleht"
+    "home": "Avaleht",
+    "downloads": "Sõnastike allalaadimine",
+    "version": "Versioon",
+    "bytes": "Baidid",
+    "download": "Laadi alla",
+    "downloads_unavailable": "Allalaadimine pole ajutiselt saadaval. Proovige uuesti.",
+    "file_not_found": "Faili ei leitud."
   }
 }

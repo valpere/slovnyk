@@ -26,7 +26,13 @@
     "catalog_unavailable": "ai",
     "pair_unavailable": "ai",
     "count": "ai",
-    "home": "legacy-po"
+    "home": "legacy-po",
+    "downloads": "ai",
+    "version": "ai",
+    "bytes": "ai",
+    "download": "ai",
+    "downloads_unavailable": "ai",
+    "file_not_found": "ai"
   },
   "messages": {
     "intro": "het veeltalige woordenboek",
@@ -50,6 +56,12 @@
     "catalog_unavailable": "De taalcatalogus is tijdelijk niet beschikbaar.",
     "pair_unavailable": "Uw opgeslagen taalpaar is niet beschikbaar. Kies een taalpaar.",
     "count": "Vertalingen",
-    "home": "Beginpagina"
+    "home": "Beginpagina",
+    "downloads": "Woordenboeken downloaden",
+    "version": "Versie",
+    "bytes": "Bytes",
+    "download": "Downloaden",
+    "downloads_unavailable": "Downloads zijn tijdelijk niet beschikbaar. Probeer het opnieuw.",
+    "file_not_found": "Bestand niet gevonden."
   }
 }
