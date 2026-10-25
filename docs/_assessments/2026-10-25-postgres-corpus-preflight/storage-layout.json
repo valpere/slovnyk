@@ -1,0 +1,10 @@
+{
+  "initial_make_check_failed": true,
+  "diagnostic": "go vet ./... could not traverse private PostgreSQL pgdata directory",
+  "old_path": "pgdata",
+  "current_path": ".pgdata",
+  "container_removed_before_rename": true,
+  "directory_device_inode_mode_owner_unchanged": true,
+  "local_compose_bind_path_updated": true,
+  "postgres_permissions_relaxed": false
+}

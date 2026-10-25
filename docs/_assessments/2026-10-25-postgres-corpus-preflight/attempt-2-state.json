@@ -1,0 +1,60 @@
+{
+  "runs": [
+    {
+      "state": "interrupted",
+      "attempt": 1,
+      "error_class": "writer_disconnected"
+    },
+    {
+      "state": "running",
+      "attempt": 2,
+      "error_class": null
+    }
+  ],
+  "active": {
+    "dataset_id": null,
+    "generation": 0
+  },
+  "issues": 0,
+  "ledger": 114000,
+  "parsed": 114000,
+  "unique": 114000,
+  "origins": 114000,
+  "datasets": [
+    {
+      "id": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+      "state": "loading",
+      "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01"
+    }
+  ],
+  "rejected": 0,
+  "duplicate": 0,
+  "relations": {
+    "exports": 24576,
+    "datasets": 188416,
+    "import_runs": 81920,
+    "source_files": 393216,
+    "translations": 61603840,
+    "dataset_pairs": 172032,
+    "import_issues": 16384,
+    "active_dataset": 24576,
+    "import_records": 40386560,
+    "sitemap_shards": 16384,
+    "dataset_locales": 32768,
+    "schema_migrations": 32768,
+    "sitemap_inventory": 16384,
+    "import_checkpoints": 245760,
+    "publication_events": 16384,
+    "translation_origins": 42467328,
+    "legacy_query_snapshots": 16384
+  },
+  "wal_bytes": 234881024,
+  "checkpoints": {
+    "000fe9247e4b293db29844e04147c7f8ca6221eafae11828a55a6ab2f9c9b6b6": 114000
+  },
+  "files_total": 992,
+  "translations": 114000,
+  "database_bytes": 154039987,
+  "files_complete": 0,
+  "pair_unique_sum": 114000
+}

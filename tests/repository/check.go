@@ -23,6 +23,7 @@ type report struct {
 	Passed           bool     `json:"passed"`
 	MarkdownFiles    int      `json:"markdown_files"`
 	IgnoredDataFiles int      `json:"ignored_data_files"`
+	IgnoredDataRoots []string `json:"ignored_data_roots,omitempty"`
 	Errors           []string `json:"errors"`
 }
 
@@ -126,7 +127,17 @@ func check(root string, args []string) report {
 		}
 		r.Errors = append(r.Errors, markdown(absolute, p)...)
 	}
-	data, err := files(root, "data/experiments")
+	// Git cannot re-include children of an excluded parent directory. Verify the
+	// whole root first instead of entering private database directories below it.
+	// No trailing slash: a contents-only glob must not match the root itself.
+	const dataRoot = "data/experiments"
+	ignoredRoots, err := ignored(root, []string{dataRoot})
+	var data []string
+	if err == nil && ignoredRoots[dataRoot] {
+		r.IgnoredDataRoots = []string{dataRoot + "/"}
+	} else if err == nil {
+		data, err = files(root, dataRoot)
+	}
 	if err != nil {
 		r.Errors = append(r.Errors, "Cannot list local data")
 	}

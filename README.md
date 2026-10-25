@@ -411,3 +411,13 @@ snapshot. [Фактичний corpus inventory та межі](docs/_assessments/
 [Команда, metadata-only результати й межі](docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
 Це перевірка input streams без БД; staged PostgreSQL import/retry,
 distinct tuple reconciliation, exports та publication повного корпусу ще попереду.
+
+Локальний [PostgreSQL preflight](docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md)
+перевірив обмежений import/retry того самого manifest: 114 000 committed records,
+незмінні counts/digests попередніх 55 000, без публікації. Це частина першого
+файла, не завершення імпорту. Після SIGINT CLI може повернути `import_interrupted`
+із `files=null`/`distinct_counts_available=false`, якщо скасоване з'єднання вже
+непридатне для звіту. Це не нуль записів: повторіть ту саму команду з тим самим
+immutable source/manifest; новий writer перевірить checkpoint і позначить
+покинутий `running` attempt як `interrupted / writer_disconnected`.
+Не виправляйте counters або state вручну.

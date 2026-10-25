@@ -1,0 +1,8 @@
+{
+  "same_dataset": true,
+  "committed_prefix_counts_and_digests_unchanged": true,
+  "counters_ledger_origins_translations_equal": true,
+  "active_unpublished": true,
+  "expected_interruptions": true,
+  "attempts": 2
+}

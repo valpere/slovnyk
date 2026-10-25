@@ -16,6 +16,12 @@ Repository check охоплює README, data/minions/utilities/tests/testdata RE
 їхні bytes/hashes не змінюються. Links перевіряються локально, без мережі чи
 anchors. Ignore перевіряється NUL-delimited paths і `--no-index`, також для
 tracked sources. Go compiler/vet замінює попередню Python syntax check.
+Якщо Git ігнорує весь `data/experiments/`, checker перевіряє цей root і не
+заходить у private DB directories: `ignored_data_roots` показує перевірений root,
+`ignored_data_files` рахує лише перелічені files. Якщо root не виключений,
+перевіряються окремі files, включно з unignored child exceptions. Для sources
+ця оптимізація не застосовується. PostgreSQL bind data тримайте у прихованому
+`.pgdata/`, щоб також не залучати його до Go `./...` package discovery.
 
 HTTP process suite має build tag `smoke`; після `make build` можна виконати
 `go test -tags smoke ./tests/processsmoke -count=1 -v`. Вона видаляє успадковані

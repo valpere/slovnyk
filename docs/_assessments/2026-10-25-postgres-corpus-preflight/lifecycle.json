@@ -1,0 +1,6 @@
+{
+  "own_container_and_network_removed": true,
+  "bind_pgdata_retained": true,
+  "credentials_local_only": true,
+  "other_projects_targeted": false
+}

@@ -698,3 +698,19 @@ inspect не рахує distinct tuples і не перевіряє staged Postgr
 normalization reconciliation, exports, ready/publication або historical completeness.
 Oracle/БД/browser не задіяні; джерела незмінні. Окреме локальне середовище для
 повного PostgreSQL import і його resource budget — наступний крок.
+
+## PostgreSQL corpus preflight, 2026-10-25
+
+Окремий локальний PostgreSQL 17.11 (1 CPU / 512 MiB) виконав bounded початок
+імпорту того самого повного manifest. Перший SIGINT після 55 000 committed
+records; повторний запуск додав записи до 114 000. Prefix counts і SHA-256
+ledger/origins/translations не змінилися, counters узгоджені; duplicates/rejected
+та issues — 0. Попередній покинутий attempt переведено у
+`interrupted / writer_disconnected` новим writer без ручних UPDATE.
+[Звіт і межі](_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md).
+
+Це лише частина `fr-fr → es-es`: complete files — 0, dataset `loading`, active null.
+Проба не закриває full-corpus import/reconciliation або capacity. Груба проєкція
+DB/indexes 66–67 GiB не включає WAL/temp/exports/backup та не є resource gate.
+Container/network прибрані, bind pgdata й private config збережені локально у
+`data/experiments/postgres-corpus-preflight-2026-10-25/`. Oracle/legacy не змінено.

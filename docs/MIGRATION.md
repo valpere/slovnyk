@@ -37,6 +37,13 @@ Snapshot date лишається unknown, якщо точна дата неві�
 0 rejected, збіг кількостей у кожному файлі з аудитом. Це не staged import,
 distinct tuple reconciliation або дозвіл на publication.
 
+Перед повним PostgreSQL import виконано bounded [preflight](_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md):
+SIGINT/retry на тому самому manifest зберіг 55 000 committed prefix records і
+додав наступні до 114 000, active null. Dataset лишився `loading`; жодного файла
+ще не завершено. Враховуйте окремо БД/indexes, WAL, temp space, exports і backup
+перед повним запуском. CLI `files=null` після втрати з'єднання означає недоступний
+report, а не порожній checkpoint; відновлюйте тією самою командою без ручних UPDATE.
+
 ## 2. Повний аудит
 
 Структурну частину виконано 2026-10-24: 992 файли, 56 455 068 різних

@@ -1,0 +1,30 @@
+{
+  "sample_pair": {
+    "from": "fr-fr",
+    "to": "es-es"
+  },
+  "sample_artifact_sha256": "000fe9247e4b293db29844e04147c7f8ca6221eafae11828a55a6ab2f9c9b6b6",
+  "sample_artifact_total_records_from_prior_audit": 171726,
+  "sample_parsed": 114000,
+  "corpus_occurrences_from_prior_inspect": 56455068,
+  "baseline_database_bytes": 8509107,
+  "sample_database_bytes": 154039987,
+  "baseline_adjusted_bytes_per_row": 1276.587,
+  "incremental_bytes_per_row": 1257.125,
+  "linear_database_projection_bytes": 72078296182,
+  "incremental_linear_database_projection_bytes": 70979579768,
+  "observed_wal_directory_bytes": 234881024,
+  "disk_free_bytes_at_observation": 131846688768,
+  "representative_sample": false,
+  "full_import_completed": false,
+  "files_complete": 0,
+  "capacity_accepted": false,
+  "exclusions": [
+    "WAL growth/retention",
+    "extra dataset/backup/restore copy",
+    "export artifacts",
+    "sort/temp space",
+    "different language distributions/index growth",
+    "HTTP workload"
+  ]
+}

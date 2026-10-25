@@ -1,0 +1,41 @@
+{
+  "runs": [],
+  "active": {
+    "dataset_id": null,
+    "generation": 0
+  },
+  "issues": 0,
+  "ledger": 0,
+  "parsed": 0,
+  "unique": 0,
+  "origins": 0,
+  "datasets": [],
+  "rejected": 0,
+  "duplicate": 0,
+  "relations": {
+    "exports": 24576,
+    "datasets": 24576,
+    "import_runs": 40960,
+    "source_files": 24576,
+    "translations": 40960,
+    "dataset_pairs": 16384,
+    "import_issues": 16384,
+    "active_dataset": 24576,
+    "import_records": 24576,
+    "sitemap_shards": 16384,
+    "dataset_locales": 16384,
+    "schema_migrations": 32768,
+    "sitemap_inventory": 16384,
+    "import_checkpoints": 16384,
+    "publication_events": 16384,
+    "translation_origins": 16384,
+    "legacy_query_snapshots": 16384
+  },
+  "wal_bytes": 16777216,
+  "checkpoints": {},
+  "files_total": 0,
+  "translations": 0,
+  "database_bytes": 8509107,
+  "files_complete": 0,
+  "pair_unique_sum": 0
+}

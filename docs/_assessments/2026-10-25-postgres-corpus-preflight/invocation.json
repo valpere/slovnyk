@@ -1,0 +1,30 @@
+{
+  "revision": "574ec3f3b06227be707c55ce3e989b675b32b7e5",
+  "binary_sha256": "775d60b405df024daf8c30648139fd41d8538b72698e93b955a583d51cc85d51",
+  "manifest_sha256": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+  "batch_size": 1000,
+  "first_target_rows": 50000,
+  "second_increment_target_rows": 50000,
+  "attempt_time_limit_seconds": 75,
+  "minimum_disk_free_bytes": 32212254720,
+  "maximum_database_bytes": 2147483648,
+  "server": {
+    "fsync": "on",
+    "version": "17.11",
+    "encoding": "UTF8",
+    "full_page_writes": "on",
+    "synchronous_commit": "on"
+  },
+  "container": {
+    "Memory": 536870912,
+    "NanoCpus": 1000000000,
+    "PortBindings": {
+      "5432/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": ""
+        }
+      ]
+    }
+  }
+}
