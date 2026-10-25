@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Многоезичен речник",
@@ -62,6 +63,7 @@
     "bytes": "Байтове",
     "download": "Изтегляне",
     "downloads_unavailable": "Изтеглянето временно не е достъпно. Опитайте отново.",
-    "file_not_found": "Файлът не е намерен."
+    "file_not_found": "Файлът не е намерен.",
+    "skip_content": "Към съдържанието"
   }
 }

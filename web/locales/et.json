@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Mitmekeelne sõnastik",
@@ -62,6 +63,7 @@
     "bytes": "Baidid",
     "download": "Laadi alla",
     "downloads_unavailable": "Allalaadimine pole ajutiselt saadaval. Proovige uuesti.",
-    "file_not_found": "Faili ei leitud."
+    "file_not_found": "Faili ei leitud.",
+    "skip_content": "Liigu sisu juurde"
   }
 }

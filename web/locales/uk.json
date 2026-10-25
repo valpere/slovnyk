@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "багатомовний словник",
@@ -62,6 +63,7 @@
     "bytes": "Байти",
     "download": "Завантажити",
     "downloads_unavailable": "Завантаження тимчасово недоступні. Спробуйте пізніше.",
-    "file_not_found": "Файл не знайдено."
+    "file_not_found": "Файл не знайдено.",
+    "skip_content": "Перейти до вмісту"
   }
 }

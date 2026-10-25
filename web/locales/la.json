@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Dictionarium multilingue",
@@ -62,6 +63,7 @@
     "bytes": "Octeti",
     "download": "Detrahe",
     "downloads_unavailable": "Detractio ad tempus non praesto est. Iterum tempta.",
-    "file_not_found": "Fasciculus non inventus est."
+    "file_not_found": "Fasciculus non inventus est.",
+    "skip_content": "Ad materiam"
   }
 }

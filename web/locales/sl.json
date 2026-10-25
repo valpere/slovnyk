@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Večjezični slovar",
@@ -62,6 +63,7 @@
     "bytes": "Bajti",
     "download": "Prenesi",
     "downloads_unavailable": "Prenosi začasno niso na voljo. Poskusite znova.",
-    "file_not_found": "Datoteke ni bilo mogoče najti."
+    "file_not_found": "Datoteke ni bilo mogoče najti.",
+    "skip_content": "Preskoči na vsebino"
   }
 }

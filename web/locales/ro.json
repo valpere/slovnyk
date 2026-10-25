@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "dicţionar multilingvistic",
@@ -62,6 +63,7 @@
     "bytes": "Octeți",
     "download": "Descarcă",
     "downloads_unavailable": "Descărcările sunt temporar indisponibile. Încercați din nou.",
-    "file_not_found": "Fișierul nu a fost găsit."
+    "file_not_found": "Fișierul nu a fost găsit.",
+    "skip_content": "Sari la conținut"
   }
 }

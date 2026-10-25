@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "многоязычный словарь",
@@ -62,6 +63,7 @@
     "bytes": "Байты",
     "download": "Скачать",
     "downloads_unavailable": "Загрузки временно недоступны. Попробуйте позже.",
-    "file_not_found": "Файл не найден."
+    "file_not_found": "Файл не найден.",
+    "skip_content": "Перейти к содержимому"
   }
 }

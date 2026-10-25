@@ -122,6 +122,7 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 				}
 			}
 		}
+		data.SourceLang, data.TargetLang = contentLang(data.Request.From), contentLang(data.Request.To)
 		// Language switching preserves only the parsed request, including its cursor.
 		// No hidden ui on search: automatic browser selection must not become a
 		// persisted manual choice merely because the visitor submits a search.

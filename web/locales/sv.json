@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Flerspråkig ordbok",
@@ -62,6 +63,7 @@
     "bytes": "Byte",
     "download": "Ladda ned",
     "downloads_unavailable": "Nedladdningar är tillfälligt otillgängliga. Försök igen.",
-    "file_not_found": "Filen hittades inte."
+    "file_not_found": "Filen hittades inte.",
+    "skip_content": "Hoppa till innehållet"
   }
 }

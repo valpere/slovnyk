@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Вишејезични речник",
@@ -62,6 +63,7 @@
     "bytes": "Бајтови",
     "download": "Преузми",
     "downloads_unavailable": "Преузимања привремено нису доступна. Покушајте поново.",
-    "file_not_found": "Датотека није пронађена."
+    "file_not_found": "Датотека није пронађена.",
+    "skip_content": "Пређи на садржај"
   }
 }

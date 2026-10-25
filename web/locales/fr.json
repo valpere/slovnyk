@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Le dictionnaire multilingue",
@@ -62,6 +63,7 @@
     "bytes": "Octets",
     "download": "Télécharger",
     "downloads_unavailable": "Les téléchargements sont temporairement indisponibles. Réessayez.",
-    "file_not_found": "Fichier introuvable."
+    "file_not_found": "Fichier introuvable.",
+    "skip_content": "Aller au contenu"
   }
 }

@@ -166,6 +166,9 @@ publish, changed parameters/anchors, key rotation, long fields/byte budget
 Version-pinned synthetic downloads реалізовані наступним зрізом
 ([контракт](DOWNLOAD_CONTRACT.md)). Synthetic dictionary pages, canonical,
 discovery links і robots реалізовані наступним зрізом за [SEO_PLAN](SEO_PLAN.md).
+Технічний accessibility зріз (skip link, keyboard no-JS submit, language/RTL,
+320px reflow) перевірено на synthetic UI;
+[звіт](_assessments/2026-10-25-multilingual-accessibility/REPORT.md).
 Повний sitemap/crawl capacity, мовне приймання OQ-06 та фінальне FR-05 ще відкриті.
 
 - Додати `/`, `/search`, `/languages`, `/downloads` та version-pinned artifact handler;

@@ -622,3 +622,18 @@ Startup/recovery/нова generation звіряє hashes зареєстрова�
 Це технічна реалізація FR-14, не зміна продуктового scope; full corpus/crawler
 budget, release gate та мовне/дизайн-приймання ще відкриті.
 [Контракт](SEO_PLAN.md), [self-review](_assessments/2026-10-25-http-sitemaps/REPORT.md).
+
+## M1-07: багатомовна доступність, 2026-10-25
+
+Локально реалізовано технічний UI baseline без зміни функціональних вимог:
+локалізований skip link у 31 draft catalog, header/navigation поза main,
+search landmark без autofocus, column headers; raw search/article texts мають
+окремі мовні tags і автоматичний напрямок. Нерозбірний tag позначає невідому
+мову, raw identity не змінюється.
+
+Chromium через наявний CDP 9222, page JS disabled: keyboard skip → query →
+GET submit, RTL/LTR rows, 320px layouts та accessibility landmarks перевірено
+на synthetic backend. Нових browser processes і Playwright немає.
+[Evidence/self-review](_assessments/2026-10-25-multilingual-accessibility/REPORT.md).
+Це не остаточне схвалення дизайну, перекладів чи всебічної доступності;
+M1-07 лишається in progress. Oracle, legacy та real corpus не зачіпалися.

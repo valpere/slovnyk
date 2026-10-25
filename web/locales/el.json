@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Πολύγλωσσο λεξικό",
@@ -62,6 +63,7 @@
     "bytes": "Byte",
     "download": "Λήψη",
     "downloads_unavailable": "Οι λήψεις δεν είναι προσωρινά διαθέσιμες. Δοκιμάστε ξανά.",
-    "file_not_found": "Το αρχείο δεν βρέθηκε."
+    "file_not_found": "Το αρχείο δεν βρέθηκε.",
+    "skip_content": "Μετάβαση στο περιεχόμενο"
   }
 }

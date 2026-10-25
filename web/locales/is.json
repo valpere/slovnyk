@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Fjöltyngd orðabók",
@@ -62,6 +63,7 @@
     "bytes": "Bæti",
     "download": "Sækja",
     "downloads_unavailable": "Niðurhal er ekki tiltækt í bili. Reyndu aftur.",
-    "file_not_found": "Skráin fannst ekki."
+    "file_not_found": "Skráin fannst ekki.",
+    "skip_content": "Fara í efni"
   }
 }

@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "het veeltalige woordenboek",
@@ -62,6 +63,7 @@
     "bytes": "Bytes",
     "download": "Downloaden",
     "downloads_unavailable": "Downloads zijn tijdelijk niet beschikbaar. Probeer het opnieuw.",
-    "file_not_found": "Bestand niet gevonden."
+    "file_not_found": "Bestand niet gevonden.",
+    "skip_content": "Naar de inhoud"
   }
 }

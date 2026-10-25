@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "słownik wielojęzyczny",
@@ -62,6 +63,7 @@
     "bytes": "Bajty",
     "download": "Pobierz",
     "downloads_unavailable": "Pobieranie jest chwilowo niedostępne. Spróbuj ponownie.",
-    "file_not_found": "Nie znaleziono pliku."
+    "file_not_found": "Nie znaleziono pliku.",
+    "skip_content": "Przejdź do treści"
   }
 }

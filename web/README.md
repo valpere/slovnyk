@@ -1,6 +1,6 @@
 # Interface catalogs
 
-`locales/*.json` contains 31 embedded UI catalogs, each with the same 28 message
+`locales/*.json` contains 31 embedded UI catalogs, each with the same 29 message
 keys. English (`en`) is the fallback. These base UI identifiers are separate
 from the dictionary's raw regional locale codes. Build and runtime do not need
 the legacy checkout or a translation API.

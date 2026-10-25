@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "Daugiakalbis žodynas",
@@ -62,6 +63,7 @@
     "bytes": "Baitai",
     "download": "Atsisiųsti",
     "downloads_unavailable": "Atsisiuntimai laikinai nepasiekiami. Bandykite dar kartą.",
-    "file_not_found": "Failas nerastas."
+    "file_not_found": "Failas nerastas.",
+    "skip_content": "Pereiti prie turinio"
   }
 }

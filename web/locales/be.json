@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "шматмоўны слоўнік",
@@ -62,6 +63,7 @@
     "bytes": "Байты",
     "download": "Спампаваць",
     "downloads_unavailable": "Спампаванне часова недаступнае. Паспрабуйце пазней.",
-    "file_not_found": "Файл не знойдзены."
+    "file_not_found": "Файл не знойдзены.",
+    "skip_content": "Перайсці да змесціва"
   }
 }

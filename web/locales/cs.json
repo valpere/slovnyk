@@ -32,7 +32,8 @@
     "bytes": "ai",
     "download": "ai",
     "downloads_unavailable": "ai",
-    "file_not_found": "ai"
+    "file_not_found": "ai",
+    "skip_content": "ai"
   },
   "messages": {
     "intro": "vícejazyčný slovník",
@@ -62,6 +63,7 @@
     "bytes": "Bajty",
     "download": "Stáhnout",
     "downloads_unavailable": "Stahování je dočasně nedostupné. Zkuste to znovu.",
-    "file_not_found": "Soubor nebyl nalezen."
+    "file_not_found": "Soubor nebyl nalezen.",
+    "skip_content": "Přejít na obsah"
   }
 }
