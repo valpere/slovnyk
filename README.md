@@ -404,3 +404,10 @@ Output має бути поза snapshot; existing manifest не перезап�
 Це підготовка inventory, не CSV validation або migration. У JSON summary явно
 `content_verified=false`; наступний крок — `slovnyk import inspect` з тим самим
 snapshot. [Фактичний corpus inventory та межі](docs/_assessments/2026-10-25-csv-manifest/REPORT.md).
+
+Повний `bin/slovnyk import inspect` цієї копії пройшов новим Go parser:
+992 файли до EOF із підтвердженими checksums, 56 455 068 parsed occurrences,
+0 rejected. Кількості у кожному файлі збігаються з попереднім аудитом.
+[Команда, metadata-only результати й межі](docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
+Це перевірка input streams без БД; staged PostgreSQL import/retry,
+distinct tuple reconciliation, exports та publication повного корпусу ще попереду.
