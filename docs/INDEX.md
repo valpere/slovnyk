@@ -74,6 +74,9 @@ HTTP sitemap discovery та schema 3 inventory реалізовано локал
 M1-08 synthetic наскрізне CLI/HTTP відтворення реалізовано:
 [звіт](_assessments/2026-10-25-service-lifecycle/REPORT.md),
 [команди](../README.md#наскрізне-відтворення-на-порожній-бд).
+FR-13 local synthetic restore перевіряє нову БД/root при недоступній вихідній БД;
+[процедура](BACKUP_RESTORE.md), [звіт](_assessments/2026-10-25-backup-restore/REPORT.md).
+Off-host/full-corpus RTO acceptance не закрито.
 M1 загалом ще відкритий: мовне/дизайн-приймання та повний SEO discovery не закрито.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
@@ -113,6 +116,7 @@ LEGACY_COMPATIBILITY зберігає лише історичні спостер
 | [DOWNLOAD_CONTRACT.md](DOWNLOAD_CONTRACT.md) | HTTP manifest, version-pinned CSV.gz, ranges, integrity і streaming limits |
 | [LOOKUP_CONTRACT.md](LOOKUP_CONTRACT.md) | HTTP, Unicode, bounded cursor та пагінація |
 | [LEGACY_COMPATIBILITY.md](LEGACY_COMPATIBILITY.md) | Історичні факти про старі URL; сумісність скасована |
+| [BACKUP_RESTORE.md](BACKUP_RESTORE.md) | Склад backup, порядок restore та локальна synthetic репетиція FR-13 |
 | [MIGRATION.md](MIGRATION.md) | Облік даних, перевірка, перемикання й відкат |
 | [TRACEABILITY.md](TRACEABILITY.md) | Вимога → сценарій → компонент → перевірка |
 | [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) | Порядок задач M1, залежності й критерії завершення; не змінює контракти |

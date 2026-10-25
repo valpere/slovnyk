@@ -474,6 +474,79 @@ func TestServiceLifecycle(t *testing.T) {
 	}
 	download(fileURL, a.Pairs[0])
 	stop()
+	// Freeze all fixture writers, dump the DB and copy immutable files, then
+	// recover into a fresh DB/root. Never reuse the original DB for restored HTTP.
+	restoredDB, restoredRoot := restoreFixture(t, ctx, admin, migrationDSN, artifactRoot, dir)
+	originalDSN, originalRoot := httpDSN, artifactRoot
+	restoreURL, err := url.Parse(httpDSN)
+	if err != nil {
+		t.Fatal("invalid fixture HTTP configuration")
+	}
+	restoreURL.Path = "/" + restoredDB
+	httpDSN = restoreURL.String()
+	if _, err := admin.Exec(ctx, "ALTER DATABASE "+pgx.Identifier{db}.Sanitize()+" ALLOW_CONNECTIONS false"); err != nil {
+		t.Fatal("cannot isolate original database during restore acceptance")
+	}
+	if _, err := admin.Exec(ctx, `SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname=$1`, db); err != nil {
+		t.Fatal("cannot close original database sessions")
+	}
+	// A DB-only restore must not become ready without the referenced artifacts.
+	artifactRoot = filepath.Join(dir, "missing-restored-artifacts")
+	if err := os.Mkdir(artifactRoot, 0700); err != nil {
+		t.Fatal(err)
+	}
+	base, stop = start()
+	time.Sleep(1200 * time.Millisecond)
+	get("/healthz", 200)
+	get("/readyz", 503)
+	get("/sitemap.xml", 503)
+	get(fileURL, 503)
+	stop()
+	artifactRoot = restoredRoot
+	base, stop = start()
+	waitReady()
+	checkSitemap(a.Dataset)
+	for path, want := range map[string][]byte{
+		search: first, nextA: retained, entry: article, entryNext: entryTail,
+		"/search?from=en-us&to=uk-ua&q=flow-private-*&format=plain&ui=en": mask,
+	} {
+		body, _ := get(path, 200)
+		if !bytes.Equal(body, want) {
+			t.Fatal("restored HTTP response differs", strings.SplitN(path, "?", 2)[0])
+		}
+	}
+	if !bytes.Equal(download(fileURL, a.Pairs[0]), originalFile) {
+		t.Fatal("restored download differs")
+	}
+	retainedB, _ := get("/downloads/"+b.Dataset+"/"+b.Pairs[0].ExportID, 200)
+	retainedBHash := sha256.Sum256(retainedB)
+	if hex.EncodeToString(retainedBHash[:]) != b.Pairs[0].Artifact.SHA256 {
+		t.Fatal("restored retained B download differs")
+	}
+	get("/sitemap-"+b.Dataset+"-"+sitemapReports[b.Dataset].Shards[0].Artifact.SHA256+".xml", 200)
+	probe, err = pgx.Connect(ctx, httpDSN)
+	if err != nil {
+		t.Fatal("restored HTTP login unavailable")
+	}
+	if _, err := probe.Exec(ctx, `UPDATE slovnyk.active_dataset SET generation=generation+1`); err == nil {
+		t.Fatal("restored HTTP login can mutate active pointer")
+	}
+	_ = probe.Close(ctx)
+	restoreURL, err = url.Parse(operatorDSN)
+	if err != nil {
+		t.Fatal("invalid fixture operator configuration")
+	}
+	restoreURL.Path = "/" + restoredDB
+	var repeated sitemaps.Result
+	if err := json.Unmarshal(cli(0, []string{"SLOVNYK_OPERATOR_DSN=" + restoreURL.String()}, "dataset", "sitemap", a.Dataset, "--artifacts", restoredRoot), &repeated); err != nil || repeated.Report != sitemapReports[a.Dataset].Report {
+		t.Fatal("restored operator cannot retry registered sitemap")
+	}
+	stop()
+	// Subsequent corruption injection still uses only the original test fixture.
+	httpDSN, artifactRoot = originalDSN, originalRoot
+	if _, err := admin.Exec(ctx, "ALTER DATABASE "+pgx.Identifier{db}.Sanitize()+" ALLOW_CONNECTIONS true"); err != nil {
+		t.Fatal("cannot restore original fixture connections")
+	}
 	// A same-size corrupt registered shard must block readiness on restart.
 	shardPath := filepath.Join(artifactRoot, sitemapReports[a.Dataset].Shards[0].Artifact.Path)
 	corrupt, err := os.ReadFile(shardPath)
@@ -493,5 +566,5 @@ func TestServiceLifecycle(t *testing.T) {
 	get("/readyz", 503)
 	get("/sitemap.xml", 503)
 	stop()
-	t.Log("PASS: empty DB → CLI migrate/import/verify/publish A → real HTTP exact/mask/word/download/sitemap → stale CAS rejection → publish B → retained A → rollback A → DB outage/recovery → process restart; restricted LOGINs and private query logs checked")
+	t.Log("PASS: empty DB → CLI migrate/import/verify/publish A → real HTTP exact/mask/word/download/sitemap → stale CAS rejection → publish B → retained A → rollback A → DB outage/recovery → process restart → local backup/restore to fresh DB/root with original DB unavailable; restricted LOGINs and private query logs checked")
 }

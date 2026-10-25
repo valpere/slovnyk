@@ -53,3 +53,21 @@ keyring. Health залишається 200 при DB outage, search поверт
 Child processes мають deadlines; cleanup прибирає процеси, потім власну БД,
 LOGINs і `tmp/serviceflow/run-*`. Runner видаляє container/volume навіть при
 помилці suite. Немає browser, реального корпусу або production acceptance.
+
+### Backup/restore у service lifecycle
+
+Після restart сценарій знімає custom `pg_dump` і відновлює його через
+`pg_restore --single-transaction --exit-on-error --no-owner` у ще одну нову БД
+того самого cluster. `restore_test.go` порівнює counts і digests усіх таблиць,
+artifact/source files і копіює їх у нові roots. Runner передає ID лише власного
+контейнера у `SLOVNYK_TEST_DB_CONTAINER`; helper звіряє Compose labels. Tools
+працюють у цьому контейнері: host PostgreSQL packages не потрібні. При ручному
+виклику serviceflow потрібні обидві runner variables; використовуйте
+`make test-integration`, який створює й прибирає всю ціль.
+
+Оригінальна БД недоступна під час приймання restored HTTP. DB-only restore
+не проходить readiness; повна копія відтворює active search/article, старі
+continuations, retained A/B downloads/sitemaps, write denial для HTTP і
+операторський sitemap retry. Той самий synthetic cursor keyring заданий тестом.
+Group roles уже існують у cluster; fresh-cluster/off-host/secret escrow/RTO
+це не перевіряє. [Процедура](../docs/BACKUP_RESTORE.md).
