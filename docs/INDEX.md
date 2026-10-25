@@ -63,6 +63,10 @@ Version-pinned synthetic downloads також реалізовано,
 [звіт](_assessments/2026-10-24-downloads/REPORT.md). Synthetic SEO pages,
 canonical і search discovery реалізовані за [SEO_PLAN](SEO_PLAN.md);
 повний sitemap/crawl acceptance та production-міграція ще попереду.
+M1-08 synthetic наскрізне CLI/HTTP відтворення реалізовано:
+[звіт](_assessments/2026-10-25-service-lifecycle/REPORT.md),
+[команди](../README.md#наскрізне-відтворення-на-порожній-бд).
+M1 загалом ще відкритий: мовне/дизайн-приймання та повний SEO discovery не закрито.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів
