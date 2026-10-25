@@ -377,3 +377,33 @@ exit 0, local disposable PostgreSQL 17.11, synthetic data. Logs:
 наявний Chromium CDP 9222, page scripts disabled, desktop/mobile visual check.
 Повний корпус, index build cost, crawler capacity, deployment TLS/redirects,
 мовне/дизайн/accessibility приймання не перевірялися; M1-07 in progress.
+
+## M1-08 — наскрізний CLI/HTTP lifecycle, 2026-10-25
+
+`tests/serviceflow/lifecycle_test.go: TestServiceLifecycle` включено до
+`make test-integration`, `-race` для test harness; child service — звичайний build.
+Сценарій не викликає application services напряму: CLI subprocesses та loopback
+HTTP працюють із новою порожньою БД й окремими operator/HTTP LOGINs.
+
+| Покрита частина | Фактичні перевірки |
+|---|---|
+| AT-07/08/10 synthetic path | CLI migrate/import (batch 7)/verify/exports/publish A; stale generation → conflict; publish B; rollback A з перевіркою receipts/generation |
+| AT-02/03/04/15 HTTP subset | Exact/mask, 1-row continuation A після publish B і restart, stable article A→B→A, retained article continuation A, invalid cursor → 400 |
+| AT-06 synthetic download | Manifest link; compressed size/SHA відповідають verify report; gzip CSV до EOF містить 53 рядки; A export незмінний після B і restart |
+| AT-17 readiness subset | Порожній active → 503; publish → ready; лише власна БД ALLOW_CONNECTIONS=false + terminate sessions → health 200/search 503; відновлення connections → автоматично ready й попередні results; process restart |
+| Ролі/приватність/cleanup | HTTP LOGIN не superuser, UPDATE active pointer заборонено; child env очищено від успадкованих SLOVNYK_*; query/password/DSN відсутні в logs; graceful shutdown; власні БД/LOGINs/processes/scratch видалено |
+
+`make build check test test-race test-smoke`, `go vet -tags integration ./tests/serviceflow`
+та `make test-integration` — **PASS**, exit 0. Повний integration suite також
+повторно перевірив `TestRetryEveryBatchAndValidating`,
+`TestLostSessionStopsWriterAndCanResume`, `TestRejectionsFatalStreamsAndIdentity`,
+`TestVerificationFaultIsolation`, `TestVerificationCrashProcess` та довгі
+raw fields/body limits у lookup/httpui suites. Це різні перевірки, не всі
+fault scenarios відтворено в одному process-level lifecycle.
+
+Лише disposable local PostgreSQL 17.11 та synthetic corpus; container/volume
+прибрано runner. Logs: `tmp/serviceflow/checks.log`, `final-integration.log`
+(ignored). [Self-review](_assessments/2026-10-25-service-lifecycle/REPORT.md).
+Немає browser/capacity/full corpus/off-host restore/production acceptance;
+M1-07 мовне/дизайн-приймання та full SEO discovery відкриті. Цей зріз не
+закриває всі AT і не змінює вимоги.

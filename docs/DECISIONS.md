@@ -583,3 +583,15 @@ Physical schema 2 додає expression index без переписування 
 Це не нове продуктове погодження та не закриття повного AT-19: offline sitemap,
 crawler budget і deployment acceptance ще потрібні.
 [Контракт](SEO_PLAN.md), [self-review](_assessments/2026-10-25-dictionary-pages/REPORT.md).
+
+## M1-08: наскрізна synthetic перевірка — 2026-10-25
+
+Додано developer/CI test `tests/serviceflow/lifecycle_test.go`, а не runtime
+утиліту або посіпаку. Він будує binary й проходить CLI→PostgreSQL→HTTP на
+окремій порожній БД із restricted LOGINs, A/B publication, retained cursors/
+files, rollback, ізольованим connection outage/recovery та restart. Включено
+до чинної PostgreSQL CI job; browser/Oracle/legacy не використовуються.
+M1-08 synthetic verification done, M1-07 in progress; повне приймання M1,
+мовні/дизайн рішення, sitemap/crawl, M2 corpus та M3 deployment ще відкриті.
+Нових продуктових рішень цей test slice не вводить.
+[Результати й self-review](_assessments/2026-10-25-service-lifecycle/REPORT.md).

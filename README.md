@@ -49,7 +49,8 @@ curl -i http://127.0.0.1:8080/readyz
 
 `/healthz` → 200; без storage config `/readyz` → 503 із `storage_not_initialized`.
 З read-only HTTP DSN readiness перевіряє schema, active dataset та artifacts
-(інструкція нижче). Пошуку й UI наразі немає.
+(інструкція нижче). Без published dataset форма доступна, пошук і словникові
+дані повертають 503.
 Ctrl+C або SIGTERM припиняє приймання запитів і очікує активні до 10 s;
 перевищення deadline закриває з'єднання та завершує процес із кодом 1.
 Неправильна команда/config → exit 2; коректне завершення → exit 0.
@@ -198,14 +199,38 @@ Python runtime для цих команд більше не потрібний. 
 | `make check` | Перевіряє gofmt, vet, whitespace staged/unstaged diff, активні Markdown-посилання та Git ignore локальних даних |
 | `make test-smoke` | Збирає та перевіряє HTTP-процес, health/readiness і SIGINT/SIGTERM |
 | `make test-race` | `go test -race ./...`; потрібен C compiler |
-| `make test-integration` | Створює окрему PostgreSQL, запускає migrate CLI та реальні schema/privileges/transaction/import/retry/CLI tests, видаляє власні ресурси |
+| `make test-integration` | Створює окрему PostgreSQL, запускає schema/import/retry/publication та наскрізний CLI/HTTP lifecycle, видаляє власні ресурси |
 
 Integration target використовує унікальний Compose project, synthetic
 credentials і випадковий loopback port; до наявної БД не підключається.
 `-tags integration` tests окремо вимагають явний `SLOVNYK_TEST_DSN`;
-використовуйте посіпаку, який задає його лише для власної disposable БД.
+використовуйте `make test-integration`, який задає його лише для власної disposable БД.
 Фактичні результати M1-01 — у [TRACEABILITY](docs/TRACEABILITY.md) та
 [звіті](docs/_assessments/2026-10-24-go-scaffold/REPORT.md).
+
+### Наскрізне відтворення на порожній БД
+
+У чистому checkout із Go/Make, C compiler і Docker Compose виконайте:
+
+```sh
+make build check test test-race test-smoke
+make test-integration
+```
+
+Runner сам створює контейнер на випадковому loopback port. Новий
+`tests/serviceflow/TestServiceLifecycle` збирає binary в `tmp/serviceflow/`,
+створює окрему порожню БД й два restricted LOGINs. Через справжній CLI
+виконує migrate → synthetic import/verify/publish A; через HTTP перевіряє
+exact/mask, статтю та CSV.gz із SHA-256/CSV перевіркою. Далі — stale CAS,
+publish B, retained search/article/download A, rollback A, втрата з’єднань
+і recovery readiness, restart із тим самим keyring. Прогін має завершитися
+exit 0 та `PASS: empty DB …`; `-race` увімкнено для lifecycle test harness,
+child service — звичайний build. Unit race tests виконуються окремо вище.
+
+Сценарій видаляє власні процеси/БД/LOGINs/scratch, runner — container/volume.
+Він не використовує `.env`, application DSNs, legacy, browser або Oracle.
+Це synthetic M1-08 verification, не production/capacity чи мовне приймання.
+[Перелік перевірок і обмежень](tests/README.md).
 
 Оцінювання специфікації: [tumanomir, 2026-10-21](docs/_assessments/2026-10-21/REPORT.md).
 
@@ -220,6 +245,8 @@ M1-03 реалізовано: схема PostgreSQL, міграційний CLI,
 durable exports/report, publication/rollback CAS та HTTP readiness.
 M1-06 реалізовано: application service exact/mask і підписана cursor-пагінація.
 M1-07 in progress: HTTP lookup, каталог, локалізація й налаштування форми реалізовані; synthetic downloads і словникові SEO-сторінки реалізовані; повний sitemap/crawl acceptance ще відкриті.
+M1-08: наскрізне synthetic CLI/HTTP відтворення реалізовано; M1 загалом ще не
+закрито через відкриті мовне/дизайн-приймання та повний SEO discovery.
 Старий проєкт залишається незмінним; Oracle не задіяний.
 
 ## Рев’ю, коміти та CI

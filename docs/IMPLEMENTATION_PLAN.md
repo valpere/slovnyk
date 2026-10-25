@@ -1,6 +1,7 @@
 # План реалізації M1
 
-Статус на 2026-10-24: **M1-01–06 done**, M1-07–08 open.
+Статус на 2026-10-25: **M1-01–06 done; M1-07 in progress;
+M1-08 done у synthetic verification scope**. M1 загалом ще не закрито.
 Це порядок виконання [джерела істини](INDEX.md), а не нові поведінкові вимоги.
 У разі суперечності звірити REQUIREMENTS і детальні контракти та виправити план.
 Позначати задачу виконаною лише з посиланнями на реалізацію й фактичні перевірки.
@@ -196,6 +197,16 @@ pair, no matches і service failure різняться; escaping/byte budget/dow
 
 ### M1-08 — Наскрізна перевірка й передача результату
 
+**Status: done (synthetic verification), 2026-10-25.**
+`tests/serviceflow/lifecycle_test.go` збирає фактичний binary, створює окрему
+порожню БД та restricted LOGINs; CLI/HTTP проходять publish A/B, retained
+search/article/download A, rollback, DB outage/recovery та restart. Runner
+`make test-integration` включає сценарій з race detector для test harness.
+README містить відтворювані команди; [звіт](_assessments/2026-10-25-service-lifecycle/REPORT.md)
+і [TRACEABILITY](TRACEABILITY.md) фіксують фактичні результати й межі.
+Мовне/дизайн-приймання M1-07, повний SEO discovery та M2/M3 залишаються відкритими.
+Наведені нижче пункти визначають verification scope, не повне production acceptance.
+
 - Відтворити: empty DB → migrations → synthetic import → verify/exports → publish
   → exact/mask/pages/download → publish B → continuation A → rollback.
 - Перевірити interruption/retry, corrupt gzip, invalid cursor, unavailable DB,
@@ -247,6 +258,7 @@ M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/ro
 Для кожної M1-задачі записувати status (`open`, `in progress`, `done`, `blocked`),
 implementation/test paths, перевірені сценарії та нерозв'язані питання.
 Commit hashes додавати лише якщо commits фактично створені.
-Поточний status: **M1-01–06 done; M1-07–08 open**. Наступна задача — M1-07.
+Поточний status: **M1-01–06 done; M1-07 in progress; M1-08 done (synthetic)**.
+Далі — відкриті приймання M1-07 та повний corpus/discovery у M2; це не дозвіл на deployment.
 Runtime звіти можна тримати в `tmp/`;
 довговічний стан задач і підтверджене покриття — тут і в TRACEABILITY.
