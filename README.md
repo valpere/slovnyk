@@ -386,5 +386,9 @@ runner використовує PostgreSQL tools свого disposable конт�
 
 [Склад комплекту та порядок restore](docs/BACKUP_RESTORE.md),
 [результати й межі](docs/_assessments/2026-10-25-backup-restore/REPORT.md).
-Це локальна synthetic перевірка в одному cluster, не off-host backup або доказ
-RTO <=24 h для повного корпусу. Oracle й production не задіяні.
+Це локальна synthetic перевірка у двох окремих disposable clusters: нові
+roles/LOGINs, інший non-superuser schema owner, rollback restore без потрібних
+groups та відновлені ACL/SECURITY DEFINER перевіряються фактично.
+[Fresh-cluster evidence](docs/_assessments/2026-10-25-fresh-cluster-restore/REPORT.md).
+Обидва clusters працюють на одному host; off-host backup і RTO <=24 h для
+повного корпусу ще не доведені. Oracle й production не задіяні.

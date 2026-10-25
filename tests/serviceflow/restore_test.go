@@ -133,21 +133,47 @@ func fixtureTree(t *testing.T, source, destination string) map[string]digestCoun
 }
 
 // restoreFixture uses pg_dump/pg_restore from the runner's pinned PostgreSQL
-// container. It restores into a fresh database, never --clean over an existing DB.
-// Group roles already exist in this cluster; fresh-cluster role bootstrap is a
-// separate operator step. No credentials enter command arguments or test output.
-func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDSN, sourceArtifacts, dir string) (string, string) {
+// containers. The target is a separate empty cluster with a different owner.
+// No credentials enter command arguments or test output.
+func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDSN, sourceArtifacts, dir string) (string, string, string) {
 	t.Helper()
 	started := time.Now()
-	container := os.Getenv("SLOVNYK_TEST_DB_CONTAINER")
-	decoded, err := hex.DecodeString(container)
-	if err != nil || len(decoded) != 32 {
-		t.Fatal("use the disposable runner container for restore rehearsal")
+	checkContainer := func(variable string) string {
+		t.Helper()
+		container := os.Getenv(variable)
+		decoded, err := hex.DecodeString(container)
+		if err != nil || len(decoded) != 32 {
+			t.Fatal("use disposable runner containers for restore rehearsal")
+		}
+		inspect := exec.CommandContext(ctx, "docker", "inspect", "--format", `{{ index .Config.Labels "com.docker.compose.project" }}|{{ index .Config.Labels "com.docker.compose.service" }}`, container)
+		labels, err := inspect.Output()
+		if err != nil || !strings.HasPrefix(string(labels), "slovnyk-test-") || !strings.HasSuffix(string(labels), "|db\n") {
+			t.Fatal("restore container is not the disposable runner")
+		}
+		return container
 	}
-	inspect := exec.CommandContext(ctx, "docker", "inspect", "--format", `{{ index .Config.Labels "com.docker.compose.project" }}|{{ index .Config.Labels "com.docker.compose.service" }}`, container)
-	labels, err := inspect.Output()
-	if err != nil || !strings.HasPrefix(string(labels), "slovnyk-test-") || !strings.HasSuffix(string(labels), "|db\n") {
-		t.Fatal("restore container is not the disposable runner")
+	container := checkContainer("SLOVNYK_TEST_DB_CONTAINER")
+	targetContainer := checkContainer("SLOVNYK_RESTORE_TEST_CONTAINER")
+	if container == targetContainer {
+		t.Fatal("restore requires a separate cluster")
+	}
+	targetURL, err := url.Parse(os.Getenv("SLOVNYK_RESTORE_TEST_DSN"))
+	if err != nil || targetURL.Scheme != "postgresql" || targetURL.Hostname() != "127.0.0.1" || targetURL.Path != "/slovnyk_restore_test" {
+		t.Fatal("restore target is not the isolated runner cluster")
+	}
+	target, err := pgx.Connect(ctx, targetURL.String())
+	if err != nil {
+		t.Fatal("restore cluster unavailable")
+	}
+	t.Cleanup(func() { _ = target.Close(context.Background()) })
+	var sourceID, targetID string
+	if admin.QueryRow(ctx, `SELECT system_identifier::text FROM pg_control_system()`).Scan(&sourceID) != nil ||
+		target.QueryRow(ctx, `SELECT system_identifier::text FROM pg_control_system()`).Scan(&targetID) != nil || sourceID == targetID {
+		t.Fatal("restore must use a different PostgreSQL cluster")
+	}
+	var existing int
+	if target.QueryRow(ctx, `SELECT count(*) FROM pg_roles WHERE rolname IN ('slovnyk_http','slovnyk_operator','slovnyk_test')`).Scan(&existing) != nil || existing != 0 {
+		t.Fatal("restore cluster already has application or source owner roles")
 	}
 	u, err := url.Parse(sourceDSN)
 	if err != nil || u.Hostname() != "127.0.0.1" || !strings.HasPrefix(u.Path, "/slovnyk_flow_") {
@@ -168,17 +194,17 @@ func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDS
 		t.Fatal(err)
 	}
 	defer dump.Close()
-	command := func(database, script string, input io.Reader, output io.Writer) {
+	command := func(container, database, role, script string, input io.Reader, output io.Writer) bool {
 		t.Helper()
-		cmd := exec.CommandContext(ctx, "docker", "exec", "-i", "-e", "PGDATABASE="+database, container, "sh", "-ec", script)
+		cmd := exec.CommandContext(ctx, "docker", "exec", "-i", "-e", "PGDATABASE="+database, "-e", "PGROLE="+role, container, "sh", "-ec", script)
 		cmd.Env, cmd.Stdin, cmd.Stdout = cleanEnv(), input, output
 		var diagnostic bytes.Buffer
 		cmd.Stderr = &diagnostic
-		if err := cmd.Run(); err != nil {
-			t.Fatal("PostgreSQL archive command failed (diagnostics withheld)")
-		}
+		return cmd.Run() == nil // PostgreSQL diagnostics can contain private data.
 	}
-	command(strings.TrimPrefix(u.Path, "/"), `export PGPASSWORD="$POSTGRES_PASSWORD"; exec pg_dump -h 127.0.0.1 -U "$POSTGRES_USER" --format=custom --no-owner`, nil, dump)
+	if !command(container, strings.TrimPrefix(u.Path, "/"), "", `export PGPASSWORD="$POSTGRES_PASSWORD"; exec pg_dump -h 127.0.0.1 -U "$POSTGRES_USER" --format=custom --no-owner`, nil, dump) {
+		t.Fatal("PostgreSQL archive creation failed (diagnostics withheld)")
+	}
 	if err := dump.Sync(); err != nil {
 		t.Fatal("dump sync failed")
 	}
@@ -207,27 +233,74 @@ func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDS
 	if err != nil || os.WriteFile(filepath.Join(bundle, "inventory.json"), manifest, 0600) != nil {
 		t.Fatal("backup inventory write failed")
 	}
-	restoredDB := "slovnyk_restore_" + strings.TrimPrefix(u.Path, "/slovnyk_flow_")
-	if _, err := admin.Exec(ctx, "CREATE DATABASE "+pgx.Identifier{restoredDB}.Sanitize()+" TEMPLATE template0 ENCODING 'UTF8'"); err != nil {
-		t.Fatal("restore target creation failed")
-	}
+	suffix := strings.TrimPrefix(u.Path, "/slovnyk_flow_")
+	restoredDB, owner := "slovnyk_restore_"+suffix, "restore_owner_"+suffix
+	reader, operator := "restore_http_"+suffix, "restore_operator_"+suffix
+	// Register cleanup before provisioning, including partially created roles.
 	t.Cleanup(func() {
 		cleanup, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 		defer cancel()
-		if _, err := admin.Exec(cleanup, "DROP DATABASE "+pgx.Identifier{restoredDB}.Sanitize()+" WITH (FORCE)"); err != nil {
+		if _, err := target.Exec(cleanup, "DROP DATABASE IF EXISTS "+pgx.Identifier{restoredDB}.Sanitize()+" WITH (FORCE)"); err != nil {
 			t.Error("restore target cleanup failed")
 		}
+		for _, role := range []string{reader, operator, owner, "slovnyk_http", "slovnyk_operator"} {
+			if _, err := target.Exec(cleanup, "DROP ROLE IF EXISTS "+pgx.Identifier{role}.Sanitize()); err != nil {
+				t.Error("restore role cleanup failed")
+			}
+		}
 	})
-	if _, err := dump.Seek(0, io.SeekStart); err != nil {
-		t.Fatal(err)
+	if _, err := target.Exec(ctx, "CREATE ROLE "+pgx.Identifier{owner}.Sanitize()+" NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS"); err != nil {
+		t.Fatal("restore owner creation failed")
 	}
-	command(restoredDB, `export PGPASSWORD="$POSTGRES_PASSWORD"; exec pg_restore -h 127.0.0.1 -U "$POSTGRES_USER" --no-owner --exit-on-error --single-transaction --dbname="$PGDATABASE"`, dump, io.Discard)
-	u.Path = "/" + restoredDB
-	restored, err := pgx.Connect(ctx, u.String())
+	if _, err := target.Exec(ctx, "CREATE DATABASE "+pgx.Identifier{restoredDB}.Sanitize()+" OWNER "+pgx.Identifier{owner}.Sanitize()+" TEMPLATE template0 ENCODING 'UTF8'"); err != nil {
+		t.Fatal("restore target creation failed")
+	}
+	restore := func() bool {
+		t.Helper()
+		if _, err := dump.Seek(0, io.SeekStart); err != nil {
+			t.Fatal(err)
+		}
+		return command(targetContainer, restoredDB, owner, `export PGPASSWORD="$POSTGRES_PASSWORD"; exec pg_restore -h 127.0.0.1 -U "$POSTGRES_USER" --role="$PGROLE" --no-owner --exit-on-error --single-transaction --dbname="$PGDATABASE"`, dump, io.Discard)
+	}
+	// Without the named ACL grantees, fail closed and roll back the entire restore.
+	if restore() {
+		t.Fatal("restore unexpectedly accepted missing group roles")
+	}
+	targetURL.Path = "/" + restoredDB
+	restored, err := pgx.Connect(ctx, targetURL.String())
 	if err != nil {
 		t.Fatal("restore inventory connection failed")
 	}
 	defer restored.Close(ctx)
+	if restored.QueryRow(ctx, `SELECT count(*) FROM pg_namespace WHERE nspname='slovnyk'`).Scan(&existing) != nil || existing != 0 {
+		t.Fatal("failed restore left a partial application schema")
+	}
+	for _, group := range []string{"slovnyk_http", "slovnyk_operator"} {
+		if _, err := target.Exec(ctx, "CREATE ROLE "+pgx.Identifier{group}.Sanitize()+" NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS"); err != nil {
+			t.Fatal("restore group provisioning failed")
+		}
+	}
+	for login, group := range map[string]string{reader: "slovnyk_http", operator: "slovnyk_operator"} {
+		if _, err := target.Exec(ctx, "CREATE ROLE "+pgx.Identifier{login}.Sanitize()+" LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS PASSWORD 'synthetic-restore-only' IN ROLE "+pgx.Identifier{group}.Sanitize()); err != nil {
+			t.Fatal("restore LOGIN provisioning failed")
+		}
+	}
+	if !restore() {
+		t.Fatal("PostgreSQL restore failed (diagnostics withheld)")
+	}
+	var unsafe int
+	if restored.QueryRow(ctx, `SELECT count(*) FROM (
+ SELECT nspowner AS owner FROM pg_namespace WHERE nspname='slovnyk'
+ UNION ALL SELECT c.relowner FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='slovnyk'
+ UNION ALL SELECT p.proowner FROM pg_proc p JOIN pg_namespace n ON n.oid=p.pronamespace WHERE n.nspname='slovnyk'
+ UNION ALL SELECT t.typowner FROM pg_type t JOIN pg_namespace n ON n.oid=t.typnamespace WHERE n.nspname='slovnyk'
+) objects WHERE owner <> $1::regrole`, owner).Scan(&unsafe) != nil || unsafe != 0 {
+		t.Fatal("restored objects do not belong to the new schema owner")
+	}
+	if restored.QueryRow(ctx, `SELECT count(*) FROM pg_roles WHERE rolname=ANY($1) AND
+ (rolsuper OR rolcreatedb OR rolcreaterole OR rolreplication OR rolbypassrls)`, []string{owner, reader, operator, "slovnyk_http", "slovnyk_operator"}).Scan(&unsafe) != nil || unsafe != 0 {
+		t.Fatal("restore provisioned unsafe service roles")
+	}
 	if !maps.Equal(expected, tableInventory(t, ctx, restored)) {
 		t.Fatal("restored table counts/digests differ")
 	}
@@ -239,5 +312,11 @@ func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDS
 		t.Fatal("restored source paths/bytes/digests differ")
 	}
 	t.Logf("restore rehearsal: %d tables, %d artifacts and %d source files match; dump %d bytes; local preparation/restore %s", len(expected), len(files), len(sources), dumpBytes, time.Since(started).Round(time.Millisecond))
-	return restoredDB, restoredArtifacts
+	t.Log("fresh cluster: source owner absent; missing groups fail atomically; new non-superuser owner owns schema/tables/functions")
+	roleDSN := func(login string) string {
+		v := *targetURL
+		v.User = url.UserPassword(login, "synthetic-restore-only")
+		return v.String()
+	}
+	return roleDSN(reader), roleDSN(operator), restoredArtifacts
 }

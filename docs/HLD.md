@@ -291,5 +291,7 @@ FR-13: [BACKUP_RESTORE](BACKUP_RESTORE.md) описує узгоджений DB/
 Synthetic `TestServiceLifecycle` перевіряє custom dump/restore, всі table
 counts/digests, artifacts і CSV sources, active/retained HTTP behavior та
 restricted roles при недоступній вихідній БД. Schema/production runtime
-не змінюються. Fresh-cluster bootstrap, off-host restore та full-corpus RTO
+не змінюються. Наступна репетиція переносить dump у другий порожній cluster:
+нові group/LOGIN roles, інший non-superuser owner, атомарна помилка без grantees,
+збереження ACL і SECURITY DEFINER. Off-host restore та full-corpus RTO
 залишаються окремими acceptance gates.

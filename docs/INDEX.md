@@ -76,7 +76,9 @@ M1-08 synthetic наскрізне CLI/HTTP відтворення реаліз�
 [команди](../README.md#наскрізне-відтворення-на-порожній-бд).
 FR-13 local synthetic restore перевіряє нову БД/root при недоступній вихідній БД;
 [процедура](BACKUP_RESTORE.md), [звіт](_assessments/2026-10-25-backup-restore/REPORT.md).
-Off-host/full-corpus RTO acceptance не закрито.
+Наступний [fresh-cluster зріз](_assessments/2026-10-25-fresh-cluster-restore/REPORT.md)
+перевіряє restore у другий порожній cluster, bootstrap ролей, новий owner та ACL.
+Обидва clusters локальні; off-host/full-corpus RTO acceptance не закрито.
 M1 загалом ще відкритий: мовне/дизайн-приймання та повний SEO discovery не закрито.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)

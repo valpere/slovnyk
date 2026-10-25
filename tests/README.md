@@ -56,18 +56,28 @@ LOGINs і `tmp/serviceflow/run-*`. Runner видаляє container/volume нав
 
 ### Backup/restore у service lifecycle
 
-Після restart сценарій знімає custom `pg_dump` і відновлює його через
-`pg_restore --single-transaction --exit-on-error --no-owner` у ще одну нову БД
-того самого cluster. `restore_test.go` порівнює counts і digests усіх таблиць,
-artifact/source files і копіює їх у нові roots. Runner передає ID лише власного
-контейнера у `SLOVNYK_TEST_DB_CONTAINER`; helper звіряє Compose labels. Tools
-працюють у цьому контейнері: host PostgreSQL packages не потрібні. При ручному
-виклику serviceflow потрібні обидві runner variables; використовуйте
-`make test-integration`, який створює й прибирає всю ціль.
+Після restart сценарій знімає custom `pg_dump`. Runner запускає другий
+порожній PostgreSQL 17.11 cluster з окремим volume/loopback port лише перед
+serviceflow. Обидва контейнери мають Compose limits 512 MiB/1 CPU кожен.
+`restore_test.go` звіряє Compose labels/різні container IDs і PostgreSQL system
+identifiers; на цілі немає source owner чи application groups.
+
+Новий NOLOGIN non-superuser schema owner володіє новою UTF-8 БД. Перша спроба
+`pg_restore --single-transaction --exit-on-error --no-owner --role=<owner>`
+без groups відхиляється без часткової schema. Після bootstrap group roles і
+restricted LOGINs повторний restore працює; ownership schema/relations/functions/
+types, counts/digests усіх таблиць і paths/bytes/hashes artifact/source files
+перевіряються. Жоден source cluster role не копіюється через globals dump.
+
+Runner передає `SLOVNYK_TEST_DSN`, `SLOVNYK_TEST_DB_CONTAINER`,
+`SLOVNYK_RESTORE_TEST_DSN`, `SLOVNYK_RESTORE_TEST_CONTAINER`. Використовуйте
+`make test-integration`, який створює й прибирає обидві цілі, включно з частковими
+setup failures. PostgreSQL tools працюють у контейнерах; host packages не потрібні.
 
 Оригінальна БД недоступна під час приймання restored HTTP. DB-only restore
-не проходить readiness; повна копія відтворює active search/article, старі
-continuations, retained A/B downloads/sitemaps, write denial для HTTP і
-операторський sitemap retry. Той самий synthetic cursor keyring заданий тестом.
-Group roles уже існують у cluster; fresh-cluster/off-host/secret escrow/RTO
-це не перевіряє. [Процедура](../docs/BACKUP_RESTORE.md).
+не проходить readiness; повна копія відтворює active exact/mask/article, старі
+continuations, retained A/B downloads/sitemaps. HTTP UPDATE/DDL/register і
+operator direct inventory DELETE/DDL відхиляються з SQLSTATE 42501; actual
+operator CLI повторює sitemap registration через SECURITY DEFINER нового owner.
+Той самий synthetic cursor keyring заданий тестом. Off-host transfer, secret
+escrow і full-corpus RTO це не перевіряє. [Процедура](../docs/BACKUP_RESTORE.md).

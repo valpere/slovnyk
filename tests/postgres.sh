@@ -3,9 +3,13 @@
 set -eu
 cd "$(dirname "$0")/.."
 project="slovnyk-test-$$"
+restore_project="$project-restore"
 export POSTGRES_USER=slovnyk_test POSTGRES_PASSWORD=synthetic-test-only POSTGRES_DB=slovnyk_test
 cleanup() {
-    docker compose -p "$project" down -v >/dev/null
+    cleanup_status=0
+    docker compose -p "$restore_project" down -v >/dev/null || cleanup_status=$?
+    docker compose -p "$project" down -v >/dev/null || cleanup_status=$?
+    return "$cleanup_status"
 }
 trap cleanup EXIT
 trap 'exit 130' INT
@@ -29,5 +33,12 @@ SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/sitemaps -count=1 -
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/ops -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./cmd/slovnyk -count=1 -v
 container=$(docker compose -p "$project" ps -q db)
-SLOVNYK_TEST_DSN="$dsn" SLOVNYK_TEST_DB_CONTAINER="$container" go test -race -tags integration ./tests/serviceflow -count=1 -v
+POSTGRES_USER=slovnyk_restore_admin POSTGRES_DB=slovnyk_restore_test SLOVNYK_DEV_DB_PORT= \
+    docker compose -p "$restore_project" up -d --wait --wait-timeout 60 db
+restore_address=$(docker compose -p "$restore_project" port db 5432)
+restore_dsn="postgresql://slovnyk_restore_admin:$POSTGRES_PASSWORD@$restore_address/slovnyk_restore_test?sslmode=disable"
+restore_container=$(docker compose -p "$restore_project" ps -q db)
+SLOVNYK_TEST_DSN="$dsn" SLOVNYK_TEST_DB_CONTAINER="$container" \
+    SLOVNYK_RESTORE_TEST_DSN="$restore_dsn" SLOVNYK_RESTORE_TEST_CONTAINER="$restore_container" \
+    go test -race -tags integration ./tests/serviceflow -count=1 -v
 printf '%s\n' 'PostgreSQL migrations, privileges, transactions, import/retry, publication, lookup, readiness, CLI, service lifecycle and local backup/restore checks passed.'

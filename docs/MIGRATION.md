@@ -93,7 +93,9 @@ Oracle Micro досі обслуговує інший проєкт (уточне
    відновленням сервісу й artifacts за <=24 h ще потрібний.
    [PostgreSQL synthetic rehearsal](BACKUP_RESTORE.md) відновлює нову БД й
    окремий artifact root, звіряє всі таблиці та контрольні HTTP-сценарії при
-   недоступній вихідній БД. Це той самий локальний cluster, без off-host proof.
+   недоступній вихідній БД. Наступне доповнення перевіряє окремий чистий cluster
+   на тому самому host: нові roles, інший schema owner, restore ACL і SECURITY
+   DEFINER. Це ще не off-host proof.
 3. Зафіксувати hashes остаточного CSV snapshot; перевірити відповідність
    погодженому manifest. Freeze, dual-write та delta sync не застосовуються.
 4. Імпортувати фінальний snapshot, verify, exports, atomic publish.
