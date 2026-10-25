@@ -109,6 +109,31 @@ func TestMigrations(t *testing.T) {
 	}
 }
 
+func TestEntryIndexUpgradePreservesReadyData(t *testing.T) {
+	c := database(t)
+	id := seed(t, c)
+	raw := strings.Repeat("&", 65536)
+	execSQL(t, c, translationSQL, id, int64(1), raw, "translation", raw)
+	ready(t, c, id)
+	// Reconstruct the exact V1 physical inventory; immutable ready rows remain.
+	execSQL(t, c, `DROP INDEX slovnyk.translations_entry;
+ DROP FUNCTION slovnyk.entry_id(text,text,text);
+ DELETE FROM slovnyk.schema_migrations WHERE version=2`)
+	if err := CheckSchema(context.Background(), c); !errors.Is(err, ErrSchema) {
+		t.Fatal("old physical schema accepted", err)
+	}
+	if err := Migrate(context.Background(), c); err != nil {
+		t.Fatal("index upgrade on ready data", err)
+	}
+	var got, state string
+	if err := c.QueryRow(context.Background(), `SELECT source_text,state FROM slovnyk.translations t JOIN slovnyk.datasets d ON d.id=t.dataset_id WHERE t.dataset_id=$1`, id).Scan(&got, &state); err != nil || got != raw || state != "ready" {
+		t.Fatal("upgrade changed immutable data", err)
+	}
+	if err := CheckSchema(context.Background(), c); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestConstraintsAndPrivileges(t *testing.T) {
 	c := database(t)
 	a, b := seed(t, c), seed(t, c)

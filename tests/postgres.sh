@@ -24,6 +24,7 @@ SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/storage/postgres -c
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/importer -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/publication -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/lookup -count=1 -v
+SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/entries -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./internal/ops -count=1 -v
 SLOVNYK_TEST_DSN="$dsn" go test -tags integration ./cmd/slovnyk -count=1 -v
 printf '%s\n' 'PostgreSQL migrations, privileges, transactions, import/retry, publication, lookup, readiness and CLI checks passed.'

@@ -566,3 +566,20 @@ Range/HEAD/ETag і поновлюваний 30 s write deadline описано �
 [контракті](DOWNLOAD_CONTRACT.md). Це технічна конкретизація FR-06, не нове
 продуктове погодження. [Self-review](_assessments/2026-10-24-downloads/REPORT.md).
 SEO, мовне/дизайн-приймання та production migration ще відкриті.
+
+## M1-07: raw dictionary identity та SEO — 2026-10-25
+
+Технічна конкретизація FR-14 / AT-19: `/word/<64 lowercase hex>` адресує
+SHA-256 length-prefixed raw source/target locale та вихідного написання,
+незалежно від dataset і normalization. Bare URL читає active published data;
+retained cursor не індексується й canonical веде на bare URL. Видалене
+написання дає 404. Одна сторінка показує одну напрямлену пару; UI фіксований
+за source primary language із fallback en, cookies/браузер його не змінюють.
+Вибір іншого UI у toolbar веде на головну; alternate UI copies не створюються.
+
+Physical schema 2 додає expression index без переписування ready raw data;
+вартість індексу на повному корпусі належить до M2 rehearsal. Canonical
+використовує погоджений `slovnyk.org`; alias `slovnyk.org.ua` → 308 із path/query.
+Це не нове продуктове погодження та не закриття повного AT-19: offline sitemap,
+crawler budget і deployment acceptance ще потрібні.
+[Контракт](SEO_PLAN.md), [self-review](_assessments/2026-10-25-dictionary-pages/REPORT.md).

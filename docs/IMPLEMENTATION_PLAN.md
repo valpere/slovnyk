@@ -163,7 +163,9 @@ publish, changed parameters/anchors, key rotation, long fields/byte budget
 1 MiB body guard і спільний acquisition/SQL deadline. Наступний зріз додає
 каталог, 31 AI-draft UI catalog, cookies та пропозицію пари без JS.
 Version-pinned synthetic downloads реалізовані наступним зрізом
-([контракт](DOWNLOAD_CONTRACT.md)). SEO, мовне приймання OQ-06 та фінальне FR-05 ще відкриті.
+([контракт](DOWNLOAD_CONTRACT.md)). Synthetic dictionary pages, canonical,
+discovery links і robots реалізовані наступним зрізом за [SEO_PLAN](SEO_PLAN.md).
+Повний sitemap/crawl capacity, мовне приймання OQ-06 та фінальне FR-05 ще відкриті.
 
 - Додати `/`, `/search`, `/languages`, `/downloads` та version-pinned artifact handler;
   HTML без JS і `format=plain` за контрактом. UI — лаконічний пошуковий інструмент за FR-05; конкретні макети ще не погоджено.

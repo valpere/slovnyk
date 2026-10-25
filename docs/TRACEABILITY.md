@@ -354,3 +354,26 @@ exit 0. Лише disposable local PostgreSQL 17.11 і synthetic fixtures; runner
 [Self-review і screenshots](_assessments/2026-10-24-downloads/REPORT.md).
 Лише local synthetic data; не production acceptance або capacity proof.
 SEO, мовне приймання та production migration залишаються відкритими.
+
+## M1-07 — постійні словникові сторінки, 2026-10-25
+
+FR-14 / AT-19 synthetic subset; повний sitemap/crawl acceptance ще відкритий.
+
+| Покрита частина | Фактичні перевірки |
+|---|---|
+| Стабільна raw identity | `internal/entries/entries_test.go`: independent golden, різний case/NFC/пробіли/напрямок, length-prefixed encoding, fixed URL для 64 KiB |
+| SQL, publication і continuation | `internal/entries/entries_integration_test.go: TestPublishedDictionaryPages`: restricted HTTP role, SQL/Go parity, index-compatible plan, 50+5 translations, cursor іншого написання, unpublished rejection, active replacement/removal, retained continuation під lock active pointer, deadline |
+| Upgrade physical schema | `internal/storage/postgres/postgres_integration_test.go: TestEntryIndexUpgradePreservesReadyData`: schema 1 відхилено, migration 2 працює на ready dataset без зміни 64 KiB raw text |
+| HTTP indexing і discovery | `internal/httpui/entries_test.go`: anonymous cookie-independent HTML, escaping, canonical fixed origin, content languages, HEAD, continuation noindex, final body guard, strict query, search links до окремих raw variants |
+| Robots/domain/process | `TestRobotsAndPrimaryDomain`: GET/HEAD, fixed-origin 308 із query, forwarded headers ignored; `tests/processsmoke/smoke_test.go`: actual binary robots та storage-unavailable word routes |
+
+`make check test test-race test-smoke` і `make test-integration` — **PASS**,
+exit 0, local disposable PostgreSQL 17.11, synthetic data. Logs:
+`tmp/seo/checks.log`, `tmp/seo/final-integration.log` (ignored).
+Початковий integration fixture помилково повторно використовував connection,
+який publication закриває, та не створював artifact root; fixture виправлено,
+повний повторний suite пройшов. Це не зміна production ownership contract.
+[Self-review і screenshots](_assessments/2026-10-25-dictionary-pages/REPORT.md):
+наявний Chromium CDP 9222, page scripts disabled, desktop/mobile visual check.
+Повний корпус, index build cost, crawler capacity, deployment TLS/redirects,
+мовне/дизайн/accessibility приймання не перевірялися; M1-07 in progress.

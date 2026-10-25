@@ -60,7 +60,9 @@ M1-07 in progress: HTTP-пошук і bounded HTML/plain UI реалізован
 каталог, локалізація й cookies реалізовані в наступному зрізі,
 [звіт](_assessments/2026-10-24-catalog-localization/REPORT.md).
 Version-pinned synthetic downloads також реалізовано,
-[звіт](_assessments/2026-10-24-downloads/REPORT.md). SEO та production-міграція ще попереду.
+[звіт](_assessments/2026-10-24-downloads/REPORT.md). Synthetic SEO pages,
+canonical і search discovery реалізовані за [SEO_PLAN](SEO_PLAN.md);
+повний sitemap/crawl acceptance та production-міграція ще попереду.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів
