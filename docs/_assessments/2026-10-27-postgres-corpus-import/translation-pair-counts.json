@@ -1,0 +1,4962 @@
+[
+  {
+    "n": 4533,
+    "source_locale": "be-by",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 8122,
+    "source_locale": "be-by",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 5274,
+    "source_locale": "be-by",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 16292,
+    "source_locale": "be-by",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 5575,
+    "source_locale": "be-by",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 3179,
+    "source_locale": "be-by",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 20891,
+    "source_locale": "be-by",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 6914,
+    "source_locale": "be-by",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 9942,
+    "source_locale": "be-by",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 6670,
+    "source_locale": "be-by",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 11279,
+    "source_locale": "be-by",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 12762,
+    "source_locale": "be-by",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 11043,
+    "source_locale": "be-by",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 10022,
+    "source_locale": "be-by",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 4064,
+    "source_locale": "be-by",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 12692,
+    "source_locale": "be-by",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 5895,
+    "source_locale": "be-by",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 3839,
+    "source_locale": "be-by",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 1917,
+    "source_locale": "be-by",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 1576,
+    "source_locale": "be-by",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 8319,
+    "source_locale": "be-by",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 6313,
+    "source_locale": "be-by",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 8854,
+    "source_locale": "be-by",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 6977,
+    "source_locale": "be-by",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 4667,
+    "source_locale": "be-by",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 8969,
+    "source_locale": "be-by",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 4448,
+    "source_locale": "be-by",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 4084,
+    "source_locale": "be-by",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 7727,
+    "source_locale": "be-by",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 12037,
+    "source_locale": "be-by",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 17543,
+    "source_locale": "be-by",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 5154,
+    "source_locale": "bg-bg",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 24175,
+    "source_locale": "bg-bg",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 27631,
+    "source_locale": "bg-bg",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 62824,
+    "source_locale": "bg-bg",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 26207,
+    "source_locale": "bg-bg",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 60022,
+    "source_locale": "bg-bg",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 65938,
+    "source_locale": "bg-bg",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 41411,
+    "source_locale": "bg-bg",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 45788,
+    "source_locale": "bg-bg",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 27227,
+    "source_locale": "bg-bg",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 48228,
+    "source_locale": "bg-bg",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 31696,
+    "source_locale": "bg-bg",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 21331,
+    "source_locale": "bg-bg",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 57578,
+    "source_locale": "bg-bg",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 16705,
+    "source_locale": "bg-bg",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 52100,
+    "source_locale": "bg-bg",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 22410,
+    "source_locale": "bg-bg",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 14620,
+    "source_locale": "bg-bg",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 6075,
+    "source_locale": "bg-bg",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 5308,
+    "source_locale": "bg-bg",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 49971,
+    "source_locale": "bg-bg",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 30006,
+    "source_locale": "bg-bg",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 36984,
+    "source_locale": "bg-bg",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 44757,
+    "source_locale": "bg-bg",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 33762,
+    "source_locale": "bg-bg",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 45329,
+    "source_locale": "bg-bg",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 23762,
+    "source_locale": "bg-bg",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 22333,
+    "source_locale": "bg-bg",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 25319,
+    "source_locale": "bg-bg",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 55466,
+    "source_locale": "bg-bg",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 18366,
+    "source_locale": "bg-bg",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 10731,
+    "source_locale": "cs-cz",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 27402,
+    "source_locale": "cs-cz",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 39626,
+    "source_locale": "cs-cz",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 162434,
+    "source_locale": "cs-cz",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 59604,
+    "source_locale": "cs-cz",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 12574,
+    "source_locale": "cs-cz",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 93025,
+    "source_locale": "cs-cz",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 59618,
+    "source_locale": "cs-cz",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 115069,
+    "source_locale": "cs-cz",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 111696,
+    "source_locale": "cs-cz",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 122505,
+    "source_locale": "cs-cz",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 120882,
+    "source_locale": "cs-cz",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 133903,
+    "source_locale": "cs-cz",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 141165,
+    "source_locale": "cs-cz",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 23895,
+    "source_locale": "cs-cz",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 107405,
+    "source_locale": "cs-cz",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 40445,
+    "source_locale": "cs-cz",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 26306,
+    "source_locale": "cs-cz",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 11401,
+    "source_locale": "cs-cz",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 6232,
+    "source_locale": "cs-cz",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 79965,
+    "source_locale": "cs-cz",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 67422,
+    "source_locale": "cs-cz",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 102757,
+    "source_locale": "cs-cz",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 63538,
+    "source_locale": "cs-cz",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 30393,
+    "source_locale": "cs-cz",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 131879,
+    "source_locale": "cs-cz",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 40412,
+    "source_locale": "cs-cz",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 25223,
+    "source_locale": "cs-cz",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 90091,
+    "source_locale": "cs-cz",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 68816,
+    "source_locale": "cs-cz",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 99477,
+    "source_locale": "cs-cz",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 5720,
+    "source_locale": "da-dk",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 26885,
+    "source_locale": "da-dk",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 28529,
+    "source_locale": "da-dk",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 44805,
+    "source_locale": "da-dk",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 19712,
+    "source_locale": "da-dk",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 19620,
+    "source_locale": "da-dk",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 46620,
+    "source_locale": "da-dk",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 24556,
+    "source_locale": "da-dk",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 38262,
+    "source_locale": "da-dk",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 25308,
+    "source_locale": "da-dk",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 35398,
+    "source_locale": "da-dk",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 38933,
+    "source_locale": "da-dk",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 27604,
+    "source_locale": "da-dk",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 31699,
+    "source_locale": "da-dk",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 12535,
+    "source_locale": "da-dk",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 36146,
+    "source_locale": "da-dk",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 16193,
+    "source_locale": "da-dk",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 15841,
+    "source_locale": "da-dk",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 6880,
+    "source_locale": "da-dk",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 4451,
+    "source_locale": "da-dk",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 39568,
+    "source_locale": "da-dk",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 31947,
+    "source_locale": "da-dk",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 37179,
+    "source_locale": "da-dk",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 33939,
+    "source_locale": "da-dk",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 21383,
+    "source_locale": "da-dk",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 33622,
+    "source_locale": "da-dk",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 18816,
+    "source_locale": "da-dk",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 16044,
+    "source_locale": "da-dk",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 25114,
+    "source_locale": "da-dk",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 39111,
+    "source_locale": "da-dk",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 23622,
+    "source_locale": "da-dk",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 22843,
+    "source_locale": "de-de",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 98495,
+    "source_locale": "de-de",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 175121,
+    "source_locale": "de-de",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 77575,
+    "source_locale": "de-de",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 87266,
+    "source_locale": "de-de",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 85505,
+    "source_locale": "de-de",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 274104,
+    "source_locale": "de-de",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 125994,
+    "source_locale": "de-de",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 196586,
+    "source_locale": "de-de",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 145559,
+    "source_locale": "de-de",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 184797,
+    "source_locale": "de-de",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 244632,
+    "source_locale": "de-de",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 171331,
+    "source_locale": "de-de",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 212723,
+    "source_locale": "de-de",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 41867,
+    "source_locale": "de-de",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 206197,
+    "source_locale": "de-de",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 67682,
+    "source_locale": "de-de",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 48377,
+    "source_locale": "de-de",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 18576,
+    "source_locale": "de-de",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 11724,
+    "source_locale": "de-de",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 190397,
+    "source_locale": "de-de",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 114791,
+    "source_locale": "de-de",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 187548,
+    "source_locale": "de-de",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 143397,
+    "source_locale": "de-de",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 81287,
+    "source_locale": "de-de",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 198130,
+    "source_locale": "de-de",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 62681,
+    "source_locale": "de-de",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 50519,
+    "source_locale": "de-de",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 117042,
+    "source_locale": "de-de",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 159122,
+    "source_locale": "de-de",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 135952,
+    "source_locale": "de-de",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 6208,
+    "source_locale": "el-gr",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 27475,
+    "source_locale": "el-gr",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 53638,
+    "source_locale": "el-gr",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 23072,
+    "source_locale": "el-gr",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 70103,
+    "source_locale": "el-gr",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 27604,
+    "source_locale": "el-gr",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 42610,
+    "source_locale": "el-gr",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 33947,
+    "source_locale": "el-gr",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 56949,
+    "source_locale": "el-gr",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 48493,
+    "source_locale": "el-gr",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 66718,
+    "source_locale": "el-gr",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 53484,
+    "source_locale": "el-gr",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 68233,
+    "source_locale": "el-gr",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 71979,
+    "source_locale": "el-gr",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 14605,
+    "source_locale": "el-gr",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 55450,
+    "source_locale": "el-gr",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 25650,
+    "source_locale": "el-gr",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 13732,
+    "source_locale": "el-gr",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 5797,
+    "source_locale": "el-gr",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 3964,
+    "source_locale": "el-gr",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 44758,
+    "source_locale": "el-gr",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 35254,
+    "source_locale": "el-gr",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 51228,
+    "source_locale": "el-gr",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 34470,
+    "source_locale": "el-gr",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 21896,
+    "source_locale": "el-gr",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 59150,
+    "source_locale": "el-gr",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 18345,
+    "source_locale": "el-gr",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 15137,
+    "source_locale": "el-gr",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 46616,
+    "source_locale": "el-gr",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 43129,
+    "source_locale": "el-gr",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 45802,
+    "source_locale": "el-gr",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 3764,
+    "source_locale": "en-gb",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 75670,
+    "source_locale": "en-gb",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 16782,
+    "source_locale": "en-gb",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 25769,
+    "source_locale": "en-gb",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 94218,
+    "source_locale": "en-gb",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 29413,
+    "source_locale": "en-gb",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 108866,
+    "source_locale": "en-gb",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 62289,
+    "source_locale": "en-gb",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 60027,
+    "source_locale": "en-gb",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 21592,
+    "source_locale": "en-gb",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 63686,
+    "source_locale": "en-gb",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 14865,
+    "source_locale": "en-gb",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 99005,
+    "source_locale": "en-gb",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 17804,
+    "source_locale": "en-gb",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 80525,
+    "source_locale": "en-gb",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 23280,
+    "source_locale": "en-gb",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 7671,
+    "source_locale": "en-gb",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 2920,
+    "source_locale": "en-gb",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 2471,
+    "source_locale": "en-gb",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 55291,
+    "source_locale": "en-gb",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 18727,
+    "source_locale": "en-gb",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 26116,
+    "source_locale": "en-gb",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 49336,
+    "source_locale": "en-gb",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 48790,
+    "source_locale": "en-gb",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 45735,
+    "source_locale": "en-gb",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 18760,
+    "source_locale": "en-gb",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 21623,
+    "source_locale": "en-gb",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 21668,
+    "source_locale": "en-gb",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 69368,
+    "source_locale": "en-gb",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 11204,
+    "source_locale": "en-gb",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 34772,
+    "source_locale": "en-us",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 120367,
+    "source_locale": "en-us",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 157546,
+    "source_locale": "en-us",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 102857,
+    "source_locale": "en-us",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 360698,
+    "source_locale": "en-us",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 90054,
+    "source_locale": "en-us",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 102101,
+    "source_locale": "en-us",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 161945,
+    "source_locale": "en-us",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 239304,
+    "source_locale": "en-us",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 124132,
+    "source_locale": "en-us",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 168818,
+    "source_locale": "en-us",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 358927,
+    "source_locale": "en-us",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 105491,
+    "source_locale": "en-us",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 190609,
+    "source_locale": "en-us",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 39447,
+    "source_locale": "en-us",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 272146,
+    "source_locale": "en-us",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 60352,
+    "source_locale": "en-us",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 60658,
+    "source_locale": "en-us",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 25989,
+    "source_locale": "en-us",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 16593,
+    "source_locale": "en-us",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 269248,
+    "source_locale": "en-us",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 124828,
+    "source_locale": "en-us",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 202047,
+    "source_locale": "en-us",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 202152,
+    "source_locale": "en-us",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 95327,
+    "source_locale": "en-us",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 248520,
+    "source_locale": "en-us",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 73205,
+    "source_locale": "en-us",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 59157,
+    "source_locale": "en-us",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 89479,
+    "source_locale": "en-us",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 229219,
+    "source_locale": "en-us",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 132034,
+    "source_locale": "en-us",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 9287,
+    "source_locale": "eo-xx",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 58449,
+    "source_locale": "eo-xx",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 57003,
+    "source_locale": "eo-xx",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 38886,
+    "source_locale": "eo-xx",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 107596,
+    "source_locale": "eo-xx",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 38923,
+    "source_locale": "eo-xx",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 46285,
+    "source_locale": "eo-xx",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 118020,
+    "source_locale": "eo-xx",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 73990,
+    "source_locale": "eo-xx",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 51320,
+    "source_locale": "eo-xx",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 75644,
+    "source_locale": "eo-xx",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 85275,
+    "source_locale": "eo-xx",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 62846,
+    "source_locale": "eo-xx",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 86171,
+    "source_locale": "eo-xx",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 22863,
+    "source_locale": "eo-xx",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 82241,
+    "source_locale": "eo-xx",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 33524,
+    "source_locale": "eo-xx",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 23420,
+    "source_locale": "eo-xx",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 10380,
+    "source_locale": "eo-xx",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 6812,
+    "source_locale": "eo-xx",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 88464,
+    "source_locale": "eo-xx",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 47210,
+    "source_locale": "eo-xx",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 72549,
+    "source_locale": "eo-xx",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 62896,
+    "source_locale": "eo-xx",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 46371,
+    "source_locale": "eo-xx",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 84705,
+    "source_locale": "eo-xx",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 29997,
+    "source_locale": "eo-xx",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 25884,
+    "source_locale": "eo-xx",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 53219,
+    "source_locale": "eo-xx",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 67965,
+    "source_locale": "eo-xx",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 50025,
+    "source_locale": "eo-xx",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 13484,
+    "source_locale": "es-es",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 63150,
+    "source_locale": "es-es",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 102129,
+    "source_locale": "es-es",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 56748,
+    "source_locale": "es-es",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 145458,
+    "source_locale": "es-es",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 65121,
+    "source_locale": "es-es",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 44278,
+    "source_locale": "es-es",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 158610,
+    "source_locale": "es-es",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 71886,
+    "source_locale": "es-es",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 96117,
+    "source_locale": "es-es",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 118880,
+    "source_locale": "es-es",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 144430,
+    "source_locale": "es-es",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 114784,
+    "source_locale": "es-es",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 130484,
+    "source_locale": "es-es",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 31484,
+    "source_locale": "es-es",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 132701,
+    "source_locale": "es-es",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 47421,
+    "source_locale": "es-es",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 37016,
+    "source_locale": "es-es",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 14551,
+    "source_locale": "es-es",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 8687,
+    "source_locale": "es-es",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 123795,
+    "source_locale": "es-es",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 82156,
+    "source_locale": "es-es",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 116772,
+    "source_locale": "es-es",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 105754,
+    "source_locale": "es-es",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 54280,
+    "source_locale": "es-es",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 100165,
+    "source_locale": "es-es",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 44928,
+    "source_locale": "es-es",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 35541,
+    "source_locale": "es-es",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 86926,
+    "source_locale": "es-es",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 103143,
+    "source_locale": "es-es",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 84985,
+    "source_locale": "es-es",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 7940,
+    "source_locale": "et-ee",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 29278,
+    "source_locale": "et-ee",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 114549,
+    "source_locale": "et-ee",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 32035,
+    "source_locale": "et-ee",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 141037,
+    "source_locale": "et-ee",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 51953,
+    "source_locale": "et-ee",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 20845,
+    "source_locale": "et-ee",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 34401,
+    "source_locale": "et-ee",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 52755,
+    "source_locale": "et-ee",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 105833,
+    "source_locale": "et-ee",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 108887,
+    "source_locale": "et-ee",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 107032,
+    "source_locale": "et-ee",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 118535,
+    "source_locale": "et-ee",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 134949,
+    "source_locale": "et-ee",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 19540,
+    "source_locale": "et-ee",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 94230,
+    "source_locale": "et-ee",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 34751,
+    "source_locale": "et-ee",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 20414,
+    "source_locale": "et-ee",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 8229,
+    "source_locale": "et-ee",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 4780,
+    "source_locale": "et-ee",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 67704,
+    "source_locale": "et-ee",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 55761,
+    "source_locale": "et-ee",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 83725,
+    "source_locale": "et-ee",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 49170,
+    "source_locale": "et-ee",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 25391,
+    "source_locale": "et-ee",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 123455,
+    "source_locale": "et-ee",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 24704,
+    "source_locale": "et-ee",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 19327,
+    "source_locale": "et-ee",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 77973,
+    "source_locale": "et-ee",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 60532,
+    "source_locale": "et-ee",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 82227,
+    "source_locale": "et-ee",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 16228,
+    "source_locale": "fi-fi",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 58527,
+    "source_locale": "fi-fi",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 101470,
+    "source_locale": "fi-fi",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 54619,
+    "source_locale": "fi-fi",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 154024,
+    "source_locale": "fi-fi",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 68375,
+    "source_locale": "fi-fi",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 57730,
+    "source_locale": "fi-fi",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 106180,
+    "source_locale": "fi-fi",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 80018,
+    "source_locale": "fi-fi",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 125250,
+    "source_locale": "fi-fi",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 90093,
+    "source_locale": "fi-fi",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 119091,
+    "source_locale": "fi-fi",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 122858,
+    "source_locale": "fi-fi",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 151288,
+    "source_locale": "fi-fi",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 35249,
+    "source_locale": "fi-fi",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 128853,
+    "source_locale": "fi-fi",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 54081,
+    "source_locale": "fi-fi",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 34903,
+    "source_locale": "fi-fi",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 13050,
+    "source_locale": "fi-fi",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 7180,
+    "source_locale": "fi-fi",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 109334,
+    "source_locale": "fi-fi",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 83850,
+    "source_locale": "fi-fi",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 120166,
+    "source_locale": "fi-fi",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 89537,
+    "source_locale": "fi-fi",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 52410,
+    "source_locale": "fi-fi",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 128173,
+    "source_locale": "fi-fi",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 44806,
+    "source_locale": "fi-fi",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 36837,
+    "source_locale": "fi-fi",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 94857,
+    "source_locale": "fi-fi",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 108320,
+    "source_locale": "fi-fi",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 90077,
+    "source_locale": "fi-fi",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 18352,
+    "source_locale": "fr-fr",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 71553,
+    "source_locale": "fr-fr",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 120525,
+    "source_locale": "fr-fr",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 66629,
+    "source_locale": "fr-fr",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 225801,
+    "source_locale": "fr-fr",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 74003,
+    "source_locale": "fr-fr",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 65021,
+    "source_locale": "fr-fr",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 290888,
+    "source_locale": "fr-fr",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 97106,
+    "source_locale": "fr-fr",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 171726,
+    "source_locale": "fr-fr",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 107526,
+    "source_locale": "fr-fr",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 147763,
+    "source_locale": "fr-fr",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 129783,
+    "source_locale": "fr-fr",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 131747,
+    "source_locale": "fr-fr",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 30553,
+    "source_locale": "fr-fr",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 178081,
+    "source_locale": "fr-fr",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 50014,
+    "source_locale": "fr-fr",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 45004,
+    "source_locale": "fr-fr",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 17462,
+    "source_locale": "fr-fr",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 10999,
+    "source_locale": "fr-fr",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 166115,
+    "source_locale": "fr-fr",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 97957,
+    "source_locale": "fr-fr",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 160060,
+    "source_locale": "fr-fr",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 125755,
+    "source_locale": "fr-fr",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 59117,
+    "source_locale": "fr-fr",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 151861,
+    "source_locale": "fr-fr",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 49451,
+    "source_locale": "fr-fr",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 38942,
+    "source_locale": "fr-fr",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 104556,
+    "source_locale": "fr-fr",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 132398,
+    "source_locale": "fr-fr",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 97712,
+    "source_locale": "fr-fr",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 16413,
+    "source_locale": "hr-hr",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 26325,
+    "source_locale": "hr-hr",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 146304,
+    "source_locale": "hr-hr",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 48097,
+    "source_locale": "hr-hr",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 175726,
+    "source_locale": "hr-hr",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 81348,
+    "source_locale": "hr-hr",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 13179,
+    "source_locale": "hr-hr",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 33570,
+    "source_locale": "hr-hr",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 78714,
+    "source_locale": "hr-hr",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 147703,
+    "source_locale": "hr-hr",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 124925,
+    "source_locale": "hr-hr",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 180164,
+    "source_locale": "hr-hr",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 151442,
+    "source_locale": "hr-hr",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 192321,
+    "source_locale": "hr-hr",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 35916,
+    "source_locale": "hr-hr",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 136591,
+    "source_locale": "hr-hr",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 58700,
+    "source_locale": "hr-hr",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 29585,
+    "source_locale": "hr-hr",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 11118,
+    "source_locale": "hr-hr",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 6679,
+    "source_locale": "hr-hr",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 101643,
+    "source_locale": "hr-hr",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 87076,
+    "source_locale": "hr-hr",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 131619,
+    "source_locale": "hr-hr",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 75430,
+    "source_locale": "hr-hr",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 35066,
+    "source_locale": "hr-hr",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 170398,
+    "source_locale": "hr-hr",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 37889,
+    "source_locale": "hr-hr",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 29821,
+    "source_locale": "hr-hr",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 118426,
+    "source_locale": "hr-hr",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 87887,
+    "source_locale": "hr-hr",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 128947,
+    "source_locale": "hr-hr",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 13267,
+    "source_locale": "hu-hu",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 79057,
+    "source_locale": "hu-hu",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 132103,
+    "source_locale": "hu-hu",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 54818,
+    "source_locale": "hu-hu",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 163183,
+    "source_locale": "hu-hu",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 84186,
+    "source_locale": "hu-hu",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 68495,
+    "source_locale": "hu-hu",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 118997,
+    "source_locale": "hu-hu",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 97696,
+    "source_locale": "hu-hu",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 164108,
+    "source_locale": "hu-hu",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 132018,
+    "source_locale": "hu-hu",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 159556,
+    "source_locale": "hu-hu",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 132371,
+    "source_locale": "hu-hu",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 174882,
+    "source_locale": "hu-hu",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 36161,
+    "source_locale": "hu-hu",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 151852,
+    "source_locale": "hu-hu",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 59325,
+    "source_locale": "hu-hu",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 29596,
+    "source_locale": "hu-hu",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 11818,
+    "source_locale": "hu-hu",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 7507,
+    "source_locale": "hu-hu",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 125356,
+    "source_locale": "hu-hu",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 76650,
+    "source_locale": "hu-hu",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 111103,
+    "source_locale": "hu-hu",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 86090,
+    "source_locale": "hu-hu",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 61005,
+    "source_locale": "hu-hu",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 116504,
+    "source_locale": "hu-hu",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 45552,
+    "source_locale": "hu-hu",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 37603,
+    "source_locale": "hu-hu",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 119046,
+    "source_locale": "hu-hu",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 100383,
+    "source_locale": "hu-hu",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 105537,
+    "source_locale": "hu-hu",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 3965,
+    "source_locale": "is-is",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 10988,
+    "source_locale": "is-is",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 17533,
+    "source_locale": "is-is",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 10501,
+    "source_locale": "is-is",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 19152,
+    "source_locale": "is-is",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 10976,
+    "source_locale": "is-is",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 7865,
+    "source_locale": "is-is",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 10978,
+    "source_locale": "is-is",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 11466,
+    "source_locale": "is-is",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 17652,
+    "source_locale": "is-is",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 14584,
+    "source_locale": "is-is",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 18368,
+    "source_locale": "is-is",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 17300,
+    "source_locale": "is-is",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 21689,
+    "source_locale": "is-is",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 20127,
+    "source_locale": "is-is",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 16700,
+    "source_locale": "is-is",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 12592,
+    "source_locale": "is-is",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 6934,
+    "source_locale": "is-is",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 3331,
+    "source_locale": "is-is",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 2442,
+    "source_locale": "is-is",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 16103,
+    "source_locale": "is-is",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 13327,
+    "source_locale": "is-is",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 17896,
+    "source_locale": "is-is",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 12391,
+    "source_locale": "is-is",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 9326,
+    "source_locale": "is-is",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 18253,
+    "source_locale": "is-is",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 8792,
+    "source_locale": "is-is",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 7506,
+    "source_locale": "is-is",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 15366,
+    "source_locale": "is-is",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 14553,
+    "source_locale": "is-is",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 16134,
+    "source_locale": "is-is",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 17382,
+    "source_locale": "it-it",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 74858,
+    "source_locale": "it-it",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 101615,
+    "source_locale": "it-it",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 63645,
+    "source_locale": "it-it",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 183706,
+    "source_locale": "it-it",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 64514,
+    "source_locale": "it-it",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 65690,
+    "source_locale": "it-it",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 212247,
+    "source_locale": "it-it",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 87747,
+    "source_locale": "it-it",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 140092,
+    "source_locale": "it-it",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 91103,
+    "source_locale": "it-it",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 126600,
+    "source_locale": "it-it",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 166817,
+    "source_locale": "it-it",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 112609,
+    "source_locale": "it-it",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 136594,
+    "source_locale": "it-it",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 32192,
+    "source_locale": "it-it",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 53249,
+    "source_locale": "it-it",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 37760,
+    "source_locale": "it-it",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 15591,
+    "source_locale": "it-it",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 9515,
+    "source_locale": "it-it",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 142274,
+    "source_locale": "it-it",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 81752,
+    "source_locale": "it-it",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 133113,
+    "source_locale": "it-it",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 114493,
+    "source_locale": "it-it",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 62431,
+    "source_locale": "it-it",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 113168,
+    "source_locale": "it-it",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 50308,
+    "source_locale": "it-it",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 40796,
+    "source_locale": "it-it",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 88111,
+    "source_locale": "it-it",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 123025,
+    "source_locale": "it-it",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 85094,
+    "source_locale": "it-it",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 6747,
+    "source_locale": "la-va",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 21831,
+    "source_locale": "la-va",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 31008,
+    "source_locale": "la-va",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 19902,
+    "source_locale": "la-va",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 54184,
+    "source_locale": "la-va",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 25049,
+    "source_locale": "la-va",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 20341,
+    "source_locale": "la-va",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 32985,
+    "source_locale": "la-va",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 30769,
+    "source_locale": "la-va",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 42566,
+    "source_locale": "la-va",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 30343,
+    "source_locale": "la-va",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 43468,
+    "source_locale": "la-va",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 31979,
+    "source_locale": "la-va",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 36227,
+    "source_locale": "la-va",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 52624,
+    "source_locale": "la-va",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 16150,
+    "source_locale": "la-va",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 45364,
+    "source_locale": "la-va",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 10389,
+    "source_locale": "la-va",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 4570,
+    "source_locale": "la-va",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 3169,
+    "source_locale": "la-va",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 37723,
+    "source_locale": "la-va",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 25095,
+    "source_locale": "la-va",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 33757,
+    "source_locale": "la-va",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 31271,
+    "source_locale": "la-va",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 21456,
+    "source_locale": "la-va",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 40255,
+    "source_locale": "la-va",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 16372,
+    "source_locale": "la-va",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 14635,
+    "source_locale": "la-va",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 31826,
+    "source_locale": "la-va",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 40400,
+    "source_locale": "la-va",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 30291,
+    "source_locale": "la-va",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 3933,
+    "source_locale": "lt-lt",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 13515,
+    "source_locale": "lt-lt",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 20292,
+    "source_locale": "lt-lt",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 15108,
+    "source_locale": "lt-lt",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 30499,
+    "source_locale": "lt-lt",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 12536,
+    "source_locale": "lt-lt",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 5411,
+    "source_locale": "lt-lt",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 28037,
+    "source_locale": "lt-lt",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 16771,
+    "source_locale": "lt-lt",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 27110,
+    "source_locale": "lt-lt",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 17459,
+    "source_locale": "lt-lt",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 26058,
+    "source_locale": "lt-lt",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 30017,
+    "source_locale": "lt-lt",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 21372,
+    "source_locale": "lt-lt",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 21399,
+    "source_locale": "lt-lt",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 7541,
+    "source_locale": "lt-lt",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 25120,
+    "source_locale": "lt-lt",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 9608,
+    "source_locale": "lt-lt",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 5773,
+    "source_locale": "lt-lt",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 3531,
+    "source_locale": "lt-lt",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 25125,
+    "source_locale": "lt-lt",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 17966,
+    "source_locale": "lt-lt",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 26675,
+    "source_locale": "lt-lt",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 21925,
+    "source_locale": "lt-lt",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 11971,
+    "source_locale": "lt-lt",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 25029,
+    "source_locale": "lt-lt",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 11959,
+    "source_locale": "lt-lt",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 9204,
+    "source_locale": "lt-lt",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 14945,
+    "source_locale": "lt-lt",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 22475,
+    "source_locale": "lt-lt",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 17195,
+    "source_locale": "lt-lt",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 1771,
+    "source_locale": "lv-lv",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 4832,
+    "source_locale": "lv-lv",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 6970,
+    "source_locale": "lv-lv",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 5704,
+    "source_locale": "lv-lv",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 9938,
+    "source_locale": "lv-lv",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 4733,
+    "source_locale": "lv-lv",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 2036,
+    "source_locale": "lv-lv",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 10364,
+    "source_locale": "lv-lv",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 6606,
+    "source_locale": "lv-lv",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 8816,
+    "source_locale": "lv-lv",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 6497,
+    "source_locale": "lv-lv",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 8752,
+    "source_locale": "lv-lv",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 9456,
+    "source_locale": "lv-lv",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 7442,
+    "source_locale": "lv-lv",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 7640,
+    "source_locale": "lv-lv",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 3129,
+    "source_locale": "lv-lv",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 8750,
+    "source_locale": "lv-lv",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 3779,
+    "source_locale": "lv-lv",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 5070,
+    "source_locale": "lv-lv",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 1875,
+    "source_locale": "lv-lv",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 8768,
+    "source_locale": "lv-lv",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 6726,
+    "source_locale": "lv-lv",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 9136,
+    "source_locale": "lv-lv",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 7260,
+    "source_locale": "lv-lv",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 4994,
+    "source_locale": "lv-lv",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 9214,
+    "source_locale": "lv-lv",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 4789,
+    "source_locale": "lv-lv",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 4140,
+    "source_locale": "lv-lv",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 6146,
+    "source_locale": "lv-lv",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 8082,
+    "source_locale": "lv-lv",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 6125,
+    "source_locale": "lv-lv",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 1359,
+    "source_locale": "mk-mk",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 4025,
+    "source_locale": "mk-mk",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 3756,
+    "source_locale": "mk-mk",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 3280,
+    "source_locale": "mk-mk",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 4647,
+    "source_locale": "mk-mk",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 2931,
+    "source_locale": "mk-mk",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 1677,
+    "source_locale": "mk-mk",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 5222,
+    "source_locale": "mk-mk",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 3431,
+    "source_locale": "mk-mk",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 4302,
+    "source_locale": "mk-mk",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 3437,
+    "source_locale": "mk-mk",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 4018,
+    "source_locale": "mk-mk",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 4575,
+    "source_locale": "mk-mk",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 3716,
+    "source_locale": "mk-mk",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 3618,
+    "source_locale": "mk-mk",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 2127,
+    "source_locale": "mk-mk",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 4349,
+    "source_locale": "mk-mk",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 2317,
+    "source_locale": "mk-mk",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 2935,
+    "source_locale": "mk-mk",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 1774,
+    "source_locale": "mk-mk",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 4317,
+    "source_locale": "mk-mk",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 3651,
+    "source_locale": "mk-mk",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 4473,
+    "source_locale": "mk-mk",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 4096,
+    "source_locale": "mk-mk",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 3047,
+    "source_locale": "mk-mk",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 4130,
+    "source_locale": "mk-mk",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 3081,
+    "source_locale": "mk-mk",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 2664,
+    "source_locale": "mk-mk",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 3711,
+    "source_locale": "mk-mk",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 4118,
+    "source_locale": "mk-mk",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 3319,
+    "source_locale": "mk-mk",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 10307,
+    "source_locale": "nl-nl",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 64155,
+    "source_locale": "nl-nl",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 70556,
+    "source_locale": "nl-nl",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 54505,
+    "source_locale": "nl-nl",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 147494,
+    "source_locale": "nl-nl",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 48114,
+    "source_locale": "nl-nl",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 43718,
+    "source_locale": "nl-nl",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 179850,
+    "source_locale": "nl-nl",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 74760,
+    "source_locale": "nl-nl",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 109059,
+    "source_locale": "nl-nl",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 61682,
+    "source_locale": "nl-nl",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 88157,
+    "source_locale": "nl-nl",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 135913,
+    "source_locale": "nl-nl",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 70938,
+    "source_locale": "nl-nl",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 91286,
+    "source_locale": "nl-nl",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 24428,
+    "source_locale": "nl-nl",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 123422,
+    "source_locale": "nl-nl",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 36820,
+    "source_locale": "nl-nl",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 33634,
+    "source_locale": "nl-nl",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 14198,
+    "source_locale": "nl-nl",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 8112,
+    "source_locale": "nl-nl",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 71410,
+    "source_locale": "nl-nl",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 126648,
+    "source_locale": "nl-nl",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 104921,
+    "source_locale": "nl-nl",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 53074,
+    "source_locale": "nl-nl",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 101548,
+    "source_locale": "nl-nl",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 40495,
+    "source_locale": "nl-nl",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 33082,
+    "source_locale": "nl-nl",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 70529,
+    "source_locale": "nl-nl",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 103774,
+    "source_locale": "nl-nl",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 57749,
+    "source_locale": "nl-nl",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 7242,
+    "source_locale": "no-no",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 30871,
+    "source_locale": "no-no",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 60328,
+    "source_locale": "no-no",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 35840,
+    "source_locale": "no-no",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 85564,
+    "source_locale": "no-no",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 34769,
+    "source_locale": "no-no",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 14084,
+    "source_locale": "no-no",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 65897,
+    "source_locale": "no-no",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 40035,
+    "source_locale": "no-no",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 71971,
+    "source_locale": "no-no",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 51523,
+    "source_locale": "no-no",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 76328,
+    "source_locale": "no-no",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 80369,
+    "source_locale": "no-no",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 71304,
+    "source_locale": "no-no",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 70850,
+    "source_locale": "no-no",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 16801,
+    "source_locale": "no-no",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 67206,
+    "source_locale": "no-no",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 25997,
+    "source_locale": "no-no",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 20102,
+    "source_locale": "no-no",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 8484,
+    "source_locale": "no-no",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 5186,
+    "source_locale": "no-no",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 65849,
+    "source_locale": "no-no",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 71872,
+    "source_locale": "no-no",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 53244,
+    "source_locale": "no-no",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 26463,
+    "source_locale": "no-no",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 68828,
+    "source_locale": "no-no",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 24039,
+    "source_locale": "no-no",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 18926,
+    "source_locale": "no-no",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 53867,
+    "source_locale": "no-no",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 62046,
+    "source_locale": "no-no",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 48514,
+    "source_locale": "no-no",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 12112,
+    "source_locale": "pl-pl",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 44109,
+    "source_locale": "pl-pl",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 102856,
+    "source_locale": "pl-pl",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 53706,
+    "source_locale": "pl-pl",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 171526,
+    "source_locale": "pl-pl",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 58858,
+    "source_locale": "pl-pl",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 21705,
+    "source_locale": "pl-pl",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 148307,
+    "source_locale": "pl-pl",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 74041,
+    "source_locale": "pl-pl",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 135233,
+    "source_locale": "pl-pl",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 84646,
+    "source_locale": "pl-pl",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 132356,
+    "source_locale": "pl-pl",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 156683,
+    "source_locale": "pl-pl",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 115533,
+    "source_locale": "pl-pl",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 129604,
+    "source_locale": "pl-pl",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 26708,
+    "source_locale": "pl-pl",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 141389,
+    "source_locale": "pl-pl",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 43575,
+    "source_locale": "pl-pl",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 35166,
+    "source_locale": "pl-pl",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 13963,
+    "source_locale": "pl-pl",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 7849,
+    "source_locale": "pl-pl",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 143370,
+    "source_locale": "pl-pl",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 82647,
+    "source_locale": "pl-pl",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 98941,
+    "source_locale": "pl-pl",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 43614,
+    "source_locale": "pl-pl",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 137215,
+    "source_locale": "pl-pl",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 43727,
+    "source_locale": "pl-pl",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 30591,
+    "source_locale": "pl-pl",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 98474,
+    "source_locale": "pl-pl",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 104371,
+    "source_locale": "pl-pl",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 86405,
+    "source_locale": "pl-pl",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 8492,
+    "source_locale": "pt-pt",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 50644,
+    "source_locale": "pt-pt",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 57520,
+    "source_locale": "pt-pt",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 41905,
+    "source_locale": "pt-pt",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 111118,
+    "source_locale": "pt-pt",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 36748,
+    "source_locale": "pt-pt",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 36939,
+    "source_locale": "pt-pt",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 127932,
+    "source_locale": "pt-pt",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 53220,
+    "source_locale": "pt-pt",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 95683,
+    "source_locale": "pt-pt",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 46755,
+    "source_locale": "pt-pt",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 76695,
+    "source_locale": "pt-pt",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 95867,
+    "source_locale": "pt-pt",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 60669,
+    "source_locale": "pt-pt",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 71732,
+    "source_locale": "pt-pt",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 19799,
+    "source_locale": "pt-pt",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 98695,
+    "source_locale": "pt-pt",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 32023,
+    "source_locale": "pt-pt",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 26978,
+    "source_locale": "pt-pt",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 10658,
+    "source_locale": "pt-pt",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 6547,
+    "source_locale": "pt-pt",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 99970,
+    "source_locale": "pt-pt",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 55452,
+    "source_locale": "pt-pt",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 89979,
+    "source_locale": "pt-pt",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 41826,
+    "source_locale": "pt-pt",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 77230,
+    "source_locale": "pt-pt",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 34784,
+    "source_locale": "pt-pt",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 27431,
+    "source_locale": "pt-pt",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 47092,
+    "source_locale": "pt-pt",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 81936,
+    "source_locale": "pt-pt",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 47528,
+    "source_locale": "pt-pt",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 5353,
+    "source_locale": "ro-ro",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 38041,
+    "source_locale": "ro-ro",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 28231,
+    "source_locale": "ro-ro",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 24095,
+    "source_locale": "ro-ro",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 63734,
+    "source_locale": "ro-ro",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 22446,
+    "source_locale": "ro-ro",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 47549,
+    "source_locale": "ro-ro",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 67594,
+    "source_locale": "ro-ro",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 43100,
+    "source_locale": "ro-ro",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 47810,
+    "source_locale": "ro-ro",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 23954,
+    "source_locale": "ro-ro",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 45755,
+    "source_locale": "ro-ro",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 36215,
+    "source_locale": "ro-ro",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 29344,
+    "source_locale": "ro-ro",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 58883,
+    "source_locale": "ro-ro",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 13483,
+    "source_locale": "ro-ro",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 52214,
+    "source_locale": "ro-ro",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 21453,
+    "source_locale": "ro-ro",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 13156,
+    "source_locale": "ro-ro",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 6285,
+    "source_locale": "ro-ro",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 4102,
+    "source_locale": "ro-ro",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 49214,
+    "source_locale": "ro-ro",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 27287,
+    "source_locale": "ro-ro",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 37324,
+    "source_locale": "ro-ro",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 42174,
+    "source_locale": "ro-ro",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 47015,
+    "source_locale": "ro-ro",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 20964,
+    "source_locale": "ro-ro",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 17913,
+    "source_locale": "ro-ro",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 25215,
+    "source_locale": "ro-ro",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 49425,
+    "source_locale": "ro-ro",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 22957,
+    "source_locale": "ro-ro",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 23230,
+    "source_locale": "ru-ru",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 57301,
+    "source_locale": "ru-ru",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 127109,
+    "source_locale": "ru-ru",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 55370,
+    "source_locale": "ru-ru",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 168927,
+    "source_locale": "ru-ru",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 71553,
+    "source_locale": "ru-ru",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 39363,
+    "source_locale": "ru-ru",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 204057,
+    "source_locale": "ru-ru",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 92618,
+    "source_locale": "ru-ru",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 132527,
+    "source_locale": "ru-ru",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 116208,
+    "source_locale": "ru-ru",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 147612,
+    "source_locale": "ru-ru",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 152344,
+    "source_locale": "ru-ru",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 145706,
+    "source_locale": "ru-ru",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 154978,
+    "source_locale": "ru-ru",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 33297,
+    "source_locale": "ru-ru",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 136749,
+    "source_locale": "ru-ru",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 52606,
+    "source_locale": "ru-ru",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 36274,
+    "source_locale": "ru-ru",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 15313,
+    "source_locale": "ru-ru",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 8278,
+    "source_locale": "ru-ru",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 127304,
+    "source_locale": "ru-ru",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 85414,
+    "source_locale": "ru-ru",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 137067,
+    "source_locale": "ru-ru",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 93457,
+    "source_locale": "ru-ru",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 53536,
+    "source_locale": "ru-ru",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 45073,
+    "source_locale": "ru-ru",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 35284,
+    "source_locale": "ru-ru",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 104329,
+    "source_locale": "ru-ru",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 106105,
+    "source_locale": "ru-ru",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 111810,
+    "source_locale": "ru-ru",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 4727,
+    "source_locale": "sk-sk",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 22567,
+    "source_locale": "sk-sk",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 27802,
+    "source_locale": "sk-sk",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 18840,
+    "source_locale": "sk-sk",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 43456,
+    "source_locale": "sk-sk",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 17094,
+    "source_locale": "sk-sk",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 16027,
+    "source_locale": "sk-sk",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 74545,
+    "source_locale": "sk-sk",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 23355,
+    "source_locale": "sk-sk",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 33280,
+    "source_locale": "sk-sk",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 21445,
+    "source_locale": "sk-sk",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 32037,
+    "source_locale": "sk-sk",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 29281,
+    "source_locale": "sk-sk",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 26054,
+    "source_locale": "sk-sk",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 33836,
+    "source_locale": "sk-sk",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 10069,
+    "source_locale": "sk-sk",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 36556,
+    "source_locale": "sk-sk",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 15927,
+    "source_locale": "sk-sk",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 12241,
+    "source_locale": "sk-sk",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 5533,
+    "source_locale": "sk-sk",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 3867,
+    "source_locale": "sk-sk",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 32263,
+    "source_locale": "sk-sk",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 21786,
+    "source_locale": "sk-sk",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 33627,
+    "source_locale": "sk-sk",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 29943,
+    "source_locale": "sk-sk",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 18519,
+    "source_locale": "sk-sk",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 31584,
+    "source_locale": "sk-sk",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 14605,
+    "source_locale": "sk-sk",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 22636,
+    "source_locale": "sk-sk",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 31829,
+    "source_locale": "sk-sk",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 21206,
+    "source_locale": "sk-sk",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 4129,
+    "source_locale": "sl-si",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 19996,
+    "source_locale": "sl-si",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 18518,
+    "source_locale": "sl-si",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 15334,
+    "source_locale": "sl-si",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 30996,
+    "source_locale": "sl-si",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 13152,
+    "source_locale": "sl-si",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 18287,
+    "source_locale": "sl-si",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 32246,
+    "source_locale": "sl-si",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 18158,
+    "source_locale": "sl-si",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 24687,
+    "source_locale": "sl-si",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 15627,
+    "source_locale": "sl-si",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 23983,
+    "source_locale": "sl-si",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 20254,
+    "source_locale": "sl-si",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 19203,
+    "source_locale": "sl-si",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 26415,
+    "source_locale": "sl-si",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 8502,
+    "source_locale": "sl-si",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 26321,
+    "source_locale": "sl-si",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 12803,
+    "source_locale": "sl-si",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 9297,
+    "source_locale": "sl-si",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 5161,
+    "source_locale": "sl-si",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 3227,
+    "source_locale": "sl-si",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 24690,
+    "source_locale": "sl-si",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 16569,
+    "source_locale": "sl-si",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 22694,
+    "source_locale": "sl-si",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 22323,
+    "source_locale": "sl-si",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 16003,
+    "source_locale": "sl-si",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 23377,
+    "source_locale": "sl-si",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 13649,
+    "source_locale": "sl-si",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 16415,
+    "source_locale": "sl-si",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 26742,
+    "source_locale": "sl-si",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 15423,
+    "source_locale": "sl-si",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 9715,
+    "source_locale": "sr-rs",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 27330,
+    "source_locale": "sr-rs",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 91079,
+    "source_locale": "sr-rs",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 36130,
+    "source_locale": "sr-rs",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 112956,
+    "source_locale": "sr-rs",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 52732,
+    "source_locale": "sr-rs",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 19650,
+    "source_locale": "sr-rs",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 46480,
+    "source_locale": "sr-rs",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 52462,
+    "source_locale": "sr-rs",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 100259,
+    "source_locale": "sr-rs",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 78341,
+    "source_locale": "sr-rs",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 110363,
+    "source_locale": "sr-rs",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 107497,
+    "source_locale": "sr-rs",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 100168,
+    "source_locale": "sr-rs",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 127376,
+    "source_locale": "sr-rs",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 22505,
+    "source_locale": "sr-rs",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 96197,
+    "source_locale": "sr-rs",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 38921,
+    "source_locale": "sr-rs",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 19190,
+    "source_locale": "sr-rs",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 8448,
+    "source_locale": "sr-rs",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 5636,
+    "source_locale": "sr-rs",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 85867,
+    "source_locale": "sr-rs",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 61678,
+    "source_locale": "sr-rs",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 101034,
+    "source_locale": "sr-rs",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 53053,
+    "source_locale": "sr-rs",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 27208,
+    "source_locale": "sr-rs",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 106275,
+    "source_locale": "sr-rs",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 27936,
+    "source_locale": "sr-rs",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 21972,
+    "source_locale": "sr-rs",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 9204,
+    "source_locale": "sr-rs",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 66293,
+    "source_locale": "sr-rs",
+    "target_locale": "sv-se"
+  },
+  {
+    "n": 78327,
+    "source_locale": "sr-rs",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 14707,
+    "source_locale": "sv-se",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 56674,
+    "source_locale": "sv-se",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 62749,
+    "source_locale": "sv-se",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 48624,
+    "source_locale": "sv-se",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 109859,
+    "source_locale": "sv-se",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 40595,
+    "source_locale": "sv-se",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 38545,
+    "source_locale": "sv-se",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 124646,
+    "source_locale": "sv-se",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 52256,
+    "source_locale": "sv-se",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 85560,
+    "source_locale": "sv-se",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 54443,
+    "source_locale": "sv-se",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 80937,
+    "source_locale": "sv-se",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 99099,
+    "source_locale": "sv-se",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 64793,
+    "source_locale": "sv-se",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 73685,
+    "source_locale": "sv-se",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 22993,
+    "source_locale": "sv-se",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 91013,
+    "source_locale": "sv-se",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 37343,
+    "source_locale": "sv-se",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 28769,
+    "source_locale": "sv-se",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 12185,
+    "source_locale": "sv-se",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 7324,
+    "source_locale": "sv-se",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 96111,
+    "source_locale": "sv-se",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 63677,
+    "source_locale": "sv-se",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 90656,
+    "source_locale": "sv-se",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 76322,
+    "source_locale": "sv-se",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 45599,
+    "source_locale": "sv-se",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 76919,
+    "source_locale": "sv-se",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 36748,
+    "source_locale": "sv-se",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 31585,
+    "source_locale": "sv-se",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 54146,
+    "source_locale": "sv-se",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 52694,
+    "source_locale": "sv-se",
+    "target_locale": "uk-ua"
+  },
+  {
+    "n": 21680,
+    "source_locale": "uk-ua",
+    "target_locale": "be-by"
+  },
+  {
+    "n": 20212,
+    "source_locale": "uk-ua",
+    "target_locale": "bg-bg"
+  },
+  {
+    "n": 91315,
+    "source_locale": "uk-ua",
+    "target_locale": "cs-cz"
+  },
+  {
+    "n": 31605,
+    "source_locale": "uk-ua",
+    "target_locale": "da-dk"
+  },
+  {
+    "n": 117798,
+    "source_locale": "uk-ua",
+    "target_locale": "de-de"
+  },
+  {
+    "n": 47778,
+    "source_locale": "uk-ua",
+    "target_locale": "el-gr"
+  },
+  {
+    "n": 8585,
+    "source_locale": "uk-ua",
+    "target_locale": "en-gb"
+  },
+  {
+    "n": 117823,
+    "source_locale": "uk-ua",
+    "target_locale": "en-us"
+  },
+  {
+    "n": 49749,
+    "source_locale": "uk-ua",
+    "target_locale": "eo-xx"
+  },
+  {
+    "n": 87717,
+    "source_locale": "uk-ua",
+    "target_locale": "es-es"
+  },
+  {
+    "n": 76311,
+    "source_locale": "uk-ua",
+    "target_locale": "et-ee"
+  },
+  {
+    "n": 98188,
+    "source_locale": "uk-ua",
+    "target_locale": "fi-fi"
+  },
+  {
+    "n": 93080,
+    "source_locale": "uk-ua",
+    "target_locale": "fr-fr"
+  },
+  {
+    "n": 105568,
+    "source_locale": "uk-ua",
+    "target_locale": "hr-hr"
+  },
+  {
+    "n": 105346,
+    "source_locale": "uk-ua",
+    "target_locale": "hu-hu"
+  },
+  {
+    "n": 21572,
+    "source_locale": "uk-ua",
+    "target_locale": "is-is"
+  },
+  {
+    "n": 84968,
+    "source_locale": "uk-ua",
+    "target_locale": "it-it"
+  },
+  {
+    "n": 35773,
+    "source_locale": "uk-ua",
+    "target_locale": "la-va"
+  },
+  {
+    "n": 21388,
+    "source_locale": "uk-ua",
+    "target_locale": "lt-lt"
+  },
+  {
+    "n": 8258,
+    "source_locale": "uk-ua",
+    "target_locale": "lv-lv"
+  },
+  {
+    "n": 4972,
+    "source_locale": "uk-ua",
+    "target_locale": "mk-mk"
+  },
+  {
+    "n": 64012,
+    "source_locale": "uk-ua",
+    "target_locale": "nl-nl"
+  },
+  {
+    "n": 52332,
+    "source_locale": "uk-ua",
+    "target_locale": "no-no"
+  },
+  {
+    "n": 80001,
+    "source_locale": "uk-ua",
+    "target_locale": "pl-pl"
+  },
+  {
+    "n": 51383,
+    "source_locale": "uk-ua",
+    "target_locale": "pt-pt"
+  },
+  {
+    "n": 24407,
+    "source_locale": "uk-ua",
+    "target_locale": "ro-ro"
+  },
+  {
+    "n": 96368,
+    "source_locale": "uk-ua",
+    "target_locale": "ru-ru"
+  },
+  {
+    "n": 26257,
+    "source_locale": "uk-ua",
+    "target_locale": "sk-sk"
+  },
+  {
+    "n": 19693,
+    "source_locale": "uk-ua",
+    "target_locale": "sl-si"
+  },
+  {
+    "n": 71985,
+    "source_locale": "uk-ua",
+    "target_locale": "sr-rs"
+  },
+  {
+    "n": 60736,
+    "source_locale": "uk-ua",
+    "target_locale": "sv-se"
+  }
+]

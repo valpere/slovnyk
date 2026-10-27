@@ -86,12 +86,22 @@ M2 preparation: Go utility [prepare-csv-manifest](../utilities/README.md#під�
 Повний Go `import inspect` цієї копії пройшов: 992 complete/checksum-verified files,
 56 455 068 parsed occurrences, 0 rejected; per-file counts збігаються з аудитом.
 [Evidence](_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
-Distinct tuples тут не рахуються; повний Go PostgreSQL import та production acceptance
-ще не виконані.
+Distinct tuples в inspect не рахуються; PostgreSQL import описано нижче,
+production acceptance ще не виконано.
 Наступна [bounded PostgreSQL проба](_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md)
 закомітила 114 000 записів того самого manifest: interrupt/retry зберіг counts і
 digests перших 55 000; active dataset порожній. Це частина першого файла,
 не повний import/reconciliation або capacity acceptance.
+Повний [staged PostgreSQL import](_assessments/2026-10-27-postgres-corpus-import/REPORT.md)
+завершив цей dataset: 992 complete/checksum-verified files, 56 455 068 unique,
+0 duplicates/rejected/issues; actual ledger/origins/translations, checkpoints
+і per-file/pair counts узгоджені з audit. Prefix digests 55 000 збережені.
+Dataset `validating`, active null; source/normalization reconciliation,
+verify/exports/ready та production acceptance відкриті. Known gaps manifest
+блокують strict verifier; approval-loss adapter та погодження власника ще потрібні.
+Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
+2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
+memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів

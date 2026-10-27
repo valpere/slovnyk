@@ -1,0 +1,53 @@
+{
+  "observed_container_state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-25T11:38:43.967436339Z",
+    "FinishedAt": "2026-10-25T19:29:01.875357484Z",
+    "Health": {
+      "Status": "unhealthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-10-25T21:28:56.987813012+02:00",
+          "End": "2026-10-25T21:28:57.012697144+02:00",
+          "ExitCode": 0,
+          "Output": "127.0.0.1:5432 - accepting connections\n"
+        },
+        {
+          "Start": "2026-10-25T21:28:58.013483674+02:00",
+          "End": "2026-10-25T21:28:58.037464493+02:00",
+          "ExitCode": 0,
+          "Output": "127.0.0.1:5432 - accepting connections\n"
+        },
+        {
+          "Start": "2026-10-25T21:28:59.037911545+02:00",
+          "End": "2026-10-25T21:28:59.064676368+02:00",
+          "ExitCode": 0,
+          "Output": "127.0.0.1:5432 - accepting connections\n"
+        },
+        {
+          "Start": "2026-10-25T21:29:00.065508164+02:00",
+          "End": "2026-10-25T21:29:00.090795881+02:00",
+          "ExitCode": 0,
+          "Output": "127.0.0.1:5432 - accepting connections\n"
+        },
+        {
+          "Start": "2026-10-25T21:29:01.092026551+02:00",
+          "End": "2026-10-25T21:29:01.117394968+02:00",
+          "ExitCode": 0,
+          "Output": "127.0.0.1:5432 - accepting connections\n"
+        }
+      ]
+    }
+  },
+  "initial_verification": "CLI report comparison passed; SQL verification did not start because container was stopped",
+  "action": "start own existing container; preserve bind database; do not reinitialize or import again"
+}

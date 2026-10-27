@@ -1,0 +1,13 @@
+{
+  "files": 992,
+  "parsed": 56455068,
+  "accepted_unique": 56455068,
+  "duplicates": 0,
+  "rejected": 0,
+  "all_complete_checksum_verified": true,
+  "per_file_matches_audit": true,
+  "fingerprint_unchanged": true,
+  "same_resumed_dataset": true,
+  "state": "validating",
+  "published": false
+}

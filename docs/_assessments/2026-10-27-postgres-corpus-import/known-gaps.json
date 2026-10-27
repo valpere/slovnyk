@@ -1,0 +1,9 @@
+{
+  "known_gaps": [
+    "CSV4 has no legacy count/status/query metadata; completeness is limited to the available snapshot"
+  ],
+  "exceptions": [],
+  "approval_granted_by_this_run": false,
+  "current_verify_adapter": "known gaps or exceptions block ready; approval-loss adapter remains open",
+  "raw_source_metadata_reconstructed": false
+}

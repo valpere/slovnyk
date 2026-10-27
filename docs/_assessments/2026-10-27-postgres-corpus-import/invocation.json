@@ -1,0 +1,39 @@
+{
+  "revision": "2ffb9ab33d41d734bf04b6f62632c6033bfa8d1a",
+  "binary_sha256": "901382bc5893643e41cf9f6feb06a7ee2d1c34a636643a7755076d790677cef1",
+  "manifest_sha256": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+  "batch_size": 1000,
+  "minimum_disk_free_bytes": 32212254720,
+  "maximum_database_bytes": 91268055040,
+  "maximum_seconds": 86400,
+  "container": {
+    "Memory": 536870912,
+    "NanoCpus": 1000000000,
+    "PortBindings": {
+      "5432/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": ""
+        }
+      ]
+    }
+  },
+  "server": {
+    "fsync": "on",
+    "version": "17.11",
+    "full_page_writes": "on",
+    "synchronous_commit": "on"
+  },
+  "resumed_from": "data/experiments/postgres-corpus-preflight-2026-10-25",
+  "command": [
+    "bin/slovnyk",
+    "import",
+    "run",
+    "--manifest",
+    "data/experiments/csv-manifest-2026-10-25/manifest.json",
+    "--source",
+    "data/experiments/csv-manifest-2026-10-25/snapshot",
+    "--batch-size",
+    "1000"
+  ]
+}

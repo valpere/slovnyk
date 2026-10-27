@@ -714,3 +714,26 @@ ledger/origins/translations не змінилися, counters узгоджені
 DB/indexes 66–67 GiB не включає WAL/temp/exports/backup та не є resource gate.
 Container/network прибрані, bind pgdata й private config збережені локально у
 `data/experiments/postgres-corpus-preflight-2026-10-25/`. Oracle/legacy не змінено.
+
+## Повний PostgreSQL staged import, 2026-10-27
+
+Після PR #14 actual Go CLI продовжив той самий manifest/dataset із 114 000
+committed records до 56 455 068 accepted unique. Усі 992 files complete та
+checksum-verified, duplicates/rejected/issues — 0. SQL counts ledger/origins/
+translations, per-file/pair totals і checkpoints узгоджені з audit;
+counts і digests попередніх 55 000 рядків незмінні. Attempt 3 completed,
+dataset `validating`, active null/generation 0. [Evidence](_assessments/2026-10-27-postgres-corpus-import/REPORT.md).
+
+Третій attempt тривав 4 год 31 хв; PostgreSQL CPU cap 1, memory cap змінювався
+512 MiB → 8 → 16 GiB. Це локальний змішаний профіль, не Oracle benchmark або
+вимір мінімальної RAM сервісу. DB/indexes одного dataset — 64.315 GiB, WAL
+окремо 1 GiB. За historical server profile 2026-10-23 root ~45 GiB цей layout
+не поміщається; Oracle не перевіряли повторно. Потрібний окремий storage/server
+gate із запасом для другого dataset, exports, WAL/temp та backup/restore.
+
+Повний source/normalization reconciliation, verify/exports/ready, HTTP/crawl/SLO
+і full-corpus backup/restore ще відкриті. Нуль rejected не відновлює відсутні
+історичні count/status/query metadata. Known gaps manifest лишаються: поточний
+strict verifier блокує ready, потрібні approval-loss adapter та погодження
+власником конкретного звіту; цей run не є погодженням втрат. Production migration
+не виконана. Власні container/network прибрані, та сама DB і результати збережені.

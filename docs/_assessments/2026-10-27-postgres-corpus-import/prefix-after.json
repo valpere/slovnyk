@@ -1,0 +1,11 @@
+{
+  "bounds": {
+    "000fe9247e4b293db29844e04147c7f8ca6221eafae11828a55a6ab2f9c9b6b6": 55000
+  },
+  "ledger_count": 55000,
+  "ledger_sha256": "6af514c682c1909289f7468ec818faddda6273d118bda3478929b0b763dde94e",
+  "origins_count": 55000,
+  "origins_sha256": "608b62f1e46ba9f286382abb313d3876a935e895cb3a4a898ae0fc66c404dc28",
+  "translations_count": 55000,
+  "translations_sha256": "7aa28c067c6d06bd5940a6d7ff41bbcb2132708e33a2719b94a9da96f92ac925"
+}

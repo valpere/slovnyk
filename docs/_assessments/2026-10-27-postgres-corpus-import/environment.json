@@ -1,0 +1,8 @@
+{
+  "verification_utc": "2026-10-27T15:21:14.445152+00:00",
+  "go_version": "go version go1.26.10 linux/amd64",
+  "platform": "Linux x86_64",
+  "disk_free_before_verification_completion_bytes": 53533372416,
+  "application_go_process_outside_database_cgroup": true,
+  "runtime_schema_dependencies_changed": false
+}

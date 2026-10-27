@@ -1,0 +1,59 @@
+{
+  "utc": "2026-10-27T15:22:09.140041+00:00",
+  "roles": {
+    "rolsuper": false,
+    "rolcanlogin": true,
+    "rolcreatedb": false,
+    "rolbypassrls": false,
+    "rolcreaterole": false,
+    "rolreplication": false
+  },
+  "active": {
+    "dataset_id": null,
+    "generation": 0
+  },
+  "datasets": [
+    {
+      "id": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+      "state": "validating",
+      "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01"
+    }
+  ],
+  "relations": {
+    "exports": 24576,
+    "datasets": 188416,
+    "import_runs": 81920,
+    "source_files": 409600,
+    "translations": 28713631744,
+    "dataset_pairs": 180224,
+    "import_issues": 16384,
+    "active_dataset": 24576,
+    "import_records": 19765239808,
+    "sitemap_shards": 16384,
+    "dataset_locales": 32768,
+    "schema_migrations": 32768,
+    "sitemap_inventory": 16384,
+    "import_checkpoints": 253952,
+    "publication_events": 16384,
+    "translation_origins": 20569432064,
+    "legacy_query_snapshots": 16384
+  },
+  "wal_bytes": 1073741824,
+  "database_bytes": 69058074291,
+  "schema_version": 3,
+  "running_imports": 0,
+  "checkpoint_mismatches": 0,
+  "verification_activity": [
+    {
+      "state": "active",
+      "wait_type": "IO",
+      "wait_event": "BuffileRead",
+      "elapsed_seconds": 74.999849
+    }
+  ],
+  "container_limits": {
+    "Memory": 17179869184,
+    "MemorySwap": 17179869184,
+    "NanoCpus": 1000000000
+  }
+}
