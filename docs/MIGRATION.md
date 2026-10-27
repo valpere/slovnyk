@@ -53,6 +53,13 @@ normalization reconciliation або verify/exports/ready; active лишився 
 Поточний strict verifier блокує known_gaps manifest. Не обходьте це вилученням
 gap: потрібні approval-loss adapter і погодження власником конкретного звіту.
 
+До цього погодження використовуйте окремий `dataset reconcile ID --source DIR`
+для source/normalization та inventory checks без ready/exports/publication.
+Він повертає diagnostic JSON з fingerprint і незакритими gaps/exceptions;
+не змінює manifest або persistent dataset. Наявність такого звіту не є
+погодженням втрат. [Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
+Повний PostgreSQL корпус цією командою ще не звірено.
+
 DB/indexes одного dataset — 64.315 GiB, WAL окремо 1 GiB. Такий layout не
 поміщається на root ~45 GiB за профілем Oracle 2026-10-23; нового probe не було.
 Плануйте додатково другий dataset, WAL/temp, exports і backup/restore copies.

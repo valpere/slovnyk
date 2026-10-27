@@ -603,3 +603,26 @@ verifier блокує ready; approval-loss adapter та погодження к�
 власником ще потрібні. Historical/semantic completeness не доведена.
 Локальні repository checks та CI фіксуються у звіті й PR; це не нові automated
 full-corpus tests і не закриття M2/M3.
+
+## FR-07/08 subset — окрема reconciliation, 2026-10-27
+
+`dataset reconcile ID --source DIR` повторно звіряє validating dataset без
+exports/ready/publication. Shared setup, source replay та inventory checks
+використовуються й strict verify; gaps/exceptions залишаються незакритими.
+[Scope та evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
+
+- `internal/publication/reconcile_integration_test.go`: clean/gap/exception,
+  repeat fingerprint/counts, незмінені state/report/exports/generation,
+  відмова publish і strict verify без approval; damaged origins/metadata/counters,
+  incomplete file, missing/same-size changed source, writer conflict,
+  cancellation/connection cleanup.
+- `internal/publication/publication_integration_test.go`: rejected records
+  відхиляються також окремою reconciliation.
+- `internal/importer/importer_integration_test.go`: temp normalization key/hash
+  mismatch відхиляється replay; schema guards залишені ввімкненими.
+- `cmd/slovnyk/import_integration_test.go`: actual operator CLI reconcile →
+  verify/export/sitemap/publish; `dataset_test.go`: safe errors/argument guards.
+
+`make test-integration` — PASS, exit 0, disposable PostgreSQL 17.11; synthetic
+service lifecycle і local fresh-cluster restore також пройшли. Повний реальний
+корпус тут не запускався; concrete loss approval та M2/M3 залишаються відкритими.

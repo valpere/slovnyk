@@ -102,6 +102,10 @@ verify/exports/ready та production acceptance відкриті. Known gaps man
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.
+Окрема команда `dataset reconcile` звіряє staged dataset без exports/ready,
+залишаючи known gaps та exceptions незакритими;
+[synthetic перевірки](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
+Повний корпус і owner-approval adapter цим не закриті.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів

@@ -138,6 +138,21 @@ Exceptions мають перелічувати конкретні hashes/locator
 
 ## Поточний CSV verify adapter (M1-05)
 
+Окремий `dataset reconcile ID --source DIRECTORY` дозволяє діагностику до
+погодження втрат: для `validating` dataset виконує той самий source replay та
+inventory checks, що й verify, але не генерує exports, не ставить ready й не
+зберігає publication report. Canonical manifest/fingerprint перевіряються,
+writer/row locks утримуються до завершення; temp table і транзакція відкочуються.
+Normalized source key та key hash звіряються з повторним обчисленням за поточною
+зафіксованою версією нормалізації. Persistent dataset не змінюється.
+
+Успішний diagnostic JSON (`version=1`, `kind=reconciliation`) містить dataset,
+fingerprint, `state=validating`, загальні/per-file counters та оригінальні
+known_gaps/exceptions. Вони залишаються незакритими й не є дозволом виключати
+записи чи artifacts. Усі artifacts manifest усе одно потрібні до EOF/checksum;
+rejected records/issues та незавершені/невідповідні дані блокують успіх команди.
+Цей JSON не замінює retained verification report: publish його не приймає.
+
 Реалізовано strict clean path: усі rejected records, issues, known gaps та
 exceptions блокують ready. Опис exceptions у manifest не замінює погодження
 власника. Окремий approval-loss adapter залишається потрібним до production

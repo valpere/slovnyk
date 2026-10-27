@@ -6,6 +6,7 @@ import (
 	"flag"
 	"io"
 
+	"github.com/valpere/slovnyk/internal/importer"
 	"github.com/valpere/slovnyk/internal/publication"
 	"github.com/valpere/slovnyk/internal/sitemaps"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
@@ -17,28 +18,29 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 		return status
 	}
 	if len(args) < 2 || !publication.ValidID(args[1]) {
-		return fail("usage: slovnyk dataset verify|export|sitemap|publish|rollback ID --artifacts DIRECTORY", 2)
+		return fail("usage: slovnyk dataset reconcile ID --source DIRECTORY | verify|export|sitemap|publish|rollback ID --artifacts DIRECTORY", 2)
 	}
 	command, id := args[0], args[1]
-	if command != "verify" && command != "export" && command != "sitemap" && command != "publish" && command != "rollback" {
+	if command != "reconcile" && command != "verify" && command != "export" && command != "sitemap" && command != "publish" && command != "rollback" {
 		return fail("invalid_dataset_command", 2)
 	}
 	flags := flag.NewFlagSet("dataset", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
 	root := flags.String("artifacts", "", "existing durable artifact root")
-	source := flags.String("source", "", "immutable source snapshot (verify only)")
+	source := flags.String("source", "", "immutable source snapshot (reconcile or verify)")
 	generation := flags.Int64("expected-generation", -1, "required CAS generation")
 	operator := flags.String("operator-ref", "", "operator or audit reference")
-	if e := flags.Parse(args[2:]); e != nil || flags.NArg() != 0 || *root == "" {
+	if e := flags.Parse(args[2:]); e != nil || flags.NArg() != 0 || (command != "reconcile" && *root == "") {
 		return fail("invalid_dataset_arguments", 2)
 	}
 	mutation := command == "publish" || command == "rollback"
-	if (command == "verify" && *source == "") || (mutation && (*generation < 0 || *operator == "")) {
+	readsSource := command == "reconcile" || command == "verify"
+	if (readsSource && *source == "") || (mutation && (*generation < 0 || *operator == "")) {
 		return fail("invalid_dataset_arguments", 2)
 	}
 	valid := true
 	flags.Visit(func(f *flag.Flag) {
-		if (f.Name == "source" && command != "verify") || ((f.Name == "expected-generation" || f.Name == "operator-ref") && !mutation) {
+		if (f.Name == "source" && !readsSource) || (f.Name == "artifacts" && command == "reconcile") || ((f.Name == "expected-generation" || f.Name == "operator-ref") && !mutation) {
 			valid = false
 		}
 	})
@@ -55,6 +57,8 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 	}
 	var result any
 	switch command {
+	case "reconcile":
+		result, e = publication.Reconcile(ctx, c, id, *source)
 	case "verify":
 		result, e = publication.Verify(ctx, c, id, *source, *root, publication.Options{})
 	case "sitemap":
@@ -67,7 +71,7 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 	if e != nil {
 		code := "dataset_operation_failed"
 		switch e {
-		case sitemaps.ErrArguments, sitemaps.ErrState, sitemaps.ErrStorage, sitemaps.ErrEmpty, sitemaps.ErrLimit, publication.ErrArguments, publication.ErrConflict, publication.ErrState, publication.ErrVerification, publication.ErrStorage:
+		case importer.ErrArtifact, importer.ErrStream, importer.ErrReplay, importer.ErrBusy, importer.ErrStorage, sitemaps.ErrArguments, sitemaps.ErrState, sitemaps.ErrStorage, sitemaps.ErrEmpty, sitemaps.ErrLimit, publication.ErrArguments, publication.ErrConflict, publication.ErrState, publication.ErrVerification, publication.ErrStorage:
 			code = e.Error()
 		}
 		return fail(code, 1)

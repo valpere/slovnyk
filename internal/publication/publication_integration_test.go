@@ -314,6 +314,9 @@ func TestRejectedRecordsCannotBecomeReady(t *testing.T) {
 	if staged.Files[0].Rejected != 1 {
 		t.Fatal("fixture has no rejected record")
 	}
+	if _, e = Reconcile(ctx, conn(t, "slovnyk_operator"), staged.Dataset, source); !errors.Is(e, ErrVerification) {
+		t.Fatalf("rejected reconciliation accepted: %v", e)
+	}
 	if _, e = Verify(ctx, conn(t, "slovnyk_operator"), staged.Dataset, source, dest, Options{}); !errors.Is(e, ErrVerification) {
 		t.Fatalf("rejected ready: %v", e)
 	}
