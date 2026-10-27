@@ -1,0 +1,12 @@
+{
+  "cli_success_validating": true,
+  "per_file_counts_match_prior_audit": true,
+  "complete_checksum_verified_files": 992,
+  "ledger_origins_translations": 56455068,
+  "contiguous_ledger_ordinals_and_checkpoint_per_file": true,
+  "actual_pair_counts_match_catalog_and_audit": true,
+  "previous_55000_prefix_counts_and_digests_unchanged": true,
+  "full_source_reconciliation": false,
+  "verify_exports_publication": false,
+  "validation_elapsed_seconds": 113.748
+}

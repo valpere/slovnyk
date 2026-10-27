@@ -67,9 +67,29 @@ private `credentials.json`, Compose `override.yaml` та metadata-only резу�
 manifest, стан `loading`, active null, 0 complete files. Prefix 55 000 records
 зберіг counts/digests після retry. [Evidence](../docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md).
 
+Ці числа описують historical preflight checkpoint; після повного import
+та сама `.pgdata/` містить 56 455 068 records у стані `validating` (див. нижче).
 Власні container/network прибрані; bind data і credentials залишені для
 продовження. Не видаляйте/не копіюйте live pgdata й не перезаписуйте результати.
 Для повторного запуску container потрібні той самий image, project/config та
-локальні credentials; після цього — та сама import command/environment.
+локальні credentials. Перерваний import відновлюють тією самою command/environment;
+завершений import не потрібно повторювати для наступних verification кроків.
 Credentials, pgdata та raw dictionary contents не входять у Git.
 Це не готовий dataset або backup; estimate місця з однієї пари не є capacity gate.
+
+## Повний PostgreSQL corpus import
+
+`experiments/postgres-corpus-import-2026-10-25/` містить metadata-only results
+повного resume attempt і фінальні SQL counts/digests, перевірені 2026-10-27.
+DB не дублювалася: storage лишається `.pgdata/` у preflight root вище.
+Усі 992 files complete/checksum-verified, 56 455 068 unique records,
+0 duplicates/rejected/issues; dataset `validating`, active null.
+[Evidence і межі](../docs/_assessments/2026-10-27-postgres-corpus-import/REPORT.md).
+
+DB/indexes 64.315 GiB плюс WAL; exports/ready/publication і full source
+reconciliation ще не виконано. Known gaps не видалено й не схвалено цим run.
+Після SQL checks власні container/network прибрані, input і storage збережені.
+Для продовження відновіть той самий bind/image/private credentials та отримайте
+новий loopback port. Memory caps import 512 MiB → 8 → 16 GiB були локальними
+live updates; базовий Compose знову задає 512 MiB. Ресурсний профіль нового
+експерименту задавайте й фіксуйте явно; не вважайте його Oracle acceptance.

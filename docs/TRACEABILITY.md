@@ -580,3 +580,26 @@ TestPrivateDataRootAndUnignoredChild` — private DB subtree пропускає�
 Tracked source/newline-path checks збережені. Після переходу local bind data на
 `.pgdata/`: `go test -race ./tests/repository -count=1 -v`, `make check test`,
 `git diff --check` — **PASS**, exit 0. PostgreSQL permissions не змінено.
+
+## FR-07/08 — повний staged PostgreSQL import, 2026-10-27
+
+Actual CLI на main `2ffb9ab33d41d734bf04b6f62632c6033bfa8d1a`, без змін runtime/schema:
+`bin/slovnyk import run --manifest data/experiments/csv-manifest-2026-10-25/manifest.json
+--source data/experiments/csv-manifest-2026-10-25/snapshot --batch-size 1000` —
+**PASS**, exit 0. Resume із 114 000 записів попереднього preflight.
+
+| Покрита частина | Фактична перевірка |
+|---|---|
+| Complete input import | 992 complete/checksum-verified files; parsed = accepted unique = 56 455 068; duplicates/rejected/issues = 0; actual per-file counts збігаються з audit 2026-10-24 |
+| Actual DB accounting | `accounting.sql` у звіті: ledger ordinals 1..parsed і лише unique outcomes; origins/checkpoints дорівнюють parsed для кожного файла; actual translation counts усіх 992 pairs дорівнюють catalog та audit |
+| Retry preservation | Та сама fingerprint/dataset identity; попередні 55 000 rows у ledger/origins/translations мають незмінні counts і SHA-256; attempt 2 repaired як writer_disconnected, attempt 3 completed |
+| State/isolation | Dataset validating, active null/generation 0; schema 3, restricted operator, 0 running imports/checkpoint mismatches; власні container/network прибрані, bind data збережені |
+| Resource observation | DB/indexes 64.315 GiB плюс WAL; cap PostgreSQL 1 CPU, memory 512 MiB → 8 → 16 GiB. Це не Oracle capacity/SLO або RTO acceptance |
+
+[CLI stdout, SQL, assertions і limits](_assessments/2026-10-27-postgres-corpus-import/REPORT.md).
+Повний source/normalization replay, exports/ready/publication і clean-vs-retry
+імпорт від порожньої DB окремо не виконано. Known gaps CSV4 збережені, strict
+verifier блокує ready; approval-loss adapter та погодження конкретного звіту
+власником ще потрібні. Historical/semantic completeness не доведена.
+Локальні repository checks та CI фіксуються у звіті й PR; це не нові automated
+full-corpus tests і не закриття M2/M3.

@@ -238,7 +238,18 @@ retry/reconciliation та exports повного корпусу цим не пе
 Bounded PostgreSQL preflight на тому самому manifest: 55 000 → SIGINT → retry →
 114 000 committed records, prefix digests збережені; 0 complete files, active null.
 [Evidence](_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md).
-Local pgdata збережено; full-corpus import, verify й resource acceptance відкриті.
+Local pgdata збережено; preflight сам не закриває full import/verify або capacity.
+Наступний [повний PostgreSQL import](_assessments/2026-10-27-postgres-corpus-import/REPORT.md)
+завершено: 992 complete/checksum-verified files, 56 455 068 unique records,
+0 duplicates/rejected/issues. Actual ledger/origins/translations і per-file/pair
+counts збігаються з audit; checkpoints узгоджені, prefix 55 000 незмінний.
+Dataset `validating`, active null. Повний source/normalization reconciliation,
+exports/ready та resource acceptance залишаються відкритими; known_gaps
+блокують strict verifier до approval-loss adapter та погодження конкретних втрат.
+Не прибирати gaps із manifest для обходу guard. DB/indexes 64.315 GiB не
+поміщаються на root ~45 GiB за профілем Oracle 2026-10-23; остаточний storage
+і server gate потрібний окремо. Локальний cap 1 CPU з memory 512 MiB → 8 →
+16 GiB не є Oracle rehearsal.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

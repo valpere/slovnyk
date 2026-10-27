@@ -409,8 +409,8 @@ snapshot. [Фактичний corpus inventory та межі](docs/_assessments/
 992 файли до EOF із підтвердженими checksums, 56 455 068 parsed occurrences,
 0 rejected. Кількості у кожному файлі збігаються з попереднім аудитом.
 [Команда, metadata-only результати й межі](docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
-Це перевірка input streams без БД; staged PostgreSQL import/retry,
-distinct tuple reconciliation, exports та publication повного корпусу ще попереду.
+Inspect перевіряє input streams без БД; staged PostgreSQL import описано нижче.
+Повний source/normalization reconciliation, exports та publication ще попереду.
 
 Локальний [PostgreSQL preflight](docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md)
 перевірив обмежений import/retry того самого manifest: 114 000 committed records,
@@ -421,3 +421,16 @@ distinct tuple reconciliation, exports та publication повного корп�
 immutable source/manifest; новий writer перевірить checkpoint і позначить
 покинутий `running` attempt як `interrupted / writer_disconnected`.
 Не виправляйте counters або state вручну.
+
+Повний [staged PostgreSQL import](docs/_assessments/2026-10-27-postgres-corpus-import/REPORT.md)
+цього dataset завершено: 992 complete/checksum-verified files, 56 455 068
+accepted unique, 0 duplicates/rejected/issues. Actual ledger/origins/translations
+і per-file/pair counts звірені з audit; digests попередніх 55 000 рядків незмінні.
+Dataset `validating`, active null; verify/exports/ready ще не виконано.
+Наявні `known_gaps` блокують поточний strict verifier; потрібні approval-loss
+adapter і погодження конкретного звіту про відсутні історичні metadata.
+
+Один dataset із indexes займає **64.315 GiB**, WAL окремо 1 GiB. Цей layout
+не поміщається на root близько 45 GiB із виміру Oracle 2026-10-23; нової
+перевірки сервера не було. Локальний import змінював memory cap PostgreSQL
+512 MiB → 8 → 16 GiB при 1 CPU; це не Micro capacity/SLO acceptance.

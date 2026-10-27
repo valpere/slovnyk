@@ -1,0 +1,130 @@
+{
+  "poll_count": 1612,
+  "nominal_poll_interval_seconds": 10,
+  "progress_sha256": "40299179f0b44812c9f9db4870f7554d55996796a5a7d7e39745529f5b960948",
+  "first": {
+    "elapsed_seconds": 0.044,
+    "disk_free_bytes": 131213004800,
+    "runs": [
+      {
+        "state": "interrupted",
+        "attempt": 1,
+        "error_class": "writer_disconnected"
+      },
+      {
+        "state": "running",
+        "attempt": 2,
+        "error_class": null
+      }
+    ],
+    "active": {
+      "dataset_id": null,
+      "generation": 0
+    },
+    "issues": 0,
+    "parsed": 114000,
+    "unique": 114000,
+    "datasets": [
+      {
+        "id": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+        "state": "loading",
+        "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01"
+      }
+    ],
+    "rejected": 0,
+    "duplicate": 0,
+    "wal_bytes": 234881024,
+    "files_total": 992,
+    "database_bytes": 154080947,
+    "files_complete": 0
+  },
+  "last_polled": {
+    "elapsed_seconds": 16267.1,
+    "disk_free_bytes": 59144822784,
+    "runs": [
+      {
+        "state": "interrupted",
+        "attempt": 1,
+        "error_class": "writer_disconnected"
+      },
+      {
+        "state": "interrupted",
+        "attempt": 2,
+        "error_class": "writer_disconnected"
+      },
+      {
+        "state": "running",
+        "attempt": 3,
+        "error_class": null
+      }
+    ],
+    "active": {
+      "dataset_id": null,
+      "generation": 0
+    },
+    "issues": 0,
+    "parsed": 56442960,
+    "unique": 56442960,
+    "datasets": [
+      {
+        "id": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+        "state": "loading",
+        "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01"
+      }
+    ],
+    "rejected": 0,
+    "duplicate": 0,
+    "wal_bytes": 1107296256,
+    "files_total": 992,
+    "database_bytes": 69044016819,
+    "files_complete": 991
+  },
+  "final": {
+    "runs": [
+      {
+        "state": "interrupted",
+        "attempt": 1,
+        "error_class": "writer_disconnected"
+      },
+      {
+        "state": "interrupted",
+        "attempt": 2,
+        "error_class": "writer_disconnected"
+      },
+      {
+        "state": "completed",
+        "attempt": 3,
+        "error_class": null
+      }
+    ],
+    "active": {
+      "dataset_id": null,
+      "generation": 0
+    },
+    "issues": 0,
+    "parsed": 56455068,
+    "unique": 56455068,
+    "datasets": [
+      {
+        "id": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+        "state": "validating",
+        "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01"
+      }
+    ],
+    "rejected": 0,
+    "duplicate": 0,
+    "wal_bytes": 1073741824,
+    "files_total": 992,
+    "database_bytes": 69058074291,
+    "files_complete": 992
+  },
+  "minimum_sampled_disk_free_bytes": 59144822784,
+  "maximum_sampled_database_bytes": 69044016819,
+  "maximum_sampled_wal_bytes": 1291845632,
+  "resource_changes": [
+    "resource-change.json",
+    "resource-change-2.json"
+  ],
+  "limits_are_experiment_guards_not_service_SLO": true,
+  "samples_are_not_continuous_peaks": true
+}

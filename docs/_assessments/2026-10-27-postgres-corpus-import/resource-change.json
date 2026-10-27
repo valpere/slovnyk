@@ -1,0 +1,56 @@
+{
+  "reason": "local full-import rehearsal: sampled activity dominated by index I/O at 512 MiB; no Oracle capacity claim",
+  "before": {
+    "Memory": 536870912,
+    "MemorySwap": 1073741824,
+    "NanoCpus": 1000000000
+  },
+  "after": {
+    "Memory": 8589934592,
+    "MemorySwap": 8589934592,
+    "NanoCpus": 1000000000
+  },
+  "last_progress_before_change": {
+    "elapsed_seconds": 825.843,
+    "disk_free_bytes": 127526617088,
+    "runs": [
+      {
+        "state": "interrupted",
+        "attempt": 1,
+        "error_class": "writer_disconnected"
+      },
+      {
+        "state": "interrupted",
+        "attempt": 2,
+        "error_class": "writer_disconnected"
+      },
+      {
+        "state": "running",
+        "attempt": 3,
+        "error_class": null
+      }
+    ],
+    "active": {
+      "dataset_id": null,
+      "generation": 0
+    },
+    "issues": 0,
+    "parsed": 2425304,
+    "unique": 2425304,
+    "datasets": [
+      {
+        "id": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+        "state": "loading",
+        "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01"
+      }
+    ],
+    "rejected": 0,
+    "duplicate": 0,
+    "wal_bytes": 1056964608,
+    "files_total": 992,
+    "database_bytes": 2989471411,
+    "files_complete": 36
+  },
+  "action": "docker update --memory 8g --memory-swap 8g (own container only); no restart, no application or database setting changes",
+  "host_memory_available_bytes": 43691003904
+}

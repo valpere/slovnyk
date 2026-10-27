@@ -44,6 +44,21 @@ SIGINT/retry на тому самому manifest зберіг 55 000 committed p
 перед повним запуском. CLI `files=null` після втрати з'єднання означає недоступний
 report, а не порожній checkpoint; відновлюйте тією самою командою без ручних UPDATE.
 
+Наступний [повний staged import](_assessments/2026-10-27-postgres-corpus-import/REPORT.md)
+завершив той самий dataset у стані `validating`: усі 992 files complete і
+checksum-verified, 56 455 068 accepted unique, 0 duplicates/rejected/issues.
+Actual counts ledger/origins/translations, per-file/pair totals та checkpoints
+звірені; SHA-256 попередніх 55 000 рядків незмінні. Це не повний source replay,
+normalization reconciliation або verify/exports/ready; active лишився null.
+Поточний strict verifier блокує known_gaps manifest. Не обходьте це вилученням
+gap: потрібні approval-loss adapter і погодження власником конкретного звіту.
+
+DB/indexes одного dataset — 64.315 GiB, WAL окремо 1 GiB. Такий layout не
+поміщається на root ~45 GiB за профілем Oracle 2026-10-23; нового probe не було.
+Плануйте додатково другий dataset, WAL/temp, exports і backup/restore copies.
+Локальний змішаний memory cap 512 MiB → 8 → 16 GiB при 1 CPU не доводить
+Micro capacity, пошуковий SLO або RTO; ці gates залишаються окремими.
+
 ## 2. Повний аудит
 
 Структурну частину виконано 2026-10-24: 992 файли, 56 455 068 різних

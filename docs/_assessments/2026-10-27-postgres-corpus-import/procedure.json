@@ -1,0 +1,22 @@
+{
+  "original_results": "data/experiments/postgres-corpus-import-2026-10-25",
+  "database_storage": "data/experiments/postgres-corpus-preflight-2026-10-25/.pgdata",
+  "source": "data/experiments/csv-manifest-2026-10-25/snapshot",
+  "manifest": "data/experiments/csv-manifest-2026-10-25/manifest.json",
+  "resume": "restart own Compose project with same bind/image/private credentials and refresh dynamic port; completed dataset is validating, so do not rerun import for verification; only interrupted imports need the same invocation command",
+  "validation": [
+    "CLI exit 0 and validating, same fingerprint/dataset, all 992 files complete/checksum-verified",
+    "all artifact hashes/per-file counts equal audit 2026-10-24",
+    "accounting.sql: ledger ordinals 1..parsed, unique outcome counts, origin counts, checkpoints, translation pair counts and catalog counts match audit",
+    "accounting.sql final query: row digests equal preflight prefix-before.json",
+    "active null/generation 0, no running writer, schema 3, restricted operator",
+    "Compose down own project without volume deletion; data directory device/inode/mode/owner preserved"
+  ],
+  "progress": "10-second nominal polls, no per-poll large table scans; full progress kept locally; summary records its SHA-256",
+  "not_executed": [
+    "full source/normalization reconciliation",
+    "dataset verify/exports/ready/publication",
+    "HTTP capacity, full-corpus backup/restore or production acceptance"
+  ],
+  "scratch_orchestration": "one-off assistant scripts under tmp/postgres-corpus-import; no Python operator utility added"
+}
