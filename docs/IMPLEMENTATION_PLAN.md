@@ -250,6 +250,11 @@ exports/ready та resource acceptance залишаються відкритим
 поміщаються на root ~45 GiB за профілем Oracle 2026-10-23; остаточний storage
 і server gate потрібний окремо. Локальний cap 1 CPU з memory 512 MiB → 8 →
 16 GiB не є Oracle rehearsal.
+Додано `dataset reconcile ID --source DIR`: shared source/inventory checks без
+генерації exports чи зміни state, diagnostic JSON з незакритими gaps/exceptions.
+[Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
+Наступні кроки: повний corpus run цієї команди, конкретний loss report та
+owner-approval adapter, далі verify/exports. Жодних конкретних втрат не погоджено.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

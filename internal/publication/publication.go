@@ -87,39 +87,11 @@ func rollback(tx pgx.Tx) {
 func Verify(ctx context.Context, c *pgx.Conn, id, source, root string, opt Options) (Report, error) {
 	defer closeConn(c)
 	var out Report
-	if !ValidID(id) {
-		return out, ErrArguments
-	}
-	if e := postgres.CheckSchema(ctx, c); e != nil {
-		return out, ErrStorage
-	}
-	var raw, fp []byte
-	if e := c.QueryRow(ctx, "SELECT manifest_bytes,fingerprint FROM slovnyk.datasets WHERE id=$1", id).Scan(&raw, &fp); e != nil {
-		return out, ErrStorage
-	}
-	m, e := importdata.ParseManifest(raw)
+	tx, m, fp, state, e := beginValidation(ctx, c, id)
 	if e != nil {
-		return out, ErrVerification
-	}
-	canonical, expected, e := m.Canonical()
-	if e != nil || !bytes.Equal(raw, canonical) || !bytes.Equal(fp, expected[:]) {
-		return out, ErrVerification
-	}
-	if e = importer.AcquireWriter(ctx, c, expected); e != nil {
 		return out, e
 	}
-	tx, e := c.Begin(ctx)
-	if e != nil {
-		return out, ErrStorage
-	}
 	defer rollback(tx)
-	if _, e = tx.Exec(ctx, "SET LOCAL lock_timeout = '5s'"); e != nil {
-		return out, ErrStorage
-	}
-	var state string
-	if e = tx.QueryRow(ctx, "SELECT state FROM slovnyk.datasets WHERE id=$1 FOR UPDATE", id).Scan(&state); e != nil {
-		return out, ErrStorage
-	}
 	store, e := artifacts.Open(root)
 	if e != nil {
 		return out, e
@@ -142,31 +114,11 @@ func Verify(ctx context.Context, c *pgx.Conn, id, source, root string, opt Optio
 	if e = inventory(ctx, tx, id, m); e != nil {
 		return out, e
 	}
-	out = Report{Version: 1, Dataset: id, Fingerprint: hex.EncodeToString(fp), Pairs: []PairReport{}}
-	if e = tx.QueryRow(ctx, `SELECT coalesce(sum(parsed),0)::bigint,coalesce(sum(accepted_unique),0)::bigint,
- coalesce(sum(duplicate_occurrences),0)::bigint,coalesce(sum(rejected),0)::bigint FROM slovnyk.source_files WHERE dataset_id=$1`, id).Scan(&out.Parsed, &out.Unique, &out.Duplicates, &out.Rejected); e != nil {
-		return out, ErrStorage
-	}
-	// Pair metadata has been reconciled. Collect the small catalog before opening
-	// a streaming translation query on this same dedicated connection.
-	pairs := append([]importdata.Pair{}, m.ExpectedPairs...)
-	fileRows, e := tx.Query(ctx, `SELECT encode(artifact_hash,'hex'),parsed,accepted_unique,duplicate_occurrences,rejected,complete,checksum_verified FROM slovnyk.source_files WHERE dataset_id=$1 ORDER BY artifact_hash`, id)
+	out, e = collectReport(ctx, tx, id, fp)
 	if e != nil {
-		return out, ErrStorage
+		return out, e
 	}
-	for fileRows.Next() {
-		var f importer.FileReport
-		if e = fileRows.Scan(&f.Artifact, &f.Parsed, &f.Unique, &f.Duplicate, &f.Rejected, &f.Complete, &f.ChecksumVerified); e != nil {
-			fileRows.Close()
-			return out, ErrStorage
-		}
-		out.Files = append(out.Files, f)
-	}
-	fileRows.Close()
-	if fileRows.Err() != nil {
-		return out, ErrStorage
-	}
-	for _, p := range pairs {
+	for _, p := range m.ExpectedPairs {
 		pr, err := exportPair(ctx, tx, store, id, p)
 		if err != nil {
 			return out, err
@@ -305,6 +257,72 @@ func CheckActive(ctx context.Context, c *pgx.Conn, root string) (Receipt, error)
 	}
 	if _, e = readReport(ctx, tx, store, out.Dataset); e != nil {
 		return out, e
+	}
+	return out, nil
+}
+
+// beginValidation checks identity and takes the same writer/row locks for both
+// reconciliation and verification. The caller owns the returned transaction.
+func beginValidation(ctx context.Context, c *pgx.Conn, id string) (pgx.Tx, importdata.Manifest, string, string, error) {
+	var m importdata.Manifest
+	if !ValidID(id) {
+		return nil, m, "", "", ErrArguments
+	}
+	if e := postgres.CheckSchema(ctx, c); e != nil {
+		return nil, m, "", "", ErrStorage
+	}
+	var raw, fp []byte
+	if e := c.QueryRow(ctx, "SELECT manifest_bytes,fingerprint FROM slovnyk.datasets WHERE id=$1", id).Scan(&raw, &fp); e != nil {
+		return nil, m, "", "", ErrStorage
+	}
+	m, e := importdata.ParseManifest(raw)
+	if e != nil {
+		return nil, m, "", "", ErrVerification
+	}
+	canonical, expected, e := m.Canonical()
+	if e != nil || !bytes.Equal(raw, canonical) || !bytes.Equal(fp, expected[:]) {
+		return nil, m, "", "", ErrVerification
+	}
+	if e = importer.AcquireWriter(ctx, c, expected); e != nil {
+		return nil, m, "", "", e
+	}
+	tx, e := c.Begin(ctx)
+	if e != nil {
+		return nil, m, "", "", ErrStorage
+	}
+	if _, e = tx.Exec(ctx, "SET LOCAL lock_timeout = '5s'"); e != nil {
+		rollback(tx)
+		return nil, m, "", "", ErrStorage
+	}
+	var state string
+	if e = tx.QueryRow(ctx, "SELECT state FROM slovnyk.datasets WHERE id=$1 FOR UPDATE", id).Scan(&state); e != nil {
+		rollback(tx)
+		return nil, m, "", "", ErrStorage
+	}
+	return tx, m, hex.EncodeToString(fp), state, nil
+}
+
+func collectReport(ctx context.Context, tx pgx.Tx, id, fp string) (Report, error) {
+	out := Report{Version: 1, Dataset: id, Fingerprint: fp, Pairs: []PairReport{}}
+	if e := tx.QueryRow(ctx, `SELECT coalesce(sum(parsed),0)::bigint,coalesce(sum(accepted_unique),0)::bigint,
+ coalesce(sum(duplicate_occurrences),0)::bigint,coalesce(sum(rejected),0)::bigint FROM slovnyk.source_files WHERE dataset_id=$1`, id).Scan(&out.Parsed, &out.Unique, &out.Duplicates, &out.Rejected); e != nil {
+		return out, ErrStorage
+	}
+	fileRows, e := tx.Query(ctx, `SELECT encode(artifact_hash,'hex'),parsed,accepted_unique,duplicate_occurrences,rejected,complete,checksum_verified FROM slovnyk.source_files WHERE dataset_id=$1 ORDER BY artifact_hash`, id)
+	if e != nil {
+		return out, ErrStorage
+	}
+	for fileRows.Next() {
+		var f importer.FileReport
+		if e = fileRows.Scan(&f.Artifact, &f.Parsed, &f.Unique, &f.Duplicate, &f.Rejected, &f.Complete, &f.ChecksumVerified); e != nil {
+			fileRows.Close()
+			return out, ErrStorage
+		}
+		out.Files = append(out.Files, f)
+	}
+	fileRows.Close()
+	if fileRows.Err() != nil {
+		return out, ErrStorage
 	}
 	return out, nil
 }

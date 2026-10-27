@@ -244,8 +244,8 @@ func checkReplay(ctx context.Context, tx pgx.Tx, id string, a importdata.Artifac
    WHERE r.ordinal IS NULL OR
    (b.reason<>'' AND (r.outcome<>'rejected' OR r.issue_code IS DISTINCT FROM b.reason)) OR
    (b.reason='' AND (r.outcome='rejected' OR t.id IS NULL OR o.ordinal IS NULL OR
-    (t.source_locale,t.target_locale,t.source_text,t.target_text,t.source_key,t.tuple_hash) IS DISTINCT FROM
-    (b.from_code,b.to_code,b.source_text,b.target_text,b.source_key,b.tuple_hash) OR
+    (t.source_locale,t.target_locale,t.source_text,t.target_text,t.source_key,t.key_hash,t.tuple_hash) IS DISTINCT FROM
+    (b.from_code,b.to_code,b.source_text,b.target_text,b.source_key,b.key_hash,b.tuple_hash) OR
     (o.source_locale,o.target_locale,o.source_text,o.target_text,o.source_locator) IS DISTINCT FROM
     (b.from_code,b.to_code,b.source_text,b.target_text,$3::text||':'||b.ordinal::text))))`, id, digest(a), a.SHA256).Scan(&bad)
 	if e != nil {

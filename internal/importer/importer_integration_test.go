@@ -263,6 +263,30 @@ func TestReplayDetectsDamagedLedger(t *testing.T) {
 	}
 }
 
+func TestReplayDetectsChangedNormalization(t *testing.T) {
+	for _, tc := range []struct{ name, query string }{
+		{"key", "UPDATE pg_temp.slovnyk_import_batch SET source_key='injected-wrong-key' WHERE reason=''"},
+		{"hash", "UPDATE pg_temp.slovnyk_import_batch SET key_hash=decode(repeat('ff',32),'hex') WHERE reason=''"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			m := variant(t, "replay-normalization-"+tc.name)
+			_, e := runFixture(t, m, "../../testdata/import", Options{BatchSize: 2, afterBatch: func() error { return context.Canceled }})
+			if e != context.Canceled {
+				t.Fatal(e)
+			}
+			// Inject a mismatch in replay staging, leaving persistent schema guards
+			// and the correctly stored keys/hashes intact.
+			r, e := runFixture(t, m, "../../testdata/import", Options{BatchSize: 2, afterStage: func(ctx context.Context, tx pgx.Tx) error {
+				_, e := tx.Exec(ctx, tc.query)
+				return e
+			}})
+			if e != ErrReplay || r.State != "failed" || r.Files[0].Parsed != 2 {
+				t.Fatalf("normalization mismatch accepted: %+v %v", r, e)
+			}
+		})
+	}
+}
+
 func TestCollisionGuardBeforeMerge(t *testing.T) {
 	m := variant(t, "injected-hash-collision")
 	// Commit one tuple, then substitute its hash in the private staging table for

@@ -737,3 +737,18 @@ gate із запасом для другого dataset, exports, WAL/temp та b
 strict verifier блокує ready, потрібні approval-loss adapter та погодження
 власником конкретного звіту; цей run не є погодженням втрат. Production migration
 не виконана. Власні container/network прибрані, та сама DB і результати збережені.
+
+## Окрема звірка до погодження втрат — 2026-10-27
+
+Після merge PR #15 реалізовано `dataset reconcile ID --source DIR`: shared
+source/normalization та inventory checks без exports, зміни state або publication.
+Diagnostic JSON зберігає fingerprint, counts і незакриті known_gaps/exceptions;
+це не owner approval і не retained verification report. Synthetic tests перевіряють
+ізоляцію стану та відмови; real corpus run і approval-loss adapter ще попереду.
+[Scope та evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
+
+Уточнення workflow користувачем 2026-10-27: failed checks не дозволяють merge;
+спочатку з'ясувати й виправити причину, потім повторити CI. Перед звітом про
+успіх перевіряти весь поточний PR check rollup на незміненому head, включно з
+`push` та `pull_request` runs. Один успішний run не замінює інші failed checks.
+Merge від імені користувача не авторизований.

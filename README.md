@@ -151,6 +151,23 @@ prefix перевіряються, origins не дублюються. Lock wait 
 
 ## Verify, exports та публікація
 
+До створення exports можна окремо звірити `validating` dataset:
+
+```sh
+./bin/slovnyk dataset reconcile <dataset-id> --source <immutable-snapshot-directory>
+```
+
+Потрібен `SLOVNYK_OPERATOR_DSN`; `--artifacts` ця команда не приймає.
+Вона повторно читає всі compressed bytes до EOF і звіряє raw tuples, normalized
+keys/hashes, ledger, origins, metadata та counters. Використовує dataset writer/row
+locks і bounded temp table; persistent data, ready/report/exports та active pointer
+не змінює. JSON stdout містить fingerprint, file counts і незмінені `known_gaps` /
+`exceptions`. Exit 0 означає лише узгодженість доступних даних: gaps/exceptions
+не погоджені, historical completeness не доведена. Rejected records/issues,
+незавершений import, невідповідності чи інший стан dataset завершуються failure.
+Це повний прохід джерел і БД, тому запускайте локально; час на реальному корпусі
+ще не виміряний. [Реалізація та synthetic перевірки](docs/_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
+
 Потрібні operator DSN і незмінний snapshot, використаний для import. Усі flags
 ідуть після dataset ID. Artifact root — окрема надійна локальна filesystem
 з hard links і fsync (Linux baseline); не object/network storage.
@@ -177,7 +194,8 @@ Rollback дозволено лише до раніше опубліковано�
 exit 0 — успіх, 1 — невдала операція, 2 — неправильні аргументи/відсутня config.
 Нині будь-які rejected records, issues, known gaps чи exceptions блокують ready:
 адаптер окремого погодження власником звіту втрат ще попереду, `force ready` немає.
-Це synthetic M1; повний Go corpus import та production durability не перевірені.
+Повний staged Go corpus import перевірено окремо; full-corpus reconciliation,
+verify/exports та production durability ще не підтверджені.
 [Реалізація, рев’ю та обмеження](docs/_assessments/2026-10-24-publication/REPORT.md).
 
 ## Посіпаки й тимчасові файли
