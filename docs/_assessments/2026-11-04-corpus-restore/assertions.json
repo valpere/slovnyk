@@ -1,0 +1,11 @@
+{
+  "all_17_table_row_multisets_match": true,
+  "all_sequence_values_and_configs_match": true,
+  "all_backup_and_restored_file_hashes_match": true,
+  "http_controls_match_source": true,
+  "source_offline_during_target_acceptance": true,
+  "all_736_shards_and_992_exports_http_hash_match": true,
+  "original_dataset_generation_1_preserved": true,
+  "source_prefix_diagnostic_503_count": 6,
+  "production_or_offhost_rto_approved": false
+}

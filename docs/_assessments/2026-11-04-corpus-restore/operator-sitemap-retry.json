@@ -1,0 +1,7 @@
+{
+  "existing_report_registration_retry": true,
+  "new_owner_security_definer": true,
+  "effective_role": "corpus_restore_operator",
+  "new_inventory_created": false,
+  "scope": "SQL retry of existing report under SET LOCAL ROLE; no regeneration"
+}

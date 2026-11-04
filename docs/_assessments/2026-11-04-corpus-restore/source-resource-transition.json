@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-04T12:38:29.493447+00:00",
+  "previous_nano_cpus": 1000000000,
+  "current_nano_cpus": 2000000000,
+  "reason": "local dump backend and compression share source cgroup; raise local backup CPU allocation; not a fixed-profile benchmark",
+  "memory_unchanged_bytes": 8589934592
+}

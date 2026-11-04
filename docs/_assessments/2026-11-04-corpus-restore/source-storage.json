@@ -1,0 +1,110 @@
+{
+  "fsync": "on",
+  "relations": [
+    {
+      "table": "active_dataset",
+      "heap_bytes": 8192,
+      "index_bytes": 16384,
+      "total_bytes": 24576
+    },
+    {
+      "table": "dataset_locales",
+      "heap_bytes": 16384,
+      "index_bytes": 16384,
+      "total_bytes": 32768
+    },
+    {
+      "table": "dataset_pairs",
+      "heap_bytes": 114688,
+      "index_bytes": 65536,
+      "total_bytes": 180224
+    },
+    {
+      "table": "datasets",
+      "heap_bytes": 155648,
+      "index_bytes": 32768,
+      "total_bytes": 188416
+    },
+    {
+      "table": "exports",
+      "heap_bytes": 335872,
+      "index_bytes": 385024,
+      "total_bytes": 720896
+    },
+    {
+      "table": "import_checkpoints",
+      "heap_bytes": 155648,
+      "index_bytes": 98304,
+      "total_bytes": 253952
+    },
+    {
+      "table": "import_issues",
+      "heap_bytes": 8192,
+      "index_bytes": 8192,
+      "total_bytes": 16384
+    },
+    {
+      "table": "import_records",
+      "heap_bytes": 6168231936,
+      "index_bytes": 13597007872,
+      "total_bytes": 19765239808
+    },
+    {
+      "table": "import_runs",
+      "heap_bytes": 16384,
+      "index_bytes": 65536,
+      "total_bytes": 81920
+    },
+    {
+      "table": "legacy_query_snapshots",
+      "heap_bytes": 8192,
+      "index_bytes": 8192,
+      "total_bytes": 16384
+    },
+    {
+      "table": "publication_events",
+      "heap_bytes": 16384,
+      "index_bytes": 16384,
+      "total_bytes": 32768
+    },
+    {
+      "table": "schema_migrations",
+      "heap_bytes": 16384,
+      "index_bytes": 16384,
+      "total_bytes": 32768
+    },
+    {
+      "table": "sitemap_inventory",
+      "heap_bytes": 16384,
+      "index_bytes": 16384,
+      "total_bytes": 32768
+    },
+    {
+      "table": "sitemap_shards",
+      "heap_bytes": 114688,
+      "index_bytes": 90112,
+      "total_bytes": 204800
+    },
+    {
+      "table": "source_files",
+      "heap_bytes": 221184,
+      "index_bytes": 188416,
+      "total_bytes": 409600
+    },
+    {
+      "table": "translation_origins",
+      "heap_bytes": 15686819840,
+      "index_bytes": 4882612224,
+      "total_bytes": 20569432064
+    },
+    {
+      "table": "translations",
+      "heap_bytes": 9890504704,
+      "index_bytes": 18823127040,
+      "total_bytes": 28713631744
+    }
+  ],
+  "database_bytes": 69059016371,
+  "full_page_writes": "on",
+  "synchronous_commit": "on"
+}

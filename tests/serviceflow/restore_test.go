@@ -28,6 +28,42 @@ type digestCount struct {
 	Count  int64  `json:"count"` // Rows for tables, bytes for files.
 }
 
+type sequenceState struct {
+	LastValue int64 `json:"last_value"`
+	IsCalled  bool  `json:"is_called"`
+}
+
+// Sequences are not ordinary tables. Compare their state separately so a
+// restored identity allocator cannot silently reuse a previously issued value.
+func sequenceInventory(t *testing.T, ctx context.Context, c *pgx.Conn) map[string]sequenceState {
+	t.Helper()
+	rows, err := c.Query(ctx, `SELECT sequencename FROM pg_sequences WHERE schemaname='slovnyk' ORDER BY sequencename`)
+	if err != nil {
+		t.Fatal("sequence inventory unavailable")
+	}
+	var names []string
+	for rows.Next() {
+		var name string
+		if err := rows.Scan(&name); err != nil {
+			t.Fatal("sequence inventory scan failed")
+		}
+		names = append(names, name)
+	}
+	rows.Close()
+	if rows.Err() != nil {
+		t.Fatal("sequence inventory incomplete")
+	}
+	out := map[string]sequenceState{}
+	for _, name := range names {
+		var state sequenceState
+		if err := c.QueryRow(ctx, `SELECT last_value,is_called FROM `+pgx.Identifier{"slovnyk", name}.Sanitize()).Scan(&state.LastValue, &state.IsCalled); err != nil {
+			t.Fatal("sequence state unavailable")
+		}
+		out[name] = state
+	}
+	return out
+}
+
 // tableInventory compares all persisted rows, including manifests, provenance,
 // reports, publication history and schema checksums. The caller stops writers.
 func tableInventory(t *testing.T, ctx context.Context, c *pgx.Conn) map[string]digestCount {
@@ -184,6 +220,15 @@ func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDS
 		t.Fatal("source inventory connection failed")
 	}
 	defer source.Close(ctx)
+	// Exercise a non-default allocator state even though this fixture has no
+	// rejected records. Sequence advancement is independent of table contents.
+	if _, err := source.Exec(ctx, `SELECT setval('slovnyk.import_issues_id_seq'::regclass,37,true)`); err != nil {
+		t.Fatal("sequence fixture setup failed")
+	}
+	expectedSequences := sequenceInventory(t, ctx, source)
+	if expectedSequences["import_issues_id_seq"] != (sequenceState{37, true}) {
+		t.Fatal("sequence fixture state was not recorded")
+	}
 	expected := tableInventory(t, ctx, source)
 	bundle := filepath.Join(dir, "backup")
 	if err := os.Mkdir(bundle, 0700); err != nil {
@@ -225,11 +270,12 @@ func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDS
 		}
 	}
 	manifest, err := json.Marshal(struct {
-		Database digestCount            `json:"database"`
-		Tables   map[string]digestCount `json:"tables"`
-		Files    map[string]digestCount `json:"artifacts"`
-		Sources  map[string]digestCount `json:"sources"`
-	}{digestCount{hex.EncodeToString(hash.Sum(nil)), dumpBytes}, expected, files, sources})
+		Database  digestCount              `json:"database"`
+		Tables    map[string]digestCount   `json:"tables"`
+		Files     map[string]digestCount   `json:"artifacts"`
+		Sources   map[string]digestCount   `json:"sources"`
+		Sequences map[string]sequenceState `json:"sequences"`
+	}{digestCount{hex.EncodeToString(hash.Sum(nil)), dumpBytes}, expected, files, sources, expectedSequences})
 	if err != nil || os.WriteFile(filepath.Join(bundle, "inventory.json"), manifest, 0600) != nil {
 		t.Fatal("backup inventory write failed")
 	}
@@ -303,6 +349,9 @@ func restoreFixture(t *testing.T, ctx context.Context, admin *pgx.Conn, sourceDS
 	}
 	if !maps.Equal(expected, tableInventory(t, ctx, restored)) {
 		t.Fatal("restored table counts/digests differ")
+	}
+	if !maps.Equal(expectedSequences, sequenceInventory(t, ctx, restored)) {
+		t.Fatal("restored sequence states differ")
 	}
 	restoredArtifacts := filepath.Join(dir, "restored-artifacts")
 	if !maps.Equal(files, fixtureTree(t, filepath.Join(bundle, "artifacts"), restoredArtifacts)) {

@@ -701,3 +701,25 @@ SQL baseline/final state тотожні; generation 1 збережена, OOM ki
 зафіксовані у [validation](_assessments/2026-11-04-corpus-load/validation.json).
 Application source незмінний. AT-16 не закрито: server-side duration не виміряно,
 погоджений query/crawler budget, складні маски, soak і target-server SLO відкриті.
+
+## FR-13 / AT-13 subset — повний локальний restore, 2026-11-04
+
+[Evidence](_assessments/2026-11-04-corpus-restore/REPORT.md): новий cluster,
+owner/LOGINs/ACL, custom archive всіх 17 таблиць із 56 455 068 translations,
+sequence state/config, незалежні копії 1 731 artifacts і 992 sources.
+Повна row multiset звірка: count + sum/XOR row SHA-256 із binary COPY;
+це probabilistic oracle, не canonical migration digest. HTTP із source offline:
+37 контрольних response bodies byte-identical (status 200), усі 736 shards/992 exports та index
+hash-identical, readiness fail-closed без файлів, restricted SQL denials і
+operator retries пройшли. Active generation 1 збережено.
+
+`tests/serviceflow/restore_test.go: sequenceInventory/restoreFixture` тепер
+перевіряє non-default identity state `37/true`; `make test-integration` пройшов.
+Результати решти перевірок і sequential self-review — у
+[validation](_assessments/2026-11-04-corpus-restore/validation.json).
+Off-host transfer/durability, RPO/retention та server RTO залишаються відкритими.
+
+Окремий diagnostic workload: exact 16/16 HTTP 200, prefix `limit=1` — 6/16 HTTP 503
+близько 2 s. SQL timer/план не досліджено. Restore controls містять лише 4 успішні
+prefix cases, відібрані після діагностики; це порівняння цілісності, не SLO evidence.
+AT-16 залишається відкритим, query-plan/deadline аналіз — наступна задача.

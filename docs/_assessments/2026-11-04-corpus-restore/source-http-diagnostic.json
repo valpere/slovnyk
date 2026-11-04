@@ -1,0 +1,226 @@
+[
+  {
+    "case": 0,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 29,
+    "elapsed_ms": 18.109
+  },
+  {
+    "case": 0,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8219,
+    "elapsed_ms": 209.087
+  },
+  {
+    "case": 1,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 483,
+    "elapsed_ms": 16.59
+  },
+  {
+    "case": 1,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8725,
+    "elapsed_ms": 478.841
+  },
+  {
+    "case": 2,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 20,
+    "elapsed_ms": 16.459
+  },
+  {
+    "case": 2,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8198,
+    "elapsed_ms": 150.332
+  },
+  {
+    "case": 3,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 27,
+    "elapsed_ms": 17.092
+  },
+  {
+    "case": 3,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8215,
+    "elapsed_ms": 211.294
+  },
+  {
+    "case": 4,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 21,
+    "elapsed_ms": 15.132
+  },
+  {
+    "case": 4,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8681,
+    "elapsed_ms": 333.767
+  },
+  {
+    "case": 5,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 494,
+    "elapsed_ms": 15.088
+  },
+  {
+    "case": 5,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8736,
+    "elapsed_ms": 330.74
+  },
+  {
+    "case": 6,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 28,
+    "elapsed_ms": 66.036
+  },
+  {
+    "case": 6,
+    "kind": "prefix",
+    "status": 503,
+    "bytes": 4761,
+    "elapsed_ms": 2001.255
+  },
+  {
+    "case": 7,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 34,
+    "elapsed_ms": 70.277
+  },
+  {
+    "case": 7,
+    "kind": "prefix",
+    "status": 503,
+    "bytes": 4785,
+    "elapsed_ms": 2000.997
+  },
+  {
+    "case": 8,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 22,
+    "elapsed_ms": 17.532
+  },
+  {
+    "case": 8,
+    "kind": "prefix",
+    "status": 503,
+    "bytes": 4765,
+    "elapsed_ms": 2001.17
+  },
+  {
+    "case": 9,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 453,
+    "elapsed_ms": 47.258
+  },
+  {
+    "case": 9,
+    "kind": "prefix",
+    "status": 503,
+    "bytes": 4773,
+    "elapsed_ms": 2001.784
+  },
+  {
+    "case": 10,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 444,
+    "elapsed_ms": 20.372
+  },
+  {
+    "case": 10,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8676,
+    "elapsed_ms": 975.397
+  },
+  {
+    "case": 11,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 32,
+    "elapsed_ms": 18.875
+  },
+  {
+    "case": 11,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8232,
+    "elapsed_ms": 1707.262
+  },
+  {
+    "case": 12,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 13,
+    "elapsed_ms": 26.052
+  },
+  {
+    "case": 12,
+    "kind": "prefix",
+    "status": 503,
+    "bytes": 4759,
+    "elapsed_ms": 2001.225
+  },
+  {
+    "case": 13,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 36,
+    "elapsed_ms": 28.819
+  },
+  {
+    "case": 13,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8254,
+    "elapsed_ms": 983.409
+  },
+  {
+    "case": 14,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 51,
+    "elapsed_ms": 23.107
+  },
+  {
+    "case": 14,
+    "kind": "prefix",
+    "status": 503,
+    "bytes": 4807,
+    "elapsed_ms": 2001.54
+  },
+  {
+    "case": 15,
+    "kind": "exact",
+    "status": 200,
+    "bytes": 438,
+    "elapsed_ms": 39.432
+  },
+  {
+    "case": 15,
+    "kind": "prefix",
+    "status": 200,
+    "bytes": 8666,
+    "elapsed_ms": 1538.044
+  }
+]

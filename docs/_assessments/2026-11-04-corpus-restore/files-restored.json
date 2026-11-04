@@ -1,0 +1,10 @@
+{
+  "elapsed_seconds": 79.524,
+  "artifacts": 1731,
+  "sources": 992,
+  "all_backup_hashes_reread": true,
+  "all_restored_hashes_reread": true,
+  "all_relative_paths_match": true,
+  "independent_copies_no_hardlinks": true,
+  "fsync_files_and_directories": true
+}

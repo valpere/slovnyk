@@ -139,3 +139,16 @@ resource samples і фінальні SQL/lifecycle checks трьох корот�
 Private workload містить реальні терміни; `http.env` і `http-private.json`
 містять credentials. Вони ignored, не публікувати. Власні containers/network
 та LOGIN прибрані; старі credentials не придатні для наступного запуску.
+
+## Повний локальний backup/restore
+
+`experiments/corpus-restore-2026-11-04/` зберігає `backup/database.dump`, незалежні
+`backup/artifacts/`, `backup/sources/`, manifest і release binary; `restored/` —
+другі звірені file copies, `.pgdata/` — окремий відновлений cluster. Оригінальна
+БД/snapshot/artifacts збережені. [Evidence](../docs/_assessments/2026-11-04-corpus-restore/REPORT.md).
+Власні containers/networks і тимчасові reader/operator LOGINs прибрані;
+new owner/admin лишаються локально. `*-private.json`, `*.env`, raw logs і workload
+paths містять secrets або реальні дані: не публікувати. Bundle не містить публічного
+keyring; rehearsal key/LOGIN configuration лишаються приватно поряд. Це той самий
+host, не off-host backup; durability/escrow/RPO/retention ще не погоджені.
+Не прибирайте backup/restored copies без окремого рішення власника.

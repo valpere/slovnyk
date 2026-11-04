@@ -1,0 +1,6 @@
+{
+  "command": "ANALYZE restored database",
+  "exit_code": 0,
+  "elapsed_seconds": 9.602,
+  "source": "https://www.postgresql.org/docs/17/app-pgrestore.html#APP-PGRESTORE-NOTES"
+}

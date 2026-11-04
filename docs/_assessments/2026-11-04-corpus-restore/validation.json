@@ -1,0 +1,89 @@
+{
+  "commands": [
+    {
+      "command": "make check test",
+      "exit_code": 0,
+      "log_sha256": "02c7e4946df068616372dcb590ae4cc4d2268b5cde3dcc929848bcbd4d9f5952"
+    },
+    {
+      "command": "make test-integration",
+      "exit_code": 0,
+      "log_sha256": "5e37b7983f5fd2dabdfa11b268cd7156d133029dbabb47dba6835a77871617b2"
+    },
+    {
+      "command": "make test-race test-smoke",
+      "exit_code": 0,
+      "log_sha256": "9df21a8187b30ca35fb3df69369fb4bae1e49609c9a5c97a8420a1845b08b744"
+    },
+    {
+      "command": "local full-corpus backup, fresh-cluster restore, all-row/sequence/file and HTTP acceptance; source stopped",
+      "exit_code": 0,
+      "receipts": [
+        "acceptance-complete.json",
+        "lifecycle.json"
+      ]
+    },
+    {
+      "command": "metadata arithmetic, actual private credential/request-path scan, payload key and relative link checks",
+      "exit_code": 0,
+      "result": {
+        "json_files": 39,
+        "jsonl_rows": 451,
+        "relative_links_checked": 331,
+        "full_table_and_sequence_inventories_equal": true,
+        "file_inventory_counts": [
+          1731,
+          992
+        ],
+        "http_source_target_responses_equal": 37,
+        "prefix_503_diagnostic_count": 6,
+        "credentials_private_paths_and_payload_keys_absent": true
+      }
+    }
+  ],
+  "review": "sequential self-review; no independent reviewer",
+  "review_base_revision": "591ccd99eed5db11ee29ec0aafa4e9e05b14c10d",
+  "application_source_changed": false,
+  "review_passes": [
+    "repository contracts, local-only data safety and credential lifecycle",
+    "sequence fixture and all-row/sequence/file oracle correctness",
+    "HTTP control selection and failed diagnostic evidence",
+    "documentation claims against actual restore/ACL/HTTP/storage/cleanup receipts"
+  ],
+  "verified_findings": [],
+  "resolved_findings": [
+    "Clarified that original source files remain at their previous paths, outside the new backup/restore directory.",
+    "Clarified that only rehearsal HTTP/target-operator LOGINs were removed; original source admin/operator credentials remain private and valid."
+  ],
+  "observed_failures": [
+    {
+      "scope": "initial target bootstrap readiness probe",
+      "state": "resolved before restore",
+      "reason": "socket readiness saw temporary init server; resumed provisioning after TCP readiness"
+    },
+    {
+      "scope": "initial make check",
+      "state": "resolved and rerun exit 0",
+      "reason": "non-hidden target-pgdata exposed private PostgreSQL permissions to Go package discovery; bind moved to .pgdata"
+    },
+    {
+      "scope": "initial source HTTP capture",
+      "state": "HTTP 503 remains an open performance observation",
+      "reason": "exact failing request not checkpointed; separate complete diagnostic records 6/16 prefix HTTP503; restore controls then selected four successful prefix cases"
+    },
+    {
+      "scope": "initial generic private-config scan",
+      "state": "validator corrected and rerun exit 0",
+      "reason": "generic DSN pattern matched pre-existing documented local README examples; actual private-value scan remains across all changed files, generic no-config scan applies to new evidence"
+    }
+  ],
+  "limitations": [
+    "one-off ignored harness absent from clean checkout",
+    "row oracle is a probabilistic multiset comparison, not public canonical migration digest",
+    "37 HTTP control bodies/status compared; other headers not compared",
+    "prefix controls selected after source diagnosis; no capacity/SLO inference",
+    "no historical production keyring/cursors and no second retained full-corpus dataset",
+    "off-host durability/secret escrow/RPO/retention and server RTO still open",
+    "CI pending exact final PR head; tracked evidence records local verification only"
+  ]
+}

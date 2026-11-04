@@ -1,8 +1,8 @@
 # Backup і restore нового сервісу
 
 FR-13 / AT-13, без користувацького запису. Production та off-host відновлення
-ще не виконано. Локальна synthetic репетиція описана нижче; вона не доводить
-RTO <=24 h для повного корпусу.
+ще не виконано. Synthetic репетиція та [повний локальний restore](_assessments/2026-11-04-corpus-restore/REPORT.md) перевірили окремий fresh cluster;
+вони не доводять production/off-host RTO <=24 h для повного корпусу.
 
 ## Що зберігати разом
 
@@ -53,11 +53,15 @@ RTO <=24 h для повного корпусу.
    grantee roles restore має завершитися помилкою; не обходити її через `--no-acl`,
    інакше робочі privileges не відновляться. Після усунення причини повторити
    restore й перевірити відсутність часткової schema після невдалого запуску.
-4. Відновити всі файли зі збереженням relative paths; звірити hashes/bytes.
+4. Після успішного restore оновити planner statistics через `ANALYZE` на
+   відновленій БД до HTTP-приймання; це рекомендує
+   [PostgreSQL 17](https://www.postgresql.org/docs/17/app-pgrestore.html#APP-PGRESTORE-NOTES).
+   Відновити всі файли зі збереженням relative paths; звірити hashes/bytes.
    Запустити той самий release/keyring із restricted HTTP LOGIN і read-only
    artifact mount. Не переносити traffic до проходження readiness і control checks.
 5. Звірити active version/generation, counts/digests, provenance та manifests;
-   перевірити exact/mask search, старі continuations, article, active/retained
+   окремо звірити sequence state/config, які не входять до звичайних table digests.
+   Перевірити exact/mask search, старі continuations, article, active/retained
    downloads і sitemap. Переконатися, що HTTP LOGIN не може змінити active pointer.
    Перевірити операторський retry на відновленому наборі.
 6. Зберегти результати й повний elapsed time. Відсутні artifacts мають блокувати
@@ -85,8 +89,10 @@ Schema, relations, functions і types мають саме цього owner.
 
 Counts і length-prefixed SHA-256 sorted JSON rows **кожної** таблиці збігаються;
 усі artifact/source paths, sizes та hashes також. Цей table digest — test oracle,
-не публічний версійний migration digest. Послідовностей у поточній schema немає;
-якщо з'являться, rehearsal має перевіряти також їхні значення.
+не публічний версійний migration digest. Identity sequence `import_issues_id_seq`
+перевіряється окремо: `last_value` та `is_called` усіх application sequences
+мають збігатися. Synthetic fixture задає їй non-default state `37 / true`
+до dump, щоб перевірка не залежала від наявності rejected records.
 
 Оригінальна БД під час HTTP-приймання недоступна. Порожній artifact root дає
 health 200/readiness 503; повна копія запускається, відтворює responses/cursors,
