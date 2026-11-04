@@ -778,3 +778,28 @@ FR-04/AT-04 і AT-16 отримали synthetic regression evidence, без за
 `make check test test-race test-smoke` — PASS. Retained corpus/backup/restored
 DB schema 3 не змінена; повні index/build/storage/restore і HTTP/cache/contention
 перевірки лишаються окремим наступним етапом. AT-16 відкрито.
+
+## AT-16 subset — повний schema 4 upgrade, 2026-11-04
+
+[Evidence/self-review](_assessments/2026-11-04-full-prefix/REPORT.md),
+[summary](_assessments/2026-11-04-full-prefix/summary.json): owner CLI застосував
+migration 4 на всіх 56 455 068 translations / 992 pairs. Команда ~177 s
+(polling 3 s), index 2.428 GiB, DB 66.744 GiB; min observed free 98.329 GiB.
+Cluster WAL delta 2 361 107 088 bytes; temp delta ~3 GiB. Resource profile 2 CPU/8 GiB,
+memory peak включає cache; cgroup OOM counters 0.
+
+Перед DDL 17 inventories/sequences збіглися з попередньою full restore репетицією;
+після DDL 16 application table multisets/sequences тотожні, ledger лише 3→4,
+старі рядки/checksums збережені. Постзвірка — `minions/corpus-inventory`;
+`TestMultisetOracle`, `TestCopyNullAndInvalidFraming` і
+`make check test test-race test-smoke` — PASS.
+
+32/32 SQL plans, перехоплених із справжнього ReadPage, мають prefix Index Cond
+і full LIKE Filter; entries/lookahead збігаються з початковим query. HTTP 135/135
+200 до/після, bytes/body hashes/Content-Type/Cache-Control тотожні, включно з
+7 pre-upgrade continuations. Клієнтський prefix p95 257.624→15.831 ms на
+64 positive responses; це warm/нерандомізована diagnostic вибірка, не AT-16 acceptance.
+
+Початкова dev-БД тепер schema 4, backup/restored копії schema 3 не змінено.
+Власні runtime/LOGIN прибрані. Schema 4 full backup/restore, ширші
+cache/contention workloads, server/storage capacity, off-host RTO й AT-16 відкриті.

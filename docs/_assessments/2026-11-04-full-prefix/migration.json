@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 177.0,
+  "guard": null,
+  "cluster_wal_delta_bytes": 2361107088,
+  "observations": 57,
+  "disk_floor_bytes": 32212254720,
+  "cli_revision": "61d221ce1751c8e8f61f704f40e0ce28d714d354",
+  "index_bytes": 2607292416,
+  "schema_versions": [
+    1,
+    2,
+    3,
+    4
+  ]
+}

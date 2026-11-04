@@ -178,3 +178,18 @@ reader прибрані. Source admin та experiment admin config лишают�
 Повторні результати в root run directory мають production collation C.
 One-off Go harness й orchestration — `tmp/prefix-index/`, не service utilities.
 Це subset SQL prototype, не повна service DB або production migration.
+
+## Повний корпус: schema 4 prefix index
+
+`experiments/full-prefix-2026-11-04/` зберігає нові metadata/inventories та
+приватні diagnostics повного upgrade. **Початкова** `.pgdata/` у
+`postgres-corpus-preflight-2026-10-25/` тепер schema 4: 56 455 068 translations,
+ready/active generation 1, application hashes і sequences незмінні.
+Index 2.428 GiB, БД 66.744 GiB без WAL/artifacts. Temporary reader і власні
+containers/network прибрані; bind збережено. Старі credentials з container/port
+треба rediscover при наступному запуску; новий temporary reader уже нечинний.
+
+Backup bundle і restored cluster у `corpus-restore-2026-11-04/` залишилися
+schema 3, їх цей upgrade не змінював. Для поточного binary restored БД треба
+окремо мігрувати owner-командою; новий full backup/restore ще не перевірено.
+[Evidence та наступні gates](../docs/_assessments/2026-11-04-full-prefix/REPORT.md).

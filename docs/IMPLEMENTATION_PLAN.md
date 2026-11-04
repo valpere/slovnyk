@@ -275,8 +275,11 @@ positive exact/prefix queries не закривають SLO.
 synthetic seek/Unicode/64 KiB checks; index 65.09 MiB, insert-sample WAL +29.1%.
 Service migration 4 і ReadPage prefilter додано з synthetic integration tests:
 Unicode/escaping/64-codepoint collisions, C seek, signed cursors, ready-data upgrade.
-Збережені corpus/backup/restore БД не оновлено. Далі —
-full-corpus index/storage/build/restore, HTTP/cache/contention probes,
+Наступний [повний локальний upgrade](_assessments/2026-11-04-full-prefix/REPORT.md)
+пройшов: початкова dev-БД schema 4, index 2.428 GiB/~177 s,
+16 application inventories/sequences незмінні, 32 actual production plans,
+135 тотожних HTTP responses. Backup/restored copies лишаються schema 3.
+Далі — schema 4 full backup/restore, ширші HTTP/cache/contention probes,
 розширений workload, storage/capacity
 та off-host/target-server restore gates;
 adapter не дозволяє exceptions/rejected records.

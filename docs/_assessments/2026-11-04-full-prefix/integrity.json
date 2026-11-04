@@ -1,0 +1,30 @@
+{
+  "unchanged_tables": [
+    "active_dataset",
+    "dataset_locales",
+    "dataset_pairs",
+    "datasets",
+    "exports",
+    "import_checkpoints",
+    "import_issues",
+    "import_records",
+    "import_runs",
+    "legacy_query_snapshots",
+    "publication_events",
+    "sitemap_inventory",
+    "sitemap_shards",
+    "source_files",
+    "translation_origins",
+    "translations"
+  ],
+  "all_16_application_table_multisets_identical": true,
+  "sequences_identical": true,
+  "baseline_application_state_identical": true,
+  "translations": 56455068,
+  "all_columns_streamed": true,
+  "schema_migrations_rows_before": 3,
+  "schema_migrations_rows_after": 4,
+  "old_ledger_rows_unchanged": true,
+  "new_ledger_checksum_verified": true,
+  "scope": "probabilistic binary-COPY multiset oracle; rows/count/sum-mod-2^256/XOR; not a new source reconciliation"
+}

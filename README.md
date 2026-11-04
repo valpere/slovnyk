@@ -486,12 +486,18 @@ insert-sample WAL +29.1%; timings не є full-corpus/HTTP SLO.
 Schema 4 і `ReadPage` prefilter реалізовані: перші 64 Unicode codepoints
 буквального префікса плюс повний LIKE recheck; exact і leading wildcard зберігають
 попередній шлях. Synthetic tests не доводять full-corpus/HTTP SLO.
-Далі — full-corpus index/build/storage/restore та HTTP/cache/contention gates;
-AT-16 відкрито. Збережені corpus/backup/restore БД ще мають schema 3.
+[Повний локальний upgrade](docs/_assessments/2026-11-04-full-prefix/REPORT.md)
+також пройшов: schema 4 на 56 455 068 translations, index 2.428 GiB,
+команда ~177 s; application table hashes/sequences незмінні, 32/32 actual ReadPage
+plans із prefix condition, 135 HTTP responses тотожні, включно з 7 cursors.
+Початкова dev-БД тепер schema 4; backup/restored copies лишаються schema 3.
+Далі — schema 4 full backup/restore та розширені HTTP/cache/contention gates;
+AT-16 відкрито. Поточна БД 66.744 GiB без WAL/artifacts.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 
-Один dataset із indexes займає **64.315 GiB**, WAL окремо 1 GiB. Цей layout
+До schema 4 dataset із indexes займав 64.315 GiB; тепер БД займає
+**66.744 GiB**, WAL окремо 1 GiB. Цей layout
 не поміщається на root близько 45 GiB із виміру Oracle 2026-10-23; нової
 перевірки сервера не було. Локальний import змінював memory cap PostgreSQL
 512 MiB → 8 → 16 GiB при 1 CPU; це не Micro capacity/SLO acceptance.

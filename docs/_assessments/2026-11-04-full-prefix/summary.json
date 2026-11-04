@@ -1,0 +1,90 @@
+{
+  "baseline_http_statuses": {
+    "200": 135
+  },
+  "post_http_statuses": {
+    "200": 135
+  },
+  "all_135_body_and_selected_header_checks_equal": true,
+  "pre_upgrade_continuations_replayed": 7,
+  "actual_read_page_plans": 32,
+  "prefix_index_condition_plans": 32,
+  "full_like_filter_plans": 32,
+  "all_32_reference_result_digests_and_lookahead_equal": true,
+  "sql_execution": {
+    "count": 32,
+    "median_ms": 0.039,
+    "p95_ms": 0.054,
+    "max_ms": 0.071
+  },
+  "read_page_wall": {
+    "count": 32,
+    "median_ms": 0.2155,
+    "p95_ms": 1.211,
+    "max_ms": 2.952
+  },
+  "http_client_wall": {
+    "before": {
+      "exact": {
+        "count": 64,
+        "median_ms": 14.8315,
+        "p95_ms": 17.793,
+        "max_ms": 32.294
+      },
+      "prefix": {
+        "count": 64,
+        "median_ms": 53.781000000000006,
+        "p95_ms": 257.624,
+        "max_ms": 392.918
+      },
+      "continuation": {
+        "count": 7,
+        "median_ms": 57.816,
+        "p95_ms": 66.823,
+        "max_ms": 66.823
+      }
+    },
+    "after": {
+      "exact": {
+        "count": 64,
+        "median_ms": 14.5185,
+        "p95_ms": 17.45,
+        "max_ms": 18.722
+      },
+      "prefix": {
+        "count": 64,
+        "median_ms": 14.7725,
+        "p95_ms": 15.831,
+        "max_ms": 16.437
+      },
+      "continuation": {
+        "count": 7,
+        "median_ms": 16.464,
+        "p95_ms": 18.088,
+        "max_ms": 18.088
+      }
+    }
+  },
+  "migration": {
+    "exit_code": 0,
+    "elapsed_seconds": 177.0,
+    "guard": null,
+    "cluster_wal_delta_bytes": 2361107088,
+    "observations": 57,
+    "disk_floor_bytes": 32212254720,
+    "cli_revision": "61d221ce1751c8e8f61f704f40e0ce28d714d354",
+    "index_bytes": 2607292416,
+    "schema_versions": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "min_observed_free_disk_bytes": 105580003328,
+  "observations_are_not_peak_disk_accounting": true,
+  "application_state_unchanged": true,
+  "retained_backup_restore_schema": 3,
+  "original_schema_after": 4,
+  "at_16_closed": false
+}

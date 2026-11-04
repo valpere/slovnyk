@@ -1,0 +1,19 @@
+{
+  "wal_lsn": "8A/9C96BA68",
+  "wal_bytes": 1073741824,
+  "temp_bytes": 41362896729,
+  "temp_files": 6638,
+  "database_bytes": 71666308787,
+  "migration_versions": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "prefix_index_bytes": 2607292416,
+  "other_client_backends": 0,
+  "translations_heap_bytes": 9887793152,
+  "translations_total_bytes": 31320924160,
+  "free_disk_bytes": 108720521216,
+  "utc": "2026-11-04T14:47:25.738821+00:00"
+}

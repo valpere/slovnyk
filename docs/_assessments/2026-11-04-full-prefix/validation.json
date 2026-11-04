@@ -1,0 +1,23 @@
+{
+  "review_base": "61d221ce1751c8e8f61f704f40e0ce28d714d354",
+  "scope": "full corpus schema 4 evidence, current docs and promoted Go minion; application code unchanged",
+  "application_table_hashes_equal": true,
+  "sequence_state_equal": true,
+  "ledger_only_expected_addition": true,
+  "all_135_http_oracles_equal": true,
+  "all_32_actual_sql_plan_conditions_verified": true,
+  "credentials_and_private_payload_fields_absent": true,
+  "local_commands": [
+    "make check test test-race test-smoke",
+    "make check"
+  ],
+  "local_checks_passed": true,
+  "review": "sequential self-review with code-review; no verified findings; no independent reviewer",
+  "open_gates": [
+    "schema 4 full backup/restore",
+    "broader cold/warm cache and contention workload",
+    "target storage/server capacity",
+    "off-host RTO",
+    "AT-16"
+  ]
+}
