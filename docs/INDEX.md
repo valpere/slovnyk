@@ -125,10 +125,14 @@ Production, crawler/search SLO та full-corpus off-host restore відкрит�
 Schema 4 / `ReadPage` bounded prefix prefilter реалізовано з synthetic integration
 перевірками Unicode/escaping, C seek, signed cursors і upgrade ready data.
 [Фактичне покриття](TRACEABILITY.md#bounded-prefix-service-integration--2026-11-04).
-Retained corpus/backup/restore БД ще schema 3; цей зріз їх не змінює.
-Далі — full-corpus index/build/storage/restore, HTTP/cache/contention gates;
+[Повний локальний upgrade](_assessments/2026-11-04-full-prefix/REPORT.md):
+початкова dev-БД тепер schema 4 на всіх 56 455 068 translations; index 2.428 GiB,
+команда ~177 s, application hashes/sequences незмінні. 32/32 actual ReadPage
+plans мають prefix Index Cond; 135 HTTP results тотожні, включно з 7 cursors.
+БД тепер 66.744 GiB; backup/restored copies залишені schema 3.
+Далі — schema 4 full backup/restore, ширші HTTP/cache/contention probes;
 AT-16 і capacity acceptance відкриті.
-Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
+До schema 4 один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.
 Окрема команда `dataset reconcile` звіряє staged dataset без exports/ready,

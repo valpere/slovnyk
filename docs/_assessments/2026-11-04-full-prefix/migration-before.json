@@ -1,0 +1,18 @@
+{
+  "wal_lsn": "8A/FDB17D8",
+  "wal_bytes": 1023410176,
+  "temp_bytes": 38141900633,
+  "temp_files": 6635,
+  "database_bytes": 69059016371,
+  "migration_versions": [
+    1,
+    2,
+    3
+  ],
+  "prefix_index_bytes": 0,
+  "other_client_backends": 0,
+  "translations_heap_bytes": 9887793152,
+  "translations_total_bytes": 28713631744,
+  "free_disk_bytes": 111378489344,
+  "utc": "2026-11-04T14:44:28.690911+00:00"
+}

@@ -1,0 +1,4 @@
+{
+  "index_definition": "CREATE INDEX translations_prefix64 ON slovnyk.translations USING btree (dataset_id, source_locale, target_locale, \"left\"(source_key, 64))",
+  "prefix_index_valid": true
+}

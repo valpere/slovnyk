@@ -1,0 +1,10 @@
+{
+  "temporary_reader_removed": true,
+  "own_http_containers_removed": true,
+  "own_database_container_and_network_removed": true,
+  "original_corpus_upgraded_to_schema_4": true,
+  "application_data_unchanged": true,
+  "backup_and_restored_schema_3_copies_untouched": true,
+  "oracle_and_legacy_untouched": true,
+  "utc": "2026-11-04T14:52:26.582749+00:00"
+}

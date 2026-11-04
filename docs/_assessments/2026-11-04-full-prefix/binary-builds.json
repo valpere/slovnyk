@@ -1,0 +1,7 @@
+{
+  "revision": "61d221ce1751c8e8f61f704f40e0ce28d714d354",
+  "migration_host_binary_sha256": "c024fb195b3ef5dc878b21a6cb20247e56d1c1332ec778ebb3bc8588e270c0d1",
+  "http_and_repeat_migrate_static_binary_sha256": "459751b26c2d5d386fd7501c9c9d1c8463bd16d3ca17c8ee441ca0bf6ae64d31",
+  "http_build_command": "CGO_ENABLED=0 go build -trimpath -o tmp/full-prefix/slovnyk ./cmd/slovnyk",
+  "initial_http_dynamic_binary_failed_to_start_on_alpine": true
+}

@@ -922,3 +922,18 @@ statement timeout 30 min і CLI budget 31 min замість колишніх 45
 Retained corpus/backup/restore БД не оновлено. Наступні gates — full-corpus index
 size/build/storage/WAL та restore, HTTP/cache/contention, target capacity.
 AT-16 і причину старих 503 не закрито. Нових продуктових погоджень не додано.
+
+## Повний локальний schema 4 upgrade — 2026-11-04
+
+Після merge PR26 виконано [повний upgrade](_assessments/2026-11-04-full-prefix/REPORT.md)
+початкової dev-БД: schema 4, 56 455 068 translations, index 2.428 GiB, команда
+~177 s, БД 66.744 GiB без WAL/artifacts. Вміст application tables, sequences
+і ready/active generation 1 незмінний; ledger отримав лише очікувану migration 4.
+32 actual ReadPage plans та 135 HTTP comparisons/7 старих cursor continuations
+пройшли. Це локальне технічне підтвердження, не production/SLO приймання.
+
+Backup і restored cluster залишені schema 3; новий full backup/restore ще потрібен.
+Наступні gates — schema 4 restore, ширші cache/contention workloads, target
+storage/capacity і off-host RTO. Історичні 503 та AT-16 не закриті.
+Повторюваний Go inventory harness став посіпакою `minions/corpus-inventory`;
+це помічник агента, а не utility сервісу. Oracle/legacy не задіяні.

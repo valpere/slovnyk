@@ -1,0 +1,19 @@
+{
+  "image": "postgres:17.11-alpine@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+  "memory_bytes": 8589934592,
+  "nano_cpus": 2000000000,
+  "command": [
+    "postgres",
+    "-c",
+    "maintenance_work_mem=512MB",
+    "-c",
+    "max_parallel_maintenance_workers=0",
+    "-c",
+    "temp_file_limit=20GB"
+  ],
+  "original_corpus_bind": true,
+  "head": "61d221ce1751c8e8f61f704f40e0ce28d714d354",
+  "writers_paused": true,
+  "baseline_matches_previous_restore": true,
+  "one_off_scripts": "tmp/full-prefix/; unavailable in clean checkout"
+}
