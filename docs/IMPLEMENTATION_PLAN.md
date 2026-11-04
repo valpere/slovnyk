@@ -254,9 +254,9 @@ Adapter `--loss-approval` для known gaps реалізовано; exceptions �
 Додано `dataset reconcile ID --source DIR`: shared source/inventory checks без
 генерації exports чи зміни state, diagnostic JSON з незакритими gaps/exceptions.
 [Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
-Повний corpus run пройшов 2026-11-04. Наступні кроки: погодження власником
-[звіту](LOSS_REVIEW.md), далі verify/exports із receipt. Жодних конкретних
-втрат не погоджено; adapter не дозволяє exceptions/rejected records.
+Повний corpus reconciliation пройшов 2026-11-04. [Звіт](LOSS_REVIEW.md)
+погоджено власником 2026-11-04; receipt зафіксовано. Наступний крок —
+verify/exports із receipt; adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

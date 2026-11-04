@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "dataset": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+  "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+  "reconciliation_sha256": "6cdcb790cce656f21e714d52c27213d085b1959de14b9983829001fa176abc2c",
+  "owner_ref": "project owner; explicit decision in current user session",
+  "decision_ref": "docs/DECISIONS.md#owner-approval-2026-11-04",
+  "approved_at": "2026-11-04T08:12:48Z"
+}

@@ -197,7 +197,7 @@ Rejected records, issues та exceptions блокують ready. Known gaps по
 явного рішення власника: `verify --loss-approval <approval.json>` звіряє його з
 SHA-256 нового source replay і зберігає в retained report. Receipt не обходить
 перевірок даних; `force ready` немає. [Конкретний звіт і формат рішення](docs/LOSS_REVIEW.md)
-поки очікують погодження власника.
+погоджено власником 2026-11-04; receipt прив’язаний до перевіреного snapshot.
 Повні staged Go corpus import і source/DB reconciliation перевірені окремо;
 verify/exports та production durability ще не підтверджені.
 [Реалізація, рев’ю та обмеження](docs/_assessments/2026-10-24-publication/REPORT.md).
@@ -452,7 +452,7 @@ accepted unique, 0 duplicates/rejected/issues. Actual ledger/origins/translation
 992 files, 56 455 068 unique, per-file counts збігаються з audit/import.
 Dataset `validating`, active null; verify/exports/ready ще не виконано.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
-потрібне погодження конкретного звіту про відсутні історичні metadata.
+[Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 
 Один dataset із indexes займає **64.315 GiB**, WAL окремо 1 GiB. Цей layout
 не поміщається на root близько 45 GiB із виміру Oracle 2026-10-23; нової

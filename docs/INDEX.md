@@ -99,7 +99,7 @@ digests перших 55 000; active dataset порожній. Це частин�
 Dataset `validating`, active null; [source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
 пройшов 2026-11-04. Verify/exports/ready та production acceptance відкриті. Known gaps manifest
 блокують verify без receipt; [adapter і конкретний звіт](LOSS_REVIEW.md)
-підготовлені, погодження власника ще потрібне.
+підготовлені, [погодження власника](DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.
@@ -107,7 +107,7 @@ memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro 
 залишаючи known gaps та exceptions незакритими;
 [synthetic перевірки](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
 Наступна [повна локальна звірка](_assessments/2026-11-04-corpus-reconciliation/REPORT.md) пройшла;
-[Конкретний звіт](LOSS_REVIEW.md) очікує погодження власника; adapter
+[Конкретний звіт](LOSS_REVIEW.md) погоджено власником 2026-11-04; adapter
 `verify --loss-approval FILE` підтримує known gaps, але не exceptions/rejections.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)

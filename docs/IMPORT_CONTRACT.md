@@ -163,7 +163,8 @@ Receipt JSON version 1 містить усі поля: `version`, `dataset`, `fi
 Ліміт 16 KiB; unknown/duplicate keys, nested values, null, trailing JSON,
 невірні IDs/hashes та порожні audit refs відхиляються. Це evidence рішення,
 переданого довіреним оператором; цифрового підпису/нової authentication немає.
-[Конкретний звіт і приклад](LOSS_REVIEW.md) очікують рішення власника.
+[Конкретний звіт і приклад](LOSS_REVIEW.md) погоджено власником 2026-11-04;
+[рішення](DECISIONS.md#owner-approval-2026-11-04) прив’язане до конкретного snapshot.
 
 Для validating dataset verify повторює source replay/inventory, відтворює
 точний JSON `ReconciliationReport` version 1 стандартним Go JSON encoder
