@@ -6,6 +6,8 @@
 
 Джерело істини та порядок читання: [docs/INDEX.md](docs/INDEX.md).
 
+Пауза після merge PR #27 (2026-11-04): [підсумок і точка продовження](docs/SESSION_HANDOFF.md).
+
 Підтверджені рішення та наступні питання: [журнал](docs/DECISIONS.md).
 Розробка локально; кандидат для запуску в Oracle Cloud досліджено read-only:
 [оцінка сервера й масштабу даних](docs/_assessments/2026-10-23-server/REPORT.md).
