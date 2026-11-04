@@ -261,8 +261,11 @@ Adapter `--loss-approval` для known gaps реалізовано; exceptions �
 [Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
 Повний corpus reconciliation пройшов 2026-11-04. [Звіт](LOSS_REVIEW.md)
 погоджено власником 2026-11-04; verify/exports із receipt завершено.
-Локальна перевірка sitemap/HTTP на повному корпусі також пройшла. Далі —
-змішане crawler/search навантаження та storage/capacity/restore gates;
+Локальна перевірка sitemap/HTTP на повному корпусі також пройшла.
+[Дослідницька змішана проба](_assessments/2026-11-04-corpus-load/REPORT.md)
+завершила 2 112 запитів без помилок; три хвилини, warm caches, обмежені
+positive exact/prefix queries не закривають SLO. Далі — розширений workload,
+storage/capacity та full-corpus restore gates;
 adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.

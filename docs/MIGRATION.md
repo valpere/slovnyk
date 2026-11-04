@@ -73,6 +73,10 @@ Known gaps збережені; ця звірка не є погодженням 
 створив 36 763 066 URL у 736 shards, перевірив усі XML і HTTP hashes
 усіх shards/992 downloads, sample pages/search та restart. Локальна publication
 дала active dataset/generation 1. Це не production/crawl acceptance або off-host restore.
+Подальша [змішана локальна проба](_assessments/2026-11-04-corpus-load/REPORT.md)
+завершила 2 112 HTTP/content checks без помилок; baseline/final SQL стан
+тотожний, generation 1 збережена. Короткий warm-cache workload не закриває
+target-server SLO або full-corpus restore.
 
 DB/indexes одного dataset — 64.315 GiB, WAL окремо 1 GiB. Такий layout не
 поміщається на root ~45 GiB за профілем Oracle 2026-10-23; нового probe не було.

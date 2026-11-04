@@ -839,3 +839,16 @@ DB та referenced artifacts збережені. Це локальна репе�
 Нових продуктових погоджень не вводили. Далі — змішане crawler/search
 навантаження й окремі storage/server та full-corpus restore gates. Oracle
 Micro залишається недоторканим; production/SLO та мовне/дизайн приймання відкриті.
+
+## Локальна змішана проба — 2026-11-04
+
+На retained full corpus виконано дослідницький open-loop HTTP workload:
+три хвилини по 10 search/s; у середній хвилині додано 5 word pages/s та
+0.2 sitemap shards/s. 2 112/2 112 requests успішні, generation 1 і counters
+незмінні, власні runtime resources прибрані. [Evidence](_assessments/2026-11-04-corpus-load/REPORT.md).
+
+Це технічне спостереження, не нове продуктове погодження чи capacity gate:
+warm caches, лише positive exact/full-source-prefix cases та 119 із 992 пар.
+Client p95 не замінює server-side timer. Розширений workload/budget,
+storage/server вибір і full-corpus restore залишаються окремими задачами.
+Oracle Micro не задіяний; production та AT-16 залишаються відкритими.

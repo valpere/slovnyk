@@ -1,0 +1,37 @@
+{
+  "utc": "2026-11-04T12:20:16.760412+00:00",
+  "source_revision": "dd2039a3926bc1ed1494f72fbeec47b4d7a5b9a2",
+  "http_binary_sha256": "a79f4021fa5938369158184bcb1e648ba51bfd250fbdfab4db17911405b61f90",
+  "scope": "exploratory local full-corpus serving; not an approved production capacity gate",
+  "phases": [
+    {
+      "name": "search-before",
+      "seconds": 60,
+      "search_per_second": 10,
+      "word_per_second": 0,
+      "shard_per_second": 0
+    },
+    {
+      "name": "mixed",
+      "seconds": 60,
+      "search_per_second": 10,
+      "word_per_second": 5,
+      "shard_per_second": 0.2
+    },
+    {
+      "name": "search-after",
+      "seconds": 60,
+      "search_per_second": 10,
+      "word_per_second": 0,
+      "shard_per_second": 0
+    }
+  ],
+  "search_mix": "deterministic repeating 3 exact : 1 full-source-prefix mask; defaults page limit 50; format=plain, ui=en",
+  "scheduler": "open loop, 32 threads; scheduled-to-dispatch lag and scheduled-to-completion recorded; no dropped samples",
+  "client_timeout_seconds": 5,
+  "ordinary_body_limit_bytes": 1048576,
+  "client_location": "host outside application/database cgroups",
+  "cache": "host filesystem caches not dropped; readiness verifies retained artifacts; no artificial cold-cache claim",
+  "minimum_free_bytes": 32212254720,
+  "maximum_seconds": 1200
+}

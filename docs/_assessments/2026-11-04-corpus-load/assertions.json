@@ -1,0 +1,11 @@
+{
+  "all_2112_requests_recorded": true,
+  "http_status_200_and_content_checks": true,
+  "client_timeouts": 0,
+  "http_errors": 0,
+  "source_counters_report_and_publication_unchanged": true,
+  "guards_triggered": false,
+  "oom_kills": 0,
+  "application_changed": false,
+  "production_capacity_approved": false
+}
