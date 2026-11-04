@@ -53,9 +53,5 @@ func Reconcile(ctx context.Context, c *pgx.Conn, id, source string) (Reconciliat
 	if e != nil {
 		return out, e
 	}
-	return ReconciliationReport{
-		Version: 1, Kind: "reconciliation", Dataset: id, Fingerprint: fp, State: state,
-		Parsed: r.Parsed, Unique: r.Unique, Duplicates: r.Duplicates, Rejected: r.Rejected,
-		Files: r.Files, KnownGaps: m.KnownGaps, Exceptions: m.Exceptions,
-	}, nil
+	return reconciliationReport(r, m), nil
 }

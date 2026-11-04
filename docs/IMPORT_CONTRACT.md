@@ -153,10 +153,29 @@ known_gaps/exceptions. Вони залишаються незакритими й
 rejected records/issues та незавершені/невідповідні дані блокують успіх команди.
 Цей JSON не замінює retained verification report: publish його не приймає.
 
-Реалізовано strict clean path: усі rejected records, issues, known gaps та
-exceptions блокують ready. Опис exceptions у manifest не замінює погодження
-власника. Окремий approval-loss adapter залишається потрібним до production
-запуску з погодженими втратами; попередні правила погодження не змінюються.
+Реалізовано strict clean path та окреме погодження known gaps через
+`verify --loss-approval FILE`. Rejected records, issues та exceptions і далі
+блокують ready; підтримки виключення записів/artifacts у цьому adapter немає.
+Опис gaps/exceptions у manifest не замінює погодження власника.
+
+Receipt JSON version 1 містить усі поля: `version`, `dataset`, `fingerprint`,
+`reconciliation_sha256`, `owner_ref`, `decision_ref`, `approved_at` (RFC3339).
+Ліміт 16 KiB; unknown/duplicate keys, nested values, null, trailing JSON,
+невірні IDs/hashes та порожні audit refs відхиляються. Це evidence рішення,
+переданого довіреним оператором; цифрового підпису/нової authentication немає.
+[Конкретний звіт і приклад](LOSS_REVIEW.md) очікують рішення власника.
+
+Для validating dataset verify повторює source replay/inventory, відтворює
+точний JSON `ReconciliationReport` version 1 стандартним Go JSON encoder
+із завершальним LF та звіряє SHA-256 з receipt. Dataset/fingerprint повинні
+збігатися; жодна зміна manifest або списку gaps не приховується. Digest охоплює
+counts, file checksums/completion, оригінальні known gaps та порожні exceptions.
+Погодження зберігається в immutable verification report як `loss_approval`,
+known gaps — як `known_gaps`. Clean reports цих optional fields не мають;
+старі clean reports залишаються сумісними. Export/publish/readiness повторно
+перевіряють receipt і його прив’язку до manifest/counters; доступ до ledger
+HTTP-ролі не додається. Повторний verify ready повертає retained report;
+якщо передано receipt, він мусить точно збігатися зі збереженим.
 CSV metadata звіряється як NULL count/status, порожні legacy queries та
 identity-v1 provenance. Контроль exact/literal-mask SQL виконується для першого
 наявного tuple кожної пари; повний пошуковий сервіс — M1-06.

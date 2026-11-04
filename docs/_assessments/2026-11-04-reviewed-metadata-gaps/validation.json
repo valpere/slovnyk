@@ -1,0 +1,22 @@
+{
+  "utc": "2026-11-04T07:58:03.179083+00:00",
+  "base": "ced60959a3b7132e6668a2944bbf4c08a6ee601b",
+  "review": "sequential self-review; no independent review",
+  "checks": [
+    {
+      "command": "make check test test-race test-smoke",
+      "exit_code": 0,
+      "local_log": "tmp/reviewed-metadata-gaps/final-check.log",
+      "log_sha256": "e8987b9a72f094acdcafda2e3eacca7ecce220bb69311de2ddd74425e4ea143f"
+    },
+    {
+      "command": "make test-integration",
+      "exit_code": 0,
+      "local_log": "tmp/reviewed-metadata-gaps/final-integration.log",
+      "log_sha256": "927e7483298af14d9d1709c19be9199ee6e602914ee4c1479b96a6e26923fdf7"
+    }
+  ],
+  "corpus_report_offline_roundtrip_sha256": "6cdcb790cce656f21e714d52c27213d085b1959de14b9983829001fa176abc2c",
+  "real_corpus_approval_created": false,
+  "real_corpus_verify_run": false
+}

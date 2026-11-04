@@ -50,8 +50,10 @@ checksum-verified, 56 455 068 accepted unique, 0 duplicates/rejected/issues.
 Actual counts ledger/origins/translations, per-file/pair totals та checkpoints
 звірені; SHA-256 попередніх 55 000 рядків незмінні. Це не повний source replay,
 normalization reconciliation або verify/exports/ready; active лишився null.
-Поточний strict verifier блокує known_gaps manifest. Не обходьте це вилученням
-gap: потрібні approval-loss adapter і погодження власником конкретного звіту.
+Known gaps manifest блокують verify без receipt. Не обходьте це вилученням
+gap: потрібне погодження власником [конкретного звіту](LOSS_REVIEW.md),
+після чого `verify --loss-approval FILE` перевірить і збереже рішення.
+Цей adapter підтримує лише known gaps; exceptions/rejections і далі блокуються.
 
 До цього погодження використовуйте окремий `dataset reconcile ID --source DIR`
 для source/normalization та inventory checks без ready/exports/publication.

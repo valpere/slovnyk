@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"io"
+	"os"
 
 	"github.com/valpere/slovnyk/internal/importer"
 	"github.com/valpere/slovnyk/internal/publication"
@@ -28,6 +29,7 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 	flags.SetOutput(io.Discard)
 	root := flags.String("artifacts", "", "existing durable artifact root")
 	source := flags.String("source", "", "immutable source snapshot (reconcile or verify)")
+	approvalFile := flags.String("loss-approval", "", "owner decision JSON for verify only")
 	generation := flags.Int64("expected-generation", -1, "required CAS generation")
 	operator := flags.String("operator-ref", "", "operator or audit reference")
 	if e := flags.Parse(args[2:]); e != nil || flags.NArg() != 0 || (command != "reconcile" && *root == "") {
@@ -40,12 +42,28 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 	}
 	valid := true
 	flags.Visit(func(f *flag.Flag) {
-		if (f.Name == "source" && !readsSource) || (f.Name == "artifacts" && command == "reconcile") || ((f.Name == "expected-generation" || f.Name == "operator-ref") && !mutation) {
+		if (f.Name == "source" && !readsSource) || (f.Name == "artifacts" && command == "reconcile") || (f.Name == "loss-approval" && (command != "verify" || *approvalFile == "")) || ((f.Name == "expected-generation" || f.Name == "operator-ref") && !mutation) {
 			valid = false
 		}
 	})
 	if !valid {
 		return fail("invalid_dataset_arguments", 2)
+	}
+	var approval *publication.LossApproval
+	if *approvalFile != "" {
+		f, err := os.Open(*approvalFile)
+		if err != nil {
+			return fail("invalid_loss_approval", 2)
+		}
+		b, err := io.ReadAll(io.LimitReader(f, publication.MaxApprovalBytes+1))
+		closeErr := f.Close()
+		if err != nil || closeErr != nil {
+			return fail("invalid_loss_approval", 2)
+		}
+		approval, err = publication.ParseLossApproval(b)
+		if err != nil {
+			return fail("invalid_loss_approval", 2)
+		}
 	}
 	dsn := getenv("SLOVNYK_OPERATOR_DSN")
 	if dsn == "" {
@@ -60,7 +78,7 @@ func runDataset(ctx context.Context, args []string, getenv func(string) string, 
 	case "reconcile":
 		result, e = publication.Reconcile(ctx, c, id, *source)
 	case "verify":
-		result, e = publication.Verify(ctx, c, id, *source, *root, publication.Options{})
+		result, e = publication.Verify(ctx, c, id, *source, *root, publication.Options{LossApproval: approval})
 	case "sitemap":
 		result, e = sitemaps.Generate(ctx, c, id, *root)
 	case "export":

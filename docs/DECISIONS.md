@@ -775,3 +775,21 @@ Run 1 CPU / 8 GiB локальний; Oracle/HTTP capacity не перевіре
 не змінені й не погоджені. Далі потрібний concrete loss report/owner-approval
 adapter перед strict verify/exports/ready. Self-review, commit, PR та весь
 CI rollup обов’язкові; merge виконує користувач.
+
+## Прив’язане погодження known gaps — 2026-11-04
+
+Підготовлено [конкретний звіт](LOSS_REVIEW.md) для dataset
+`96541c0b-ac71-4e38-b57c-b593e82ac9d5`: 0 rejected/exceptions,
+відсутні історичні count/status/query metadata та невідома історична повнота.
+Статус — очікує рішення власника; receipt для реального корпусу не створено,
+повний verify/exports/ready не запускався. Загальне «go» дозволяє розробку,
+але не підміняє погодження саме цих прогалин.
+
+`dataset verify --loss-approval FILE` підтримує лише known gaps без exceptions.
+Receipt прив’язаний до dataset, manifest fingerprint і SHA-256 точних bytes
+успішного diagnostic reconciliation JSON з LF. Verify повторює source/inventory
+checks; retained report містить gaps та receipt. Publish/readiness перевіряють
+прив’язку повторно. Clean ready reports сумісні; інший receipt у ready retry
+відхиляється. Довірений CLI-оператор передає рішення власника; це audit reference,
+не цифровий підпис. Exceptions/rejected/issues/fatal input не допускаються.
+[Перевірки та self-review](_assessments/2026-11-04-reviewed-metadata-gaps/REPORT.md).

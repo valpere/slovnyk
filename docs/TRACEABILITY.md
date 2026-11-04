@@ -636,3 +636,19 @@ per-file counts збігаються з CSV audit/import. [Invocation, report т
 Persistent metadata до/після рівні, validating/active null, report/exports відсутні.
 Попередня спроба незавершена, terminal success належить лише повторному run.
 Known gaps збережені; owner approval, exports/ready, HTTP/crawl та RTO не закриті.
+
+## Погодження known gaps — 2026-11-04
+
+FR-07/FR-09/FR-11, AT-07–11: `internal/publication/approval_test.go`
+перевіряє receipt parsing і dataset/fingerprint/counts/gaps digest binding;
+`approval_integration_test.go` — validating → ready з рішенням, відмови для
+іншого/відсутнього рішення, ready retry, CAS publish і HTTP readonly readiness.
+Source/metadata/incomplete/exception guards залишаються чинними;
+`TestRejectedRecordsCannotBecomeReady` перевіряє відмову й із receipt.
+`cmd/slovnyk/import_integration_test.go::TestDatasetCLI` виконує synthetic
+reconcile → receipt → verify → export → sitemap → publish.
+
+[Конкретний corpus loss report](LOSS_REVIEW.md) ще не погоджено власником.
+[Локальні результати й межі](_assessments/2026-11-04-reviewed-metadata-gaps/REPORT.md).
+Це реалізація known-gap adapter, не доказ full-corpus exports/ready або
+production/RTO acceptance; виключення записів/artifacts не реалізовано.
