@@ -8,9 +8,9 @@
 | Директорія | Вміст |
 |---|---|
 | `experiments/sqlite-probe/` | Початкова SQLite-проба чотирьох мовних пар |
-| `experiments/sqlite-full/` | Повна serving-БД `corpus.sqlite3`, копія `restored.sqlite3` та локальні результати |
+| `experiments/sqlite-full/` | Повна serving-БД `corpus.sqlite3` та результати; restore-копію прибрано за погодженням 2026-11-03 |
 | `experiments/provenance/` | Повна модель `model.sqlite3` із ledger/origins та 992 CSV.gz у `exports/` |
-| `experiments/provenance-indexed/` | Окрема копія повної моделі з ordered covering index; БД 29.66 GiB |
+| `experiments/provenance-indexed/` | Похідну БД 29.66 GiB прибрано за погодженням 2026-11-03; відтворюється з `provenance/model.sqlite3` |
 | `experiments/provenance-compact/` | Логічно звірена повна модель із compact dataset/artifact keys і тими самими indexes; БД 20.85 GiB |
 
 2026-10-24 `sqlite-probe/`, `sqlite-full/` та `provenance/` перенесені
@@ -93,3 +93,11 @@ reconciliation ще не виконано. Known gaps не видалено й �
 новий loopback port. Memory caps import 512 MiB → 8 → 16 GiB були локальними
 live updates; базовий Compose знову задає 512 MiB. Ресурсний профіль нового
 експерименту задавайте й фіксуйте явно; не вважайте його Oracle acceptance.
+
+## Повна source/DB звірка
+
+`experiments/corpus-reconciliation-2026-11-03/` зберігає cleanup receipt і
+незавершену спробу; `experiments/corpus-reconciliation-2026-11-04/` — успішний
+повторний full replay, report та metadata. [Evidence](../docs/_assessments/2026-11-04-corpus-reconciliation/REPORT.md).
+БД та snapshot ті самі, dataset validating/active null; known gaps незакриті.
+Власні container/network прибрані, bind DB збережено.

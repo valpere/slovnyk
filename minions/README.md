@@ -6,6 +6,7 @@
 
 | Посіпака | Виклик агента | Призначення |
 |---|---|---|
+| `corpus-progress` | `go run ./minions/corpus-progress RUN_DIRECTORY MANIFEST_JSON` | Показує elapsed, free disk та останній спостережений файл локальної звірки; читає лише progress/manifest metadata, без DB-запитів |
 | `check-repository` | `go run ./minions/check-repository` | Знаходить checkout і одним викликом запускає проєктну перевірку з докладним звітом |
 | `capture-cdp.mjs` | `node minions/capture-cdp.mjs http://127.0.0.1:PORT/path tmp/preview.png 390 844` | Знімок loopback preview через наявний Chromium CDP 9222; JS сторінки вимкнено, створює й закриває лише власну вкладку |
 
@@ -25,3 +26,9 @@ Shell test runners також перенесено в `tests/`, оскільки
 
 Нові особисті повторювані дії агента — тут; одноразові речі — в `tmp/`.
 Історичні інструменти й hashes у `docs/_assessments/` не переписуйте.
+
+`corpus-progress` читає `progress.jsonl` у вказаному локальному run directory.
+Незавершений останній рядок пропускає. Номер файла відповідає порядку SHA-256
+у manifest та є лише спостереженням, а не checkpoint або доказом завершення.
+Після перезапуску використовуйте нову run directory; результати попередніх спроб
+не перезаписуйте. Посіпака не запускає, не зупиняє й не змінює процеси.

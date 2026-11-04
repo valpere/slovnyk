@@ -96,8 +96,8 @@ digests перших 55 000; active dataset порожній. Це частин�
 завершив цей dataset: 992 complete/checksum-verified files, 56 455 068 unique,
 0 duplicates/rejected/issues; actual ledger/origins/translations, checkpoints
 і per-file/pair counts узгоджені з audit. Prefix digests 55 000 збережені.
-Dataset `validating`, active null; source/normalization reconciliation,
-verify/exports/ready та production acceptance відкриті. Known gaps manifest
+Dataset `validating`, active null; [source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
+пройшов 2026-11-04. Verify/exports/ready та production acceptance відкриті. Known gaps manifest
 блокують strict verifier; approval-loss adapter та погодження власника ще потрібні.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
@@ -105,7 +105,8 @@ memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro 
 Окрема команда `dataset reconcile` звіряє staged dataset без exports/ready,
 залишаючи known gaps та exceptions незакритими;
 [synthetic перевірки](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
-Повний корпус і owner-approval adapter цим не закриті.
+Наступна [повна локальна звірка](_assessments/2026-11-04-corpus-reconciliation/REPORT.md) пройшла;
+owner-approval adapter та погодження втрат лишаються відкритими.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів

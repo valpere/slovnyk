@@ -1,0 +1,26 @@
+{
+  "utc": "2026-11-04T06:55:21.354944+00:00",
+  "revision": "efca45f54ab4ccc97699275dc204c392dac66d39",
+  "binary_sha256": "a4ce8f4067c3600d7193fc64f5d6b3c3d3592665eb26c3b79761c703fc1895e9",
+  "manifest_sha256": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+  "command": [
+    "bin/slovnyk",
+    "dataset",
+    "reconcile",
+    "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+    "--source",
+    "data/experiments/csv-manifest-2026-10-25/snapshot"
+  ],
+  "limits": {
+    "minimum_free_bytes": 32212254720,
+    "maximum_database_bytes": 91268055040,
+    "maximum_seconds": 86400
+  },
+  "server": {
+    "fsync": "on",
+    "version": "17.11",
+    "temp_file_limit": "20GB",
+    "full_page_writes": "on",
+    "synchronous_commit": "on"
+  }
+}

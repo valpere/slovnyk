@@ -1,0 +1,48 @@
+{
+  "utc": "2026-11-03T13:40:25.260131+00:00",
+  "revision": "63a7ce2634e53a272c1b4681950faab1ac81027b",
+  "filesystem": {
+    "total_bytes": 1966737727488,
+    "used_bytes": 1843035852800,
+    "free_bytes": 23721570304
+  },
+  "minimum_free_bytes": 32212254720,
+  "disk_gate_passed": false,
+  "files": [
+    {
+      "path": "data/experiments/sqlite-full/restored.sqlite3",
+      "bytes": 13349707776,
+      "allocated_bytes": 13349711872,
+      "inode": 8917148
+    },
+    {
+      "path": "data/experiments/provenance-indexed/model.sqlite3",
+      "bytes": 31848861696,
+      "allocated_bytes": 31848869888,
+      "inode": 8918320
+    },
+    {
+      "path": "data/experiments/provenance-compact/model.sqlite3",
+      "bytes": 22388301824,
+      "allocated_bytes": 22388305920,
+      "inode": 8918357
+    },
+    {
+      "path": "data/experiments/sqlite-full/corpus.sqlite3",
+      "bytes": 13349707776,
+      "allocated_bytes": 13349711872,
+      "inode": 8917132
+    },
+    {
+      "path": "data/experiments/provenance/model.sqlite3",
+      "bytes": 27424055296,
+      "allocated_bytes": 27424059392,
+      "inode": 8917153
+    }
+  ],
+  "sqlite_source_and_restore_sha256": "cba459aa8b5d5e8ac1cc31712c8244c4c6cbf6de2fda107421b467a688277354",
+  "hashes_rechecked_equal": true,
+  "reconciliation_started": false,
+  "database_started": false,
+  "files_deleted": false
+}

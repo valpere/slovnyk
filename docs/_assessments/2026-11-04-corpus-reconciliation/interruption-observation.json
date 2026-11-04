@@ -1,0 +1,17 @@
+{
+  "observed_utc": "2026-11-04T06:55:15.086115+00:00",
+  "cli_and_monitor_pids_absent": true,
+  "final_report_bytes": 0,
+  "execution_receipt_present": false,
+  "last_progress_elapsed_seconds": 572.692,
+  "container_state": {
+    "Status": "exited",
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StartedAt": "2026-11-03T13:46:00.265886004Z",
+    "FinishedAt": "2026-11-03T14:21:09.845480364Z"
+  },
+  "cause": "undetermined",
+  "outcome": "incomplete_no_success_claim",
+  "retry_requires_full_replay": true
+}

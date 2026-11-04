@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-03T13:45:13.203510+00:00",
+  "user_approved": true,
+  "deleted": [
+    "data/experiments/sqlite-full/restored.sqlite3",
+    "data/experiments/provenance-indexed/model.sqlite3"
+  ],
+  "free_before_bytes": 23747198976,
+  "free_after_bytes": 68945694720,
+  "retained": [
+    "data/experiments/provenance-compact/model.sqlite3",
+    "data/experiments/sqlite-full/corpus.sqlite3",
+    "data/experiments/provenance/model.sqlite3"
+  ],
+  "database_started": false
+}

@@ -1,0 +1,11 @@
+{
+  "full_cli_reconciliation_passed": true,
+  "parsed_unique": 56455068,
+  "complete_checksum_verified_files": 992,
+  "per_file_counts_equal_audit_and_import": true,
+  "baseline_final_metadata_equal": true,
+  "known_gaps_unchanged": true,
+  "exceptions_unchanged": true,
+  "exports_ready_publication": false,
+  "owner_loss_approval": false
+}

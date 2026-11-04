@@ -165,8 +165,9 @@ locks і bounded temp table; persistent data, ready/report/exports та active p
 `exceptions`. Exit 0 означає лише узгодженість доступних даних: gaps/exceptions
 не погоджені, historical completeness не доведена. Rejected records/issues,
 незавершений import, невідповідності чи інший стан dataset завершуються failure.
-Це повний прохід джерел і БД, тому запускайте локально; час на реальному корпусі
-ще не виміряний. [Реалізація та synthetic перевірки](docs/_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
+Це повний прохід джерел і БД, тому запускайте локально.
+[Повна локальна звірка](docs/_assessments/2026-11-04-corpus-reconciliation/REPORT.md) 56 455 068 записів пройшла
+2026-11-04; ресурсні межі та виміряний час наведено у звіті. [Реалізація та synthetic перевірки](docs/_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
 
 Потрібні operator DSN і незмінний snapshot, використаний для import. Усі flags
 ідуть після dataset ID. Artifact root — окрема надійна локальна filesystem
@@ -194,7 +195,7 @@ Rollback дозволено лише до раніше опубліковано�
 exit 0 — успіх, 1 — невдала операція, 2 — неправильні аргументи/відсутня config.
 Нині будь-які rejected records, issues, known gaps чи exceptions блокують ready:
 адаптер окремого погодження власником звіту втрат ще попереду, `force ready` немає.
-Повний staged Go corpus import перевірено окремо; full-corpus reconciliation,
+Повні staged Go corpus import і source/DB reconciliation перевірені окремо;
 verify/exports та production durability ще не підтверджені.
 [Реалізація, рев’ю та обмеження](docs/_assessments/2026-10-24-publication/REPORT.md).
 
@@ -428,7 +429,7 @@ snapshot. [Фактичний corpus inventory та межі](docs/_assessments/
 0 rejected. Кількості у кожному файлі збігаються з попереднім аудитом.
 [Команда, metadata-only результати й межі](docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
 Inspect перевіряє input streams без БД; staged PostgreSQL import описано нижче.
-Повний source/normalization reconciliation, exports та publication ще попереду.
+Повний source/normalization reconciliation описано нижче; exports та publication ще попереду.
 
 Локальний [PostgreSQL preflight](docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md)
 перевірив обмежений import/retry того самого manifest: 114 000 committed records,
@@ -444,6 +445,8 @@ immutable source/manifest; новий writer перевірить checkpoint і 
 цього dataset завершено: 992 complete/checksum-verified files, 56 455 068
 accepted unique, 0 duplicates/rejected/issues. Actual ledger/origins/translations
 і per-file/pair counts звірені з audit; digests попередніх 55 000 рядків незмінні.
+[Повна source/DB звірка](docs/_assessments/2026-11-04-corpus-reconciliation/REPORT.md) пройшла 2026-11-04:
+992 files, 56 455 068 unique, per-file counts збігаються з audit/import.
 Dataset `validating`, active null; verify/exports/ready ще не виконано.
 Наявні `known_gaps` блокують поточний strict verifier; потрібні approval-loss
 adapter і погодження конкретного звіту про відсутні історичні metadata.

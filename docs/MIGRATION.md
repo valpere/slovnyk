@@ -58,7 +58,9 @@ gap: потрібні approval-loss adapter і погодження власни
 Він повертає diagnostic JSON з fingerprint і незакритими gaps/exceptions;
 не змінює manifest або persistent dataset. Наявність такого звіту не є
 погодженням втрат. [Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
-Повний PostgreSQL корпус цією командою ще не звірено.
+[Повний локальний корпус](_assessments/2026-11-04-corpus-reconciliation/REPORT.md) звірено цією командою 2026-11-04:
+56 455 068 unique / 992 files, без зміни state/active/report/exports.
+Known gaps збережені; ця звірка не є погодженням втрат.
 
 DB/indexes одного dataset — 64.315 GiB, WAL окремо 1 GiB. Такий layout не
 поміщається на root ~45 GiB за профілем Oracle 2026-10-23; нового probe не було.

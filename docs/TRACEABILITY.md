@@ -626,3 +626,13 @@ exports/ready/publication. Shared setup, source replay та inventory checks
 `make test-integration` — PASS, exit 0, disposable PostgreSQL 17.11; synthetic
 service lifecycle і local fresh-cluster restore також пройшли. Повний реальний
 корпус тут не запускався; concrete loss approval та M2/M3 залишаються відкритими.
+
+## FR-07/08 subset — повний локальний replay, 2026-11-04
+
+Actual `bin/slovnyk dataset reconcile` на тому самому staged dataset:
+992 complete/checksum-verified files, 56 455 068 unique, 0 duplicates/rejected.
+Raw/normalized tuples, ledger/origins/checkpoints та inventory узгоджені;
+per-file counts збігаються з CSV audit/import. [Invocation, report та assertions](_assessments/2026-11-04-corpus-reconciliation/REPORT.md).
+Persistent metadata до/після рівні, validating/active null, report/exports відсутні.
+Попередня спроба незавершена, terminal success належить лише повторному run.
+Known gaps збережені; owner approval, exports/ready, HTTP/crawl та RTO не закриті.
