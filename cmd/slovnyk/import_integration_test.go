@@ -5,6 +5,8 @@ package main
 import (
 	"bytes"
 	"context"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"net/url"
@@ -16,6 +18,7 @@ import (
 
 	"github.com/valpere/slovnyk/internal/importdata"
 	"github.com/valpere/slovnyk/internal/importer"
+	"github.com/valpere/slovnyk/internal/publication"
 	"github.com/valpere/slovnyk/internal/storage/postgres"
 )
 
@@ -100,6 +103,7 @@ func TestDatasetCLI(t *testing.T) {
 		t.Fatal(e)
 	}
 	m.Source.Authority = "dataset CLI"
+	m.KnownGaps = []string{"synthetic missing historical metadata"}
 	staged, e := importer.Run(ctx, c, m, "../../testdata/import", importer.Options{})
 	if e != nil {
 		t.Fatal(e)
@@ -131,7 +135,7 @@ func TestDatasetCLI(t *testing.T) {
 			args = []string{"dataset", command, staged.Dataset, "--source", "../../testdata/import"}
 		}
 		if command == "verify" {
-			args = append(args, "--source", "../../testdata/import")
+			args = append(args, "--source", "../../testdata/import", "--loss-approval", filepath.Join(dir, "approval.json"))
 		}
 		var out bytes.Buffer
 		if code := run(ctx, args, env, &out); code != 0 {
@@ -140,6 +144,18 @@ func TestDatasetCLI(t *testing.T) {
 		var report map[string]any
 		if json.Unmarshal(out.Bytes(), &report) != nil || report["dataset"] != staged.Dataset {
 			t.Fatalf("invalid report %s", out.String())
+		}
+		if command == "reconcile" {
+			h := sha256.Sum256(out.Bytes())
+			a := publication.LossApproval{Version: 1, Dataset: staged.Dataset, Fingerprint: report["fingerprint"].(string),
+				ReconciliationSHA256: hex.EncodeToString(h[:]), OwnerRef: "synthetic owner", DecisionRef: "synthetic decision", ApprovedAt: "2026-11-04T00:00:00Z"}
+			b, _ := json.Marshal(a)
+			if e = os.WriteFile(filepath.Join(dir, "approval.json"), b, 0600); e != nil {
+				t.Fatal(e)
+			}
+		}
+		if command == "verify" && report["loss_approval"] == nil {
+			t.Fatal("CLI did not retain owner decision")
 		}
 	}
 	c, e = postgres.Connect(ctx, dsn)

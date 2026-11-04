@@ -245,7 +245,8 @@ Local pgdata збережено; preflight сам не закриває full imp
 counts збігаються з audit; checkpoints узгоджені, prefix 55 000 незмінний.
 Dataset `validating`, active null. [Повний source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
 пройшов 2026-11-04; exports/ready та resource acceptance залишаються відкритими; known_gaps
-блокують strict verifier до approval-loss adapter та погодження конкретних втрат.
+блокують verify до погодження [конкретного звіту](LOSS_REVIEW.md).
+Adapter `--loss-approval` для known gaps реалізовано; exceptions не підтримані.
 Не прибирати gaps із manifest для обходу guard. DB/indexes 64.315 GiB не
 поміщаються на root ~45 GiB за профілем Oracle 2026-10-23; остаточний storage
 і server gate потрібний окремо. Локальний cap 1 CPU з memory 512 MiB → 8 →
@@ -253,8 +254,9 @@ Dataset `validating`, active null. [Повний source/normalization reconcilia
 Додано `dataset reconcile ID --source DIR`: shared source/inventory checks без
 генерації exports чи зміни state, diagnostic JSON з незакритими gaps/exceptions.
 [Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
-Наступні кроки: повний corpus run цієї команди, конкретний loss report та
-owner-approval adapter, далі verify/exports. Жодних конкретних втрат не погоджено.
+Повний corpus run пройшов 2026-11-04. Наступні кроки: погодження власником
+[звіту](LOSS_REVIEW.md), далі verify/exports із receipt. Жодних конкретних
+втрат не погоджено; adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

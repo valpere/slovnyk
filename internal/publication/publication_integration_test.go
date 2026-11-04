@@ -320,6 +320,16 @@ func TestRejectedRecordsCannotBecomeReady(t *testing.T) {
 	if _, e = Verify(ctx, conn(t, "slovnyk_operator"), staged.Dataset, source, dest, Options{}); !errors.Is(e, ErrVerification) {
 		t.Fatalf("rejected ready: %v", e)
 	}
+	a := sampleApproval()
+	a.Dataset = staged.Dataset
+	_, fp, e := m.Canonical()
+	if e != nil {
+		t.Fatal(e)
+	}
+	a.Fingerprint = hex.EncodeToString(fp[:])
+	if _, e = Verify(ctx, conn(t, "slovnyk_operator"), staged.Dataset, source, dest, Options{LossApproval: &a}); !errors.Is(e, ErrVerification) {
+		t.Fatalf("approval admitted rejected records: %v", e)
+	}
 }
 func TestEmptyPairRoundTrip(t *testing.T) {
 	ctx := context.Background()

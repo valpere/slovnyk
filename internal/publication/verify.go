@@ -229,6 +229,10 @@ func readReport(ctx context.Context, tx pgx.Tx, store *artifacts.Store, id strin
 	if err != nil || len(m.Artifacts) != len(out.Files) {
 		return out, ErrVerification
 	}
+	canonical, fingerprint, err := m.Canonical()
+	if err != nil || !bytes.Equal(raw, canonical) || hex.EncodeToString(fingerprint[:]) != fp || checkLossApproval(out, m) != nil {
+		return out, ErrVerification
+	}
 	files := map[string]bool{}
 	for _, a := range m.Artifacts {
 		files[a.SHA256] = true

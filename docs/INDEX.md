@@ -98,7 +98,8 @@ digests перших 55 000; active dataset порожній. Це частин�
 і per-file/pair counts узгоджені з audit. Prefix digests 55 000 збережені.
 Dataset `validating`, active null; [source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
 пройшов 2026-11-04. Verify/exports/ready та production acceptance відкриті. Known gaps manifest
-блокують strict verifier; approval-loss adapter та погодження власника ще потрібні.
+блокують verify без receipt; [adapter і конкретний звіт](LOSS_REVIEW.md)
+підготовлені, погодження власника ще потрібне.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.
@@ -106,7 +107,8 @@ memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro 
 залишаючи known gaps та exceptions незакритими;
 [synthetic перевірки](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
 Наступна [повна локальна звірка](_assessments/2026-11-04-corpus-reconciliation/REPORT.md) пройшла;
-owner-approval adapter та погодження втрат лишаються відкритими.
+[Конкретний звіт](LOSS_REVIEW.md) очікує погодження власника; adapter
+`verify --loss-approval FILE` підтримує known gaps, але не exceptions/rejections.
 [Перший HTTP зріз](_assessments/2026-10-24-http-lookup/REPORT.md).
 2026-10-24 [повний структурний аудит CSV](_assessments/2026-10-24-csv-audit/REPORT.md)
 підтвердив 56 455 068 різних кортежів у 992 файлах, без точних дублікатів
@@ -140,6 +142,7 @@ LEGACY_COMPATIBILITY зберігає лише історичні спостер
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Межі системи, рішення, компроміси |
 | [HLD.md](HLD.md) | Компоненти, модель даних, потоки та інтерфейси |
 | [DATA_MODEL.md](DATA_MODEL.md) | Ключі, типи, обмеження та індекси V1 |
+| [LOSS_REVIEW.md](LOSS_REVIEW.md) | Конкретний звіт про відсутні historical metadata та формат рішення власника |
 | [IMPORT_CONTRACT.md](IMPORT_CONTRACT.md) | Формати, облік, retry, verify і publication CAS |
 | [SEO_PLAN.md](SEO_PLAN.md) | Індексація в першому релізі; технічний план та відкриті питання |
 | [DOWNLOAD_CONTRACT.md](DOWNLOAD_CONTRACT.md) | HTTP manifest, version-pinned CSV.gz, ranges, integrity і streaming limits |

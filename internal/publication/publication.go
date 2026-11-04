@@ -38,6 +38,8 @@ type PairReport struct {
 	Artifact    artifacts.Ref `json:"artifact"`
 }
 type Report struct {
+	KnownGaps       []string              `json:"known_gaps,omitempty"`
+	LossApproval    *LossApproval         `json:"loss_approval,omitempty"`
 	Files           []importer.FileReport `json:"files"`
 	ControlsChecked bool                  `json:"controls_checked"`
 	Version         int                   `json:"version"`
@@ -53,7 +55,10 @@ type Receipt struct {
 	Dataset    string `json:"dataset"`
 	Generation int64  `json:"generation"`
 }
-type Options struct{ beforeReady func() error }
+type Options struct {
+	LossApproval *LossApproval
+	beforeReady  func() error
+}
 
 func uuid() string {
 	var b [16]byte
@@ -98,14 +103,18 @@ func Verify(ctx context.Context, c *pgx.Conn, id, source, root string, opt Optio
 	}
 	defer store.Close()
 	if state == "ready" {
-		return readReport(ctx, tx, store, id)
+		r, err := readReport(ctx, tx, store, id)
+		if err == nil && opt.LossApproval != nil && (r.LossApproval == nil || *r.LossApproval != *opt.LossApproval) {
+			return out, ErrVerification
+		}
+		return r, err
 	}
 	if state != "validating" {
 		return out, ErrState
 	}
-	// The owner-approval adapter is not implemented. A manifest declaration is
-	// never treated as authorization to lose data.
-	if len(m.KnownGaps) > 0 || len(m.Exceptions) > 0 {
+	// Fail closed before replay when no decision exists. Its report digest is
+	// checked against fresh source/inventory evidence before creating exports.
+	if len(m.Exceptions) > 0 || (len(m.KnownGaps) > 0 && opt.LossApproval == nil) {
 		return out, ErrVerification
 	}
 	if e = importer.Reconcile(ctx, tx, id, m, source); e != nil {
@@ -116,6 +125,13 @@ func Verify(ctx context.Context, c *pgx.Conn, id, source, root string, opt Optio
 	}
 	out, e = collectReport(ctx, tx, id, fp)
 	if e != nil {
+		return out, e
+	}
+	if len(m.KnownGaps) > 0 {
+		out.KnownGaps = m.KnownGaps
+	}
+	out.LossApproval = opt.LossApproval
+	if e = checkLossApproval(out, m); e != nil {
 		return out, e
 	}
 	for _, p := range m.ExpectedPairs {
