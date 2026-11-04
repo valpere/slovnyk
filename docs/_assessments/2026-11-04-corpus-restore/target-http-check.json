@@ -1,0 +1,271 @@
+{
+  "source_offline_during_acceptance": true,
+  "source_responses_and_old_rehearsal_cursors_identical": true,
+  "observations": [
+    {
+      "kind": "exact",
+      "case": 0,
+      "status": 200,
+      "bytes": 29,
+      "sha256": "12353433c7b31c7572e41241d0b659d9fecc864dd8bf617c317841879ef2887d"
+    },
+    {
+      "kind": "prefix",
+      "case": 0,
+      "status": 200,
+      "bytes": 8219,
+      "sha256": "c4f67060482cd16e7f726420d51c82c1addf43e5777724d29534c734a1b5c4d0"
+    },
+    {
+      "kind": "word",
+      "case": 0,
+      "status": 200,
+      "bytes": 4401,
+      "sha256": "7487f95cd92f0c0f5353d2cf33ba54a3eb36873e31217a028b5077d7e139ccc8"
+    },
+    {
+      "kind": "exact",
+      "case": 1,
+      "status": 200,
+      "bytes": 483,
+      "sha256": "ceba5abc8cd8e3e032f9e72e17f7cc3235f870e4f9e47aadd024725209971f62"
+    },
+    {
+      "kind": "prefix",
+      "case": 1,
+      "status": 200,
+      "bytes": 8725,
+      "sha256": "abe7d6c34a7a3a60d723793f31802a0ab7f5f5364e878497037e8a9f8a14ad9f"
+    },
+    {
+      "kind": "continuation",
+      "case": 1,
+      "status": 200,
+      "bytes": 9087,
+      "sha256": "7dc77f50c85f33e8703b253b105733cbaaf58f370e7964ea505526b4dd9c93c0"
+    },
+    {
+      "kind": "word",
+      "case": 1,
+      "status": 200,
+      "bytes": 4758,
+      "sha256": "1579b28afb1b906cec8ac53fa480d6878061cb405c3b35293ffcbdd9b712a189"
+    },
+    {
+      "kind": "exact",
+      "case": 2,
+      "status": 200,
+      "bytes": 20,
+      "sha256": "1373a703992100b4b1035cd411caa240d894c4e9d7d23f36bda5db19e16e1ed5"
+    },
+    {
+      "kind": "prefix",
+      "case": 2,
+      "status": 200,
+      "bytes": 8198,
+      "sha256": "666892dcbb460d4d80ee9d38863c991700d93114942a6df4e3f6beb260211667"
+    },
+    {
+      "kind": "word",
+      "case": 2,
+      "status": 200,
+      "bytes": 4411,
+      "sha256": "e872ee04f0bb264eb9915b20dc9341548127742b5915af7965d942ce5861a0ac"
+    },
+    {
+      "kind": "exact",
+      "case": 3,
+      "status": 200,
+      "bytes": 27,
+      "sha256": "5eb87773fc1c56a3378d68fd5f579478717bdc01f2407c11bdb034135f733d34"
+    },
+    {
+      "kind": "prefix",
+      "case": 3,
+      "status": 200,
+      "bytes": 8215,
+      "sha256": "2e60aafa93dcbe57dc1f7b93c9046a5d9d8347c8219ea8fba912ab117bb1abdb"
+    },
+    {
+      "kind": "word",
+      "case": 3,
+      "status": 200,
+      "bytes": 4403,
+      "sha256": "6585607243b25348015a6156be10d0c2623fd639f2ea9f7c21bdc6ce43f13080"
+    },
+    {
+      "kind": "exact",
+      "case": 4,
+      "status": 200,
+      "bytes": 21,
+      "sha256": "720e87424082fd57fb991b15fb27ff67075df093c5eb59fd27b85a051c9447d7"
+    },
+    {
+      "kind": "word",
+      "case": 4,
+      "status": 200,
+      "bytes": 4404,
+      "sha256": "9262314b8c330f4f6f19d8d051d83f8880ade0432f7262ee106e3ab86ea528c3"
+    },
+    {
+      "kind": "exact",
+      "case": 5,
+      "status": 200,
+      "bytes": 494,
+      "sha256": "2407bcb3c8e7ddc77e7a57a0b4b0e0a483ca3c8d2022a58da16287b2e888b5ef"
+    },
+    {
+      "kind": "word",
+      "case": 5,
+      "status": 200,
+      "bytes": 4564,
+      "sha256": "f786ca1da99aea8fede33aea9cacb954f3c1109f6824944d27f260d533f3cfd1"
+    },
+    {
+      "kind": "exact",
+      "case": 6,
+      "status": 200,
+      "bytes": 28,
+      "sha256": "4d3d3ac2167c3a24b3f24de1bb6bf5ac23ab94d19d35bb8c5e5160cbccad9ddd"
+    },
+    {
+      "kind": "word",
+      "case": 6,
+      "status": 200,
+      "bytes": 4420,
+      "sha256": "b86fc21b2a49bee22d9f771f5fce36ec6c75788e753fe986e477dd42e5e80635"
+    },
+    {
+      "kind": "exact",
+      "case": 7,
+      "status": 200,
+      "bytes": 34,
+      "sha256": "e3bfbf09dd73c359d4680fa72bedffd08ad9441e2803852fd0400eac97b6f8dc"
+    },
+    {
+      "kind": "word",
+      "case": 7,
+      "status": 200,
+      "bytes": 4418,
+      "sha256": "f2c49a9046fcfcfe57bd4e2cad3b887587d6be4cf1a0bf71e8db6cf5bfa83203"
+    },
+    {
+      "kind": "exact",
+      "case": 8,
+      "status": 200,
+      "bytes": 22,
+      "sha256": "56dcdb55a052f1f220a157c8e32395bb677de73a1441435a62d8e15d1ef4b913"
+    },
+    {
+      "kind": "word",
+      "case": 8,
+      "status": 200,
+      "bytes": 4414,
+      "sha256": "e2434cfa15e7818b767567bf232c07f230cb646efe4f88444659c8603a7ba207"
+    },
+    {
+      "kind": "exact",
+      "case": 9,
+      "status": 200,
+      "bytes": 453,
+      "sha256": "4e25c88c1a146820c56206dc7bda9d35e522867634923f0d96c28d532028319d"
+    },
+    {
+      "kind": "word",
+      "case": 9,
+      "status": 200,
+      "bytes": 4459,
+      "sha256": "8282bcca69e347891810ab0a1252401dafdf17f2e82fcb83f2d4e867feda7973"
+    },
+    {
+      "kind": "exact",
+      "case": 10,
+      "status": 200,
+      "bytes": 444,
+      "sha256": "1967b8d0d895c89bb603b52817164f6e3edb2e484ff830c7d6e85460605d5dbe"
+    },
+    {
+      "kind": "word",
+      "case": 10,
+      "status": 200,
+      "bytes": 4421,
+      "sha256": "633cb38cd0098245ca9ca393784037d46e13706a59a355d9b25f27ac130c773f"
+    },
+    {
+      "kind": "exact",
+      "case": 11,
+      "status": 200,
+      "bytes": 32,
+      "sha256": "eeef0a0e09bfa3a8094102d20c3b1471fe1dfc1fd8ea3ea05c6db52139f50269"
+    },
+    {
+      "kind": "word",
+      "case": 11,
+      "status": 200,
+      "bytes": 4527,
+      "sha256": "f0f1558ca8131e9e1ec8ab4fe42818c1dbaf1283c219c77ed6d88bf4c6c8f2fd"
+    },
+    {
+      "kind": "exact",
+      "case": 12,
+      "status": 200,
+      "bytes": 13,
+      "sha256": "99f6dfc0af8fee1f6f577b85950ca98a4a0aa2119cb25c274733aad25a62a918"
+    },
+    {
+      "kind": "word",
+      "case": 12,
+      "status": 200,
+      "bytes": 4378,
+      "sha256": "1c6bc89442da8e16cd05f3f10c576da16276b477a80c6e60ce4c2d3bceb46062"
+    },
+    {
+      "kind": "exact",
+      "case": 13,
+      "status": 200,
+      "bytes": 36,
+      "sha256": "a6a13984c4be0864937ffa3a384064add7c402ed03c425bc9d0e93af8526d079"
+    },
+    {
+      "kind": "word",
+      "case": 13,
+      "status": 200,
+      "bytes": 4484,
+      "sha256": "1c5a2f9d03476a8823bb62b3b68ef8d457a30207421c09600d99512305ea34bc"
+    },
+    {
+      "kind": "exact",
+      "case": 14,
+      "status": 200,
+      "bytes": 51,
+      "sha256": "6243128cfb99f8ed89f971e4fc7a048fa6256fda0c760ee906cfa20fb7ac9dfd"
+    },
+    {
+      "kind": "word",
+      "case": 14,
+      "status": 200,
+      "bytes": 4554,
+      "sha256": "1bfad1979e208a16d79195c625c05b8b14d91225824f86c4d2954cc2aabb6b2e"
+    },
+    {
+      "kind": "exact",
+      "case": 15,
+      "status": 200,
+      "bytes": 438,
+      "sha256": "d9d9d92b6519cd034bb131f22bd109f73b54a18ac3474858280575ff5577ea3e"
+    },
+    {
+      "kind": "word",
+      "case": 15,
+      "status": 200,
+      "bytes": 4780,
+      "sha256": "5bd3eb7db9ab53e53656603f0b0799835e9f931424c5b0c2a83535c36d85ce33"
+    }
+  ],
+  "all_736_shard_hashes_match": true,
+  "all_992_export_hashes_match": true,
+  "index_hash_matches": true,
+  "historical_production_cursors_available": false,
+  "retained_dataset_count": 0,
+  "retained_dataset_case": "not applicable to this one-dataset corpus; synthetic A/B test covers retained behavior"
+}

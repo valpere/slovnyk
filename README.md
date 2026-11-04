@@ -413,8 +413,11 @@ runner використовує PostgreSQL tools свого disposable конт�
 roles/LOGINs, інший non-superuser schema owner, rollback restore без потрібних
 groups та відновлені ACL/SECURITY DEFINER перевіряються фактично.
 [Fresh-cluster evidence](docs/_assessments/2026-10-25-fresh-cluster-restore/REPORT.md).
-Обидва clusters працюють на одному host; off-host backup і RTO <=24 h для
-повного корпусу ще не доведені. Oracle й production не задіяні.
+[Повний локальний backup/restore](docs/_assessments/2026-11-04-corpus-restore/REPORT.md)
+також пройшов: 56 455 068 translations, усі 17 таблиць і sequences, повні
+artifacts/source copies та HTTP controls при зупиненій вихідній БД.
+Off-host backup і target-server RTO <=24 h ще не доведені. Oracle й production
+не задіяні. Synthetic test додатково звіряє identity sequence у стані `37/true`.
 
 ## Підготовка CSV snapshot manifest
 
@@ -458,12 +461,15 @@ accepted unique, 0 duplicates/rejected/issues. Actual ledger/origins/translation
 створив 36 763 066 URL у 736 shards; повторна генерація побайтово тотожна.
 Перевірено всі XML, усі 736 shards і 992 downloads через HTTP, sample
 word/search та restart. Локальна publication: active dataset/generation 1.
-Production, crawler/search SLO та full-corpus restore залишаються відкритими.
+Production, crawler/search SLO та off-host restore залишаються відкритими.
 Окрема [локальна змішана проба](docs/_assessments/2026-11-04-corpus-load/REPORT.md)
 дала 2 112 успішних запитів за три хвилини: 10 search/s, у середній фазі
 додатково 5 word pages/s і 0.2 sitemap shards/s. Client p95 точного/префіксного
 пошуку в mixed — 16.720/83.239 ms; warm caches, обмежена positive вибірка.
 Це дослідницький результат, не production capacity acceptance.
+Окрема підготовча проба для [restore](docs/_assessments/2026-11-04-corpus-restore/REPORT.md)
+виявила 6/16 HTTP 503 для масок із `limit=1` близько 2 s (exact 16/16 успішні).
+Причину SQL/плану ще не встановлено; дослідження залишається відкритим.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 

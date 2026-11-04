@@ -76,7 +76,11 @@ Known gaps збережені; ця звірка не є погодженням 
 Подальша [змішана локальна проба](_assessments/2026-11-04-corpus-load/REPORT.md)
 завершила 2 112 HTTP/content checks без помилок; baseline/final SQL стан
 тотожний, generation 1 збережена. Короткий warm-cache workload не закриває
-target-server SLO або full-corpus restore.
+target-server SLO або off-host restore.
+[Повний локальний backup/restore](_assessments/2026-11-04-corpus-restore/REPORT.md)
+перевірив окремий fresh cluster: усі 17 таблиць/sequences, файли та HTTP із
+source offline. Підготовча проба масок `limit=1` дала 6/16 HTTP 503 близько 2 s;
+SQL-причина та розширений performance gate залишаються відкритими.
 
 DB/indexes одного dataset — 64.315 GiB, WAL окремо 1 GiB. Такий layout не
 поміщається на root ~45 GiB за профілем Oracle 2026-10-23; нового probe не було.
@@ -154,7 +158,8 @@ Oracle Micro досі обслуговує інший проєкт (уточне
    окремий artifact root, звіряє всі таблиці та контрольні HTTP-сценарії при
    недоступній вихідній БД. Наступне доповнення перевіряє окремий чистий cluster
    на тому самому host: нові roles, інший schema owner, restore ACL і SECURITY
-   DEFINER. Це ще не off-host proof.
+   DEFINER. [Повний локальний corpus restore](_assessments/2026-11-04-corpus-restore/REPORT.md) також перевірив 17 таблиць,
+   sequences, усі файли й HTTP із source offline; це ще не off-host proof.
 3. Зафіксувати hashes остаточного CSV snapshot; перевірити відповідність
    погодженому manifest. Freeze, dual-write та delta sync не застосовуються.
 4. Імпортувати фінальний snapshot, verify, exports, atomic publish.

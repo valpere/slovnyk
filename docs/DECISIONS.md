@@ -852,3 +852,21 @@ warm caches, лише positive exact/full-source-prefix cases та 119 із 992 
 Client p95 не замінює server-side timer. Розширений workload/budget,
 storage/server вибір і full-corpus restore залишаються окремими задачами.
 Oracle Micro не задіяний; production та AT-16 залишаються відкритими.
+
+## Повний локальний backup/restore — 2026-11-04
+
+Виконано backup повної нової БД та незалежних artifact/source copies і restore
+в інший порожній cluster на тому самому developer host, з новим non-superuser
+owner та restricted LOGINs. Усі 17 таблиць/sequences і файли звірені; target HTTP,
+усі 736 shards/992 exports, cursor/ACL/operator retry пройшли із source offline.
+[Evidence](_assessments/2026-11-04-corpus-restore/REPORT.md). Оригінали, backup і
+restored copies збережені, власні containers/networks і тимчасові LOGINs прибрані.
+Це не off-host durability, погоджене production RTO або новий Oracle probe.
+
+Під час source capture виявлено 6/16 HTTP 503 для prefix masks із `limit=1`
+близько lookup deadline 2 s, тоді як усі 16 exact успішні. SQL причина ще не доведена.
+Для integrity controls використано 4 успішні prefix cases після спостереження;
+відбір і невдалі запити збережені у metadata. Не поширювати попередню mixed-load
+успішність на цей workload і не закривати AT-16. Наступна технічна задача —
+query-plan/deadline діагностика на локальному корпусі; server/storage,
+розширений workload/crawler budget та off-host restore gates відкриті.

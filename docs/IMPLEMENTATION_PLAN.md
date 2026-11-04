@@ -264,8 +264,12 @@ Adapter `--loss-approval` для known gaps реалізовано; exceptions �
 Локальна перевірка sitemap/HTTP на повному корпусі також пройшла.
 [Дослідницька змішана проба](_assessments/2026-11-04-corpus-load/REPORT.md)
 завершила 2 112 запитів без помилок; три хвилини, warm caches, обмежені
-positive exact/prefix queries не закривають SLO. Далі — розширений workload,
-storage/capacity та full-corpus restore gates;
+positive exact/prefix queries не закривають SLO.
+[Повний локальний backup/restore](_assessments/2026-11-04-corpus-restore/REPORT.md)
+пройшов у fresh cluster: 17 таблиць/sequences, файли, HTTP з source offline.
+У підготовчій пробі 6/16 масок із `limit=1` повернули 503 близько 2 s.
+Далі — query-plan/deadline дослідження, розширений workload, storage/capacity
+та off-host/target-server restore gates;
 adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.

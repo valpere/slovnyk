@@ -79,7 +79,9 @@ FR-13 local synthetic restore перевіряє нову БД/root при не�
 [процедура](BACKUP_RESTORE.md), [звіт](_assessments/2026-10-25-backup-restore/REPORT.md).
 Наступний [fresh-cluster зріз](_assessments/2026-10-25-fresh-cluster-restore/REPORT.md)
 перевіряє restore у другий порожній cluster, bootstrap ролей, новий owner та ACL.
-Обидва clusters локальні; off-host/full-corpus RTO acceptance не закрито.
+[Повний локальний backup/restore](_assessments/2026-11-04-corpus-restore/REPORT.md)
+також пройшов: 17 таблиць, sequences, файли й HTTP при зупиненому source.
+Off-host і target-server RTO acceptance не закрито.
 M1 загалом ще відкритий: мовне/дизайн-приймання та повний SEO discovery не закрито.
 M2 preparation: Go utility [prepare-csv-manifest](../utilities/README.md#підготовка-csv-manifest)
 створила inventory окремої копії 992 CSV.gz; hashes/bytes збігаються з попереднім
@@ -111,6 +113,9 @@ Production, crawler/search SLO та full-corpus off-host restore відкрит�
 2 112/2 112 HTTP/content checks успішні; 10 search/s плюс у середній фазі
 5 word pages/s і 0.2 shards/s. Короткий warm-cache прогін обмеженої вибірки
 не закриває AT-16, crawler budget або target-server capacity.
+Під час restore preparation окрема проба 16 масок із `limit=1` дала 6 HTTP 503
+приблизно через 2 s; exact 16/16 успішні. Query-plan/deadline дослідження відкрите;
+попередній mixed-load висновок на цю вибірку не поширюється.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.
@@ -159,7 +164,7 @@ LEGACY_COMPATIBILITY зберігає лише історичні спостер
 | [DOWNLOAD_CONTRACT.md](DOWNLOAD_CONTRACT.md) | HTTP manifest, version-pinned CSV.gz, ranges, integrity і streaming limits |
 | [LOOKUP_CONTRACT.md](LOOKUP_CONTRACT.md) | HTTP, Unicode, bounded cursor та пагінація |
 | [LEGACY_COMPATIBILITY.md](LEGACY_COMPATIBILITY.md) | Історичні факти про старі URL; сумісність скасована |
-| [BACKUP_RESTORE.md](BACKUP_RESTORE.md) | Склад backup, порядок restore та локальна synthetic репетиція FR-13 |
+| [BACKUP_RESTORE.md](BACKUP_RESTORE.md) | Склад backup, порядок restore та локальні synthetic/full-corpus репетиції FR-13 |
 | [MIGRATION.md](MIGRATION.md) | Облік даних, перевірка, перемикання й відкат |
 | [TRACEABILITY.md](TRACEABILITY.md) | Вимога → сценарій → компонент → перевірка |
 | [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) | Порядок задач M1, залежності й критерії завершення; не змінює контракти |
