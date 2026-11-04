@@ -1,0 +1,11 @@
+{
+  "samples": 245,
+  "nominal_interval_seconds": 10,
+  "minimum_sampled_free_bytes": 187932033024,
+  "maximum_sampled_database_bytes": 69058819763,
+  "maximum_sampled_wal_bytes": 1073741824,
+  "first_cumulative_temp_bytes": 17899050841,
+  "last_cumulative_temp_bytes": 20626683737,
+  "cumulative_temp_is_not_peak_live_usage": true,
+  "artifact_count_observations_are_not_checkpoints": true
+}

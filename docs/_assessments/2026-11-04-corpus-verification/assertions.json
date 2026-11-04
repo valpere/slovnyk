@@ -1,0 +1,13 @@
+{
+  "actual_full_verify_exit_zero": true,
+  "all_992_file_counters_match_prior_reconciliation": true,
+  "all_992_pair_export_rows_match_source_audit": true,
+  "all_exports_exist_with_reported_sizes": true,
+  "actual_retained_export_revalidation_exit_zero": true,
+  "revalidated_report_bytes_equal_verify_stdout": true,
+  "owner_decision_retained_exactly": true,
+  "known_gaps_preserved": true,
+  "exceptions_empty": true,
+  "active_pointer_unmodified": true,
+  "production_or_oracle_actions": false
+}

@@ -1,0 +1,77 @@
+{
+  "invocation": {
+    "utc": "2026-11-04T08:13:28.587128+00:00",
+    "revision": "5b4011f9e6187839330e6c8f96a50ec645c9e64e",
+    "binary_sha256": "d874b3a906021a320c36d3b0ef1a7233e03625fb617f4f77638b01779266e629",
+    "manifest_sha256": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+    "command": [
+      "bin/slovnyk",
+      "dataset",
+      "verify",
+      "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+      "--source",
+      "data/experiments/csv-manifest-2026-10-25/snapshot",
+      "--artifacts",
+      "data/experiments/corpus-verification-2026-11-04/artifacts",
+      "--loss-approval",
+      "data/experiments/corpus-verification-2026-11-04/owner-approval.json"
+    ],
+    "limits": {
+      "minimum_free_bytes": 32212254720,
+      "maximum_database_bytes": 91268055040,
+      "maximum_seconds": 86400
+    },
+    "server": {
+      "fsync": "on",
+      "version": "17.11",
+      "temp_file_limit": "20GB",
+      "full_page_writes": "on",
+      "synchronous_commit": "on"
+    }
+  },
+  "observation": {
+    "observed_at": "2026-11-04T10:36:36.322465+00:00",
+    "terminal_monitor_receipt_present": false,
+    "cli_report": {
+      "error": "import_storage_failure"
+    },
+    "container_state": {
+      "Status": "exited",
+      "ExitCode": 0,
+      "OOMKilled": false,
+      "StartedAt": "2026-11-04T08:13:09.643914776Z",
+      "FinishedAt": "2026-11-04T08:33:07.884090218Z"
+    },
+    "shutdown_log_markers": {
+      "received fast shutdown request": true,
+      "database system is shut down": true,
+      "terminating connection due to administrator command": true
+    },
+    "host_boot_local": "2026-11-04 12:21:19",
+    "cause": "Database stopped before verification completed; initiator not established. No successful verification receipt."
+  },
+  "samples": 118,
+  "last_sample": {
+    "activity": [
+      {
+        "state": "active",
+        "wait_type": null,
+        "wait_event": null,
+        "query_age_seconds": 0.000167,
+        "transaction_age_seconds": 1175.586647
+      }
+    ],
+    "wal_bytes": 1073741824,
+    "temp_bytes": 17899050841,
+    "database_bytes": 69058107059,
+    "elapsed_seconds": 1175.593,
+    "free_bytes": 197094801408,
+    "artifact_files": 0,
+    "source_file": "slovnyk_hr-hr_pt-pt.csv.gz",
+    "source_compressed_bytes": 593932,
+    "source_fd_position": 425984
+  },
+  "stderr_bytes": 0,
+  "success": false,
+  "last_sample_is_not_terminal_duration": true
+}

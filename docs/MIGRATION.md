@@ -64,6 +64,13 @@ gap: потрібне погодження власником [конкретн�
 56 455 068 unique / 992 files, без зміни state/active/report/exports.
 Known gaps збережені; ця звірка не є погодженням втрат.
 
+Після [явного погодження власника](DECISIONS.md#owner-approval-2026-11-04)
+[локальний full verify](_assessments/2026-11-04-corpus-verification/REPORT.md) повторив
+звірку й створив 992 CSV4.gz exports для 56 455 068 записів. Окремий
+`dataset export` повторно перевірив retained report, hashes та CSV round-trip
+усіх пар. Dataset `ready`, active null/generation 0; gaps і receipt збережені.
+Це не production publication, HTTP/crawl acceptance або off-host restore.
+
 DB/indexes одного dataset — 64.315 GiB, WAL окремо 1 GiB. Такий layout не
 поміщається на root ~45 GiB за профілем Oracle 2026-10-23; нового probe не було.
 Плануйте додатково другий dataset, WAL/temp, exports і backup/restore copies.

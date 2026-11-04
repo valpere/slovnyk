@@ -96,10 +96,11 @@ digests перших 55 000; active dataset порожній. Це частин�
 завершив цей dataset: 992 complete/checksum-verified files, 56 455 068 unique,
 0 duplicates/rejected/issues; actual ledger/origins/translations, checkpoints
 і per-file/pair counts узгоджені з audit. Prefix digests 55 000 збережені.
-Dataset `validating`, active null; [source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
-пройшов 2026-11-04. Verify/exports/ready та production acceptance відкриті. Known gaps manifest
-блокують verify без receipt; [adapter і конкретний звіт](LOSS_REVIEW.md)
-підготовлені, [погодження власника](DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
+[Source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
+та [повний verify/exports](_assessments/2026-11-04-corpus-verification/REPORT.md) пройшли 2026-11-04:
+992 CSV4.gz exports, 56 455 068 записів; retained export revalidation пройшла.
+Dataset `ready`, active null/generation 0. [Погодження власника](DECISIONS.md#owner-approval-2026-11-04)
+збережено в report; known gaps лишаються видимими. Publication та production acceptance відкриті.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.

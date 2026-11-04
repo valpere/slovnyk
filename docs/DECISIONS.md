@@ -809,3 +809,17 @@ fingerprint і technical report SHA-256 зафіксовано в
 `approved_at` фіксує UTC-час отримання/реєстрації рішення агентом; точний
 timestamp повідомлення інтерфейс не надає. Погодження дозволяє локальний
 verify/exports; production deployment і зміни Oracle ним не дозволені.
+
+## Повний локальний verify після погодження — 2026-11-04
+
+Виконано `dataset verify --loss-approval` із receipt вище: 992 файли,
+56 455 068 parsed = unique, 0 duplicates/rejected; створено 992 exports.
+Окреме `dataset export` підтвердило retained report та round-trip усіх пар.
+Dataset перейшов `validating → ready`; active null/generation 0 не змінено,
+publication і sitemap не виконувалися. Known gaps та рішення збережені.
+Перша спроба отримала `import_storage_failure` при зупинці PostgreSQL;
+новий full run використовує окрему директорію, старі результати збережено.
+[Evidence та обмеження](_assessments/2026-11-04-corpus-verification/REPORT.md).
+Власні container/network прибрані, bind DB/artifacts збережені; Oracle і legacy
+не задіяні. Далі — локальний sitemap/HTTP rehearsal; production storage,
+capacity та off-host restore залишаються окремими gates.

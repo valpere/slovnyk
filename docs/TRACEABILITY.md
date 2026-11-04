@@ -648,7 +648,22 @@ Source/metadata/incomplete/exception guards залишаються чинним�
 `cmd/slovnyk/import_integration_test.go::TestDatasetCLI` виконує synthetic
 reconcile → receipt → verify → export → sitemap → publish.
 
-[Конкретний corpus loss report](LOSS_REVIEW.md) ще не погоджено власником.
+На момент synthetic перевірки adapter [corpus loss report](LOSS_REVIEW.md)
+ще не був погоджений; подальший owner approval і full verify описано нижче.
 [Локальні результати й межі](_assessments/2026-11-04-reviewed-metadata-gaps/REPORT.md).
 Це реалізація known-gap adapter, не доказ full-corpus exports/ready або
 production/RTO acceptance; виключення записів/artifacts не реалізовано.
+
+## FR-07/08/09/11 subset — full-corpus verify та exports, 2026-11-04
+
+Після явного owner approval actual `dataset verify --loss-approval` завершився
+exit 0: 992 source files, 56 455 068 parsed = unique, 0 duplicates/rejected,
+992 per-pair exports. File counters збігаються з попереднім source audit,
+export rows кожної пари — з manifest/reconciliation. Окремий actual
+`dataset export` повторно перевірив retained report та всі CSV.gz; output bytes
+збігаються з verify report. Dataset `ready`, active null/generation 0,
+0 sitemap inventory/publication events. Gaps і receipt збережені точно.
+[Invocation, assertions та межі](_assessments/2026-11-04-corpus-verification/REPORT.md).
+Перша спроба перервалася при зупинці PostgreSQL; успіх належить повторному run.
+AT-06–11/18 покриті частково: full-corpus publication, HTTP/crawl,
+semantic quality, server capacity та off-host RTO не підтверджені.

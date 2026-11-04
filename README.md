@@ -199,7 +199,8 @@ SHA-256 нового source replay і зберігає в retained report. Recei
 перевірок даних; `force ready` немає. [Конкретний звіт і формат рішення](docs/LOSS_REVIEW.md)
 погоджено власником 2026-11-04; receipt прив’язаний до перевіреного snapshot.
 Повні staged Go corpus import і source/DB reconciliation перевірені окремо;
-verify/exports та production durability ще не підтверджені.
+[Повний verify та 992 exports](docs/_assessments/2026-11-04-corpus-verification/REPORT.md)
+перевірені локально; production durability ще не підтверджена.
 [Реалізація, рев’ю та обмеження](docs/_assessments/2026-10-24-publication/REPORT.md).
 
 ## Посіпаки й тимчасові файли
@@ -432,7 +433,7 @@ snapshot. [Фактичний corpus inventory та межі](docs/_assessments/
 0 rejected. Кількості у кожному файлі збігаються з попереднім аудитом.
 [Команда, metadata-only результати й межі](docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
 Inspect перевіряє input streams без БД; staged PostgreSQL import описано нижче.
-Повний source/normalization reconciliation описано нижче; exports та publication ще попереду.
+Повні source/normalization reconciliation та exports описано нижче; publication ще попереду.
 
 Локальний [PostgreSQL preflight](docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md)
 перевірив обмежений import/retry того самого manifest: 114 000 committed records,
@@ -450,7 +451,10 @@ accepted unique, 0 duplicates/rejected/issues. Actual ledger/origins/translation
 і per-file/pair counts звірені з audit; digests попередніх 55 000 рядків незмінні.
 [Повна source/DB звірка](docs/_assessments/2026-11-04-corpus-reconciliation/REPORT.md) пройшла 2026-11-04:
 992 files, 56 455 068 unique, per-file counts збігаються з audit/import.
-Dataset `validating`, active null; verify/exports/ready ще не виконано.
+[Повний verify із погодженням](docs/_assessments/2026-11-04-corpus-verification/REPORT.md)
+створив 992 CSV4.gz exports для 56 455 068 записів. Повторний `dataset export`
+перевірив retained report і всі файли. Dataset `ready`, active null/generation 0;
+publication не виконано.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 

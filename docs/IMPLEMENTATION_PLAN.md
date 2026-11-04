@@ -243,9 +243,11 @@ Local pgdata збережено; preflight сам не закриває full imp
 завершено: 992 complete/checksum-verified files, 56 455 068 unique records,
 0 duplicates/rejected/issues. Actual ledger/origins/translations і per-file/pair
 counts збігаються з audit; checkpoints узгоджені, prefix 55 000 незмінний.
-Dataset `validating`, active null. [Повний source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
-пройшов 2026-11-04; exports/ready та resource acceptance залишаються відкритими; known_gaps
-блокують verify до погодження [конкретного звіту](LOSS_REVIEW.md).
+[Повний source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
+та [verify/exports](_assessments/2026-11-04-corpus-verification/REPORT.md) пройшли 2026-11-04:
+992 exports для 56 455 068 записів, повторне читання retained report/CSV успішне.
+Dataset `ready`, active null/generation 0; known gaps і receipt збережені.
+Publication та resource acceptance залишаються відкритими.
 Adapter `--loss-approval` для known gaps реалізовано; exceptions не підтримані.
 Не прибирати gaps із manifest для обходу guard. DB/indexes 64.315 GiB не
 поміщаються на root ~45 GiB за профілем Oracle 2026-10-23; остаточний storage
@@ -255,8 +257,9 @@ Adapter `--loss-approval` для known gaps реалізовано; exceptions �
 генерації exports чи зміни state, diagnostic JSON з незакритими gaps/exceptions.
 [Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
 Повний corpus reconciliation пройшов 2026-11-04. [Звіт](LOSS_REVIEW.md)
-погоджено власником 2026-11-04; receipt зафіксовано. Наступний крок —
-verify/exports із receipt; adapter не дозволяє exceptions/rejected records.
+погоджено власником 2026-11-04; verify/exports із receipt завершено.
+Далі — локальна перевірка sitemap/HTTP на повному корпусі та окремі
+storage/capacity/restore gates; adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

@@ -19,7 +19,9 @@
 - 992 complete/checksum-verified CSV.gz; 56 455 068 parsed = unique,
   0 duplicates/rejected, exceptions порожні. Raw tuples, normalized keys,
   ledger/origins та inventory звірені з PostgreSQL.
-- State `validating`, active null; exports/ready/publication не виконувалися.
+- На момент reconciliation: `validating`, active null; exports/ready/publication не виконувалися.
+  Після погодження [повний verify](_assessments/2026-11-04-corpus-verification/REPORT.md)
+  створив 992 exports і перевів dataset у `ready`; active лишився null.
 
 Оригінальний known gap лишається в immutable manifest:
 
