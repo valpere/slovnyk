@@ -1,0 +1,43 @@
+{
+  "runs": [
+    {
+      "state": "interrupted",
+      "attempt": 1,
+      "error_class": "writer_disconnected"
+    },
+    {
+      "state": "interrupted",
+      "attempt": 2,
+      "error_class": "writer_disconnected"
+    },
+    {
+      "state": "completed",
+      "attempt": 3,
+      "error_class": null
+    }
+  ],
+  "active": {
+    "singleton": 1,
+    "dataset_id": null,
+    "generation": 0
+  },
+  "events": 0,
+  "issues": 0,
+  "parsed": 56455068,
+  "unique": 56455068,
+  "exports": 0,
+  "datasets": [
+    {
+      "id": "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+      "state": "validating",
+      "updated_at": "2026-10-25T16:10:25.263026+00:00",
+      "fingerprint": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+      "report_hash": null,
+      "report_path": null
+    }
+  ],
+  "rejected": 0,
+  "sitemaps": 0,
+  "duplicates": 0,
+  "files_complete": 992
+}

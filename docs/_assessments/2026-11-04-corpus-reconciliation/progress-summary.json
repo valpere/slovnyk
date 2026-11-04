@@ -1,0 +1,13 @@
+{
+  "samples": 217,
+  "minimum_free_bytes": 188079566848,
+  "maximum_database_bytes": 69058123443,
+  "maximum_wal_bytes": 1073741824,
+  "initial_cumulative_temp_bytes": 8748734297,
+  "final_sample_cumulative_temp_bytes": 11493381977,
+  "elapsed_seconds": 2180.458,
+  "poll_seconds": 10,
+  "activity_metadata_only": true,
+  "source_file_positions_are_observations_not_verified_checkpoints": true,
+  "free_space_changes_outside_approved_cleanup_not_attributed": true
+}

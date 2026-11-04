@@ -762,3 +762,16 @@ Merge від імені користувача не авторизований.
 моделі, разом близько 42.09 GiB. Нічого не видалено, PostgreSQL не запускався;
 основні CSV/БД, compact модель і результати залишаються. Після погодження потрібні
 повторний disk gate та контрольована звірка; достатність peak disk ще не доведена.
+
+## Погоджене прибирання та повна звірка — 2026-11-04
+
+Користувач погодив два конкретні SQLite файли з preflight; їх видалено,
+free space одразу після операції 64.211 GiB, seed/base/compact та результати збережені.
+Після незавершеної спроби 2026-11-03 новий full replay завершився exit 0:
+992 complete/checksum-verified files, 56 455 068 unique, 0 duplicates/rejected;
+source/normalized hashes, ledger/origins та inventory узгоджені. Baseline/final
+persistent metadata рівні, state validating, active null. [Evidence](_assessments/2026-11-04-corpus-reconciliation/REPORT.md).
+Run 1 CPU / 8 GiB локальний; Oracle/HTTP capacity не перевірені. Known gaps
+не змінені й не погоджені. Далі потрібний concrete loss report/owner-approval
+adapter перед strict verify/exports/ready. Self-review, commit, PR та весь
+CI rollup обов’язкові; merge виконує користувач.

@@ -243,8 +243,8 @@ Local pgdata збережено; preflight сам не закриває full imp
 завершено: 992 complete/checksum-verified files, 56 455 068 unique records,
 0 duplicates/rejected/issues. Actual ledger/origins/translations і per-file/pair
 counts збігаються з audit; checkpoints узгоджені, prefix 55 000 незмінний.
-Dataset `validating`, active null. Повний source/normalization reconciliation,
-exports/ready та resource acceptance залишаються відкритими; known_gaps
+Dataset `validating`, active null. [Повний source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
+пройшов 2026-11-04; exports/ready та resource acceptance залишаються відкритими; known_gaps
 блокують strict verifier до approval-loss adapter та погодження конкретних втрат.
 Не прибирати gaps із manifest для обходу guard. DB/indexes 64.315 GiB не
 поміщаються на root ~45 GiB за профілем Oracle 2026-10-23; остаточний storage
