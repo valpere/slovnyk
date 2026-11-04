@@ -1,0 +1,47 @@
+{
+  "samples": 19,
+  "minimum_free_bytes": 192950571008,
+  "containers": {
+    "slovnyk-corpus-20261025-db-1": {
+      "samples": 19,
+      "maximum_sampled_cpu_percent": 49.43,
+      "memory_usage_observations": [
+        "148.3MiB / 8GiB",
+        "148.4MiB / 8GiB",
+        "148.5MiB / 8GiB",
+        "148.7MiB / 8GiB",
+        "148.9MiB / 8GiB",
+        "149MiB / 8GiB",
+        "150.5MiB / 8GiB",
+        "150.6MiB / 8GiB",
+        "152MiB / 8GiB",
+        "163.4MiB / 8GiB",
+        "55.19MiB / 8GiB"
+      ]
+    },
+    "slovnyk-corpus-load-http-20261104": {
+      "samples": 19,
+      "maximum_sampled_cpu_percent": 4.55,
+      "memory_usage_observations": [
+        "7.488MiB / 512MiB",
+        "7.602MiB / 512MiB",
+        "7.641MiB / 512MiB",
+        "7.695MiB / 512MiB",
+        "7.707MiB / 512MiB",
+        "7.715MiB / 512MiB",
+        "7.727MiB / 512MiB",
+        "7.742MiB / 512MiB",
+        "7.773MiB / 512MiB",
+        "7.84MiB / 512MiB",
+        "7.852MiB / 512MiB",
+        "7.855MiB / 512MiB",
+        "7.906MiB / 512MiB",
+        "7.984MiB / 512MiB",
+        "8.074MiB / 512MiB",
+        "8.094MiB / 512MiB",
+        "8.195MiB / 512MiB",
+        "8MiB / 512MiB"
+      ]
+    }
+  }
+}

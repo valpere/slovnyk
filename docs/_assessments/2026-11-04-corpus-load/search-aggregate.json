@@ -1,0 +1,32 @@
+[
+  {
+    "phase": "search-before",
+    "searches": 600,
+    "successes": 600,
+    "p50_ms": 16.315,
+    "p95_ms": 85.949,
+    "max_ms": 363.207,
+    "scheduled_to_complete_p95_ms": 86.059,
+    "dispatch_lag_max_ms": 1.558
+  },
+  {
+    "phase": "mixed",
+    "searches": 600,
+    "successes": 600,
+    "p50_ms": 15.853,
+    "p95_ms": 76.166,
+    "max_ms": 97.093,
+    "scheduled_to_complete_p95_ms": 76.287,
+    "dispatch_lag_max_ms": 2.467
+  },
+  {
+    "phase": "search-after",
+    "searches": 600,
+    "successes": 600,
+    "p50_ms": 15.623,
+    "p95_ms": 86.47,
+    "max_ms": 98.88,
+    "scheduled_to_complete_p95_ms": 86.598,
+    "dispatch_lag_max_ms": 2.123
+  }
+]

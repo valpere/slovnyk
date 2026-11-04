@@ -107,6 +107,10 @@ Dataset перейшов у `ready`. [Погодження власника](DEC
 перевірені; усі shards і 992 exports звірені через HTTP, sample
 word/search/redirect та restart пройшли. Локальна publication: generation 1.
 Production, crawler/search SLO та full-corpus off-host restore відкриті.
+Наступна [локальна змішана проба](_assessments/2026-11-04-corpus-load/REPORT.md):
+2 112/2 112 HTTP/content checks успішні; 10 search/s плюс у середній фазі
+5 word pages/s і 0.2 shards/s. Короткий warm-cache прогін обмеженої вибірки
+не закриває AT-16, crawler budget або target-server capacity.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.

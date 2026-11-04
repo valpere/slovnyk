@@ -1,0 +1,164 @@
+{
+  "completed_utc": "2026-11-04T12:24:41.154310+00:00",
+  "elapsed_seconds_including_readiness": 181.354,
+  "requests": 2112,
+  "samples": [
+    {
+      "phase": "search-before",
+      "kind": "exact",
+      "requests": 450,
+      "successes": 450,
+      "status_counts": {
+        "200": 450
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 15.91,
+        "p95": 18.489,
+        "max": 48.361
+      },
+      "successful_latency_p95_ms": 18.489,
+      "scheduled_to_complete_p95_ms": 18.701,
+      "dispatch_lag_max_ms": 1.558,
+      "bytes": 15141
+    },
+    {
+      "phase": "search-before",
+      "kind": "prefix",
+      "requests": 150,
+      "successes": 150,
+      "status_counts": {
+        "200": 150
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 62.272,
+        "p95": 290.207,
+        "max": 363.207
+      },
+      "successful_latency_p95_ms": 290.207,
+      "scheduled_to_complete_p95_ms": 290.319,
+      "dispatch_lag_max_ms": 0.686,
+      "bytes": 7546
+    },
+    {
+      "phase": "mixed",
+      "kind": "exact",
+      "requests": 450,
+      "successes": 450,
+      "status_counts": {
+        "200": 450
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 15.571,
+        "p95": 16.72,
+        "max": 72.908
+      },
+      "successful_latency_p95_ms": 16.72,
+      "scheduled_to_complete_p95_ms": 16.875,
+      "dispatch_lag_max_ms": 2.467,
+      "bytes": 15141
+    },
+    {
+      "phase": "mixed",
+      "kind": "prefix",
+      "requests": 150,
+      "successes": 150,
+      "status_counts": {
+        "200": 150
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 57.388,
+        "p95": 83.239,
+        "max": 97.093
+      },
+      "successful_latency_p95_ms": 83.239,
+      "scheduled_to_complete_p95_ms": 83.503,
+      "dispatch_lag_max_ms": 1.125,
+      "bytes": 7546
+    },
+    {
+      "phase": "mixed",
+      "kind": "word",
+      "requests": 300,
+      "successes": 300,
+      "status_counts": {
+        "200": 300
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 7.896,
+        "p95": 8.721,
+        "max": 11.491
+      },
+      "successful_latency_p95_ms": 8.721,
+      "scheduled_to_complete_p95_ms": 9.068,
+      "dispatch_lag_max_ms": 1.571,
+      "bytes": 1338936
+    },
+    {
+      "phase": "mixed",
+      "kind": "shard",
+      "requests": 12,
+      "successes": 12,
+      "status_counts": {
+        "200": 12
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 9.769,
+        "p95": 66.615,
+        "max": 66.615
+      },
+      "successful_latency_p95_ms": 66.615,
+      "scheduled_to_complete_p95_ms": 67.139,
+      "dispatch_lag_max_ms": 0.524,
+      "bytes": 67201320
+    },
+    {
+      "phase": "search-after",
+      "kind": "exact",
+      "requests": 450,
+      "successes": 450,
+      "status_counts": {
+        "200": 450
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 15.322,
+        "p95": 16.692,
+        "max": 18.015
+      },
+      "successful_latency_p95_ms": 16.692,
+      "scheduled_to_complete_p95_ms": 16.817,
+      "dispatch_lag_max_ms": 2.123,
+      "bytes": 15141
+    },
+    {
+      "phase": "search-after",
+      "kind": "prefix",
+      "requests": 150,
+      "successes": 150,
+      "status_counts": {
+        "200": 150
+      },
+      "error_counts": {},
+      "latency_all_ms": {
+        "p50": 54.772,
+        "p95": 95.498,
+        "max": 98.88
+      },
+      "successful_latency_p95_ms": 95.498,
+      "scheduled_to_complete_p95_ms": 95.615,
+      "dispatch_lag_max_ms": 1.141,
+      "bytes": 7546
+    }
+  ],
+  "percentile_method": "nearest rank, ceil(p*N), failures retained in all-latency distributions",
+  "latencies": "client observed; server-side duration not instrumented",
+  "resource_samples": 19,
+  "minimum_sampled_free_bytes": 192950571008,
+  "guards_triggered": false
+}

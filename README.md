@@ -459,6 +459,11 @@ accepted unique, 0 duplicates/rejected/issues. Actual ledger/origins/translation
 Перевірено всі XML, усі 736 shards і 992 downloads через HTTP, sample
 word/search та restart. Локальна publication: active dataset/generation 1.
 Production, crawler/search SLO та full-corpus restore залишаються відкритими.
+Окрема [локальна змішана проба](docs/_assessments/2026-11-04-corpus-load/REPORT.md)
+дала 2 112 успішних запитів за три хвилини: 10 search/s, у середній фазі
+додатково 5 word pages/s і 0.2 sitemap shards/s. Client p95 точного/префіксного
+пошуку в mixed — 16.720/83.239 ms; warm caches, обмежена positive вибірка.
+Це дослідницький результат, не production capacity acceptance.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 

@@ -685,3 +685,19 @@ concurrency/SLO, production inventory/storage gate або off-host restore.
 DB profile 1 CPU/8 GiB, HTTP 1 CPU/512 MiB; Oracle не задіяний.
 `make check test` пройшов; application source незмінний. Деталі checks/review
 збережені у [validation](_assessments/2026-11-04-corpus-sitemaps/validation.json).
+
+## REQ-NFR-03 / FR-14 subset — локальна змішана проба, 2026-11-04
+
+[Evidence](_assessments/2026-11-04-corpus-load/REPORT.md) та
+[per-request metadata](_assessments/2026-11-04-corpus-load/observations.jsonl):
+три 60 s фази, кожна 600 search requests (450 exact / 150 full-source prefix).
+У mixed додатково 300 word pages і 12 повних shard transfers. Усі 2 112
+HTTP 200/content checks успішні; client timeouts — 0. Mixed client p95:
+exact 16.720 ms, prefix 83.239 ms, combined search 76.166 ms.
+
+Вибірка 128 cases/119 pairs, warm caches, DB 1 CPU/8 GiB та HTTP 1 CPU/512 MiB.
+SQL baseline/final state тотожні; generation 1 збережена, OOM kills — 0.
+`make check test` exit 0; metadata/privacy/link checks і sequential self-review
+зафіксовані у [validation](_assessments/2026-11-04-corpus-load/validation.json).
+Application source незмінний. AT-16 не закрито: server-side duration не виміряно,
+погоджений query/crawler budget, складні маски, soak і target-server SLO відкриті.

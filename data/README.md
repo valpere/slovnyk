@@ -129,3 +129,13 @@ XML validation, publication та HTTP checks. Sitemap artifacts додані в
 Private HTTP env/credentials лишаються поза Git; для продовження створіть
 окремий restricted LOGIN, не використовуйте видалений. DB/snapshot/artifacts
 збережені, це не off-host backup або production deployment.
+
+## Локальна змішана проба
+
+`experiments/corpus-load-2026-11-04/` зберігає протокол, per-request metadata,
+resource samples і фінальні SQL/lifecycle checks трьох коротких HTTP фаз.
+[Evidence](../docs/_assessments/2026-11-04-corpus-load/REPORT.md): 2 112 успішних
+запитів; active generation 1 та retained DB/snapshot/artifacts незмінні.
+Private workload містить реальні терміни; `http.env` і `http-private.json`
+містять credentials. Вони ignored, не публікувати. Власні containers/network
+та LOGIN прибрані; старі credentials не придатні для наступного запуску.

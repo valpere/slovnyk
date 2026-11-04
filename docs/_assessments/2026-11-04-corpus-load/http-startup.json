@@ -1,0 +1,14 @@
+{
+  "utc": "2026-11-04T12:20:25.837245+00:00",
+  "name": "slovnyk-corpus-load-http-20261104",
+  "container": "e0aebc521cb4e1e77974bcf0febcf6d7202ccd67617aca568b05ea5d8bd9f8cd",
+  "loopback_only": true,
+  "address": "127.0.0.1:32775",
+  "readonly_rootfs_and_mounts": true,
+  "nonroot_uid": 1000,
+  "memory_bytes": 536870912,
+  "nano_cpus": 1000000000,
+  "binary_sha256": "a79f4021fa5938369158184bcb1e648ba51bfd250fbdfab4db17911405b61f90",
+  "source_revision": "dd2039a3926bc1ed1494f72fbeec47b4d7a5b9a2",
+  "reader": "corpus_load_20261104"
+}
