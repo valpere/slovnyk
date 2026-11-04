@@ -1,0 +1,10 @@
+{
+  "aligned_with_production_domains": true,
+  "data_values_not_transformed": true,
+  "initial_default_collation_probe_superseded": true,
+  "source_key": "C",
+  "source_locale": "C",
+  "source_text": "C",
+  "target_locale": "C",
+  "target_text": "C"
+}

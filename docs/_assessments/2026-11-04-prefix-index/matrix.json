@@ -1,0 +1,2414 @@
+[
+  {
+    "candidate": false,
+    "case": 0,
+    "execution_ms": 40.919,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.705,
+    "prefilter_added": false,
+    "result_sha256": "20e0e10118349b526e7937a781c56d67fac5865b8c0ef63d054b3d5a353206cb",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124827,
+        "Shared Hit Blocks": 105629,
+        "Shared Read Blocks": 4145,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 43.662
+  },
+  {
+    "candidate": false,
+    "case": 0,
+    "execution_ms": 26.839,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.047,
+    "prefilter_added": false,
+    "result_sha256": "20e0e10118349b526e7937a781c56d67fac5865b8c0ef63d054b3d5a353206cb",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124827,
+        "Shared Hit Blocks": 109774,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 27.254
+  },
+  {
+    "candidate": false,
+    "case": 1,
+    "execution_ms": 38.575,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.068,
+    "prefilter_added": false,
+    "result_sha256": "94990d6271f3b41ec843ac381325e424e27a6ff2de809a88961b838be0c914a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 7,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 127102,
+        "Shared Hit Blocks": 64457,
+        "Shared Read Blocks": 3722,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 39.066
+  },
+  {
+    "candidate": false,
+    "case": 1,
+    "execution_ms": 21.264,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.066,
+    "prefilter_added": false,
+    "result_sha256": "49940c9e8628d7c09974609b9ba087ada42fd9c8844211c5013cc8b782314bf8",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 7,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 127102,
+        "Shared Hit Blocks": 68179,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 21.692
+  },
+  {
+    "candidate": false,
+    "case": 2,
+    "execution_ms": 9.295,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.063,
+    "prefilter_added": false,
+    "result_sha256": "66e6b427e26d51c284a2c50db2e20bedb2595ce5f40c5fee21967cf36aa026db",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 36836,
+        "Shared Hit Blocks": 27112,
+        "Shared Read Blocks": 933,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 9.715
+  },
+  {
+    "candidate": false,
+    "case": 2,
+    "execution_ms": 5.489,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.041,
+    "prefilter_added": false,
+    "result_sha256": "66e6b427e26d51c284a2c50db2e20bedb2595ce5f40c5fee21967cf36aa026db",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 36836,
+        "Shared Hit Blocks": 28045,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 5.816
+  },
+  {
+    "candidate": false,
+    "case": 3,
+    "execution_ms": 12.824,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.032,
+    "prefilter_added": false,
+    "result_sha256": "e29ec7fa1225046ed1663d3faa612670816456e6f1ca1e3b664faefdf906b8c6",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 54442,
+        "Shared Hit Blocks": 34800,
+        "Shared Read Blocks": 1508,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 13.166
+  },
+  {
+    "candidate": false,
+    "case": 3,
+    "execution_ms": 8.371,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.064,
+    "prefilter_added": false,
+    "result_sha256": "e29ec7fa1225046ed1663d3faa612670816456e6f1ca1e3b664faefdf906b8c6",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 54442,
+        "Shared Hit Blocks": 36308,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 8.794
+  },
+  {
+    "candidate": false,
+    "case": 4,
+    "execution_ms": 24.691,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.055,
+    "prefilter_added": false,
+    "result_sha256": "adb125eb107758b31f3cf802c1b966a896347e6b8ec14d8d2ae23376a7e78736",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 87745,
+        "Shared Hit Blocks": 63702,
+        "Shared Read Blocks": 2519,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 25.101
+  },
+  {
+    "candidate": false,
+    "case": 4,
+    "execution_ms": 17.233,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.072,
+    "prefilter_added": false,
+    "result_sha256": "adb125eb107758b31f3cf802c1b966a896347e6b8ec14d8d2ae23376a7e78736",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 87745,
+        "Shared Hit Blocks": 66221,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 17.642
+  },
+  {
+    "candidate": false,
+    "case": 5,
+    "execution_ms": 21.132,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.057,
+    "prefilter_added": false,
+    "result_sha256": "6aec986eee24f9fac6f1ca8e79fe12eebfbf342bd864c9d1ccaacca48a6a1d3d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 3,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 85864,
+        "Shared Hit Blocks": 44751,
+        "Shared Read Blocks": 2355,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 21.562
+  },
+  {
+    "candidate": false,
+    "case": 5,
+    "execution_ms": 12.587,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.063,
+    "prefilter_added": false,
+    "result_sha256": "7b87f04b6105925ab9e899687181452fea76d11c5208c80d2ec58f4bc8527f8b",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 3,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 85864,
+        "Shared Hit Blocks": 47106,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 13.008
+  },
+  {
+    "candidate": false,
+    "case": 6,
+    "execution_ms": 25.795,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.056,
+    "prefilter_added": false,
+    "result_sha256": "744917a8160f6071074e95034574a428c2531800de9fcdf69bd888f36caad1a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 179848,
+        "Shared Hit Blocks": 5,
+        "Shared Read Blocks": 5622,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 179850,
+        "Index Name": "translations_exact",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 2,
+        "Shared Read Blocks": 1676,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 26.299
+  },
+  {
+    "candidate": false,
+    "case": 6,
+    "execution_ms": 16.622,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.076,
+    "prefilter_added": false,
+    "result_sha256": "744917a8160f6071074e95034574a428c2531800de9fcdf69bd888f36caad1a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 179848,
+        "Shared Hit Blocks": 5627,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 179850,
+        "Index Name": "translations_exact",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 1678,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 17.142
+  },
+  {
+    "candidate": false,
+    "case": 7,
+    "execution_ms": 9.65,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.068,
+    "prefilter_added": false,
+    "result_sha256": "2f8d5218f6c07bf8f067c6847b543226cedeaef15306eca4e98c9d1fa3643718",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 44804,
+        "Shared Hit Blocks": 37231,
+        "Shared Read Blocks": 1350,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 10.079
+  },
+  {
+    "candidate": false,
+    "case": 7,
+    "execution_ms": 6.987,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.055,
+    "prefilter_added": false,
+    "result_sha256": "2f8d5218f6c07bf8f067c6847b543226cedeaef15306eca4e98c9d1fa3643718",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 44804,
+        "Shared Hit Blocks": 38581,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 7.343
+  },
+  {
+    "candidate": false,
+    "case": 8,
+    "execution_ms": 20.273,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.044,
+    "prefilter_added": false,
+    "result_sha256": "01c2f25bc76aa7e3e4fe8c333b6ac3b32e862018bc567655b26720e385c690f4",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 148306,
+        "Shared Hit Blocks": 6,
+        "Shared Read Blocks": 4648,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 148307,
+        "Index Name": "translations_exact",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1405,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 20.714
+  },
+  {
+    "candidate": false,
+    "case": 8,
+    "execution_ms": 14.184,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.069,
+    "prefilter_added": false,
+    "result_sha256": "01c2f25bc76aa7e3e4fe8c333b6ac3b32e862018bc567655b26720e385c690f4",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 148306,
+        "Shared Hit Blocks": 4654,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 148307,
+        "Index Name": "translations_exact",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 1408,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 14.61
+  },
+  {
+    "candidate": false,
+    "case": 9,
+    "execution_ms": 19.109,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.067,
+    "prefilter_added": false,
+    "result_sha256": "fb02b864d5bf6071edb7422af5ae175d49f6a6cc5c35ffa47ac2fbd45079d377",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 86088,
+        "Shared Hit Blocks": 57182,
+        "Shared Read Blocks": 2464,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 19.518
+  },
+  {
+    "candidate": false,
+    "case": 9,
+    "execution_ms": 11.859,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.057,
+    "prefilter_added": false,
+    "result_sha256": "fb02b864d5bf6071edb7422af5ae175d49f6a6cc5c35ffa47ac2fbd45079d377",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 86088,
+        "Shared Hit Blocks": 59646,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 12.191
+  },
+  {
+    "candidate": false,
+    "case": 10,
+    "execution_ms": 24.223,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.063,
+    "prefilter_added": false,
+    "result_sha256": "6644ee1c41c5778f14a9ca3f3b86d090c94913395cf248534c7151e700afca0f",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124923,
+        "Shared Hit Blocks": 47889,
+        "Shared Read Blocks": 3150,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 24.734
+  },
+  {
+    "candidate": false,
+    "case": 10,
+    "execution_ms": 17.432,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.066,
+    "prefilter_added": false,
+    "result_sha256": "6644ee1c41c5778f14a9ca3f3b86d090c94913395cf248534c7151e700afca0f",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124923,
+        "Shared Hit Blocks": 51039,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 17.875
+  },
+  {
+    "candidate": false,
+    "case": 11,
+    "execution_ms": 2.675,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.06,
+    "prefilter_added": false,
+    "result_sha256": "463f0b9c6bf5928b8a5c23a5a865b773b6827a2c6d791f36a03f4e09ef01422d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 14604,
+        "Shared Hit Blocks": 10032,
+        "Shared Read Blocks": 438,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 3.039
+  },
+  {
+    "candidate": false,
+    "case": 11,
+    "execution_ms": 1.735,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.035,
+    "prefilter_added": false,
+    "result_sha256": "463f0b9c6bf5928b8a5c23a5a865b773b6827a2c6d791f36a03f4e09ef01422d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 14604,
+        "Shared Hit Blocks": 10470,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 1.993
+  },
+  {
+    "candidate": false,
+    "case": 12,
+    "execution_ms": 15.76,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.032,
+    "prefilter_added": false,
+    "result_sha256": "cd7d0bf53512f9e606766b9582efc7679c5559506baf2eff0518d291a7570091",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 123024,
+        "Shared Hit Blocks": 27,
+        "Shared Read Blocks": 3601,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 123025,
+        "Index Name": "translations_exact",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 2,
+        "Shared Read Blocks": 1005,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 16.164
+  },
+  {
+    "candidate": false,
+    "case": 12,
+    "execution_ms": 11.145,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.074,
+    "prefilter_added": false,
+    "result_sha256": "cd7d0bf53512f9e606766b9582efc7679c5559506baf2eff0518d291a7570091",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 123024,
+        "Shared Hit Blocks": 3628,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 123025,
+        "Index Name": "translations_exact",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 1007,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 12.139
+  },
+  {
+    "candidate": false,
+    "case": 13,
+    "execution_ms": 9.276,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.065,
+    "prefilter_added": false,
+    "result_sha256": "d67866fbc2d4ecc114fd935a89ea1d2d60ffb2226df7ad915d56fd0f1a3e1340",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 50013,
+        "Shared Hit Blocks": 31025,
+        "Shared Read Blocks": 1390,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 9.659
+  },
+  {
+    "candidate": false,
+    "case": 13,
+    "execution_ms": 5.83,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.04,
+    "prefilter_added": false,
+    "result_sha256": "d67866fbc2d4ecc114fd935a89ea1d2d60ffb2226df7ad915d56fd0f1a3e1340",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 50013,
+        "Shared Hit Blocks": 32415,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 6.136
+  },
+  {
+    "candidate": false,
+    "case": 14,
+    "execution_ms": 14.34,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.06,
+    "prefilter_added": false,
+    "result_sha256": "551d29a0c6ad78b8da2891c464df81da550c2e6a36fd777a60d19be51b02f9ec",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 66292,
+        "Shared Hit Blocks": 37127,
+        "Shared Read Blocks": 1828,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 14.819
+  },
+  {
+    "candidate": false,
+    "case": 14,
+    "execution_ms": 9.753,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.065,
+    "prefilter_added": false,
+    "result_sha256": "551d29a0c6ad78b8da2891c464df81da550c2e6a36fd777a60d19be51b02f9ec",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 66292,
+        "Shared Hit Blocks": 38955,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 10.184
+  },
+  {
+    "candidate": false,
+    "case": 15,
+    "execution_ms": 3.218,
+    "limit": 1,
+    "phase": "before",
+    "planning_ms": 0.067,
+    "prefilter_added": false,
+    "result_sha256": "d914795893b4f7c0a00392da914a8a908b5d191aaa0ecfc310ab29ff9be1050a",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 11,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 19192,
+        "Shared Hit Blocks": 11671,
+        "Shared Read Blocks": 531,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 3.593
+  },
+  {
+    "candidate": false,
+    "case": 15,
+    "execution_ms": 2.059,
+    "limit": 50,
+    "phase": "before",
+    "planning_ms": 0.033,
+    "prefilter_added": false,
+    "result_sha256": "795ff8c1aa31a1befb1965c01aa8cbf9cc60b76698508fa68d4dac7fff7a176b",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 11,
+        "Index Name": "translations_exact",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 19192,
+        "Shared Hit Blocks": 12202,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 2.319
+  },
+  {
+    "candidate": true,
+    "case": 0,
+    "execution_ms": 0.06,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.309,
+    "prefilter_added": true,
+    "result_sha256": "20e0e10118349b526e7937a781c56d67fac5865b8c0ef63d054b3d5a353206cb",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 0,
+        "Shared Read Blocks": 4,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.913
+  },
+  {
+    "candidate": false,
+    "case": 0,
+    "execution_ms": 17.335,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.032,
+    "prefilter_added": false,
+    "result_sha256": "20e0e10118349b526e7937a781c56d67fac5865b8c0ef63d054b3d5a353206cb",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124827,
+        "Shared Hit Blocks": 33638,
+        "Shared Read Blocks": 3582,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 17.632
+  },
+  {
+    "candidate": true,
+    "case": 0,
+    "execution_ms": 0.048,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.06,
+    "prefilter_added": true,
+    "result_sha256": "20e0e10118349b526e7937a781c56d67fac5865b8c0ef63d054b3d5a353206cb",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.395
+  },
+  {
+    "candidate": false,
+    "case": 0,
+    "execution_ms": 11.945,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.031,
+    "prefilter_added": false,
+    "result_sha256": "20e0e10118349b526e7937a781c56d67fac5865b8c0ef63d054b3d5a353206cb",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124827,
+        "Shared Hit Blocks": 37220,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 12.244
+  },
+  {
+    "candidate": false,
+    "case": 1,
+    "execution_ms": 15.218,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.066,
+    "prefilter_added": false,
+    "result_sha256": "94990d6271f3b41ec843ac381325e424e27a6ff2de809a88961b838be0c914a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 7,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 127102,
+        "Shared Hit Blocks": 3835,
+        "Shared Read Blocks": 3642,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 15.677
+  },
+  {
+    "candidate": true,
+    "case": 1,
+    "execution_ms": 0.068,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.087,
+    "prefilter_added": true,
+    "result_sha256": "94990d6271f3b41ec843ac381325e424e27a6ff2de809a88961b838be0c914a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 7,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.442
+  },
+  {
+    "candidate": false,
+    "case": 1,
+    "execution_ms": 10.973,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.035,
+    "prefilter_added": false,
+    "result_sha256": "49940c9e8628d7c09974609b9ba087ada42fd9c8844211c5013cc8b782314bf8",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 7,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 127102,
+        "Shared Hit Blocks": 7477,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 11.346
+  },
+  {
+    "candidate": true,
+    "case": 1,
+    "execution_ms": 0.055,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.083,
+    "prefilter_added": true,
+    "result_sha256": "49940c9e8628d7c09974609b9ba087ada42fd9c8844211c5013cc8b782314bf8",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 7,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.404
+  },
+  {
+    "candidate": true,
+    "case": 2,
+    "execution_ms": 0.066,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.044,
+    "prefilter_added": true,
+    "result_sha256": "66e6b427e26d51c284a2c50db2e20bedb2595ce5f40c5fee21967cf36aa026db",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 1,
+        "Shared Read Blocks": 3,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.331
+  },
+  {
+    "candidate": false,
+    "case": 2,
+    "execution_ms": 4.597,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.034,
+    "prefilter_added": false,
+    "result_sha256": "66e6b427e26d51c284a2c50db2e20bedb2595ce5f40c5fee21967cf36aa026db",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 36836,
+        "Shared Hit Blocks": 5640,
+        "Shared Read Blocks": 983,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 4.835
+  },
+  {
+    "candidate": true,
+    "case": 2,
+    "execution_ms": 0.046,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.048,
+    "prefilter_added": true,
+    "result_sha256": "66e6b427e26d51c284a2c50db2e20bedb2595ce5f40c5fee21967cf36aa026db",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.304
+  },
+  {
+    "candidate": false,
+    "case": 2,
+    "execution_ms": 2.873,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.035,
+    "prefilter_added": false,
+    "result_sha256": "66e6b427e26d51c284a2c50db2e20bedb2595ce5f40c5fee21967cf36aa026db",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 36836,
+        "Shared Hit Blocks": 6623,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 3.144
+  },
+  {
+    "candidate": false,
+    "case": 3,
+    "execution_ms": 6.829,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.049,
+    "prefilter_added": false,
+    "result_sha256": "e29ec7fa1225046ed1663d3faa612670816456e6f1ca1e3b664faefdf906b8c6",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 54442,
+        "Shared Hit Blocks": 8407,
+        "Shared Read Blocks": 1405,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 7.12
+  },
+  {
+    "candidate": true,
+    "case": 3,
+    "execution_ms": 0.049,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.062,
+    "prefilter_added": true,
+    "result_sha256": "e29ec7fa1225046ed1663d3faa612670816456e6f1ca1e3b664faefdf906b8c6",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.349
+  },
+  {
+    "candidate": false,
+    "case": 3,
+    "execution_ms": 4.288,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.034,
+    "prefilter_added": false,
+    "result_sha256": "e29ec7fa1225046ed1663d3faa612670816456e6f1ca1e3b664faefdf906b8c6",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 54442,
+        "Shared Hit Blocks": 9812,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 4.548
+  },
+  {
+    "candidate": true,
+    "case": 3,
+    "execution_ms": 0.043,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.046,
+    "prefilter_added": true,
+    "result_sha256": "e29ec7fa1225046ed1663d3faa612670816456e6f1ca1e3b664faefdf906b8c6",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.31
+  },
+  {
+    "candidate": true,
+    "case": 4,
+    "execution_ms": 0.051,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.043,
+    "prefilter_added": true,
+    "result_sha256": "adb125eb107758b31f3cf802c1b966a896347e6b8ec14d8d2ae23376a7e78736",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 1,
+        "Shared Read Blocks": 3,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.296
+  },
+  {
+    "candidate": false,
+    "case": 4,
+    "execution_ms": 11.461,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.034,
+    "prefilter_added": false,
+    "result_sha256": "adb125eb107758b31f3cf802c1b966a896347e6b8ec14d8d2ae23376a7e78736",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 87745,
+        "Shared Hit Blocks": 16611,
+        "Shared Read Blocks": 2336,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 11.774
+  },
+  {
+    "candidate": true,
+    "case": 4,
+    "execution_ms": 0.053,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.076,
+    "prefilter_added": true,
+    "result_sha256": "adb125eb107758b31f3cf802c1b966a896347e6b8ec14d8d2ae23376a7e78736",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.385
+  },
+  {
+    "candidate": false,
+    "case": 4,
+    "execution_ms": 8.089,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.033,
+    "prefilter_added": false,
+    "result_sha256": "adb125eb107758b31f3cf802c1b966a896347e6b8ec14d8d2ae23376a7e78736",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 87745,
+        "Shared Hit Blocks": 18947,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 8.39
+  },
+  {
+    "candidate": false,
+    "case": 5,
+    "execution_ms": 10.292,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.057,
+    "prefilter_added": false,
+    "result_sha256": "6aec986eee24f9fac6f1ca8e79fe12eebfbf342bd864c9d1ccaacca48a6a1d3d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 3,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 85864,
+        "Shared Hit Blocks": 6198,
+        "Shared Read Blocks": 2258,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 10.681
+  },
+  {
+    "candidate": true,
+    "case": 5,
+    "execution_ms": 0.053,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.082,
+    "prefilter_added": true,
+    "result_sha256": "6aec986eee24f9fac6f1ca8e79fe12eebfbf342bd864c9d1ccaacca48a6a1d3d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 3,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.399
+  },
+  {
+    "candidate": false,
+    "case": 5,
+    "execution_ms": 7.358,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.034,
+    "prefilter_added": false,
+    "result_sha256": "7b87f04b6105925ab9e899687181452fea76d11c5208c80d2ec58f4bc8527f8b",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 3,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 85864,
+        "Shared Hit Blocks": 8456,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 7.67
+  },
+  {
+    "candidate": true,
+    "case": 5,
+    "execution_ms": 0.051,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.085,
+    "prefilter_added": true,
+    "result_sha256": "7b87f04b6105925ab9e899687181452fea76d11c5208c80d2ec58f4bc8527f8b",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 3,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.418
+  },
+  {
+    "candidate": true,
+    "case": 6,
+    "execution_ms": 0.056,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.05,
+    "prefilter_added": true,
+    "result_sha256": "744917a8160f6071074e95034574a428c2531800de9fcdf69bd888f36caad1a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 1,
+        "Shared Read Blocks": 4,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.32
+  },
+  {
+    "candidate": false,
+    "case": 6,
+    "execution_ms": 22.406,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.035,
+    "prefilter_added": false,
+    "result_sha256": "744917a8160f6071074e95034574a428c2531800de9fcdf69bd888f36caad1a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 179848,
+        "Shared Hit Blocks": 7,
+        "Shared Read Blocks": 5224,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 179850,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 2,
+        "Shared Read Blocks": 1280,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 22.766
+  },
+  {
+    "candidate": true,
+    "case": 6,
+    "execution_ms": 0.044,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.085,
+    "prefilter_added": true,
+    "result_sha256": "744917a8160f6071074e95034574a428c2531800de9fcdf69bd888f36caad1a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 5,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.418
+  },
+  {
+    "candidate": false,
+    "case": 6,
+    "execution_ms": 17.845,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.033,
+    "prefilter_added": false,
+    "result_sha256": "744917a8160f6071074e95034574a428c2531800de9fcdf69bd888f36caad1a0",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 179848,
+        "Shared Hit Blocks": 5231,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 179850,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 1282,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 18.267
+  },
+  {
+    "candidate": false,
+    "case": 7,
+    "execution_ms": 6.316,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.076,
+    "prefilter_added": false,
+    "result_sha256": "2f8d5218f6c07bf8f067c6847b543226cedeaef15306eca4e98c9d1fa3643718",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 44804,
+        "Shared Hit Blocks": 10914,
+        "Shared Read Blocks": 1245,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 6.729
+  },
+  {
+    "candidate": true,
+    "case": 7,
+    "execution_ms": 0.047,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.085,
+    "prefilter_added": true,
+    "result_sha256": "2f8d5218f6c07bf8f067c6847b543226cedeaef15306eca4e98c9d1fa3643718",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.412
+  },
+  {
+    "candidate": false,
+    "case": 7,
+    "execution_ms": 4.434,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.032,
+    "prefilter_added": false,
+    "result_sha256": "2f8d5218f6c07bf8f067c6847b543226cedeaef15306eca4e98c9d1fa3643718",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 44804,
+        "Shared Hit Blocks": 12159,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 4.718
+  },
+  {
+    "candidate": true,
+    "case": 7,
+    "execution_ms": 0.042,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.083,
+    "prefilter_added": true,
+    "result_sha256": "2f8d5218f6c07bf8f067c6847b543226cedeaef15306eca4e98c9d1fa3643718",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.395
+  },
+  {
+    "candidate": true,
+    "case": 8,
+    "execution_ms": 0.044,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.042,
+    "prefilter_added": true,
+    "result_sha256": "01c2f25bc76aa7e3e4fe8c333b6ac3b32e862018bc567655b26720e385c690f4",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 1,
+        "Shared Read Blocks": 3,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.329
+  },
+  {
+    "candidate": false,
+    "case": 8,
+    "execution_ms": 19.158,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.031,
+    "prefilter_added": false,
+    "result_sha256": "01c2f25bc76aa7e3e4fe8c333b6ac3b32e862018bc567655b26720e385c690f4",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 148306,
+        "Shared Hit Blocks": 7,
+        "Shared Read Blocks": 4328,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 148307,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1086,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 19.599
+  },
+  {
+    "candidate": true,
+    "case": 8,
+    "execution_ms": 0.06,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.109,
+    "prefilter_added": true,
+    "result_sha256": "01c2f25bc76aa7e3e4fe8c333b6ac3b32e862018bc567655b26720e385c690f4",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.491
+  },
+  {
+    "candidate": false,
+    "case": 8,
+    "execution_ms": 16.79,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.033,
+    "prefilter_added": false,
+    "result_sha256": "01c2f25bc76aa7e3e4fe8c333b6ac3b32e862018bc567655b26720e385c690f4",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 148306,
+        "Shared Hit Blocks": 4335,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 148307,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 1089,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 17.258
+  },
+  {
+    "candidate": false,
+    "case": 9,
+    "execution_ms": 11.473,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.071,
+    "prefilter_added": false,
+    "result_sha256": "fb02b864d5bf6071edb7422af5ae175d49f6a6cc5c35ffa47ac2fbd45079d377",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 86088,
+        "Shared Hit Blocks": 16211,
+        "Shared Read Blocks": 2311,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 11.912
+  },
+  {
+    "candidate": true,
+    "case": 9,
+    "execution_ms": 0.051,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.086,
+    "prefilter_added": true,
+    "result_sha256": "fb02b864d5bf6071edb7422af5ae175d49f6a6cc5c35ffa47ac2fbd45079d377",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.437
+  },
+  {
+    "candidate": false,
+    "case": 9,
+    "execution_ms": 9.513,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.048,
+    "prefilter_added": false,
+    "result_sha256": "fb02b864d5bf6071edb7422af5ae175d49f6a6cc5c35ffa47ac2fbd45079d377",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 86088,
+        "Shared Hit Blocks": 18522,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 9.907
+  },
+  {
+    "candidate": true,
+    "case": 9,
+    "execution_ms": 0.056,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.101,
+    "prefilter_added": true,
+    "result_sha256": "fb02b864d5bf6071edb7422af5ae175d49f6a6cc5c35ffa47ac2fbd45079d377",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.452
+  },
+  {
+    "candidate": true,
+    "case": 10,
+    "execution_ms": 0.063,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.047,
+    "prefilter_added": true,
+    "result_sha256": "6644ee1c41c5778f14a9ca3f3b86d090c94913395cf248534c7151e700afca0f",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 1,
+        "Shared Read Blocks": 3,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.389
+  },
+  {
+    "candidate": false,
+    "case": 10,
+    "execution_ms": 18.235,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.036,
+    "prefilter_added": false,
+    "result_sha256": "6644ee1c41c5778f14a9ca3f3b86d090c94913395cf248534c7151e700afca0f",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124923,
+        "Shared Hit Blocks": 14735,
+        "Shared Read Blocks": 3008,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 18.758
+  },
+  {
+    "candidate": true,
+    "case": 10,
+    "execution_ms": 0.065,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.127,
+    "prefilter_added": true,
+    "result_sha256": "6644ee1c41c5778f14a9ca3f3b86d090c94913395cf248534c7151e700afca0f",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.559
+  },
+  {
+    "candidate": false,
+    "case": 10,
+    "execution_ms": 11.846,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.048,
+    "prefilter_added": false,
+    "result_sha256": "6644ee1c41c5778f14a9ca3f3b86d090c94913395cf248534c7151e700afca0f",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 2,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 124923,
+        "Shared Hit Blocks": 17743,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 12.359
+  },
+  {
+    "candidate": false,
+    "case": 11,
+    "execution_ms": 2.181,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.082,
+    "prefilter_added": false,
+    "result_sha256": "463f0b9c6bf5928b8a5c23a5a865b773b6827a2c6d791f36a03f4e09ef01422d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 14604,
+        "Shared Hit Blocks": 385,
+        "Shared Read Blocks": 421,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 2.705
+  },
+  {
+    "candidate": true,
+    "case": 11,
+    "execution_ms": 0.056,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.105,
+    "prefilter_added": true,
+    "result_sha256": "463f0b9c6bf5928b8a5c23a5a865b773b6827a2c6d791f36a03f4e09ef01422d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.47
+  },
+  {
+    "candidate": false,
+    "case": 11,
+    "execution_ms": 2.021,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.045,
+    "prefilter_added": false,
+    "result_sha256": "463f0b9c6bf5928b8a5c23a5a865b773b6827a2c6d791f36a03f4e09ef01422d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 14604,
+        "Shared Hit Blocks": 806,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 2.419
+  },
+  {
+    "candidate": true,
+    "case": 11,
+    "execution_ms": 0.068,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.118,
+    "prefilter_added": true,
+    "result_sha256": "463f0b9c6bf5928b8a5c23a5a865b773b6827a2c6d791f36a03f4e09ef01422d",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.59
+  },
+  {
+    "candidate": true,
+    "case": 12,
+    "execution_ms": 0.073,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.066,
+    "prefilter_added": true,
+    "result_sha256": "cd7d0bf53512f9e606766b9582efc7679c5559506baf2eff0518d291a7570091",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 1,
+        "Shared Read Blocks": 3,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.465
+  },
+  {
+    "candidate": false,
+    "case": 12,
+    "execution_ms": 23.054,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.059,
+    "prefilter_added": false,
+    "result_sha256": "cd7d0bf53512f9e606766b9582efc7679c5559506baf2eff0518d291a7570091",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 123024,
+        "Shared Hit Blocks": 28,
+        "Shared Read Blocks": 3360,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 123025,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 2,
+        "Shared Read Blocks": 765,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 23.711
+  },
+  {
+    "candidate": true,
+    "case": 12,
+    "execution_ms": 0.053,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.096,
+    "prefilter_added": true,
+    "result_sha256": "cd7d0bf53512f9e606766b9582efc7679c5559506baf2eff0518d291a7570091",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.519
+  },
+  {
+    "candidate": false,
+    "case": 12,
+    "execution_ms": 16.498,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.045,
+    "prefilter_added": false,
+    "result_sha256": "cd7d0bf53512f9e606766b9582efc7679c5559506baf2eff0518d291a7570091",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Node Type": "Bitmap Heap Scan",
+        "Rows Removed by Filter": 123024,
+        "Shared Hit Blocks": 3388,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      },
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 123025,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Bitmap Index Scan",
+        "Shared Hit Blocks": 767,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": false,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 17.042
+  },
+  {
+    "candidate": false,
+    "case": 13,
+    "execution_ms": 7.321,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.084,
+    "prefilter_added": false,
+    "result_sha256": "d67866fbc2d4ecc114fd935a89ea1d2d60ffb2226df7ad915d56fd0f1a3e1340",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 50013,
+        "Shared Hit Blocks": 7329,
+        "Shared Read Blocks": 1303,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 7.851
+  },
+  {
+    "candidate": true,
+    "case": 13,
+    "execution_ms": 0.068,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.119,
+    "prefilter_added": true,
+    "result_sha256": "d67866fbc2d4ecc114fd935a89ea1d2d60ffb2226df7ad915d56fd0f1a3e1340",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.606
+  },
+  {
+    "candidate": false,
+    "case": 13,
+    "execution_ms": 6.579,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.049,
+    "prefilter_added": false,
+    "result_sha256": "d67866fbc2d4ecc114fd935a89ea1d2d60ffb2226df7ad915d56fd0f1a3e1340",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 50013,
+        "Shared Hit Blocks": 8632,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 7.074
+  },
+  {
+    "candidate": true,
+    "case": 13,
+    "execution_ms": 0.062,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.127,
+    "prefilter_added": true,
+    "result_sha256": "d67866fbc2d4ecc114fd935a89ea1d2d60ffb2226df7ad915d56fd0f1a3e1340",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.556
+  },
+  {
+    "candidate": true,
+    "case": 14,
+    "execution_ms": 0.058,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.055,
+    "prefilter_added": true,
+    "result_sha256": "551d29a0c6ad78b8da2891c464df81da550c2e6a36fd777a60d19be51b02f9ec",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 1,
+        "Shared Read Blocks": 3,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.38
+  },
+  {
+    "candidate": false,
+    "case": 14,
+    "execution_ms": 10.466,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.038,
+    "prefilter_added": false,
+    "result_sha256": "551d29a0c6ad78b8da2891c464df81da550c2e6a36fd777a60d19be51b02f9ec",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 66292,
+        "Shared Hit Blocks": 5804,
+        "Shared Read Blocks": 1743,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 10.885
+  },
+  {
+    "candidate": true,
+    "case": 14,
+    "execution_ms": 0.049,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.088,
+    "prefilter_added": true,
+    "result_sha256": "551d29a0c6ad78b8da2891c464df81da550c2e6a36fd777a60d19be51b02f9ec",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.469
+  },
+  {
+    "candidate": false,
+    "case": 14,
+    "execution_ms": 6.597,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.044,
+    "prefilter_added": false,
+    "result_sha256": "551d29a0c6ad78b8da2891c464df81da550c2e6a36fd777a60d19be51b02f9ec",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 66292,
+        "Shared Hit Blocks": 7547,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 7.032
+  },
+  {
+    "candidate": false,
+    "case": 15,
+    "execution_ms": 2.688,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.077,
+    "prefilter_added": false,
+    "result_sha256": "d914795893b4f7c0a00392da914a8a908b5d191aaa0ecfc310ab29ff9be1050a",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 11,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 19192,
+        "Shared Hit Blocks": 3524,
+        "Shared Read Blocks": 498,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 3.169
+  },
+  {
+    "candidate": true,
+    "case": 15,
+    "execution_ms": 0.071,
+    "limit": 1,
+    "phase": "indexed",
+    "planning_ms": 0.11,
+    "prefilter_added": true,
+    "result_sha256": "d914795893b4f7c0a00392da914a8a908b5d191aaa0ecfc310ab29ff9be1050a",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 11,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 4,
+        "Shared Read Blocks": 1,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.576
+  },
+  {
+    "candidate": false,
+    "case": 15,
+    "execution_ms": 2.273,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.057,
+    "prefilter_added": false,
+    "result_sha256": "795ff8c1aa31a1befb1965c01aa8cbf9cc60b76698508fa68d4dac7fff7a176b",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 11,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 19192,
+        "Shared Hit Blocks": 4022,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": false
+      }
+    ],
+    "wall_ms": 2.658
+  },
+  {
+    "candidate": true,
+    "case": 15,
+    "execution_ms": 0.067,
+    "limit": 50,
+    "phase": "indexed",
+    "planning_ms": 0.095,
+    "prefilter_added": true,
+    "result_sha256": "795ff8c1aa31a1befb1965c01aa8cbf9cc60b76698508fa68d4dac7fff7a176b",
+    "scans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 11,
+        "Index Name": "translations_prefix64",
+        "Node Type": "Index Scan",
+        "Rows Removed by Filter": 0,
+        "Shared Hit Blocks": 5,
+        "Shared Read Blocks": 0,
+        "full_like_in_filter": true,
+        "prefix_expression_in_index_condition": true
+      }
+    ],
+    "wall_ms": 0.519
+  }
+]

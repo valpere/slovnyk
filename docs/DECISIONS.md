@@ -886,3 +886,21 @@ query-plan/deadline діагностика на локальному корпу�
 Нових продуктових погоджень не вводили. AT-16, ширший workload/crawler budget,
 server/storage та off-host restore gates відкриті. Тимчасові LOGIN/containers
 прибрані, application state і збережені дані незмінні, Oracle не задіяний.
+
+
+## Bounded-prefix prototype на окремій копії — 2026-11-04
+
+Після merge PR24 виконано [експеримент](_assessments/2026-11-04-prefix-index/REPORT.md)
+на окремій translations DB із копією: 16 повних пар / 1 373 948 rows,
+counts/ordered binary hashes звірені. B-tree над left(source_key,64) із повним
+LIKE recheck: 32/32 candidate plans мають prefix Index Cond, ordered результати
+тотожні. Synthetic Unicode/escaping/seek/long-field probes пройшли.
+Індекс 65.09 MiB; insert-sample WAL +29.1%, write timings нестабільні.
+Початкову default-collation пробу замінено повтором із production collation C.
+
+Це технічний prototype, не нове продуктове погодження або schema migration.
+Далі — service migration/ReadPage implementation із integration tests, потім
+окремі full-corpus index/storage/build/restore та HTTP/cache/contention gates.
+Exact і leading-wildcard fallback мають зберегти поведінку. Старі 503 та AT-16
+не закриті. Source state, legacy/Oracle й backup/restored copies незмінні;
+власні containers/network/source LOGIN прибрані, experiment DB збережена.

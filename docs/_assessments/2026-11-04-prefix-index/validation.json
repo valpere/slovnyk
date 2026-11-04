@@ -1,0 +1,71 @@
+{
+  "commands": [
+    {
+      "command": "make check test",
+      "exit_code": 0,
+      "log_sha256": "1c250eea2f4de943c6ea128a8d63fdb9a33ea7b542c5a032ba3030afac856617"
+    },
+    {
+      "command": "isolated pair COPY/hash verification, aligned 96-plan matrix, synthetic seek/Unicode/long-field and six write samples, final copy verification and cleanup",
+      "exit_code": 0,
+      "receipts": [
+        "summary.json",
+        "final-copy-verification.json",
+        "lifecycle.json"
+      ]
+    },
+    {
+      "command": "public receipt equality, raw-to-sanitized plan comparison, arithmetic/schema and private credential/request literal checks",
+      "exit_code": 0,
+      "result": {
+        "raw_to_sanitized_plan_comparisons": 96,
+        "prefix_index_condition_and_full_like_candidate_plans": 32,
+        "case_limit_three_way_result_hash_equalities": 32,
+        "synthetic_case_limit_comparisons": 90,
+        "synthetic_page_queries": 3680,
+        "copied_rows": 1373948,
+        "source_final_state_equal": true,
+        "private_credentials_and_request_literals_absent": true,
+        "public_receipts_equal_actual_local_receipts": true,
+        "summary_arithmetic_verified": true
+      }
+    }
+  ],
+  "review": "sequential self-review; no independent reviewer",
+  "review_base_revision": "6ef948e309d8641794a686024572766cc30e09ff",
+  "application_source_changed": false,
+  "review_passes": [
+    "repository contracts, source read-only role usage, separate target and data lifecycle",
+    "bounded-prefix SQL semantics, C collation, rune/escape boundaries and full LIKE retention",
+    "matrix/digest/seek/long-field evidence against actual private inputs and raw plans",
+    "storage/write-cost arithmetic, cache/schema confounders and open acceptance gates"
+  ],
+  "verified_findings": [],
+  "resolved_findings": [
+    "Aligned all five text collations with production C; repeated matrix, synthetic and write probes, retained superseded default-collation receipts privately.",
+    "Handled PostgreSQL deparser quoting of left in plan predicate flags, verified against all raw plans.",
+    "Qualified noisy insert samples: report WAL delta increase but no reliable latency penalty or claimed faster writes.",
+    "Updated report database size to the final aligned run receipt."
+  ],
+  "observed_failures": [
+    {
+      "scope": "initial ignored Go harness build",
+      "state": "corrected before any data copy",
+      "reason": "Go string escape compile error in SQL text"
+    },
+    {
+      "scope": "initial experiment collation mismatch",
+      "state": "superseded; all affected probes repeated",
+      "reason": "standalone text columns inherited default collation instead of production C"
+    }
+  ],
+  "limitations": [
+    "private corpus/workload and one-off ignored Go harness absent from clean checkout",
+    "translations-only prototype omits production domains, constraints, provenance and other indexes",
+    "subset of 16 pairs, positive corpus cases, reused caches; timings are EXPLAIN SQL only, not HTTP SLO",
+    "three noisy 100k-row insert samples each; cluster-wide WAL delta may include background activity",
+    "no production application/schema/index changes, no full-corpus build or storage/restore acceptance",
+    "earlier six HTTP503 cause and AT-16/server gates remain open",
+    "CI pending exact final PR head; tracked receipts describe local verification"
+  ]
+}

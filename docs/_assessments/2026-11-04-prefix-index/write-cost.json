@@ -1,0 +1,57 @@
+{
+  "checkpoint_before_each_measured_insert": true,
+  "observations": [
+    {
+      "candidate": false,
+      "cluster_wal_delta_bytes": 46217608,
+      "elapsed_ms": 373.609,
+      "rows": 100000,
+      "table_all_indexes_bytes": 32210944,
+      "trial": 0
+    },
+    {
+      "candidate": true,
+      "cluster_wal_delta_bytes": 59671464,
+      "elapsed_ms": 636.823,
+      "rows": 100000,
+      "table_all_indexes_bytes": 40353792,
+      "trial": 0
+    },
+    {
+      "candidate": true,
+      "cluster_wal_delta_bytes": 59671464,
+      "elapsed_ms": 593.859,
+      "rows": 100000,
+      "table_all_indexes_bytes": 40353792,
+      "trial": 1
+    },
+    {
+      "candidate": false,
+      "cluster_wal_delta_bytes": 46217608,
+      "elapsed_ms": 1219.508,
+      "rows": 100000,
+      "table_all_indexes_bytes": 32210944,
+      "trial": 1
+    },
+    {
+      "candidate": false,
+      "cluster_wal_delta_bytes": 46217624,
+      "elapsed_ms": 1128.967,
+      "rows": 100000,
+      "table_all_indexes_bytes": 32210944,
+      "trial": 2
+    },
+    {
+      "candidate": true,
+      "cluster_wal_delta_bytes": 59671464,
+      "elapsed_ms": 1654.387,
+      "rows": 100000,
+      "table_all_indexes_bytes": 40353792,
+      "trial": 2
+    }
+  ],
+  "order_alternated": true,
+  "rows_per_trial": 100000,
+  "table_scope": "translations columns, primary/exact indexes, optional prefix index; not full importer/provenance model",
+  "trials_each": 3
+}
