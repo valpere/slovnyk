@@ -740,5 +740,23 @@ DB 2 CPU/8 GiB, HTTP 1 CPU/512 MiB; OS caches не скидали. Попере�
 не відтворено, причину не доведено. State snapshots однакові, власні resources
 прибрані, дані збережені. Application source незмінний; checks/self-review у
 [validation](_assessments/2026-11-04-mask-plans/validation.json).
-AT-16 відкрито; наступні gates — окремий bounded-prefix experiment,
-cache/contention probes, ширший workload та target-server capacity.
+AT-16 відкрито; подальший bounded-prefix prototype описано нижче.
+Cache/contention probes, ширший workload та target-server capacity не закриті.
+
+
+## AT-16 prototype subset — bounded-prefix copy, 2026-11-04
+
+[Evidence](_assessments/2026-11-04-prefix-index/REPORT.md),
+[summary](_assessments/2026-11-04-prefix-index/summary.json): окрема translations
+копія 16 повних пар / 1 373 948 rows, ordered binary COPY hashes source/target
+і після експерименту тотожні. Source application state незмінний.
+96 EXPLAIN: 32 baseline до index, 32 baseline і 32 candidate після; всі
+32 candidate мають prefix range Index Cond, усі ordered result digests збігаються.
+90 synthetic mask/limit comparisons / 3 680 page queries, окремо 64 KiB
+raw fields, 96 KiB folded key і 64-byte locales пройшли.
+
+Index 68 247 552 bytes, insert-sample WAL median +29.1%; write timings noisy.
+Це copy-only SQL prototype зі спрощеною table schema, без HTTP й full importer.
+Production migration/ReadPage, full-corpus storage/index/restore, cache/contention
+та server/SLO gates відкриті. Причину старих HTTP503 не доведено; AT-16 відкрито.
+[Validation/self-review](_assessments/2026-11-04-prefix-index/validation.json).

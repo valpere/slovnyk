@@ -1,0 +1,102 @@
+{
+  "review_base_revision": "6ef948e309d8641794a686024572766cc30e09ff",
+  "review": "sequential self-review of local diff and listed untracked files",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "bfb95bc442ffbc696b8079ef8916430180c1d7e22a3ab88bdad554393f722d91"
+    },
+    {
+      "path": "data/README.md",
+      "sha256": "c35e0f0459a2951285733c1f695000a9d0b66be00554dd9e9f168e1c21b0397a"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "sha256": "e5932c1618258a8b7f8bf8fe9adce101ad6906ae7692d9c6186087461d4b69a7"
+    },
+    {
+      "path": "docs/TRACEABILITY.md",
+      "sha256": "56ac0b9cc895768b51575d137195bfae0f1ba683ada81f2e79737a064e759966"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PLAN.md",
+      "sha256": "045b7cdab4cc936546edb2d55eab6e618852e0df9b5443d3f175618589beb4ee"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "sha256": "bdc831e9d8cd27a2cbd9dfbd5db2f11c0d7ed3f57aabfaa892a795a025eaa9df"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/PROTOTYPE.sql",
+      "sha256": "88392f94d21b8eec3575d043fd037ef9e8f6b115f8ad7172f8e239f9a01de280"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/REPORT.md",
+      "sha256": "14f916060eb8836205abd1656b5067b895d8ab1b61854c1dd6df8c928235abeb"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/actual-collations.json",
+      "sha256": "9f544a993aa7675e4c176da854f6563611ccbcb78e002e0023cf8e26fc8a3c45"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/collation-alignment.json",
+      "sha256": "091d61e28555c7e3e47208061f0b1bb4ebb41f661679d9a91eeb1d55f0bc736b"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/copy.json",
+      "sha256": "b8f8b7ee8ca3ecbb3cd1297540b0d02125b5947245bf618389ef904868a054de"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/final-copy-verification.json",
+      "sha256": "1460cf3a682e9e0314275e041f3f2062315fd63259dd00b0a959d93ca78c1c37"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/index-build.json",
+      "sha256": "36c1276ea227c2842e769035288afce5037afcb2f39d4e29cfbf72914ddc1dc7"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/lifecycle.json",
+      "sha256": "c058e619bdaa20669f3bd50c81bb0c74cce359d25af06d6cf58f65ac09c0b315"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/long-fields.json",
+      "sha256": "0af5c7d2a87b8151f0360e0baca1a795fac05f91660ad7cbd8dc390e01c57b41"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/matrix-summary.json",
+      "sha256": "da0e692566cc39a82e90dd5c5c8e9baa3ce64e03077187c0e4d85d9fb6ed5fb3"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/matrix.json",
+      "sha256": "d5ec71f0801c9101b285ec348eca10eff2cea2b8260d4d8cc3f577d321e5517c"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/source-baseline.json",
+      "sha256": "ee41eae44cb0763f6b5424552caa3be1d991ccabfdfa2dbd8f953d12645f6317"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/source-final.json",
+      "sha256": "ee41eae44cb0763f6b5424552caa3be1d991ccabfdfa2dbd8f953d12645f6317"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/startup.json",
+      "sha256": "8faddc5e1a8bab12cb3a12f4bc870dc78f4bb6286cfb019fbcde8f14fe171df8"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/summary.json",
+      "sha256": "a5dfd4096e5bfe482358eb4bc1eaf9e3bca2af135016b975c85d7e078deee57e"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/synthetic.json",
+      "sha256": "658acb269ca3365a8826500ee36c88c4df1580cd001d1717b68f90d6a0282604"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/validation.json",
+      "sha256": "8351e4d3ff9abe2e310c6e858cf11e0e596b8011181e079f714f64007ac25f96"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-prefix-index/write-cost.json",
+      "sha256": "6b0e72f53c55ab8413b7a43eda587a09d9938bf19fa149d650195db22ab6b905"
+    }
+  ]
+}

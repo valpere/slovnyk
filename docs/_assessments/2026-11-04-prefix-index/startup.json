@@ -1,0 +1,10 @@
+{
+  "utc": "2026-11-04T14:05:24.462381+00:00",
+  "revision": "6ef948e309d8641794a686024572766cc30e09ff",
+  "local_only": true,
+  "separate_empty_experiment_cluster": true,
+  "source_and_target_cpu_each": 2,
+  "source_and_target_memory_bytes_each": 8589934592,
+  "source_state_unchanged": true,
+  "source_application_dml_ddl_not_performed": true
+}

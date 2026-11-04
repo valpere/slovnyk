@@ -1,0 +1,7 @@
+{
+  "all_32_case_limit_result_hashes_equal_across_phases": true,
+  "full_like_always_retained": true,
+  "planner_forced": false,
+  "plans": 96,
+  "prefilter_characters": 64
+}

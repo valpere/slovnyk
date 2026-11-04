@@ -1,0 +1,17 @@
+{
+  "source": {
+    "source_key": "C",
+    "source_text": "C",
+    "target_text": "C",
+    "source_locale": "C",
+    "target_locale": "C"
+  },
+  "target": {
+    "source_key": "C",
+    "source_text": "C",
+    "target_text": "C",
+    "source_locale": "C",
+    "target_locale": "C"
+  },
+  "equal": true
+}

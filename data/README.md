@@ -164,3 +164,17 @@ snapshots і lifecycle. [Evidence](../docs/_assessments/2026-11-04-mask-plans/RE
 Тимчасовий diagnostic LOGIN і власні containers/network прибрані. Оригінальні
 DB/sources/artifacts та всі backup/restore copies збережені; схема незмінна.
 Для наступного запуску створіть свіжий restricted LOGIN і rediscover container ID.
+
+
+## Bounded-prefix copy-only prototype
+
+`experiments/prefix-index-2026-11-04/` містить окрему `.pgdata` із 16 повними
+скопійованими мовними парами, synthetic/write-sample tables та candidate index.
+[Evidence](../docs/_assessments/2026-11-04-prefix-index/REPORT.md). Оригінальний
+корпус і всі backup/restored copies незмінні; runtime containers/networks/source
+reader прибрані. Source admin та experiment admin config лишаються приватними.
+`*-private.json` і raw plans не публікувати; workload містить реальні терміни.
+`initial-default-collation/` — збережені замінені receipts, не acceptance evidence.
+Повторні результати в root run directory мають production collation C.
+One-off Go harness й orchestration — `tmp/prefix-index/`, не service utilities.
+Це subset SQL prototype, не повна service DB або production migration.

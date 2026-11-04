@@ -270,7 +270,11 @@ positive exact/prefix queries не закривають SLO.
 У підготовчій пробі 6/16 масок із `limit=1` повернули 503 близько 2 s.
 [Query-plan діагностика](_assessments/2026-11-04-mask-plans/REPORT.md): 160/160 HTTP 200
 без concurrent restore, 32/32 плани з LIKE postfilter; попередні 503 не пояснено.
-Далі — bounded-prefix experiment на окремій копії, cache/contention probes,
+[Bounded-prefix prototype](_assessments/2026-11-04-prefix-index/REPORT.md) пройшов
+на копії 16 пар: 32/32 candidate index conditions, тотожні результати,
+synthetic seek/Unicode/64 KiB checks; index 65.09 MiB, insert-sample WAL +29.1%.
+Далі — service migration й ReadPage prefilter з integration tests; окремо
+full-corpus index/storage/build/restore, HTTP/cache/contention probes,
 розширений workload, storage/capacity
 та off-host/target-server restore gates;
 adapter не дозволяє exceptions/rejected records.

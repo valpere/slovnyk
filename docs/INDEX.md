@@ -117,8 +117,13 @@ Production, crawler/search SLO та full-corpus off-host restore відкрит�
 приблизно через 2 s; exact 16/16 успішні.
 [Подальша діагностика](_assessments/2026-11-04-mask-plans/REPORT.md): 160/160 HTTP 200
 без concurrent restore; 32/32 SQL-плани мають LIKE postfilter після сканування пари.
-Причина попередніх 503 не доведена. Далі — bounded-prefix experiment на окремій
-копії та контрольовані cache/contention probes; AT-16 і capacity gates відкриті.
+Причина попередніх 503 не доведена.
+[Bounded-prefix prototype](_assessments/2026-11-04-prefix-index/REPORT.md) на окремій
+копії 16 пар / 1 373 948 rows: 32/32 candidate index conditions із тотожними
+результатами; synthetic pagination/Unicode/довгі поля пройшли. Prefix index
+65.09 MiB, insert-sample WAL +29.1%; production schema/query незмінні.
+Далі — service migration/ReadPage integration, full-corpus index/storage/HTTP
+та cache/contention gates; AT-16 і capacity acceptance відкриті.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.

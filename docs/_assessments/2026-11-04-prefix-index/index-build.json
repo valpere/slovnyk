@@ -1,0 +1,6 @@
+{
+  "cluster_wal_delta_bytes": 61788896,
+  "elapsed_ms": 1347.451,
+  "index_bytes": 68247552,
+  "table_all_indexes_bytes": 479985664
+}

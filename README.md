@@ -472,7 +472,11 @@ Production, crawler/search SLO та off-host restore залишаються ві
 [Наступна діагностика](docs/_assessments/2026-11-04-mask-plans/REPORT.md):
 160/160 HTTP 200 без concurrent restore; 32/32 SQL-плани застосовують LIKE
 після сканування мовної пари. Причина попередніх 503 ще не доведена.
-Далі — bounded-prefix experiment на окремій копії та cache/contention probes; AT-16 відкрито.
+[Bounded-prefix prototype](docs/_assessments/2026-11-04-prefix-index/REPORT.md) на окремій
+копії 16 пар / 1 373 948 rows: 32/32 candidate index conditions, результати
+тотожні; synthetic seek/Unicode/64 KiB checks пройшли. Індекс 65.09 MiB,
+insert-sample WAL +29.1%; timings не є full-corpus/HTTP SLO.
+Далі — service migration/ReadPage integration та full-corpus storage/HTTP gates; AT-16 відкрито.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 
