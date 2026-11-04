@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"strconv"
+	"strings"
 
 	"github.com/jackc/pgx/v5"
 	"github.com/valpere/slovnyk/internal/normalization"
@@ -35,6 +36,11 @@ func ReadPage(ctx context.Context, c *pgx.Conn, f Filter, anchor int64, limit in
 	case normalization.Mask:
 		where += ` AND source_key LIKE $4 ESCAPE '\'`
 		args = append(args, f.Query.Pattern)
+		if prefix, ok := prefixPattern(f.Query.Pattern); ok {
+			// Keep the full predicate: truncation can admit unrelated suffixes.
+			where += ` AND (left(source_key,64) COLLATE "C") LIKE $5 ESCAPE '\'`
+			args = append(args, prefix)
+		}
 	default:
 		return false, ErrConfig
 	}
@@ -78,4 +84,38 @@ func ReadPage(ctx context.Context, c *pgx.Conn, f Filter, anchor int64, limit in
 		return false, ErrUnavailable
 	}
 	return false, nil
+}
+
+// prefixPattern extracts at most 64 literal Unicode codepoints from a compiled
+// LIKE pattern. Its width must match migration 4. Leading wildcards retain the
+// pair scan; escaped SQL metacharacters remain literals in the prefilter.
+func prefixPattern(pattern string) (string, bool) {
+	prefix := make([]rune, 0, 64)
+	escaped := false
+	for _, r := range pattern {
+		if !escaped && r == '\\' {
+			escaped = true
+			continue
+		}
+		if !escaped && (r == '%' || r == '_') {
+			break
+		}
+		prefix = append(prefix, r)
+		escaped = false
+		if len(prefix) == 64 {
+			break
+		}
+	}
+	if len(prefix) == 0 || escaped {
+		return "", false
+	}
+	var b strings.Builder
+	for _, r := range prefix {
+		if r == '%' || r == '_' || r == '\\' {
+			b.WriteByte('\\')
+		}
+		b.WriteRune(r)
+	}
+	b.WriteByte('%')
+	return b.String(), true
 }

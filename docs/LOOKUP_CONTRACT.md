@@ -165,8 +165,13 @@ lookup, не 2 s на кожен SQL; cancellation доходить до дра�
 ## Індекси й перевірки
 
 Exact: bounded key_hash index + residual equality source_key; normalized collisions
-не зливають raw variants. Mask може сканувати pair під deadline; швидкість infix
-не обіцяється без вимірювання. План та memory/sort budget перевірити у rehearsal.
+не зливають raw variants. Schema 4 додає index
+`(dataset_id,source_locale,target_locale,(left(source_key,64) COLLATE "C"))`.
+Mask із непорожнім буквальним префіксом використовує LIKE prefilter над першими
+64 Unicode codepoints; повний LIKE, C order, anchor validation і seek лишаються
+обов'язковими. SQL `%`, `_`, `\` у literals повторно екрануються. Exact не змінено;
+leading wildcard може сканувати pair під deadline. Швидкість infix не обіцяється
+без вимірювання. Full-corpus план та memory/sort budget перевірити у rehearsal.
 
 AT-02/03/04/05/15/16 доповнюються fixtures: fold expansions, composed/decomposed,
 ZWJ, automatic mode detection, explicit exact override, literal SQL metacharacters, edge spaces, long fields, byte-limited pages,

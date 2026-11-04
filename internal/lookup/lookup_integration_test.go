@@ -439,3 +439,42 @@ func TestWholeLookupDeadlineAndRecovery(t *testing.T) {
 		t.Fatal("query after timeout failed")
 	}
 }
+
+func TestBoundedPrefixSignedPages(t *testing.T) {
+	root := scratch(t)
+	prefix := strings.Repeat("é", 64)
+	tuples := []importdata.Tuple{
+		{"en-us", "uk-ua", prefix + "apple", "A"},
+		{"en-us", "uk-ua", prefix + "apple", "B"},
+		{"en-us", "uk-ua", prefix + "apricot", "C"},
+		{"en-us", "uk-ua", prefix + "banana", "D"},
+		{"en-us", "uk-ua", "İstanbul", "E"},
+		{"en-us", "uk-ua", "i\u0307sland", "F"},
+		{"en-us", "uk-ua", "iXland", "G"},
+	}
+	id := candidate(t, root, "prefix-pages", tuples)
+	publish(t, id, root)
+	service, _ := New(signer(t))
+	c := db(t, "slovnyk_http")
+	for _, tc := range []struct {
+		q    string
+		mode normalization.Mode
+		want []string
+	}{
+		{prefix + "ap*", normalization.Auto, []string{"A", "B", "C"}},
+		{prefix + "apple", normalization.Exact, []string{"A", "B"}},
+		{"İs*", normalization.Auto, []string{"F", "E"}},
+		{"*banana", normalization.Auto, []string{"D"}},
+	} {
+		for _, limit := range []int{1, 2} {
+			got := collect(t, service, c, Request{From: "en-us", To: "uk-ua", Q: tc.q, Mode: tc.mode, Limit: limit})
+			targets := []string{}
+			for _, v := range got {
+				targets = append(targets, v.TargetText)
+			}
+			if !reflect.DeepEqual(targets, tc.want) {
+				t.Fatalf("query %q limit %d: got %v want %v", tc.q, limit, targets, tc.want)
+			}
+		}
+	}
+}

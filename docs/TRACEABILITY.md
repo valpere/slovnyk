@@ -760,3 +760,21 @@ Index 68 247 552 bytes, insert-sample WAL median +29.1%; write timings noisy.
 Production migration/ReadPage, full-corpus storage/index/restore, cache/contention
 та server/SLO gates відкриті. Причину старих HTTP503 не доведено; AT-16 відкрито.
 [Validation/self-review](_assessments/2026-11-04-prefix-index/validation.json).
+
+## Bounded-prefix service integration — 2026-11-04
+
+[Scope/self-review](_assessments/2026-11-04-prefix-service/REPORT.md).
+Schema 4 та production `ReadPage` prefilter реалізовано; FR-03/AT-03,
+FR-04/AT-04 і AT-16 отримали synthetic regression evidence, без закриття SLO.
+
+| Перевірка | Реальний test path / результат |
+|---|---|
+| Literal prefix, Unicode width 64, escaping | `internal/storage/postgres/page_test.go: TestPrefixPattern` — PASS |
+| Full LIKE equivalence, C seek, suffix anchor rejection | `internal/storage/postgres/prefix_integration_test.go: TestPrefixReadPageMatchesFullLike` — PASS; 17 masks × limits 1/2/50 |
+| Schema 3→4, idempotence, ready data, 64 KiB raw / 96 KiB key | `internal/storage/postgres/prefix_integration_test.go: TestPrefixUpgradePreservesReadyData` — PASS; selective expression Index Cond eligibility, не performance acceptance |
+| Import/verify/publish, signed cursor, split group, exact/fallback | `internal/lookup/lookup_integration_test.go: TestBoundedPrefixSignedPages` — PASS; limits 1/2 |
+| Fresh/V1 upgrade, restricted roles, full lifecycle/restore | `make test-integration` — PASS на disposable PostgreSQL 17.11 |
+
+`make check test test-race test-smoke` — PASS. Retained corpus/backup/restored
+DB schema 3 не змінена; повні index/build/storage/restore і HTTP/cache/contention
+перевірки лишаються окремим наступним етапом. AT-16 відкрито.

@@ -273,7 +273,9 @@ positive exact/prefix queries не закривають SLO.
 [Bounded-prefix prototype](_assessments/2026-11-04-prefix-index/REPORT.md) пройшов
 на копії 16 пар: 32/32 candidate index conditions, тотожні результати,
 synthetic seek/Unicode/64 KiB checks; index 65.09 MiB, insert-sample WAL +29.1%.
-Далі — service migration й ReadPage prefilter з integration tests; окремо
+Service migration 4 і ReadPage prefilter додано з synthetic integration tests:
+Unicode/escaping/64-codepoint collisions, C seek, signed cursors, ready-data upgrade.
+Збережені corpus/backup/restore БД не оновлено. Далі —
 full-corpus index/storage/build/restore, HTTP/cache/contention probes,
 розширений workload, storage/capacity
 та off-host/target-server restore gates;

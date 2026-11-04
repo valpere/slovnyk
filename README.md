@@ -103,7 +103,13 @@ unset SLOVNYK_MIGRATION_DSN
 локального середовища. Міграційний login повинен володіти новою схемою і мати
 `CREATEROLE` для першого створення груп. Міграції з [migrations/](migrations/)
 вбудовані в binary, виконуються атомарно під advisory lock і перевіряють SHA-256
-історії; застосовані SQL не редагувати. Ліміт команди — 45 s.
+історії; застосовані SQL не редагувати. Ліміт команди — 31 min; звичайні SQL
+мають statement timeout 30 s, побудова індексу schema 4 — 30 min, lock wait — 5 s.
+Schema 4 додає bounded prefix index без зміни даних. Перед оновленням зупиніть
+import/інших writers: транзакційний `CREATE INDEX` блокує записи, звичайні читання
+доступні. На великій БД заздалегідь перевірте місце для index/build/WAL; timeout
+відкочує всю міграцію. Після upgrade виконайте owner `ANALYZE slovnyk.translations`
+перед перевіркою планів і навантаження. HTTP не запускає міграцій і зберігає DB deadline 2 s.
 
 Схема `slovnyk` має групи `slovnyk_http` і `slovnyk_operator` без LOGIN/паролів.
 HTTP читає лише runtime tables; оператор імпортує/публікує, але не змінює DDL
@@ -370,8 +376,9 @@ retained dataset і має noindex. Cookies/Accept-Language не змінюют�
 Canonical використовує `https://slovnyk.org`, UI визначається source code з
 fallback en. Ручний вибір UI зі статті веде на головну сторінку.
 
-Після оновлення binary виконайте `migrate`: schema 2 додає expression index, schema 3 — реєстр sitemap. V1 manifest/raw
-data не змінюються. Поточний binary вимагає schema 3; HTTP не мігрує автоматично.
+Перед запуском оновленого HTTP binary виконайте `migrate`: schema 2 додає
+expression index, schema 3 — реєстр sitemap, schema 4 — префіксний індекс. V1 manifest/raw
+data не змінюються. Поточний binary вимагає schema 4; HTTP не мігрує автоматично.
 `/robots.txt` дозволяє crawling, `/search` залишається noindex. Додатковий
 host `slovnyk.org.ua` отримує 308 на fixed primary origin зі збереженням path
 і query. Налаштування TLS/edge перевіряються при deployment.
@@ -476,7 +483,11 @@ Production, crawler/search SLO та off-host restore залишаються ві
 копії 16 пар / 1 373 948 rows: 32/32 candidate index conditions, результати
 тотожні; synthetic seek/Unicode/64 KiB checks пройшли. Індекс 65.09 MiB,
 insert-sample WAL +29.1%; timings не є full-corpus/HTTP SLO.
-Далі — service migration/ReadPage integration та full-corpus storage/HTTP gates; AT-16 відкрито.
+Schema 4 і `ReadPage` prefilter реалізовані: перші 64 Unicode codepoints
+буквального префікса плюс повний LIKE recheck; exact і leading wildcard зберігають
+попередній шлях. Synthetic tests не доводять full-corpus/HTTP SLO.
+Далі — full-corpus index/build/storage/restore та HTTP/cache/contention gates;
+AT-16 відкрито. Збережені corpus/backup/restore БД ще мають schema 3.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 

@@ -904,3 +904,21 @@ LIKE recheck: 32/32 candidate plans мають prefix Index Cond, ordered рез
 Exact і leading-wildcard fallback мають зберегти поведінку. Старі 503 та AT-16
 не закриті. Source state, legacy/Oracle й backup/restored copies незмінні;
 власні containers/network/source LOGIN прибрані, experiment DB збережена.
+
+## Bounded-prefix service implementation — 2026-11-04
+
+Після prototype додано [service implementation/self-review](_assessments/2026-11-04-prefix-service/REPORT.md):
+migration 4 та `ReadPage` prefilter над 64 Unicode codepoints із full LIKE recheck.
+Raw/normalized data, normalization version, exact, C seek і signed cursor contract
+не змінюються; leading wildcard зберігає pair scan. Synthetic tests пройшли.
+
+Міграція лишається явною owner operation в одній транзакції: index build має
+statement timeout 30 min і CLI budget 31 min замість колишніх 45 s; lock wait
+5 s, звичайні SQL 30 s, HTTP deadline 2 s. Це maintenance із зупиненими writers,
+не online/concurrent build. Timeout не є обіцянкою full-corpus build time.
+Перед HTTP startup/upgrade зі schema 3 потрібна schema 4; старі backup спочатку
+відновлюються й перевіряються сумісним release, потім мігруються owner-командою.
+
+Retained corpus/backup/restore БД не оновлено. Наступні gates — full-corpus index
+size/build/storage/WAL та restore, HTTP/cache/contention, target capacity.
+AT-16 і причину старих 503 не закрито. Нових продуктових погоджень не додано.

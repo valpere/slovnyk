@@ -41,7 +41,7 @@ func run(ctx context.Context, args []string, getenv func(string) string, output 
 			logger.Error("SLOVNYK_MIGRATION_DSN is required", "event", "invalid_config")
 			return 2
 		}
-		ctx, cancel := context.WithTimeout(ctx, 45*time.Second)
+		ctx, cancel := context.WithTimeout(ctx, 31*time.Minute)
 		defer cancel()
 		conn, err := postgres.Connect(ctx, getenv("SLOVNYK_MIGRATION_DSN"))
 		if err != nil {

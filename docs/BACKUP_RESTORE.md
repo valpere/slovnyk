@@ -53,6 +53,10 @@ FR-13 / AT-13, без користувацького запису. Production т
    grantee roles restore має завершитися помилкою; не обходити її через `--no-acl`,
    інакше робочі privileges не відновляться. Після усунення причини повторити
    restore й перевірити відсутність часткової schema після невдалого запуску.
+   Для переходу зі старого release спочатку перевірте restore тим самим release;
+   перед запуском поточного binary виконайте owner `migrate` до schema 4 за
+   [процедурою](../README.md#міграції-нової-бд). Schema 3 backup не містить
+   нового prefix index; його побудова потребує окремого часу, місця та зупинки writers.
 4. Після успішного restore оновити planner statistics через `ANALYZE` на
    відновленій БД до HTTP-приймання; це рекомендує
    [PostgreSQL 17](https://www.postgresql.org/docs/17/app-pgrestore.html#APP-PGRESTORE-NOTES).
