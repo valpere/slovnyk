@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/healthz",
+    "status": 200,
+    "body_bytes": 16
+  },
+  {
+    "path": "/readyz",
+    "status": 503,
+    "body_bytes": 58
+  },
+  {
+    "path": "/sitemap.xml",
+    "status": 503,
+    "body_bytes": 20
+  }
+]

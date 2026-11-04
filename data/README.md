@@ -113,3 +113,19 @@ active null/generation 0. Gaps збережені з явним погоджен
 [Evidence](../docs/_assessments/2026-11-04-corpus-verification/REPORT.md).
 Власні container/network прибрані; DB, snapshot і referenced artifacts збережені.
 Не видаляйте artifacts разом із `tmp/`; це локальний результат, не off-host backup.
+
+## Повний sitemap та локальний HTTP
+
+`experiments/corpus-sitemaps-2026-11-04/` зберігає metadata generation/retry,
+XML validation, publication та HTTP checks. Sitemap artifacts додані в
+**той самий** `experiments/corpus-verification-2026-11-04-retry/artifacts/`;
+новий порожній root не замінює retained exports/report. 736 XML shards
+містять 36 763 066 URL, додатково 3.835 GiB плюс index/JSON report.
+[Evidence](../docs/_assessments/2026-11-04-corpus-sitemaps/REPORT.md).
+
+Та сама `.pgdata/` тепер active на ready dataset, **generation 1** після
+локальної publication. Усі shards/992 downloads перевірені через HTTP;
+власні containers/network і тимчасовий HTTP LOGIN прибрані.
+Private HTTP env/credentials лишаються поза Git; для продовження створіть
+окремий restricted LOGIN, не використовуйте видалений. DB/snapshot/artifacts
+збережені, це не off-host backup або production deployment.

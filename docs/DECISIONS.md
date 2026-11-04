@@ -823,3 +823,19 @@ publication і sitemap не виконувалися. Known gaps та рішен
 Власні container/network прибрані, bind DB/artifacts збережені; Oracle і legacy
 не задіяні. Далі — локальний sitemap/HTTP rehearsal; production storage,
 capacity та off-host restore залишаються окремими gates.
+
+## Повний локальний sitemap/HTTP rehearsal — 2026-11-04
+
+Продовжено після merge PR20, без нового import або зміни approval scope.
+Actual sitemap: 36 763 066 URL / 736 shards, generation/retry exit 0 та
+побайтово однаковий inventory. Повна потокова XML validation пройшла.
+Actual local CAS publish: active dataset `96541c0b-ac71-4e38-b57c-b593e82ac9d5`,
+generation 1, один event. Counters, retained report і owner receipt незмінні.
+HTTP під restricted LOGIN/read-only mounts: усі shards/992 exports звірені,
+sample pages/search/redirect і restart пройшли.
+[Evidence](_assessments/2026-11-04-corpus-sitemaps/REPORT.md). Власні containers/network/тимчасовий LOGIN прибрані,
+DB та referenced artifacts збережені. Це локальна репетиція, не запуск доменів.
+
+Нових продуктових погоджень не вводили. Далі — змішане crawler/search
+навантаження й окремі storage/server та full-corpus restore gates. Oracle
+Micro залишається недоторканим; production/SLO та мовне/дизайн приймання відкриті.

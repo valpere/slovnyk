@@ -70,7 +70,8 @@ HTTP sitemap discovery та schema 3 inventory реалізовано локал
 Клавіатурний перехід до вмісту й окремі language/direction annotations
 перевірено через наявний Chromium без page JS,
 [звіт](_assessments/2026-10-25-multilingual-accessibility/REPORT.md).
-Повний corpus/crawl acceptance та production-міграція ще попереду.
+Повний локальний sitemap/HTTP rehearsal описано нижче; crawler capacity
+та production-міграція ще попереду.
 M1-08 synthetic наскрізне CLI/HTTP відтворення реалізовано:
 [звіт](_assessments/2026-10-25-service-lifecycle/REPORT.md),
 [команди](../README.md#наскрізне-відтворення-на-порожній-бд).
@@ -99,8 +100,13 @@ digests перших 55 000; active dataset порожній. Це частин�
 [Source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
 та [повний verify/exports](_assessments/2026-11-04-corpus-verification/REPORT.md) пройшли 2026-11-04:
 992 CSV4.gz exports, 56 455 068 записів; retained export revalidation пройшла.
-Dataset `ready`, active null/generation 0. [Погодження власника](DECISIONS.md#owner-approval-2026-11-04)
-збережено в report; known gaps лишаються видимими. Publication та production acceptance відкриті.
+Dataset перейшов у `ready`. [Погодження власника](DECISIONS.md#owner-approval-2026-11-04)
+збережено в report; known gaps лишаються видимими.
+Наступний [локальний sitemap/HTTP rehearsal](_assessments/2026-11-04-corpus-sitemaps/REPORT.md)
+створив 36 763 066 URL у 736 shards; retry побайтово тотожний. Усі XML
+перевірені; усі shards і 992 exports звірені через HTTP, sample
+word/search/redirect та restart пройшли. Локальна publication: generation 1.
+Production, crawler/search SLO та full-corpus off-host restore відкриті.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.

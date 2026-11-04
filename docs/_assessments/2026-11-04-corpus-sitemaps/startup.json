@@ -1,0 +1,11 @@
+{
+  "utc": "2026-11-04T11:51:41.465193+00:00",
+  "project": "slovnyk-corpus-20261025",
+  "image": "postgres:17.11-alpine@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+  "memory_bytes": 8589934592,
+  "nano_cpus": 1000000000,
+  "temp_file_limit_per_process": "20GB",
+  "loopback_only": true,
+  "reused_database_bind": true,
+  "new_import": false
+}

@@ -68,8 +68,11 @@ Known gaps збережені; ця звірка не є погодженням 
 [локальний full verify](_assessments/2026-11-04-corpus-verification/REPORT.md) повторив
 звірку й створив 992 CSV4.gz exports для 56 455 068 записів. Окремий
 `dataset export` повторно перевірив retained report, hashes та CSV round-trip
-усіх пар. Dataset `ready`, active null/generation 0; gaps і receipt збережені.
-Це не production publication, HTTP/crawl acceptance або off-host restore.
+усіх пар. Dataset перейшов у `ready`; gaps і receipt збережені.
+Наступний [локальний sitemap/HTTP rehearsal](_assessments/2026-11-04-corpus-sitemaps/REPORT.md)
+створив 36 763 066 URL у 736 shards, перевірив усі XML і HTTP hashes
+усіх shards/992 downloads, sample pages/search та restart. Локальна publication
+дала active dataset/generation 1. Це не production/crawl acceptance або off-host restore.
 
 DB/indexes одного dataset — 64.315 GiB, WAL окремо 1 GiB. Такий layout не
 поміщається на root ~45 GiB за профілем Oracle 2026-10-23; нового probe не було.

@@ -667,3 +667,21 @@ export rows кожної пари — з manifest/reconciliation. Окремий
 Перша спроба перервалася при зупинці PostgreSQL; успіх належить повторному run.
 AT-06–11/18 покриті частково: full-corpus publication, HTTP/crawl,
 semantic quality, server capacity та off-host RTO не підтверджені.
+
+## FR-14/08 subset — повний локальний sitemap/HTTP, 2026-11-04
+
+Actual `dataset sitemap` на retained ready corpus: 36 763 066 URL, 736 shards,
+один index; retry stdout побайтово тотожний. Окремий потоковий validator
+прочитав усі XML: hashes/bytes, namespace, canonical URL shape, strict global
+ID order, index links і protocol limits.
+Actual CAS publish generation 0 → 1; source counters/report/import runs незмінні.
+Ізольований HTTP LOGIN/read-only container: hashes/bytes усіх 736 shards
+і 992 downloads, index HEAD/304/Range, три word canonicals, один exact/mask
+sample, alias redirect; після process restart ті самі word/index hashes.
+[Evidence](_assessments/2026-11-04-corpus-sitemaps/REPORT.md), [assertions](_assessments/2026-11-04-corpus-sitemaps/assertions.json).
+
+Це локальна publication і часткове AT-19/08/17; не повний crawl HTML pages,
+concurrency/SLO, production inventory/storage gate або off-host restore.
+DB profile 1 CPU/8 GiB, HTTP 1 CPU/512 MiB; Oracle не задіяний.
+`make check test` пройшов; application source незмінний. Деталі checks/review
+збережені у [validation](_assessments/2026-11-04-corpus-sitemaps/validation.json).

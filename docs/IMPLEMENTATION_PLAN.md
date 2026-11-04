@@ -246,8 +246,11 @@ counts збігаються з audit; checkpoints узгоджені, prefix 55 
 [Повний source/normalization reconciliation](_assessments/2026-11-04-corpus-reconciliation/REPORT.md)
 та [verify/exports](_assessments/2026-11-04-corpus-verification/REPORT.md) пройшли 2026-11-04:
 992 exports для 56 455 068 записів, повторне читання retained report/CSV успішне.
-Dataset `ready`, active null/generation 0; known gaps і receipt збережені.
-Publication та resource acceptance залишаються відкритими.
+Dataset перейшов у `ready`; known gaps і receipt збережені.
+[Локальний sitemap/HTTP rehearsal](_assessments/2026-11-04-corpus-sitemaps/REPORT.md) пройшов:
+36 763 066 URL / 736 shards, deterministic retry, повна XML validation,
+HTTP hashes усіх shards/992 downloads, sample word/search/redirect і restart.
+Локальна publication дала generation 1; production/resource acceptance відкриті.
 Adapter `--loss-approval` для known gaps реалізовано; exceptions не підтримані.
 Не прибирати gaps із manifest для обходу guard. DB/indexes 64.315 GiB не
 поміщаються на root ~45 GiB за профілем Oracle 2026-10-23; остаточний storage
@@ -258,8 +261,9 @@ Adapter `--loss-approval` для known gaps реалізовано; exceptions �
 [Synthetic evidence](_assessments/2026-10-27-dataset-reconciliation/REPORT.md).
 Повний corpus reconciliation пройшов 2026-11-04. [Звіт](LOSS_REVIEW.md)
 погоджено власником 2026-11-04; verify/exports із receipt завершено.
-Далі — локальна перевірка sitemap/HTTP на повному корпусі та окремі
-storage/capacity/restore gates; adapter не дозволяє exceptions/rejected records.
+Локальна перевірка sitemap/HTTP на повному корпусі також пройшла. Далі —
+змішане crawler/search навантаження та storage/capacity/restore gates;
+adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata
 не є обов’язковими задачами першого релізу.
 M3: capacity/SLO, backup/restore rehearsal, production configuration, cutover/rollback.

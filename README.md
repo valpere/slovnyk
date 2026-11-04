@@ -433,7 +433,7 @@ snapshot. [Фактичний corpus inventory та межі](docs/_assessments/
 0 rejected. Кількості у кожному файлі збігаються з попереднім аудитом.
 [Команда, metadata-only результати й межі](docs/_assessments/2026-10-25-go-corpus-inspect/REPORT.md).
 Inspect перевіряє input streams без БД; staged PostgreSQL import описано нижче.
-Повні source/normalization reconciliation та exports описано нижче; publication ще попереду.
+Повні source/normalization reconciliation, exports і локальна publication описані нижче.
 
 Локальний [PostgreSQL preflight](docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md)
 перевірив обмежений import/retry того самого manifest: 114 000 committed records,
@@ -453,8 +453,12 @@ accepted unique, 0 duplicates/rejected/issues. Actual ledger/origins/translation
 992 files, 56 455 068 unique, per-file counts збігаються з audit/import.
 [Повний verify із погодженням](docs/_assessments/2026-11-04-corpus-verification/REPORT.md)
 створив 992 CSV4.gz exports для 56 455 068 записів. Повторний `dataset export`
-перевірив retained report і всі файли. Dataset `ready`, active null/generation 0;
-publication не виконано.
+перевірив retained report і всі файли. Dataset перейшов у `ready`.
+Наступний [локальний sitemap/HTTP rehearsal](docs/_assessments/2026-11-04-corpus-sitemaps/REPORT.md)
+створив 36 763 066 URL у 736 shards; повторна генерація побайтово тотожна.
+Перевірено всі XML, усі 736 shards і 992 downloads через HTTP, sample
+word/search та restart. Локальна publication: active dataset/generation 1.
+Production, crawler/search SLO та full-corpus restore залишаються відкритими.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 

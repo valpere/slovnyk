@@ -99,8 +99,12 @@ CLI JSON повертає ці поля й `report` ref. Exit 0 — повний
 можливі unreferenced fragments; повторіть команду. Після durable files команда транзакційно реєструє inventory у БД; auto-delete немає.
 
 Go тримає поточний hash, write buffer та bounded inventory shards, без списку
-всіх URL. DISTINCT/ORDER BY можуть вимагати PostgreSQL sort/spill; повний корпус,
-DB RAM/temp disk, час та загальний disk cost ще не виміряно. Команда підтримує
+всіх URL. DISTINCT/ORDER BY можуть вимагати PostgreSQL sort/spill;
+потреби DB RAM/temp disk і час залежать від профілю. У локальному
+[full-corpus rehearsal](_assessments/2026-11-04-corpus-sitemaps/REPORT.md)
+отримано 36 763 066 URL / 736 shards: 324.345 s generation, 343.579 s retry,
+4 117 544 352 shard bytes плюс index/report; результати побайтово однакові.
+DB profile — 1 CPU / 8 GiB; CLI поза cgroup, peak live temp не виміряно. Команда підтримує
 скасування через SIGINT/SIGTERM; фіксованого total execution deadline немає.
 
 ## HTTP sitemap discovery
@@ -146,8 +150,12 @@ retained DB inventory та files зберігаються для stable shard UR
 
 ## Наступна робота
 
-- Full-corpus rehearsal sitemap generation/discovery та release checks готовності
-  inventory; capacity/readiness hash cost на повному corpus ще не виміряно.
+Локальний [full-corpus rehearsal](_assessments/2026-11-04-corpus-sitemaps/REPORT.md)
+перевірив усі XML, HTTP hashes усіх 736 shards/992 exports, sample canonicals
+та process restart. Виміри readiness — час очікування з background polling,
+не чистий hash benchmark.
+
+- Перевірити inventory release gate і server capacity у цільовому середовищі.
 - Виміряти навантаження роботів разом із пошуком. Бюджет індексації не
   випливає з оцінки користувацького піку 10 запитів/с. Правила кешування,
   обмеження частоти та витрати RAM/диска ще не визначені.
@@ -159,8 +167,9 @@ Crawler budgets та release-політика обов’язкового invent
 
 Склад сторінки погоджено: переклади лише однією обраною мовою. M1 визначає
 stable URL, raw identity, active/retained behavior, canonical та continuation.
-Потрібні full-corpus rehearsal, ресурсний budget індексу й
-crawling, фінальні мовне/дизайн/accessibility приймання та deployment redirects.
+Потрібні production resource budget індексу й crawling,
+фінальні мовне/дизайн/accessibility приймання та deployment redirects.
+Локальний full-corpus sitemap/HTTP rehearsal не є crawl усіх HTML pages.
 Поточний `/search` залишається пошуком в одній напрямленій парі; його
 поведінка цим документом не змінюється.
 

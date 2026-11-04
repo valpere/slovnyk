@@ -1,0 +1,29 @@
+{
+  "utc": "2026-11-04T12:08:56.033432+00:00",
+  "own_http_and_db_containers_and_network_removed": true,
+  "temporary_http_role_removed": true,
+  "database_bind_preserved": true,
+  "directory_before": {
+    "device": 66306,
+    "inode": 8939881,
+    "mode": "0o700",
+    "uid": 70,
+    "gid": 1000
+  },
+  "directory_after": {
+    "device": 66306,
+    "inode": 8939881,
+    "mode": "0o700",
+    "uid": 70,
+    "gid": 1000
+  },
+  "retained_files_present": [
+    "data/experiments/provenance-compact/model.sqlite3",
+    "data/experiments/sqlite-full/corpus.sqlite3",
+    "data/experiments/provenance/model.sqlite3",
+    "data/experiments/csv-manifest-2026-10-25/manifest.json"
+  ],
+  "referenced_artifacts_preserved": true,
+  "local_active_generation": 1,
+  "oracle_or_legacy_actions": false
+}
