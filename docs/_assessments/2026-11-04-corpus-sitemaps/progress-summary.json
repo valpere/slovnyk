@@ -1,0 +1,20 @@
+{
+  "generation": {
+    "samples": 32,
+    "nominal_poll_seconds": 10,
+    "minimum_sampled_free_bytes": 189699682304,
+    "maximum_sampled_database_bytes": 69058795187,
+    "cumulative_pg_temp_bytes_first": 29162321753,
+    "cumulative_pg_temp_bytes_last_sample": 29162321753,
+    "limits_triggered": false
+  },
+  "retry": {
+    "samples": 34,
+    "nominal_poll_seconds": 10,
+    "minimum_sampled_free_bytes": 188628402176,
+    "maximum_sampled_database_bytes": 69058999987,
+    "cumulative_pg_temp_bytes_first": 33557174105,
+    "cumulative_pg_temp_bytes_last_sample": 33557174105,
+    "limits_triggered": false
+  }
+}

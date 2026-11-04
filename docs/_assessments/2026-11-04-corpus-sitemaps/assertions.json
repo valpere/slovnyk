@@ -1,0 +1,11 @@
+{
+  "generation_exit_zero": true,
+  "retry_exit_zero": true,
+  "retry_stdout_equals_generation": true,
+  "all_xml_validated": true,
+  "all_shards_and_exports_http_validated": true,
+  "local_publication_generation": 1,
+  "source_counters_report_and_import_runs_unchanged": true,
+  "own_resources_removed": true,
+  "production_or_oracle_acceptance": false
+}

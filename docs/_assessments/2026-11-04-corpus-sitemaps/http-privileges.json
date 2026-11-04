@@ -1,0 +1,14 @@
+{
+  "create_db": false,
+  "superuser": false,
+  "bypass_rls": false,
+  "create_role": false,
+  "http_member": true,
+  "replication": false,
+  "operator_member": false,
+  "can_create_schema": false,
+  "can_insert_inventory": false,
+  "can_register_sitemap": false,
+  "can_select_translations": true,
+  "can_update_translations": false
+}

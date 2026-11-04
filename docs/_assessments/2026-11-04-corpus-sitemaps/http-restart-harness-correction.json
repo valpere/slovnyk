@@ -1,0 +1,9 @@
+{
+  "previous_address": "127.0.0.1:32771",
+  "first_restart_address": "127.0.0.1:32772",
+  "initial_check_interrupted": true,
+  "cause": "Docker reassigned ephemeral published host port on restart; harness retained old address",
+  "product_change": false,
+  "prior_completed_http_checks_retained": true,
+  "repeat_restart_for_valid_readiness_measurement": true
+}

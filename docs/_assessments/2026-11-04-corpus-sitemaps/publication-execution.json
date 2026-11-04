@@ -1,0 +1,16 @@
+{
+  "command": [
+    "bin/slovnyk",
+    "dataset",
+    "publish",
+    "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+    "--artifacts",
+    "data/experiments/corpus-verification-2026-11-04-retry/artifacts",
+    "--expected-generation",
+    "0",
+    "--operator-ref",
+    "local-full-corpus-http-rehearsal"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 33.624
+}
