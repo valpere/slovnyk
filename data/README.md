@@ -68,14 +68,14 @@ manifest, стан `loading`, active null, 0 complete files. Prefix 55 000 recor
 зберіг counts/digests після retry. [Evidence](../docs/_assessments/2026-10-25-postgres-corpus-preflight/REPORT.md).
 
 Ці числа описують historical preflight checkpoint; після повного import
-та сама `.pgdata/` містить 56 455 068 records у стані `validating` (див. нижче).
+та сама `.pgdata/` містить 56 455 068 records; після verify стан `ready` (див. нижче).
 Власні container/network прибрані; bind data і credentials залишені для
 продовження. Не видаляйте/не копіюйте live pgdata й не перезаписуйте результати.
 Для повторного запуску container потрібні той самий image, project/config та
 локальні credentials. Перерваний import відновлюють тією самою command/environment;
 завершений import не потрібно повторювати для наступних verification кроків.
 Credentials, pgdata та raw dictionary contents не входять у Git.
-Це не готовий dataset або backup; estimate місця з однієї пари не є capacity gate.
+Preflight сам не створив ready dataset або backup; estimate з однієї пари не є capacity gate.
 
 ## Повний PostgreSQL corpus import
 
@@ -101,3 +101,15 @@ live updates; базовий Compose знову задає 512 MiB. Ресурс
 повторний full replay, report та metadata. [Evidence](../docs/_assessments/2026-11-04-corpus-reconciliation/REPORT.md).
 БД та snapshot ті самі, dataset validating/active null; known gaps незакриті.
 Власні container/network прибрані, bind DB збережено.
+
+## Повний verify та exports
+
+`experiments/corpus-verification-2026-11-04/` зберігає перервану спробу;
+`experiments/corpus-verification-2026-11-04-retry/` — успішний full verify,
+owner receipt, progress/report metadata та immutable `artifacts/`.
+992 CSV4.gz exports містять 56 455 068 записів; окремий `dataset export`
+повторно перевірив усі файли й retained report. Та сама bind DB тепер `ready`,
+active null/generation 0. Gaps збережені з явним погодженням власника.
+[Evidence](../docs/_assessments/2026-11-04-corpus-verification/REPORT.md).
+Власні container/network прибрані; DB, snapshot і referenced artifacts збережені.
+Не видаляйте artifacts разом із `tmp/`; це локальний результат, не off-host backup.

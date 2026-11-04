@@ -2,7 +2,9 @@
 
 ## Рішення, яке потрібне від власника
 
-**Статус: очікує погодження.** Дозволити перший запуск без історичних
+**Статус: погоджено власником 2026-11-04.** [Рішення](DECISIONS.md#owner-approval-2026-11-04),
+[receipt](_assessments/2026-11-04-corpus-verification/owner-approval.json).
+Дозволено перший запуск без історичних
 `count/status/queries`, відсутніх у доступному CSV4 snapshot. Це конкретне
 погодження обмежень джерела; словникові записи не пропонується виключати.
 Загальне рішення 2026-10-23 та успішна звірка не замінюють цього погодження.
@@ -17,7 +19,9 @@
 - 992 complete/checksum-verified CSV.gz; 56 455 068 parsed = unique,
   0 duplicates/rejected, exceptions порожні. Raw tuples, normalized keys,
   ledger/origins та inventory звірені з PostgreSQL.
-- State `validating`, active null; exports/ready/publication не виконувалися.
+- На момент reconciliation: `validating`, active null; exports/ready/publication не виконувалися.
+  Після погодження [повний verify](_assessments/2026-11-04-corpus-verification/REPORT.md)
+  створив 992 exports і перевів dataset у `ready`; active лишився null.
 
 Оригінальний known gap лишається в immutable manifest:
 
@@ -42,7 +46,8 @@
 Після явного рішення власника довірений оператор створює окремий JSON-файл
 за схемою нижче. **Шаблон не є погодженням**; placeholders потрібно замінити
 фактичними відомостями. `decision_ref` посилається на рішення власника щодо
-саме цього звіту й technical SHA-256. Файл не створюється автоматично агентом.
+саме цього звіту й technical SHA-256. Receipt створюється лише після цього
+явного рішення; агент не надає погодження від свого імені.
 
 ```json
 {

@@ -1,0 +1,30 @@
+{
+  "utc": "2026-11-04T10:36:45.702199+00:00",
+  "revision": "a8577c02f49ab646e319e3d812ac7322cb94ff75",
+  "binary_sha256": "d874b3a906021a320c36d3b0ef1a7233e03625fb617f4f77638b01779266e629",
+  "manifest_sha256": "ce4227513bfcc36afafaef1834c8cb76a10e03ab5dbd66085c2e633daa150e01",
+  "command": [
+    "bin/slovnyk",
+    "dataset",
+    "verify",
+    "96541c0b-ac71-4e38-b57c-b593e82ac9d5",
+    "--source",
+    "data/experiments/csv-manifest-2026-10-25/snapshot",
+    "--artifacts",
+    "data/experiments/corpus-verification-2026-11-04-retry/artifacts",
+    "--loss-approval",
+    "data/experiments/corpus-verification-2026-11-04-retry/owner-approval.json"
+  ],
+  "limits": {
+    "minimum_free_bytes": 32212254720,
+    "maximum_database_bytes": 91268055040,
+    "maximum_seconds": 86400
+  },
+  "server": {
+    "fsync": "on",
+    "version": "17.11",
+    "temp_file_limit": "20GB",
+    "full_page_writes": "on",
+    "synchronous_commit": "on"
+  }
+}
