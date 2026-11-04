@@ -469,7 +469,10 @@ Production, crawler/search SLO та off-host restore залишаються ві
 Це дослідницький результат, не production capacity acceptance.
 Окрема підготовча проба для [restore](docs/_assessments/2026-11-04-corpus-restore/REPORT.md)
 виявила 6/16 HTTP 503 для масок із `limit=1` близько 2 s (exact 16/16 успішні).
-Причину SQL/плану ще не встановлено; дослідження залишається відкритим.
+[Наступна діагностика](docs/_assessments/2026-11-04-mask-plans/REPORT.md):
+160/160 HTTP 200 без concurrent restore; 32/32 SQL-плани застосовують LIKE
+після сканування мовної пари. Причина попередніх 503 ще не доведена.
+Далі — bounded-prefix experiment на окремій копії та cache/contention probes; AT-16 відкрито.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.
 

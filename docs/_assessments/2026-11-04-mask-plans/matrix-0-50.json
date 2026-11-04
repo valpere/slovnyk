@@ -1,0 +1,93 @@
+{
+  "case": 0,
+  "completed": true,
+  "execution_ms": 43.929,
+  "label": "matrix-0-50",
+  "limit": 50,
+  "plan": {
+    "Actual Loops": 1,
+    "Actual Rows": 1,
+    "Actual Startup Time": 27.275,
+    "Actual Total Time": 32.826,
+    "Node Type": "Limit",
+    "Plan Rows": 14,
+    "Plan Width": 84,
+    "Plans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Actual Startup Time": 23.369,
+        "Actual Total Time": 28.92,
+        "Node Type": "Gather Merge",
+        "Parent Relationship": "Outer",
+        "Plan Rows": 14,
+        "Plan Width": 84,
+        "Plans": [
+          {
+            "Actual Loops": 3,
+            "Actual Rows": 0,
+            "Actual Startup Time": 14.131,
+            "Actual Total Time": 14.132,
+            "Node Type": "Sort",
+            "Parent Relationship": "Outer",
+            "Plan Rows": 7,
+            "Plan Width": 84,
+            "Plans": [
+              {
+                "Actual Loops": 3,
+                "Actual Rows": 0,
+                "Actual Startup Time": 14.044,
+                "Actual Total Time": 14.087,
+                "Index Name": "translations_exact",
+                "Node Type": "Index Scan",
+                "Parent Relationship": "Outer",
+                "Plan Rows": 7,
+                "Plan Width": 84,
+                "Relation Name": "translations",
+                "Rows Removed by Filter": 41609,
+                "Rows Removed by Index Recheck": 0,
+                "Scan Direction": "Forward",
+                "Shared Hit Blocks": 110140,
+                "Shared Read Blocks": 0,
+                "Startup Cost": 0.56,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Total Cost": 266886.73,
+                "filter_has_source_key_like": true,
+                "has_filter": true,
+                "has_index_condition": true,
+                "index_condition_has_source_key": false
+              }
+            ],
+            "Shared Hit Blocks": 110172,
+            "Shared Read Blocks": 0,
+            "Sort Method": "quicksort",
+            "Sort Space Type": "Memory",
+            "Sort Space Used": 25,
+            "Startup Cost": 266886.83,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Total Cost": 266886.85
+          }
+        ],
+        "Shared Hit Blocks": 110172,
+        "Shared Read Blocks": 0,
+        "Startup Cost": 267886.85,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Total Cost": 267888.49,
+        "Workers Launched": 2,
+        "Workers Planned": 2
+      }
+    ],
+    "Shared Hit Blocks": 110172,
+    "Shared Read Blocks": 0,
+    "Startup Cost": 267886.85,
+    "Temp Read Blocks": 0,
+    "Temp Written Blocks": 0,
+    "Total Cost": 267888.49
+  },
+  "planning_ms": 1.036,
+  "settings": {},
+  "wall_ms": 47.098
+}

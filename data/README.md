@@ -152,3 +152,15 @@ paths містять secrets або реальні дані: не публіку
 keyring; rehearsal key/LOGIN configuration лишаються приватно поряд. Це той самий
 host, не off-host backup; durability/escrow/RPO/retention ще не погоджені.
 Не прибирайте backup/restored copies без окремого рішення власника.
+
+
+## Prefix query-plan діагностика
+
+`experiments/mask-plans-2026-11-04/` зберігає metadata HTTP/EXPLAIN, state
+snapshots і lifecycle. [Evidence](../docs/_assessments/2026-11-04-mask-plans/REPORT.md).
+`private.json`, `*-http.env` та `*-plan-private.json` містять secrets або
+реальні filter literals; не публікувати. Вхідний workload лишився в попередньому
+`corpus-load-2026-11-04/workload-private.json`. One-off harness — `tmp/mask-plans/`.
+Тимчасовий diagnostic LOGIN і власні containers/network прибрані. Оригінальні
+DB/sources/artifacts та всі backup/restore copies збережені; схема незмінна.
+Для наступного запуску створіть свіжий restricted LOGIN і rediscover container ID.

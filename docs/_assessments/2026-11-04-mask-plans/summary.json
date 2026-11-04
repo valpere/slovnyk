@@ -1,0 +1,64 @@
+{
+  "local_only": true,
+  "concurrent_restore": false,
+  "os_cache_dropped": false,
+  "http_phases": {
+    "before": {
+      "requests": 64,
+      "status_200": 64,
+      "limit_order": [
+        1,
+        50
+      ],
+      "prefix_format": "plain",
+      "max_ms": {
+        "exact_1": 33.873,
+        "exact_50": 15.429,
+        "prefix_1": 655.117,
+        "prefix_50": 77.068
+      }
+    },
+    "reverse": {
+      "requests": 64,
+      "status_200": 64,
+      "limit_order": [
+        50,
+        1
+      ],
+      "prefix_format": "plain",
+      "max_ms": {
+        "exact_1": 15.379,
+        "exact_50": 15.513,
+        "prefix_1": 75.498,
+        "prefix_50": 92.704
+      }
+    },
+    "html": {
+      "requests": 32,
+      "status_200": 32,
+      "limit_order": [
+        1
+      ],
+      "prefix_format": "html",
+      "max_ms": {
+        "exact_1": 15.414,
+        "prefix_1": 90.42
+      }
+    }
+  },
+  "plans": {
+    "completed": 32,
+    "translations_exact_scans": 32,
+    "source_key_index_conditions": 0,
+    "source_key_like_postfilters": 32,
+    "max_rows_removed_by_filter": 179848,
+    "max_execution_ms": 74.412,
+    "max_execution_ms_by_limit": {
+      "1": 74.412,
+      "50": 59.398
+    },
+    "same_reported_rows_removed_for_both_limits_all_16_cases": true,
+    "gather_merge_plans": 4,
+    "parallel_rows_removed_are_rounded_per_loop_averages": true
+  }
+}

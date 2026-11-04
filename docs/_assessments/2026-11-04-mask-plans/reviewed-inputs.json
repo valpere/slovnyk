@@ -1,0 +1,238 @@
+{
+  "review_base_revision": "fd86a9bec15f7be701fed02fca01b2b96ea94091",
+  "review": "sequential self-review of local diff and listed untracked files",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "a41a447ccb78fa88cee4da0d0322abff1091c15ab1f8b11b89d56293fdec584e"
+    },
+    {
+      "path": "data/README.md",
+      "sha256": "c0e60553fd3b43ea1e382bbe6aacacf7b0758063856b38f6194c87194b744f6a"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "sha256": "230e84ad2b41cf014bfcf049af6bce2663caac989a6413052f8a586dc4f2d4a4"
+    },
+    {
+      "path": "docs/TRACEABILITY.md",
+      "sha256": "7b1955b197e3a7941bea2ef8fc7ec77ffd56225da6911323b258ebed79daa3c3"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PLAN.md",
+      "sha256": "e3efbb1d6a5cfcf9d9cfcdb5830fb47876a2c05026a9f6ad7fff023d6d0dc9d1"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "sha256": "1d47a95a43bf006284ab6f06dbdcd062de017d006f6a55f7fca3811733f09ff0"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/REPORT.md",
+      "sha256": "d59789705607a894c497d3a328b41dea2a15aa439b3c774ec13312115790361b"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/baseline.json",
+      "sha256": "ee41eae44cb0763f6b5424552caa3be1d991ccabfdfa2dbd8f953d12645f6317"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/before-http-log-check.json",
+      "sha256": "cedfdb44b74e8dc70e539f14296b11e398cf4fc6346a20c0d5ffef31dd801f9b"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/before-http-startup.json",
+      "sha256": "49fbddf0549d43df26a8971a4dfe9a3664d5da9cc67b26b7047ab17d260bfd99"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/before-readiness.json",
+      "sha256": "c6880172ad8d76b93581b63502046efb72e141501c219cf9cac0692089bfb57a"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/final-state.json",
+      "sha256": "ee41eae44cb0763f6b5424552caa3be1d991ccabfdfa2dbd8f953d12645f6317"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/html-http-log-check.json",
+      "sha256": "1f743564b34bb6625905eb424b3e61fd6db5729f321637aadc667ad68f0e1cb8"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/html-http-startup.json",
+      "sha256": "bd31bee2b149c6597a269b861619c120c53efa6e765246f92192f440b44ae004"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/html-readiness.json",
+      "sha256": "c8491909d1ab8899dba8c2182a1e1cfd5417107c844a732952eba7045f52f2f6"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/http-before.jsonl",
+      "sha256": "5e4d6fe2887a919292e54714f8a7feda59af438286abe35c8c9428e35cb314a4"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/http-html.jsonl",
+      "sha256": "0452ef2d06d90ce11f8f3d3ef00fe3aa0de899041cba16918d6c45be965fbea0"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/http-reverse.jsonl",
+      "sha256": "3c665b16e1e3de0626289a219c157598c0c4add8b94df0aa9e9362baf331145f"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/lifecycle.json",
+      "sha256": "2becf7b63bf96e7564f95c5f71a67217fc8bc10a2d40f0130495a2668565e94e"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-0-1.json",
+      "sha256": "89d64298bbfc22e826991a162bf1919429b5ea94176029297649bbebdf94447f"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-0-50.json",
+      "sha256": "eb317f14c6e18f6c2d93f48986dd41b0af544c51f46ea5e44708cfae459833a4"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-1-1.json",
+      "sha256": "10e07ba70c0a9e8fedf3cda530d4db15104f7c677e4d076cf37b92646e1c9fc8"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-1-50.json",
+      "sha256": "25338529619e621436bee45ae723df9cd3b899b3341b7503efe352e9cfc3ae46"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-10-1.json",
+      "sha256": "25d1e003747c2ae82d525c278cb5ebf364f74056f0672b7cc6ce855021f68bc4"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-10-50.json",
+      "sha256": "039ee2b4126eb2e2a78e615fdc289b6bc925f8c35fad700d6a8c0324643048da"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-11-1.json",
+      "sha256": "1020c4ceaf8dbd904df19ac888961dbed69b602efe3dc4659a43ba125d79e521"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-11-50.json",
+      "sha256": "7f87c6c8a177d6963fe1d8b9128af42806ec82545ee2f86f0725329e866eafa4"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-12-1.json",
+      "sha256": "a7582989a015ee4fb822e8322dd64b3cf688f4e747d8a06bca2ca8c26b5d1cca"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-12-50.json",
+      "sha256": "8300d59848514fb8a4c1b5ca30ae20bcef8951baacc60f9acd903275959bb20c"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-13-1.json",
+      "sha256": "9b1089ce7ea1fc78bef34210254dfe6e6212b7027109d299a4276600be80b4c2"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-13-50.json",
+      "sha256": "760f6c6b0aa135dc6f664d7bc86892781d5bf1f6598d7211a3d42bae3b6c6e59"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-14-1.json",
+      "sha256": "8edb4c8fae66700c0e846e57947572c2969986493d0e16bdb31e745659731a6a"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-14-50.json",
+      "sha256": "626ce11c6339d47fb09090c7dfbab80fe81407b91e8e87c04a71439a0e94038f"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-15-1.json",
+      "sha256": "2ffc9ef214bb424f1f08805284c951a9eb68bda21d1f77cda864c73f2b18fdf7"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-15-50.json",
+      "sha256": "11b4bbb81e9df29e37593048cdfaf4abb6a6c796ef71ee07d429d4da72e5214c"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-2-1.json",
+      "sha256": "89d6ac0f066a026aba213fc22038e62bcd2e357e37486173868a8ae4552cc595"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-2-50.json",
+      "sha256": "13c9b95e1b75e887773f3dba2b842c9029022a9486691427d82daf4686173173"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-3-1.json",
+      "sha256": "bd1ee75496cfe0b463ab4e331f1ff4362d1bf11823ca1514665f8a262d8868ef"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-3-50.json",
+      "sha256": "697165a4ed7b0820306f193ba098b58a33890fdfc728ea9dfa4b33a0f54752fe"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-4-1.json",
+      "sha256": "f61c41a17ff2d1a786ba4196e0d7531687ec4bd763f7fed8305c201e91682676"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-4-50.json",
+      "sha256": "946843d4bfd8433a39325bf468d6a7be46d03c705069e1b42c6382dec3bfeda1"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-5-1.json",
+      "sha256": "68f38455f13a5407b2cd3ccb3b469abe28d49ec7b5350b1199393efb45fb32f8"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-5-50.json",
+      "sha256": "2134b0e52a63b60820089f06a56bc6d60abf26a58bd8b7480b7d0026fa719010"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-6-1.json",
+      "sha256": "170d0e8392a045f0fe3e1a7f3085af776cf0faefb75336b5e73d9cbeec970a92"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-6-50.json",
+      "sha256": "c04123c1fe9f2cafebf2a0e9135b8173374116df2a9efa2a37a3c940c5cd8435"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-7-1.json",
+      "sha256": "88f2f5376f1c03f42dc8cebb8b7a9f693371e44f2283d2626d404b364f130494"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-7-50.json",
+      "sha256": "3b9e88f634c89de2bcfc10f61e7178059253f317ff79f77c48f89291f5ef8ae9"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-8-1.json",
+      "sha256": "0896f2364b9c8376d7c5d1708fd88273d91895b957a799b2279512bf69198387"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-8-50.json",
+      "sha256": "e34aea7ab237b060c2f18c739b87c1a296b18b66059559e257563392e039c8d2"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-9-1.json",
+      "sha256": "9340e5d0aade3ce28e6d5f9b519322b66c652ba54909e3f26c03783bd7b18043"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/matrix-9-50.json",
+      "sha256": "0a8c7b734f9af3407945891648bd0f2887bdd8c2e7dea600d1cc04e5b18f1a69"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/reverse-http-log-check.json",
+      "sha256": "98c5247458566d479470df65f5a9d587d45cfac9e1c61132f02b87a49bf21bc1"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/reverse-http-startup.json",
+      "sha256": "5a09ca2310ed9743d6198ee76319662333155b108a5b2828c5ae9d2c36778964"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/reverse-readiness.json",
+      "sha256": "8f5ce015a46b175d9b8cf43d9e3b63af721ed124006c3cfa1a0f2ce92181365d"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/settings-statistics.json",
+      "sha256": "dde89280cb2723e93025dfc0447855780ddbe5c933369f6611b32791f88e5593"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/startup.json",
+      "sha256": "4a9bffea25c0cd82cf43c7efd41975e8fc805fab33550b43fdc2f5dc5882e17d"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/summary.json",
+      "sha256": "e9626febcc5556d77308820a9d9d58d81e78869a3940cef6ae41fffe294a5b43"
+    },
+    {
+      "path": "docs/_assessments/2026-11-04-mask-plans/validation.json",
+      "sha256": "71aa626e48000e32bf1fecdb91e60cb1a617b79dec8896a5450a0ea8298c8788"
+    }
+  ]
+}

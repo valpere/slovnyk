@@ -1,0 +1,14 @@
+{
+  "work_mem": "4MB",
+  "n_live_tup": 56414333,
+  "last_analyze": null,
+  "shared_buffers": "128MB",
+  "plan_cache_mode": "auto",
+  "track_io_timing": "off",
+  "last_autoanalyze": "2026-10-25T15:57:17.009708+00:00",
+  "postgres_version": "17.11",
+  "random_page_cost": "4",
+  "n_mod_since_analyze": 1441338,
+  "effective_cache_size": "4GB",
+  "max_parallel_workers_per_gather": "2"
+}

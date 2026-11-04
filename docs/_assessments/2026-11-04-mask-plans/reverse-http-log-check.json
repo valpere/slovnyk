@@ -1,0 +1,12 @@
+{
+  "bytes": 348,
+  "sha256": "02ef6d620ba8847757e97497b33142eb13f8daef336d0a6af7b57fd5fb8debbf",
+  "events": {
+    "http_started": 1,
+    "http_draining": 1,
+    "http_stopped": 1
+  },
+  "lifecycle_fields_only": true,
+  "credentials_absent": true,
+  "raw_logs_committed": false
+}

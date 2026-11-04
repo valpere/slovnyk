@@ -268,7 +268,10 @@ positive exact/prefix queries не закривають SLO.
 [Повний локальний backup/restore](_assessments/2026-11-04-corpus-restore/REPORT.md)
 пройшов у fresh cluster: 17 таблиць/sequences, файли, HTTP з source offline.
 У підготовчій пробі 6/16 масок із `limit=1` повернули 503 близько 2 s.
-Далі — query-plan/deadline дослідження, розширений workload, storage/capacity
+[Query-plan діагностика](_assessments/2026-11-04-mask-plans/REPORT.md): 160/160 HTTP 200
+без concurrent restore, 32/32 плани з LIKE postfilter; попередні 503 не пояснено.
+Далі — bounded-prefix experiment на окремій копії, cache/contention probes,
+розширений workload, storage/capacity
 та off-host/target-server restore gates;
 adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata

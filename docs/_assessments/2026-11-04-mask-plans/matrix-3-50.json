@@ -1,0 +1,73 @@
+{
+  "case": 3,
+  "completed": true,
+  "execution_ms": 27.17,
+  "label": "matrix-3-50",
+  "limit": 50,
+  "plan": {
+    "Actual Loops": 1,
+    "Actual Rows": 1,
+    "Actual Startup Time": 15.999,
+    "Actual Total Time": 16,
+    "Node Type": "Limit",
+    "Plan Rows": 6,
+    "Plan Width": 84,
+    "Plans": [
+      {
+        "Actual Loops": 1,
+        "Actual Rows": 1,
+        "Actual Startup Time": 12.043,
+        "Actual Total Time": 12.043,
+        "Node Type": "Sort",
+        "Parent Relationship": "Outer",
+        "Plan Rows": 6,
+        "Plan Width": 84,
+        "Plans": [
+          {
+            "Actual Loops": 1,
+            "Actual Rows": 1,
+            "Actual Startup Time": 11.47,
+            "Actual Total Time": 11.994,
+            "Index Name": "translations_exact",
+            "Node Type": "Index Scan",
+            "Parent Relationship": "Outer",
+            "Plan Rows": 6,
+            "Plan Width": 84,
+            "Relation Name": "translations",
+            "Rows Removed by Filter": 54442,
+            "Rows Removed by Index Recheck": 0,
+            "Scan Direction": "Forward",
+            "Shared Hit Blocks": 36361,
+            "Shared Read Blocks": 0,
+            "Startup Cost": 0.56,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Total Cost": 104713.84,
+            "filter_has_source_key_like": true,
+            "has_filter": true,
+            "has_index_condition": true,
+            "index_condition_has_source_key": false
+          }
+        ],
+        "Shared Hit Blocks": 36367,
+        "Shared Read Blocks": 0,
+        "Sort Method": "quicksort",
+        "Sort Space Type": "Memory",
+        "Sort Space Used": 25,
+        "Startup Cost": 104713.92,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Total Cost": 104713.93
+      }
+    ],
+    "Shared Hit Blocks": 36367,
+    "Shared Read Blocks": 0,
+    "Startup Cost": 104713.92,
+    "Temp Read Blocks": 0,
+    "Temp Written Blocks": 0,
+    "Total Cost": 104713.93
+  },
+  "planning_ms": 0.92,
+  "settings": {},
+  "wall_ms": 30.178
+}
