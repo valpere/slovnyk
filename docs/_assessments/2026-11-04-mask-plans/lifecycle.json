@@ -1,0 +1,10 @@
+{
+  "utc": "2026-11-04T13:51:29.200215+00:00",
+  "application_state_unchanged": true,
+  "temporary_reader_removed": true,
+  "own_http_containers_removed": true,
+  "own_database_container_and_network_removed": true,
+  "database_oom_killed": false,
+  "retained_corpus_and_restore_copies_preserved": true,
+  "oracle_untouched": true
+}

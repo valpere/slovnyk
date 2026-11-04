@@ -722,4 +722,23 @@ Off-host transfer/durability, RPO/retention та server RTO залишаютьс
 Окремий diagnostic workload: exact 16/16 HTTP 200, prefix `limit=1` — 6/16 HTTP 503
 близько 2 s. SQL timer/план не досліджено. Restore controls містять лише 4 успішні
 prefix cases, відібрані після діагностики; це порівняння цілісності, не SLO evidence.
-AT-16 залишається відкритим, query-plan/deadline аналіз — наступна задача.
+AT-16 залишається відкритим; подальша діагностика описана нижче.
+
+
+## AT-16 diagnostic subset — prefix SQL plans, 2026-11-04
+
+[Evidence](_assessments/2026-11-04-mask-plans/REPORT.md),
+[summary](_assessments/2026-11-04-mask-plans/summary.json): ті самі 16 cases,
+limits 1/50 у прямому та зворотному порядку, окремо limit 1 HTML prefix.
+160/160 HTTP 200 без concurrent restore; max prefix client wall 655.117 ms.
+32/32 EXPLAIN: translations_exact scan, source_key LIKE лише postfilter,
+до 179 848 rows removed, max SQL execution 74.412 ms. При обох limits
+однакові reported rows removed у кожному case (parallel: округлене середнє
+за loops); application deadline незмінний.
+
+DB 2 CPU/8 GiB, HTTP 1 CPU/512 MiB; OS caches не скидали. Попередні 503
+не відтворено, причину не доведено. State snapshots однакові, власні resources
+прибрані, дані збережені. Application source незмінний; checks/self-review у
+[validation](_assessments/2026-11-04-mask-plans/validation.json).
+AT-16 відкрито; наступні gates — окремий bounded-prefix experiment,
+cache/contention probes, ширший workload та target-server capacity.

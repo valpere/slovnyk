@@ -1,0 +1,9 @@
+{
+  "container": "b3d04adc579f07ffc935f31fb75d3a5539905226f996f86cd9d114e5104a6d35",
+  "name": "slovnyk-mask-plans-http-before-20261104",
+  "loopback_only": true,
+  "readonly_rootfs_and_mounts": true,
+  "memory_bytes": 536870912,
+  "nano_cpus": 1000000000,
+  "reader": "corpus_mask_plans_http"
+}

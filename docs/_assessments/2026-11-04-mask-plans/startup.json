@@ -1,0 +1,9 @@
+{
+  "utc": "2026-11-04T13:42:44.322211+00:00",
+  "image": "postgres:17.11-alpine@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+  "memory_bytes": 8589934592,
+  "nano_cpus": 2000000000,
+  "same_original_corpus_bind": true,
+  "local_only": true,
+  "application_revision": "fd86a9bec15f7be701fed02fca01b2b96ea94091"
+}

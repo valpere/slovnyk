@@ -870,3 +870,19 @@ restored copies збережені, власні containers/networks і тимч
 успішність на цей workload і не закривати AT-16. Наступна технічна задача —
 query-plan/deadline діагностика на локальному корпусі; server/storage,
 розширений workload/crawler budget та off-host restore gates відкриті.
+
+
+## Prefix query-plan діагностика — 2026-11-04
+
+Після merge PR23 досліджено ту саму вибірку 16 cases на retained local corpus,
+без concurrent restore. [Evidence](_assessments/2026-11-04-mask-plans/REPORT.md):
+160/160 HTTP 200 (limits 1/50, зворотний порядок, HTML prefix); 32/32 SQL-плани
+сканують мовну пару через translations_exact і застосовують LIKE як postfilter.
+Малий limit не обмежує цей scan. Це структурна вартість query, але не доведена
+причина старих 6/16 HTTP 503. Deadline, схема та application source незмінні.
+
+Наступний технічний зріз — bounded-prefix access-path experiment на окремій
+копії з correctness/storage/write-cost checks; далі cache/contention probes.
+Нових продуктових погоджень не вводили. AT-16, ширший workload/crawler budget,
+server/storage та off-host restore gates відкриті. Тимчасові LOGIN/containers
+прибрані, application state і збережені дані незмінні, Oracle не задіяний.
