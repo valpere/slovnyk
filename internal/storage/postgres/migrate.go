@@ -17,7 +17,7 @@ import (
 	"github.com/valpere/slovnyk/migrations"
 )
 
-const SchemaVersion = 3
+const SchemaVersion = 4
 
 var (
 	ErrUnavailable = errors.New("database_unavailable")

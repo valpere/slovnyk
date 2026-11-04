@@ -116,7 +116,9 @@ func TestEntryIndexUpgradePreservesReadyData(t *testing.T) {
 	execSQL(t, c, translationSQL, id, int64(1), raw, "translation", raw)
 	ready(t, c, id)
 	// Reconstruct the exact V1 physical inventory; immutable ready rows remain.
-	execSQL(t, c, `DROP TABLE slovnyk.sitemap_shards,slovnyk.sitemap_inventory;
+	execSQL(t, c, `DROP INDEX slovnyk.translations_prefix64;
+ DELETE FROM slovnyk.schema_migrations WHERE version=4;
+ DROP TABLE slovnyk.sitemap_shards,slovnyk.sitemap_inventory;
  DROP FUNCTION slovnyk.guard_sitemap_inventory(),slovnyk.check_sitemap_inventory(),slovnyk.register_sitemap(uuid,bytea,bigint,bytea,bigint,bigint,jsonb);
  DELETE FROM slovnyk.schema_migrations WHERE version=3;
  DROP INDEX slovnyk.translations_entry;

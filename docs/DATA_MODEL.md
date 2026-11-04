@@ -5,10 +5,12 @@
 Фізична schema version 2: [000002_dictionary_pages.sql](../migrations/000002_dictionary_pages.sql)
 додає immutable `entry_id` function та expression index, без зміни raw data
 або версії V1 manifest/tuple/normalization. Schema version БД і manifest
-`schema_version=1` — різні поняття. Поточна фізична schema 3:
+`schema_version=1` — різні поняття. Фізична schema 3:
 [000003_sitemaps.sql](../migrations/000003_sitemaps.sql) додає optional immutable
 sitemap inventory/shard refs та вузьку транзакційну register-функцію,
 без зміни dataset/entry identity. [HTTP/операторський контракт](SEO_PLAN.md#http-sitemap-discovery).
+Поточна фізична schema 4: [000004_prefix_index.sql](../migrations/000004_prefix_index.sql)
+додає bounded prefix expression index без зміни raw/normalized data або identity.
 Цей документ визначає ключі й інваріанти; реалізація має забезпечити їх DDL,
 транзакціями та verify. Поведінкові вимоги залишаються у REQUIREMENTS.
 
@@ -74,8 +76,12 @@ DDL пояснює стару структуру (OQ-02). Записи з нес
 
 Початковий exact index: `(dataset_id,source_locale,target_locale,key_hash)`;
 residual `source_key = query_key` обов'язковий. Не індексувати необмежений text
-кортеж B-tree. Mask спочатку використовує pair filtering, параметризований LIKE,
-sort і timeout; оптимізація після EXPLAIN на корпусі. Порядок — C collation за
+кортеж B-tree. Mask із буквальним префіксом додає параметризований LIKE над
+`left(source_key,64) COLLATE "C"`; B-tree містить dataset, pair і цю expression.
+Префільтр бере до 64 Unicode codepoints до першого wildcard із compiled pattern,
+повторно екранує SQL literals; повний LIKE обов'язковий для suffix/collision recheck.
+Leading wildcard зберігає pair scan. Raw fields і довгі normalized keys не
+обрізаються; індекс не містить необмежених text полів. Порядок — C collation за
 `(source_key,source_text,target_text,id)`, не locale-dependent collation.
 
 Після ready заборонені зміни translations, origins, каталогу й manifest;

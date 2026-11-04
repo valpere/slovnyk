@@ -121,9 +121,13 @@ Production, crawler/search SLO та full-corpus off-host restore відкрит�
 [Bounded-prefix prototype](_assessments/2026-11-04-prefix-index/REPORT.md) на окремій
 копії 16 пар / 1 373 948 rows: 32/32 candidate index conditions із тотожними
 результатами; synthetic pagination/Unicode/довгі поля пройшли. Prefix index
-65.09 MiB, insert-sample WAL +29.1%; production schema/query незмінні.
-Далі — service migration/ReadPage integration, full-corpus index/storage/HTTP
-та cache/contention gates; AT-16 і capacity acceptance відкриті.
+65.09 MiB, insert-sample WAL +29.1%; prototype не змінював service schema/query.
+Schema 4 / `ReadPage` bounded prefix prefilter реалізовано з synthetic integration
+перевірками Unicode/escaping, C seek, signed cursors і upgrade ready data.
+[Фактичне покриття](TRACEABILITY.md#bounded-prefix-service-integration--2026-11-04).
+Retained corpus/backup/restore БД ще schema 3; цей зріз їх не змінює.
+Далі — full-corpus index/build/storage/restore, HTTP/cache/contention gates;
+AT-16 і capacity acceptance відкриті.
 Один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні
 memory caps 512 MiB → 8 → 16 GiB не є підтвердженням Micro capacity.
