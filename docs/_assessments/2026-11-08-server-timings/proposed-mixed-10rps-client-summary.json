@@ -1,0 +1,99 @@
+{
+  "body_limit": 8388608,
+  "client_timeout_ms": 5000,
+  "complete": true,
+  "connection_reuse": false,
+  "elapsed_seconds": 59.950991868,
+  "groups": [
+    {
+      "client_p50_ms": 16.183956,
+      "client_p95_ms": 18.472907,
+      "dispatch_lag_p95_ms": 1.02167,
+      "error_counts": {},
+      "kind": "exact-negative",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 150,
+      "scheduled_to_complete_p95_ms": 19.46891,
+      "status_counts": {
+        "200": 150
+      }
+    },
+    {
+      "client_p50_ms": 15.7542,
+      "client_p95_ms": 18.790205,
+      "dispatch_lag_p95_ms": 1.053391,
+      "error_counts": {},
+      "kind": "exact-positive",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 300,
+      "scheduled_to_complete_p95_ms": 19.204632,
+      "status_counts": {
+        "200": 300
+      }
+    },
+    {
+      "client_p50_ms": 48.036798,
+      "client_p95_ms": 61.687074,
+      "dispatch_lag_p95_ms": 0.951594,
+      "error_counts": {},
+      "kind": "infix-mask",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 10,
+      "scheduled_to_complete_p95_ms": 62.533784,
+      "status_counts": {
+        "200": 10
+      }
+    },
+    {
+      "client_p50_ms": 46.52837,
+      "client_p95_ms": 66.650786,
+      "dispatch_lag_p95_ms": 0.849877,
+      "error_counts": {},
+      "kind": "infix-negative",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 10,
+      "scheduled_to_complete_p95_ms": 67.016379,
+      "status_counts": {
+        "200": 10
+      }
+    },
+    {
+      "client_p50_ms": 61.568503,
+      "client_p95_ms": 121.92375,
+      "dispatch_lag_p95_ms": 0.953201,
+      "error_counts": {},
+      "kind": "leading-mask",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 10,
+      "scheduled_to_complete_p95_ms": 122.268476,
+      "status_counts": {
+        "200": 10
+      }
+    },
+    {
+      "client_p50_ms": 16.121486,
+      "client_p95_ms": 18.832886,
+      "dispatch_lag_p95_ms": 1.017452,
+      "error_counts": {},
+      "kind": "short-prefix",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 120,
+      "scheduled_to_complete_p95_ms": 19.610545,
+      "status_counts": {
+        "200": 120
+      }
+    }
+  ],
+  "interval_ms": 100,
+  "latencies": "client observed including bounded body read; no server timer",
+  "percentile": "nearest rank, ceil(p*N); all outcomes retained",
+  "phase": "proposed-mixed-10rps",
+  "requests": 600,
+  "workers": 16
+}

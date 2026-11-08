@@ -1,0 +1,22 @@
+{
+  "utc": "2026-11-08T15:09:34.256913+00:00",
+  "base_revision": "78fe284097a4e5f278a37a19d8f8bf1185ca9bfe",
+  "source_diff_sha256": "91bb1f3d7513eefc7c755763acdea084296a0b495181eea5ab9c2c62d75b7af7",
+  "binary_sha256": "ee85f1a3fbefea405bff0e5410ee62b12b86b6e8d149931796d2d5846d2fe1e9",
+  "image": "postgres:17.11-alpine@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+  "db_memory_bytes": 8589934592,
+  "db_cpus": 2,
+  "http_memory_bytes": 536870912,
+  "http_cpus": 1,
+  "http_shared_slots": 8,
+  "server_deadline_ms": 2000,
+  "cache": "fresh PostgreSQL process/shared buffers; OS cache uncontrolled; no global flush",
+  "disk_floor_bytes": 32212254720,
+  "runtime_deadline_seconds": 1500,
+  "unrelated_container_names": [
+    "docker-mongodb-1",
+    "open-webui",
+    "sla-testdb"
+  ],
+  "source_cluster_started": false
+}

@@ -851,3 +851,25 @@ exclusive outputs, config permissions/loopback/size. Oversize config regression
 відтворено red; після перевірки file size green. `make check test test-race test-smoke` — PASS на фінальному diff. Посіпака не є service/CI dependency.
 AT-16, server-side timing, approved traffic/crawler budget, cold-host/low-memory,
 target-server capacity та причина історичних 503 залишаються відкритими.
+
+
+## REQ-NFR-03/04 — безпечні server-side timings, 2026-11-08
+
+[Реалізація й семантика](SEARCH_TIMING.md),
+[bounded corpus run](_assessments/2026-11-08-server-timings/REPORT.md):
+1010/1010 HTTP 200, 978 очікуваних events, 110 контрольних responses тотожні.
+Ordinary/mixed handler p95 — 18.998/20.365 ms; admission/connect/lookup/catalog
+виміряно окремо від client queue. State незмінний, full inventory не повторено.
+
+- `internal/ops/config_test.go`: strict true/false/default-off і безпечні errors.
+- `internal/ops/search_timing_test.go`: GET/HEAD response parity для success/error,
+  strict log allowlist/privacy, route/level scope, write failures.
+- `internal/ops/search_test.go`: stalled PostgreSQL handshake дає connect/deadline,
+  усі 8 slots зайняті — admission/deadline без нового connection.
+- `internal/ops/readiness_integration_test.go: TestReadinessRecoveryWithHTTPRole`:
+  real SQL success під restricted HTTP role, ненульові phase timings, no query leak.
+
+`make check test test-race test-smoke`, `make test-integration` — PASS;
+пізніше доданий admission test пройшов `go test -race ./internal/ops`.
+Це diagnostic subset, не AT-16 acceptance. Запропонований mix і crawler budget
+ще не погоджені; target-server/cold-host/UI/translation gates лишаються відкритими.

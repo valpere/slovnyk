@@ -237,3 +237,14 @@ Runtime/reader LOGINs прибрані; ephemeral ports/IDs у `runtime-private.
 Go-посіпака `minions/http-probe`. Перший `query-workloads-2026-11-08/`
 зберігає preflight failure receipt (PGDATA host permissions), runtime не запускався.
 Додаткових видалень не погоджено й не виконано. Oracle/legacy не задіяні.
+
+
+## Server timings — 2026-11-08
+
+`experiments/server-timings-2026-11-08/`: короткий read-only run на тому самому
+restored schema 4 bind, без нової DB copy. Збережено private inputs/config/keyring,
+raw PG logs, timing events, response observations, resource/state/lifecycle receipts.
+[Публічний звіт](../docs/_assessments/2026-11-08-server-timings/REPORT.md)
+містить лише allowlisted measurements та агрегати. Runtime й reader LOGIN прибрані;
+старі ports/IDs/credentials не повторно використовувати. Scratch — `tmp/server-timings/`.
+Дані не видаляли; source й Oracle не запускали; full inventory не повторювали.

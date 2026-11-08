@@ -1,0 +1,307 @@
+{
+  "requests": 1010,
+  "server_events": 978,
+  "percentile": "nearest rank ceil(p*N), all outcomes included",
+  "control_matches": 110,
+  "non_control_requests_have_independent_body_oracles": false,
+  "errors": 0,
+  "phases": [
+    {
+      "phase": "controls-before",
+      "requests": 55,
+      "server_events": 39,
+      "status_counts": {
+        "200": 55
+      },
+      "kind_counts": {
+        "exact": 16,
+        "prefix": 16,
+        "word": 16,
+        "continuation": 7
+      },
+      "server_query_kind_counts": {
+        "exact": 16,
+        "mask": 23
+      },
+      "pairs": 16,
+      "arbitrary_mask_pairs": 0,
+      "server": {
+        "handler_ms": {
+          "p50": 15.514052,
+          "p95": 18.38792,
+          "max": 21.391519
+        },
+        "search_ms": {
+          "p50": 9.090242,
+          "p95": 10.728239,
+          "max": 14.707649
+        },
+        "admission_ms": {
+          "p50": 0.0007,
+          "p95": 0.00112,
+          "max": 0.00119
+        },
+        "connect_ms": {
+          "p50": 2.886668,
+          "p95": 4.796424,
+          "max": 4.967123
+        },
+        "lookup_ms": {
+          "p50": 6.038914,
+          "p95": 7.479813,
+          "max": 11.186535
+        },
+        "cleanup_ms": {
+          "p50": 0.033839,
+          "p95": 0.048039,
+          "max": 0.05164
+        },
+        "catalog_ms": {
+          "p50": 6.145993,
+          "p95": 7.99369,
+          "max": 8.425236
+        }
+      },
+      "client": {
+        "elapsed_ms": {
+          "p50": 15.579362,
+          "p95": 18.264262,
+          "max": 22.298791
+        },
+        "dispatch_lag_ms": {
+          "p50": 388.419212,
+          "p95": 724.219332,
+          "max": 754.640852
+        },
+        "scheduled_to_complete_ms": {
+          "p50": 395.713617,
+          "p95": 739.955003,
+          "max": 761.934867
+        }
+      }
+    },
+    {
+      "phase": "ordinary-10rps",
+      "requests": 300,
+      "server_events": 300,
+      "status_counts": {
+        "200": 300
+      },
+      "kind_counts": {
+        "exact-positive": 150,
+        "exact-negative": 90,
+        "short-prefix": 60
+      },
+      "server_query_kind_counts": {
+        "exact": 240,
+        "mask": 60
+      },
+      "pairs": 40,
+      "arbitrary_mask_pairs": 0,
+      "server": {
+        "handler_ms": {
+          "p50": 15.476663,
+          "p95": 18.997516,
+          "max": 23.464752
+        },
+        "search_ms": {
+          "p50": 8.840623,
+          "p95": 11.739411,
+          "max": 15.451173
+        },
+        "admission_ms": {
+          "p50": 0.00082,
+          "p95": 0.0012,
+          "max": 0.00648
+        },
+        "connect_ms": {
+          "p50": 2.972118,
+          "p95": 3.688612,
+          "max": 6.211673
+        },
+        "lookup_ms": {
+          "p50": 5.628838,
+          "p95": 8.472576,
+          "max": 12.501615
+        },
+        "cleanup_ms": {
+          "p50": 0.033819,
+          "p95": 0.05376,
+          "max": 0.089489
+        },
+        "catalog_ms": {
+          "p50": 6.217803,
+          "p95": 8.034239,
+          "max": 9.20986
+        }
+      },
+      "client": {
+        "elapsed_ms": {
+          "p50": 16.188067,
+          "p95": 19.78075,
+          "max": 24.127237
+        },
+        "dispatch_lag_ms": {
+          "p50": 0.609164,
+          "p95": 1.033824,
+          "max": 1.629679
+        },
+        "scheduled_to_complete_ms": {
+          "p50": 16.816642,
+          "p95": 20.40898,
+          "max": 24.429024
+        }
+      }
+    },
+    {
+      "phase": "proposed-mixed-10rps",
+      "requests": 600,
+      "server_events": 600,
+      "status_counts": {
+        "200": 600
+      },
+      "kind_counts": {
+        "exact-positive": 300,
+        "exact-negative": 150,
+        "short-prefix": 120,
+        "leading-mask": 10,
+        "infix-mask": 10,
+        "infix-negative": 10
+      },
+      "server_query_kind_counts": {
+        "exact": 450,
+        "mask": 150
+      },
+      "pairs": 40,
+      "arbitrary_mask_pairs": 10,
+      "server": {
+        "handler_ms": {
+          "p50": 15.351052,
+          "p95": 20.365064,
+          "max": 121.316565
+        },
+        "search_ms": {
+          "p50": 8.594824,
+          "p95": 12.764192,
+          "max": 113.715374
+        },
+        "admission_ms": {
+          "p50": 0.00081,
+          "p95": 0.00127,
+          "max": 0.005009
+        },
+        "connect_ms": {
+          "p50": 2.977117,
+          "p95": 3.637032,
+          "max": 5.576087
+        },
+        "lookup_ms": {
+          "p50": 5.505377,
+          "p95": 9.693255,
+          "max": 108.401874
+        },
+        "cleanup_ms": {
+          "p50": 0.033589,
+          "p95": 0.05225,
+          "max": 0.06926
+        },
+        "catalog_ms": {
+          "p50": 6.293072,
+          "p95": 8.226847,
+          "max": 9.493558
+        }
+      },
+      "client": {
+        "elapsed_ms": {
+          "p50": 16.068836,
+          "p95": 21.102158,
+          "max": 121.92375
+        },
+        "dispatch_lag_ms": {
+          "p50": 0.541186,
+          "p95": 1.049359,
+          "max": 1.854294
+        },
+        "scheduled_to_complete_ms": {
+          "p50": 16.621768,
+          "p95": 21.41124,
+          "max": 122.268476
+        }
+      }
+    },
+    {
+      "phase": "controls-after",
+      "requests": 55,
+      "server_events": 39,
+      "status_counts": {
+        "200": 55
+      },
+      "kind_counts": {
+        "exact": 16,
+        "prefix": 16,
+        "word": 16,
+        "continuation": 7
+      },
+      "server_query_kind_counts": {
+        "exact": 16,
+        "mask": 23
+      },
+      "pairs": 16,
+      "arbitrary_mask_pairs": 0,
+      "server": {
+        "handler_ms": {
+          "p50": 16.226444,
+          "p95": 18.709025,
+          "max": 18.816585
+        },
+        "search_ms": {
+          "p50": 9.091609,
+          "p95": 11.047364,
+          "max": 11.6183
+        },
+        "admission_ms": {
+          "p50": 0.00078,
+          "p95": 0.0013,
+          "max": 0.00263
+        },
+        "connect_ms": {
+          "p50": 3.082736,
+          "p95": 3.793921,
+          "max": 4.122618
+        },
+        "lookup_ms": {
+          "p50": 5.997633,
+          "p95": 7.540872,
+          "max": 7.77442
+        },
+        "cleanup_ms": {
+          "p50": 0.035369,
+          "p95": 0.050259,
+          "max": 0.05789
+        },
+        "catalog_ms": {
+          "p50": 6.804988,
+          "p95": 8.223197,
+          "max": 8.319506
+        }
+      },
+      "client": {
+        "elapsed_ms": {
+          "p50": 16.233665,
+          "p95": 19.159202,
+          "max": 19.31731
+        },
+        "dispatch_lag_ms": {
+          "p50": 390.149485,
+          "p95": 740.842707,
+          "max": 775.518348
+        },
+        "scheduled_to_complete_ms": {
+          "p50": 397.597388,
+          "p95": 757.506728,
+          "max": 785.355942
+        }
+      }
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # Стан сесії — 2026-11-08
 
-Після merge [PR #29](https://github.com/valpere/slovnyk/pull/29)
-(`f752e36ae984729ab63fea6db70a484d6327ab51`) і команди власника `go`
-завершено ширші локальні HTTP/cache/contention probes на restored schema 4.
+Після merge [PR #30](https://github.com/valpere/slovnyk/pull/30)
+(`78fe284097a4e5f278a37a19d8f8bf1185ca9bfe`) і команди власника `go`
+додано server-side timings і завершено короткий локальний run на restored schema 4.
 Це поточна пам’ятка продовження; вимоги й контракти визначає [INDEX](INDEX.md).
 
 ## Підтверджений стан
@@ -80,25 +80,28 @@ Credentials, реальні терміни, raw plans, keyring і HTTP paths н�
 Старі ephemeral ports/container IDs і видалені LOGINs повторно не використовувати.
 [Карта даних](../data/README.md) пояснює історію й приватні inputs.
 
-## Наступна задача
+## Останній зріз і наступна задача
 
-Після merge PR із цим evidence — **безпечні server-side measurements** перед
-подальшими capacity висновками. Спершу перевірити Git/PR/CI, прочитати INDEX і
-[останній звіт](_assessments/2026-11-08-query-workloads/REPORT.md).
-Не повторювати import, reconciliation, schema upgrade, full restore або щойно
-завершені workloads без нової причини.
+[Search timings](SEARCH_TIMING.md) opt-in, default off, INFO; ніяких query/URL/pair/error
+strings. [Run](_assessments/2026-11-08-server-timings/REPORT.md): 1010/1010 HTTP 200,
+978/978 events, 110/110 prior response oracles; ordinary/mixed handler p95
+18.998/20.365 ms. Власний runtime/restricted LOGIN прибрано, state незмінний;
+full inventory не повторювали. Inputs і raw logs — ignored
+`data/experiments/server-timings-2026-11-08/`, scratch `tmp/server-timings/`.
+Окремого незалежного reviewer не було; послідовне self-review й локальні checks
+зафіксовано у звіті. CI/merge перевіряти через GitHub, не припускати завершення.
 
-1. Описати й реалізувати мінімальні server-side search timings/класи результатів
-   без raw query/URL/DSN. Відділити admission/connect/SQL/handler та client queue;
-   нові метрики не повинні непомітно змінювати deadline чи відповіді.
-2. Погоджений traffic/crawler/resource profile потрібен для AT-16. Нинішні
-   fixed samples і client p95 не є server SLO або deployment acceptance.
-   Historical 503 у нових runs не відтворилися; їхню причину не оголошувати доведеною.
-3. Перед новими DB probes rediscover потрібний bind/private config, free disk,
-   створити власні capped runtime/restricted LOGIN. Старі ports/IDs/roles вже невалідні.
-   Startup/readiness cache charging, cold-host та довгі маски окремо відкриті.
-4. Прибрати власний runtime, зберегти retained data, review → commit → PR → green CI.
-   Merge виконує власник. Oracle зайнятий; додаткові видалення не дозволені.
+1. Погодити запропонований mix: 50% exact positive, 25% exact negative,
+   20% prefix, 5% інших masks; crawler/resource budget у звіті — теж пропозиція.
+   AT-16 відкрито до погодження й перевірки на обраному сервері.
+2. Вибрати сервер/storage і виконати одну адресну target acceptance з цим
+   профілем, readiness й off-host restore; UI/translation приймає власник.
+   Cold-host/low-memory/startup, backup escrow/RPO/retention ще відкриті.
+3. Не повторювати широкі локальні import/reconciliation/upgrade/restore/workloads
+   без нового конкретного ризику. Historical 503 не пояснено.
+4. Review → commit → PR → чотири green CI на exact head. Merge — власник;
+   branch deletion після merge увімкнено. Failed CI виправити й повторити.
+   Oracle зайнятий, legacy/сторонні containers не чіпати; нових видалень не дозволено.
 
 ## Відновлення після переривання
 

@@ -971,3 +971,17 @@ HTTP runner реалізовано Go-посіпакою агента `minions/h
 черга й cgroup cache/heap не ототожнюються; historical 503 не відтворено й не
 пояснено. Потрібні server-side measurements, погоджені traffic/crawler/resource
 profiles і target capacity. Власний runtime прибрано; retained data не видаляли.
+
+
+## Локальні server timings — 2026-11-08
+
+Після merge PR30 та команди `go` додано [opt-in timings](SEARCH_TIMING.md)
+без текстів, URL, мовних пар чи error strings. [Коротка локальна проба](_assessments/2026-11-08-server-timings/REPORT.md):
+1010 HTTP 200, 978 events, 110 тотожних controls; ordinary handler p95 18.998 ms.
+SQL/schema/deadline не змінено, data retained; runtime/restricted LOGIN прибрані.
+
+Mix 50/25/20/5 exact positive/negative/prefix/other masks і crawler budget
+у звіті — **пропозиція**, не затверджене рішення. AT-16 не закрито.
+Ширші локальні серії не повторювати без конкретного нового ризику; наступні
+кроки — погодження профілю, вибір сервера й target acceptance, owner UI/переклади.
+Oracle залишається зайнятим; retained data не видаляти без окремого дозволу.

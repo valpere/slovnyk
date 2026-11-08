@@ -1,0 +1,552 @@
+[
+  {
+    "sequence": 0,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 22.298791,
+    "dispatch_lag_ms": 0.01815,
+    "scheduled_to_complete_ms": 22.316941
+  },
+  {
+    "sequence": 1,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.243537,
+    "dispatch_lag_ms": 22.319151,
+    "scheduled_to_complete_ms": 38.562688
+  },
+  {
+    "sequence": 2,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.525914,
+    "dispatch_lag_ms": 38.566718,
+    "scheduled_to_complete_ms": 46.092632
+  },
+  {
+    "sequence": 3,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.322736,
+    "dispatch_lag_ms": 46.095842,
+    "scheduled_to_complete_ms": 62.418578
+  },
+  {
+    "sequence": 4,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.735394,
+    "dispatch_lag_ms": 62.422718,
+    "scheduled_to_complete_ms": 79.158112
+  },
+  {
+    "sequence": 5,
+    "kind": "continuation",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 17.861015,
+    "dispatch_lag_ms": 79.161511,
+    "scheduled_to_complete_ms": 97.022526
+  },
+  {
+    "sequence": 6,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.256555,
+    "dispatch_lag_ms": 97.025416,
+    "scheduled_to_complete_ms": 104.281971
+  },
+  {
+    "sequence": 7,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.966099,
+    "dispatch_lag_ms": 104.283871,
+    "scheduled_to_complete_ms": 120.24997
+  },
+  {
+    "sequence": 8,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 14.980087,
+    "dispatch_lag_ms": 120.25237,
+    "scheduled_to_complete_ms": 135.232457
+  },
+  {
+    "sequence": 9,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 8.318097,
+    "dispatch_lag_ms": 135.238917,
+    "scheduled_to_complete_ms": 143.557014
+  },
+  {
+    "sequence": 10,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.158836,
+    "dispatch_lag_ms": 143.559364,
+    "scheduled_to_complete_ms": 158.7182
+  },
+  {
+    "sequence": 11,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.053666,
+    "dispatch_lag_ms": 158.72021,
+    "scheduled_to_complete_ms": 173.773876
+  },
+  {
+    "sequence": 12,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 9.415409,
+    "dispatch_lag_ms": 173.776776,
+    "scheduled_to_complete_ms": 183.192185
+  },
+  {
+    "sequence": 13,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 14.954697,
+    "dispatch_lag_ms": 183.197044,
+    "scheduled_to_complete_ms": 198.151741
+  },
+  {
+    "sequence": 14,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 14.881238,
+    "dispatch_lag_ms": 198.153851,
+    "scheduled_to_complete_ms": 213.035089
+  },
+  {
+    "sequence": 15,
+    "kind": "continuation",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 18.041933,
+    "dispatch_lag_ms": 213.038019,
+    "scheduled_to_complete_ms": 231.079952
+  },
+  {
+    "sequence": 16,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 8.470886,
+    "dispatch_lag_ms": 231.082692,
+    "scheduled_to_complete_ms": 239.553578
+  },
+  {
+    "sequence": 17,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.94066,
+    "dispatch_lag_ms": 239.556438,
+    "scheduled_to_complete_ms": 255.497098
+  },
+  {
+    "sequence": 18,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 18.197412,
+    "dispatch_lag_ms": 255.499618,
+    "scheduled_to_complete_ms": 273.69703
+  },
+  {
+    "sequence": 19,
+    "kind": "continuation",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.517085,
+    "dispatch_lag_ms": 273.7027,
+    "scheduled_to_complete_ms": 290.219785
+  },
+  {
+    "sequence": 20,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.378894,
+    "dispatch_lag_ms": 290.222635,
+    "scheduled_to_complete_ms": 297.601529
+  },
+  {
+    "sequence": 21,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.579362,
+    "dispatch_lag_ms": 297.605319,
+    "scheduled_to_complete_ms": 313.184681
+  },
+  {
+    "sequence": 22,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.983292,
+    "dispatch_lag_ms": 313.186921,
+    "scheduled_to_complete_ms": 330.170213
+  },
+  {
+    "sequence": 23,
+    "kind": "continuation",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.718413,
+    "dispatch_lag_ms": 330.174853,
+    "scheduled_to_complete_ms": 346.893266
+  },
+  {
+    "sequence": 24,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.469934,
+    "dispatch_lag_ms": 346.898126,
+    "scheduled_to_complete_ms": 354.36806
+  },
+  {
+    "sequence": 25,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 18.264262,
+    "dispatch_lag_ms": 354.37095,
+    "scheduled_to_complete_ms": 372.635212
+  },
+  {
+    "sequence": 26,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.77772,
+    "dispatch_lag_ms": 372.637532,
+    "scheduled_to_complete_ms": 388.415252
+  },
+  {
+    "sequence": 27,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.294405,
+    "dispatch_lag_ms": 388.419212,
+    "scheduled_to_complete_ms": 395.713617
+  },
+  {
+    "sequence": 28,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.739371,
+    "dispatch_lag_ms": 395.715477,
+    "scheduled_to_complete_ms": 411.454848
+  },
+  {
+    "sequence": 29,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.050288,
+    "dispatch_lag_ms": 411.457588,
+    "scheduled_to_complete_ms": 427.507876
+  },
+  {
+    "sequence": 30,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 8.552066,
+    "dispatch_lag_ms": 427.516586,
+    "scheduled_to_complete_ms": 436.068652
+  },
+  {
+    "sequence": 31,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.000199,
+    "dispatch_lag_ms": 436.073472,
+    "scheduled_to_complete_ms": 452.073671
+  },
+  {
+    "sequence": 32,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 18.101003,
+    "dispatch_lag_ms": 452.076401,
+    "scheduled_to_complete_ms": 470.177404
+  },
+  {
+    "sequence": 33,
+    "kind": "continuation",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 13.926254,
+    "dispatch_lag_ms": 470.182084,
+    "scheduled_to_complete_ms": 484.108338
+  },
+  {
+    "sequence": 34,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 6.555231,
+    "dispatch_lag_ms": 484.112038,
+    "scheduled_to_complete_ms": 490.667269
+  },
+  {
+    "sequence": 35,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 13.886545,
+    "dispatch_lag_ms": 490.669279,
+    "scheduled_to_complete_ms": 504.555824
+  },
+  {
+    "sequence": 36,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.037786,
+    "dispatch_lag_ms": 504.558734,
+    "scheduled_to_complete_ms": 519.59652
+  },
+  {
+    "sequence": 37,
+    "kind": "continuation",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.742111,
+    "dispatch_lag_ms": 519.59926,
+    "scheduled_to_complete_ms": 535.341371
+  },
+  {
+    "sequence": 38,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.204005,
+    "dispatch_lag_ms": 535.343641,
+    "scheduled_to_complete_ms": 542.547646
+  },
+  {
+    "sequence": 39,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 18.874677,
+    "dispatch_lag_ms": 542.552676,
+    "scheduled_to_complete_ms": 561.427353
+  },
+  {
+    "sequence": 40,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 17.951125,
+    "dispatch_lag_ms": 561.431403,
+    "scheduled_to_complete_ms": 579.382528
+  },
+  {
+    "sequence": 41,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.862621,
+    "dispatch_lag_ms": 579.386307,
+    "scheduled_to_complete_ms": 587.248928
+  },
+  {
+    "sequence": 42,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.735151,
+    "dispatch_lag_ms": 587.254168,
+    "scheduled_to_complete_ms": 602.989319
+  },
+  {
+    "sequence": 43,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 16.868162,
+    "dispatch_lag_ms": 602.991669,
+    "scheduled_to_complete_ms": 619.859831
+  },
+  {
+    "sequence": 44,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.298595,
+    "dispatch_lag_ms": 619.864541,
+    "scheduled_to_complete_ms": 627.163136
+  },
+  {
+    "sequence": 45,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 17.098911,
+    "dispatch_lag_ms": 627.167586,
+    "scheduled_to_complete_ms": 644.266497
+  },
+  {
+    "sequence": 46,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 17.928704,
+    "dispatch_lag_ms": 644.275647,
+    "scheduled_to_complete_ms": 662.204351
+  },
+  {
+    "sequence": 47,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.018527,
+    "dispatch_lag_ms": 662.207871,
+    "scheduled_to_complete_ms": 669.226398
+  },
+  {
+    "sequence": 48,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 17.744276,
+    "dispatch_lag_ms": 669.228868,
+    "scheduled_to_complete_ms": 686.973144
+  },
+  {
+    "sequence": 49,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.572452,
+    "dispatch_lag_ms": 686.975144,
+    "scheduled_to_complete_ms": 702.547596
+  },
+  {
+    "sequence": 50,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.353374,
+    "dispatch_lag_ms": 702.550336,
+    "scheduled_to_complete_ms": 709.90371
+  },
+  {
+    "sequence": 51,
+    "kind": "exact",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 14.308502,
+    "dispatch_lag_ms": 709.90765,
+    "scheduled_to_complete_ms": 724.216152
+  },
+  {
+    "sequence": 52,
+    "kind": "prefix",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 15.735671,
+    "dispatch_lag_ms": 724.219332,
+    "scheduled_to_complete_ms": 739.955003
+  },
+  {
+    "sequence": 53,
+    "kind": "continuation",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 14.680299,
+    "dispatch_lag_ms": 739.957553,
+    "scheduled_to_complete_ms": 754.637852
+  },
+  {
+    "sequence": 54,
+    "kind": "word",
+    "status": 200,
+    "oracle_checked": true,
+    "oracle_match": true,
+    "elapsed_ms": 7.294015,
+    "dispatch_lag_ms": 754.640852,
+    "scheduled_to_complete_ms": 761.934867
+  }
+]

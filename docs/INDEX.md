@@ -5,10 +5,13 @@
 
 ## Статус і правила
 
-**Стан 2026-11-08:** PR #29 змержено; schema 4 backup/restore завершено.
+**Стан 2026-11-08:** PR #30 змержено; schema 4 backup/restore завершено.
 [Ширші HTTP/cache/contention probes](_assessments/2026-11-08-query-workloads/REPORT.md):
 1858/1858 HTTP 200, 17 таблиць/sequences незмінні після обох запусків.
-Далі — server-side measurements і погодження traffic/crawler/resource profile;
+[Opt-in server timings](SEARCH_TIMING.md) додано й
+[локально виміряно](_assessments/2026-11-08-server-timings/REPORT.md):
+1010/1010 HTTP 200, ordinary handler p95 18.998 ms. Далі — погодження
+запропонованого traffic/crawler/resource profile та вибір сервера;
 AT-16 відкрито. [SESSION_HANDOFF](SESSION_HANDOFF.md) містить точку продовження.
 
 **Мета, уточнена користувачем 2026-10-23:** перенести сервіс на нову реалізацію.
