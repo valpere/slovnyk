@@ -1,0 +1,71 @@
+{
+  "body_limit": 8388608,
+  "client_timeout_ms": 5000,
+  "complete": true,
+  "connection_reuse": false,
+  "elapsed_seconds": 0.787957102,
+  "groups": [
+    {
+      "client_p50_ms": 17.313686,
+      "client_p95_ms": 18.00444,
+      "dispatch_lag_p95_ms": 757.509858,
+      "error_counts": {},
+      "kind": "continuation",
+      "oracle_checked": 7,
+      "oracle_matches": 7,
+      "requests": 7,
+      "scheduled_to_complete_p95_ms": 775.514298,
+      "status_counts": {
+        "200": 7
+      }
+    },
+    {
+      "client_p50_ms": 16.570922,
+      "client_p95_ms": 19.149671,
+      "dispatch_lag_p95_ms": 726.730846,
+      "error_counts": {},
+      "kind": "exact",
+      "oracle_checked": 16,
+      "oracle_matches": 16,
+      "requests": 16,
+      "scheduled_to_complete_p95_ms": 740.840287,
+      "status_counts": {
+        "200": 16
+      }
+    },
+    {
+      "client_p50_ms": 17.168397,
+      "client_p95_ms": 19.31731,
+      "dispatch_lag_p95_ms": 740.842707,
+      "error_counts": {},
+      "kind": "prefix",
+      "oracle_checked": 16,
+      "oracle_matches": 16,
+      "requests": 16,
+      "scheduled_to_complete_p95_ms": 757.506728,
+      "status_counts": {
+        "200": 16
+      }
+    },
+    {
+      "client_p50_ms": 7.616201,
+      "client_p95_ms": 10.016272,
+      "dispatch_lag_p95_ms": 775.518348,
+      "error_counts": {},
+      "kind": "word",
+      "oracle_checked": 16,
+      "oracle_matches": 16,
+      "requests": 16,
+      "scheduled_to_complete_p95_ms": 785.355942,
+      "status_counts": {
+        "200": 16
+      }
+    }
+  ],
+  "interval_ms": 0,
+  "latencies": "client observed including bounded body read; no server timer",
+  "percentile": "nearest rank, ceil(p*N); all outcomes retained",
+  "phase": "controls-after",
+  "requests": 55,
+  "workers": 1
+}

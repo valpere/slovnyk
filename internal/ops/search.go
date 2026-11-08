@@ -35,18 +35,38 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		return backends{}
 	}
 	slots := make(chan struct{}, 8)
-	borrow := func(ctx context.Context) (*pgx.Conn, func(), error) {
+	borrow := func(ctx context.Context, timing *searchTiming) (*pgx.Conn, func(), error) {
+		var started time.Time
+		if timing != nil {
+			timing.failureStage = "admission"
+			started = time.Now()
+		}
 		select {
 		case slots <- struct{}{}:
 		case <-ctx.Done():
+			if timing != nil {
+				timing.admissionMS = milliseconds(started)
+			}
 			return nil, nil, lookup.ErrUnavailable
 		}
+		if timing != nil {
+			timing.admissionMS = milliseconds(started)
+			timing.failureStage = "connect"
+			started = time.Now()
+		}
 		c, err := postgres.Connect(ctx, cfg.HTTPDSN)
+		if timing != nil {
+			timing.connectMS = milliseconds(started)
+		}
 		if err != nil {
 			<-slots
 			return nil, nil, lookup.ErrUnavailable
 		}
 		release := func() {
+			if timing != nil {
+				started := time.Now()
+				defer func() { timing.cleanupMS = milliseconds(started) }()
+			}
 			defer func() { <-slots }()
 			cleanup, cancel := context.WithTimeout(context.Background(), time.Second)
 			defer cancel()
@@ -54,20 +74,43 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		}
 		return c, release, nil
 	}
-	search := func(parent context.Context, r lookup.Request) (lookup.Page, error) {
+	search := func(parent context.Context, r lookup.Request) (page lookup.Page, err error) {
 		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
 		defer cancel()
-		c, release, err := borrow(ctx)
+		timing := requestTiming(parent)
+		if timing != nil {
+			started := time.Now()
+			timing.queryKind = timingKind(r)
+			defer func() {
+				timing.searchMS = milliseconds(started)
+				timing.searchResult = timingResult(err, ctx)
+				if err == nil {
+					timing.failureStage = "none"
+				}
+			}()
+		}
+		c, release, err := borrow(ctx, timing)
 		if err != nil {
 			return lookup.Page{}, err
 		}
 		defer release()
-		return service.Search(ctx, c, r)
+		if timing == nil {
+			return service.Search(ctx, c, r)
+		}
+		timing.failureStage = "lookup"
+		started := time.Now()
+		page, err = service.Search(ctx, c, r)
+		timing.lookupMS = milliseconds(started)
+		return page, err
 	}
-	read := func(parent context.Context, dataset string) (catalog.Snapshot, error) {
+	read := func(parent context.Context, dataset string) (snapshot catalog.Snapshot, err error) {
 		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
 		defer cancel()
-		c, release, err := borrow(ctx)
+		if timing := requestTiming(parent); timing != nil {
+			started := time.Now()
+			defer func() { timing.catalogMS = milliseconds(started); timing.catalogResult = timingResult(err, ctx) }()
+		}
+		c, release, err := borrow(ctx, nil)
 		if err != nil {
 			return catalog.Snapshot{}, err
 		}
@@ -80,7 +123,7 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		}
 		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
 		defer cancel()
-		c, release, err := borrow(ctx)
+		c, release, err := borrow(ctx, nil)
 		if err != nil {
 			return downloads.Manifest{}, err
 		}
@@ -93,7 +136,7 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		}
 		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
 		defer cancel()
-		c, release, err := borrow(ctx)
+		c, release, err := borrow(ctx, nil)
 		if err != nil {
 			return downloads.Export{}, nil, err
 		}
@@ -119,7 +162,7 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		}
 		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
 		defer cancel()
-		c, release, err := borrow(ctx)
+		c, release, err := borrow(ctx, nil)
 		if err != nil {
 			return entries.Page{}, err
 		}
@@ -132,7 +175,7 @@ func httpBackends(cfg Config, ready func() bool) backends {
 		}
 		ctx, cancel := context.WithTimeout(parent, lookup.DBTimeout)
 		defer cancel()
-		c, release, err := borrow(ctx)
+		c, release, err := borrow(ctx, nil)
 		if err != nil {
 			return artifacts.Ref{}, nil, err
 		}

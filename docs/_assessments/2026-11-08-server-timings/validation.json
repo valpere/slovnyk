@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "phases": [
+    "controls-before",
+    "ordinary-10rps",
+    "proposed-mixed-10rps",
+    "controls-after"
+  ],
+  "control_matches": 110,
+  "controls_expected": 110,
+  "application_state_unchanged": true,
+  "full_inventory_repeated": false,
+  "prior_17_table_inventories_remain_historical_evidence": true,
+  "restricted_reader_default_read_only": true,
+  "schema_changed": false,
+  "deadline_changed": false,
+  "profile_owner_approved": false,
+  "at16_closed": false
+}

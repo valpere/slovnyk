@@ -1,0 +1,57 @@
+{
+  "body_limit": 8388608,
+  "client_timeout_ms": 5000,
+  "complete": true,
+  "connection_reuse": false,
+  "elapsed_seconds": 29.92322906,
+  "groups": [
+    {
+      "client_p50_ms": 16.076717,
+      "client_p95_ms": 19.7911,
+      "dispatch_lag_p95_ms": 1.025203,
+      "error_counts": {},
+      "kind": "exact-negative",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 90,
+      "scheduled_to_complete_p95_ms": 20.40898,
+      "status_counts": {
+        "200": 90
+      }
+    },
+    {
+      "client_p50_ms": 15.9485,
+      "client_p95_ms": 19.550552,
+      "dispatch_lag_p95_ms": 1.055484,
+      "error_counts": {},
+      "kind": "exact-positive",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 150,
+      "scheduled_to_complete_p95_ms": 20.23205,
+      "status_counts": {
+        "200": 150
+      }
+    },
+    {
+      "client_p50_ms": 17.083,
+      "client_p95_ms": 20.039278,
+      "dispatch_lag_p95_ms": 1.031158,
+      "error_counts": {},
+      "kind": "short-prefix",
+      "oracle_checked": 0,
+      "oracle_matches": 0,
+      "requests": 60,
+      "scheduled_to_complete_p95_ms": 20.65197,
+      "status_counts": {
+        "200": 60
+      }
+    }
+  ],
+  "interval_ms": 100,
+  "latencies": "client observed including bounded body read; no server timer",
+  "percentile": "nearest rank, ceil(p*N); all outcomes retained",
+  "phase": "ordinary-10rps",
+  "requests": 300,
+  "workers": 16
+}

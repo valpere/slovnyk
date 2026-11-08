@@ -260,6 +260,11 @@ Readiness звіряє зареєстровані active файли; inventory �
 
 ## FUN-OPS — експлуатація і відновлення
 
+Опційний `SLOVNYK_SEARCH_TIMING=true` додає [діагностичні search timings](SEARCH_TIMING.md)
+без query/URL/pair/error strings; default off, INFO. Це не статистика
+популярності. Admission/connect/lookup/catalog/handler вимірюються окремо;
+існуючі deadlines і відповіді збережені.
+
 `GET /healthz` — живий процес; `/readyz` — підключення до БД, сумісна schema
 і готовий активний dataset, 503 за неготовності. DSN і secrets передаються
 через runtime config, не через старі Perl-конфіги. Startup/recovery readiness

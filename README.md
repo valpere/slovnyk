@@ -74,7 +74,8 @@ make run
 `SLOVNYK_LOG_LEVEL` (`debug/info/warn/error`, default `info`) та
 `SLOVNYK_SHUTDOWN_TIMEOUT` (додатна Go duration, default `10s`).
 `.env` автоматично читає лише Compose; Go-процес використовує environment.
-Логи — JSON у stderr, без access log і текстів пошуку. HTTP та CLI використовують окремі явні DSNs; credentials не логуються.
+Логи — JSON у stderr, без access log і текстів пошуку.
+Опційний `SLOVNYK_SEARCH_TIMING=true` додає безпечні [діагностичні timings](docs/SEARCH_TIMING.md) пошуку (default off; потрібен INFO). HTTP та CLI використовують окремі явні DSNs; credentials не логуються.
 
 ## Окрема dev/test БД
 

@@ -14,6 +14,7 @@ import (
 
 // Config separates read-only HTTP storage from operator and migration credentials.
 type Config struct {
+	SearchTiming    bool
 	CursorSigner    *lookup.Signer
 	HTTPDSN         string
 	ArtifactRoot    string
@@ -56,6 +57,13 @@ func LoadConfig(getenv func(string) string) (Config, error) {
 			return Config{}, errors.New("invalid SLOVNYK_SHUTDOWN_TIMEOUT: expected positive duration")
 		}
 		cfg.ShutdownTimeout = duration
+	}
+	switch getenv("SLOVNYK_SEARCH_TIMING") {
+	case "", "false":
+	case "true":
+		cfg.SearchTiming = true
+	default:
+		return Config{}, errors.New("invalid SLOVNYK_SEARCH_TIMING: expected true or false")
 	}
 	cfg.HTTPDSN = getenv("SLOVNYK_HTTP_DSN")
 	cfg.ArtifactRoot = getenv("SLOVNYK_ARTIFACT_ROOT")

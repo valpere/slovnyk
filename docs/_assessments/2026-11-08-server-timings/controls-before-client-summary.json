@@ -1,0 +1,71 @@
+{
+  "body_limit": 8388608,
+  "client_timeout_ms": 5000,
+  "complete": true,
+  "connection_reuse": false,
+  "elapsed_seconds": 0.770380594,
+  "groups": [
+    {
+      "client_p50_ms": 16.517085,
+      "client_p95_ms": 18.041933,
+      "dispatch_lag_p95_ms": 739.957553,
+      "error_counts": {},
+      "kind": "continuation",
+      "oracle_checked": 7,
+      "oracle_matches": 7,
+      "requests": 7,
+      "scheduled_to_complete_p95_ms": 754.637852,
+      "status_counts": {
+        "200": 7
+      }
+    },
+    {
+      "client_p50_ms": 15.94066,
+      "client_p95_ms": 22.298791,
+      "dispatch_lag_p95_ms": 709.90765,
+      "error_counts": {},
+      "kind": "exact",
+      "oracle_checked": 16,
+      "oracle_matches": 16,
+      "requests": 16,
+      "scheduled_to_complete_p95_ms": 724.216152,
+      "status_counts": {
+        "200": 16
+      }
+    },
+    {
+      "client_p50_ms": 16.050288,
+      "client_p95_ms": 18.197412,
+      "dispatch_lag_p95_ms": 724.219332,
+      "error_counts": {},
+      "kind": "prefix",
+      "oracle_checked": 16,
+      "oracle_matches": 16,
+      "requests": 16,
+      "scheduled_to_complete_p95_ms": 739.955003,
+      "status_counts": {
+        "200": 16
+      }
+    },
+    {
+      "client_p50_ms": 7.353374,
+      "client_p95_ms": 9.415409,
+      "dispatch_lag_p95_ms": 754.640852,
+      "error_counts": {},
+      "kind": "word",
+      "oracle_checked": 16,
+      "oracle_matches": 16,
+      "requests": 16,
+      "scheduled_to_complete_p95_ms": 761.934867,
+      "status_counts": {
+        "200": 16
+      }
+    }
+  ],
+  "interval_ms": 0,
+  "latencies": "client observed including bounded body read; no server timer",
+  "percentile": "nearest rank, ceil(p*N); all outcomes retained",
+  "phase": "controls-before",
+  "requests": 55,
+  "workers": 1
+}

@@ -283,9 +283,10 @@ Unicode/escaping/64-codepoint collisions, C seek, signed cursors, ready-data upg
 тотожні при вимкненому source. Попередній schema 3 bundle збережено.
 Ширші HTTP/cache/contention probes виконано 2026-11-08:
 [1858/1858 HTTP 200](_assessments/2026-11-08-query-workloads/REPORT.md),
-два post-workload inventories незмінні. Далі — server-side timings
-і погоджений traffic/crawler/resource profile,
-розширений workload, storage/capacity
+два post-workload inventories незмінні. [Server-side timings](SEARCH_TIMING.md)
+додано: [1010/1010 HTTP 200](_assessments/2026-11-08-server-timings/REPORT.md),
+ordinary handler p95 18.998 ms. Далі — погоджений traffic/crawler/resource profile,
+target workload, storage/capacity
 та off-host/target-server restore gates;
 adapter не дозволяє exceptions/rejected records.
 Доступні DDL + CSV; DB snapshot adapter і відсутні historical metadata

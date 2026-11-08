@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"io"
+	"log/slog"
 	"net/http/httptest"
 	"net/url"
 	"os"
@@ -106,11 +107,24 @@ func TestReadinessRecoveryWithHTTPRole(t *testing.T) {
 	}
 	backend := httpBackends(Config{HTTPDSN: httpDSN, CursorSigner: signer, ArtifactRoot: root}, func() bool { return true })
 	search, readCatalog := backend.search, backend.catalog
-	handler := httpui.New(search, signer, httpui.WithCatalog(readCatalog), httpui.WithDownloads(backend.downloads, backend.export))
+	var timingLog bytes.Buffer
+	handler := searchTimingHandler(httpui.New(search, signer, httpui.WithCatalog(readCatalog), httpui.WithDownloads(backend.downloads, backend.export)), slog.New(slog.NewJSONHandler(&timingLog, nil)), true)
 	first := httptest.NewRecorder()
 	handler.ServeHTTP(first, httptest.NewRequest("GET", "/search?from=uk-ua&to=en-us&q="+url.QueryEscape("слово")+"&limit=1&format=plain", nil))
 	if first.Code != 200 || !strings.Contains(first.Body.String(), "More translations: /search?") {
 		t.Fatal("HTTP search failed", first.Code, first.Body.String())
+	}
+	record := timingRecord(t, timingLog.String())
+	if record["search_result"] != "ok" || record["catalog_result"] != "ok" || record["failure_stage"] != "none" || record["query_kind"] != "exact" {
+		t.Fatal("real SQL timing result incorrect", record)
+	}
+	for _, key := range []string{"search_ms", "connect_ms", "lookup_ms", "cleanup_ms", "catalog_ms"} {
+		if record[key].(float64) <= 0 {
+			t.Fatalf("missing real SQL phase %s", key)
+		}
+	}
+	if strings.Contains(timingLog.String(), "слово") || strings.Contains(timingLog.String(), "uk-ua") {
+		t.Fatal("private search leaked")
 	}
 	_, continuation, ok := strings.Cut(first.Body.String(), "More translations: ")
 	if !ok {

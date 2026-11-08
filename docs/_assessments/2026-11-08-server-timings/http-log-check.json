@@ -1,0 +1,11 @@
+{
+  "allowlisted_fields_only": true,
+  "events": {
+    "http_started": 1,
+    "search_timing": 978,
+    "http_draining": 1,
+    "http_stopped": 1
+  },
+  "sha256": "2ca10c7382defc9f842805729eddbcbab405b8b32e06be839ea43838739c6eaa",
+  "raw_logs_committed": false
+}

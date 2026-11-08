@@ -1,0 +1,21 @@
+{
+  "phases_completed": [
+    "controls-before",
+    "ordinary-10rps",
+    "proposed-mixed-10rps",
+    "controls-after"
+  ],
+  "retained_bind_and_artifacts": true,
+  "unrelated_containers_untouched": true,
+  "elapsed_seconds": 142.57848088299943,
+  "http_removed": true,
+  "reader_removed": true,
+  "db_removed": true,
+  "network_removed": true,
+  "remaining_container_names": [
+    "docker-mongodb-1",
+    "open-webui",
+    "sla-testdb"
+  ],
+  "free_bytes": 90792726528
+}
