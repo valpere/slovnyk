@@ -1,0 +1,96 @@
+{
+  "algorithm": "binary-COPY-row SHA256, commutative sum mod2^256 and XOR; same built-in binary encodings; no raw rows retained",
+  "sequences": {
+    "import_issues_id_seq": {
+      "is_called": false,
+      "last_value": 1
+    }
+  },
+  "tables": {
+    "active_dataset": {
+      "rows": 1,
+      "sha256_sum_mod_2_256": "bc121931b77318c67f255c2199d9d525930992981fae3ea04448022fa754ba6b",
+      "sha256_xor": "bc121931b77318c67f255c2199d9d525930992981fae3ea04448022fa754ba6b"
+    },
+    "dataset_locales": {
+      "rows": 32,
+      "sha256_sum_mod_2_256": "a6bbf4a41d2662f6f61347c710b7b28b3935455d71f496fb6a652a0e716f3714",
+      "sha256_xor": "e37660c302607cdd80c28d7263d509358b22a010965f53dba1a654fde82f00e0"
+    },
+    "dataset_pairs": {
+      "rows": 992,
+      "sha256_sum_mod_2_256": "9725a5bdbc2e61d36d405bc5c277ebeb881372471a7cb14833bf9b69e0b09d81",
+      "sha256_xor": "00235dd62cda0b9b6776fb8a4481927fb34a4074f30d5d0f8d76dfe6185d5fb5"
+    },
+    "datasets": {
+      "rows": 1,
+      "sha256_sum_mod_2_256": "eed485609ec6843481d2d70dd187d23db6e0b20f395b750252841ade93a0accc",
+      "sha256_xor": "eed485609ec6843481d2d70dd187d23db6e0b20f395b750252841ade93a0accc"
+    },
+    "exports": {
+      "rows": 992,
+      "sha256_sum_mod_2_256": "d9c022a7be487b933db08429706afe5cb5a23b08e676a991a52e57baf3daee71",
+      "sha256_xor": "f73482895bc58e36a26c5a4754fc567382a5d8b5e4e961ffdfe9e5c377ea9d27"
+    },
+    "import_checkpoints": {
+      "rows": 992,
+      "sha256_sum_mod_2_256": "b74569d48d86c99139e1afd40bb30aa68ea0915b7a6bb93c5505b68991b24aa1",
+      "sha256_xor": "cf6536865638b864cc7fbcce8b60ecdfa3461952399df91faefbfafaa5cad6b9"
+    },
+    "import_issues": {
+      "rows": 0,
+      "sha256_sum_mod_2_256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "sha256_xor": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "import_records": {
+      "rows": 56455068,
+      "sha256_sum_mod_2_256": "95b73e423378fdb9b9b3e5be11b439f99c39172e7cc964a42c14a60030d2497f",
+      "sha256_xor": "b2e0caba5e3ac9ce378eae878d06d0a3d610d2c988948c0f02865ff8a430a2ff"
+    },
+    "import_runs": {
+      "rows": 3,
+      "sha256_sum_mod_2_256": "563d8f9ad07058d92eabfbfade5e2cfe1e51223b493c128625b63b6eb4f3abab",
+      "sha256_xor": "2acbee6d3d4fa68aaa52220523a7923a60df8db556c05f7912ceb34b4e4dc42b"
+    },
+    "legacy_query_snapshots": {
+      "rows": 0,
+      "sha256_sum_mod_2_256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "sha256_xor": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "publication_events": {
+      "rows": 1,
+      "sha256_sum_mod_2_256": "9fddbefd537c9df0002dd8c154505b49c1fd5a182f7b981d58dd667f63ce9447",
+      "sha256_xor": "9fddbefd537c9df0002dd8c154505b49c1fd5a182f7b981d58dd667f63ce9447"
+    },
+    "schema_migrations": {
+      "rows": 4,
+      "sha256_sum_mod_2_256": "e79c0d884c1cc08a5d4ad53b7808499b4864f1c00b8dc3149ea1ea1cfe829b01",
+      "sha256_xor": "f98c09eb511dd8f525cd574489d8bf9b4c6c13a9111d5343a39e362f07006637"
+    },
+    "sitemap_inventory": {
+      "rows": 1,
+      "sha256_sum_mod_2_256": "0d328b1038ee09a407f1897bdfed58443831f01423aa75a6e080c38bb944d4fb",
+      "sha256_xor": "0d328b1038ee09a407f1897bdfed58443831f01423aa75a6e080c38bb944d4fb"
+    },
+    "sitemap_shards": {
+      "rows": 736,
+      "sha256_sum_mod_2_256": "2df26687d22ad58c5d0e89b3d897f5b32fbcf1ccc1bdd1d81d8adead5cefc5db",
+      "sha256_xor": "952c263c06b3ed1df9553ee9691f3ac645f29d249509ba77bc80df7fc1c011c1"
+    },
+    "source_files": {
+      "rows": 992,
+      "sha256_sum_mod_2_256": "21149b1540f22563c53f27998b67a1efb4dc806fed0f7df04529f4112feea633",
+      "sha256_xor": "c8249973e7d46cbc5b9c91b641149b3e07a227a56b2b8fab30bbecdf7285086d"
+    },
+    "translation_origins": {
+      "rows": 56455068,
+      "sha256_sum_mod_2_256": "a6c8fede38a72a2d2431005ba2d48a9a461e784b906f7fcd0b0e1142d9021fa7",
+      "sha256_xor": "c682a00e292d0858bb288b4bd48d754e6bf111b5e43669894fa2665af068366f"
+    },
+    "translations": {
+      "rows": 56455068,
+      "sha256_sum_mod_2_256": "71777679c92862f32a3eaff96c14421ededa7994f048d5af4f3e92b9a65d6b14",
+      "sha256_xor": "4f3c5df81852f476ab57d48850899279b8453bdfcfb074e2421beba2ff71faa8"
+    }
+  }
+}

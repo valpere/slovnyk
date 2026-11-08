@@ -1,0 +1,14 @@
+{
+  "started_utc": "2026-11-08T12:22:21.196114+00:00",
+  "source_revision": "7dddd6750ea7ab4240523c1294794e27b3756662",
+  "scope": "local full corpus logical backup and fresh cluster restore; not off-host or target-server RTO acceptance",
+  "source_clients_at_start": 0,
+  "writers": "no operator or HTTP containers running; writer pause maintained through complete bundle",
+  "dump": "pg_dump --format=custom --no-owner, pinned PostgreSQL17.11 client",
+  "disk_floor_bytes": 32212254720,
+  "database": "separate new cluster and owner; no --clean; durability on",
+  "backup_copy": "independent regular files, no hardlinks/reflinks; fsync and reread hashes",
+  "table_oracle": "binary COPY all columns, unordered per-row SHA256 multiset sum modulo 2^256 plus XOR and row count; built-in type encodings, not public migration digest",
+  "sequence_oracle": "all application sequences last_value/is_called, sequence metadata and ownership",
+  "keyring": "new private rehearsal keyring shared by source/target HTTP probes; historical user cursors not available"
+}

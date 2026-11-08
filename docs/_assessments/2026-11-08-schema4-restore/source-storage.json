@@ -1,0 +1,6 @@
+{
+  "fsync": "on",
+  "database_bytes": 71666300595,
+  "full_page_writes": "on",
+  "synchronous_commit": "on"
+}

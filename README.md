@@ -6,7 +6,7 @@
 
 Джерело істини та порядок читання: [docs/INDEX.md](docs/INDEX.md).
 
-Пауза після merge PR #27 (2026-11-04): [підсумок і точка продовження](docs/SESSION_HANDOFF.md).
+Стан сесії та наступні перевірки: [підсумок і точка продовження](docs/SESSION_HANDOFF.md).
 
 Підтверджені рішення та наступні питання: [журнал](docs/DECISIONS.md).
 Розробка локально; кандидат для запуску в Oracle Cloud досліджено read-only:
@@ -425,6 +425,9 @@ groups та відновлені ACL/SECURITY DEFINER перевіряються
 [Повний локальний backup/restore](docs/_assessments/2026-11-04-corpus-restore/REPORT.md)
 також пройшов: 56 455 068 translations, усі 17 таблиць і sequences, повні
 artifacts/source copies та HTTP controls при зупиненій вихідній БД.
+[Повторний повний restore schema 4](docs/_assessments/2026-11-08-schema4-restore/REPORT.md)
+2026-11-08 також пройшов: новий prefix index/ledger, 17 таблиць/sequences,
+повні файли та HTTP/cursors збігаються; source під час target acceptance вимкнено.
 Off-host backup і target-server RTO <=24 h ще не доведені. Oracle й production
 не задіяні. Synthetic test додатково звіряє identity sequence у стані `37/true`.
 
@@ -492,8 +495,9 @@ Schema 4 і `ReadPage` prefilter реалізовані: перші 64 Unicode c
 також пройшов: schema 4 на 56 455 068 translations, index 2.428 GiB,
 команда ~177 s; application table hashes/sequences незмінні, 32/32 actual ReadPage
 plans із prefix condition, 135 HTTP responses тотожні, включно з 7 cursors.
-Початкова dev-БД тепер schema 4; backup/restored copies лишаються schema 3.
-Далі — schema 4 full backup/restore та розширені HTTP/cache/contention gates;
+Початкова dev-БД і новий [повний backup/restore](docs/_assessments/2026-11-08-schema4-restore/REPORT.md)
+тепер schema 4: усі 17 таблиць/sequences, prefix index і HTTP controls збігаються.
+Попередній schema 3 bundle збережено. Далі — розширені HTTP/cache/contention gates;
 AT-16 відкрито. Поточна БД 66.744 GiB без WAL/artifacts.
 Наявні `known_gaps` блокують verify без [окремого receipt](docs/LOSS_REVIEW.md);
 [Погодження](docs/DECISIONS.md#owner-approval-2026-11-04) зафіксовано 2026-11-04.

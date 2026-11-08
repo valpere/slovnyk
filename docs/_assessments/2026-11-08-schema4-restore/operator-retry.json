@@ -1,0 +1,5 @@
+{
+  "command": "bundled slovnyk dataset export ID --artifacts restored/artifacts",
+  "exit_code": 0,
+  "elapsed_seconds": 33.515
+}

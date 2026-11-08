@@ -1,0 +1,12 @@
+[
+  {
+    "max": 9223372036854775807,
+    "min": 1,
+    "name": "import_issues_id_seq",
+    "type": "bigint",
+    "cache": 1,
+    "cycle": false,
+    "start": 1,
+    "increment": 1
+  }
+]

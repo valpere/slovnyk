@@ -144,10 +144,11 @@ Private workload містить реальні терміни; `http.env` і `ht
 
 `experiments/corpus-restore-2026-11-04/` зберігає `backup/database.dump`, незалежні
 `backup/artifacts/`, `backup/sources/`, manifest і release binary; `restored/` —
-другі звірені file copies, `.pgdata/` — окремий відновлений cluster. Оригінальна
+другі звірені file copies. Окремий restored `.pgdata/` видалено 2026-11-08
+з дозволу власника; решта цього комплекту збережена. Оригінальна
 БД/snapshot/artifacts збережені. [Evidence](../docs/_assessments/2026-11-04-corpus-restore/REPORT.md).
 Власні containers/networks і тимчасові reader/operator LOGINs прибрані;
-new owner/admin лишаються локально. `*-private.json`, `*.env`, raw logs і workload
+Конфіг new owner/admin лишається локально. `*-private.json`, `*.env`, raw logs і workload
 paths містять secrets або реальні дані: не публікувати. Bundle не містить публічного
 keyring; rehearsal key/LOGIN configuration лишаються приватно поряд. Це той самий
 host, не off-host backup; durability/escrow/RPO/retention ще не погоджені.
@@ -190,6 +191,31 @@ containers/network прибрані; bind збережено. Старі credent
 треба rediscover при наступному запуску; новий temporary reader уже нечинний.
 
 Backup bundle і restored cluster у `corpus-restore-2026-11-04/` залишилися
-schema 3, їх цей upgrade не змінював. Для поточного binary restored БД треба
-окремо мігрувати owner-командою; новий full backup/restore ще не перевірено.
+schema 3, їх цей upgrade не змінював. **2026-11-08 власник окремо дозволив
+видалити лише стару restored `.pgdata/`** для місця під нову репетицію: звільнено
+58.56 GiB; backup bundle, restored files і початкова schema 4 БД збережені.
+Для поточного binary БД, відновлену зі старого dump, треба
+окремо мігрувати owner-командою. Новий schema 4 backup/restore описаний нижче.
 [Evidence та наступні gates](../docs/_assessments/2026-11-04-full-prefix/REPORT.md).
+
+
+## Повний backup/restore schema 4 — 2026-11-08
+
+`experiments/schema4-restore-2026-11-08-retry/` зберігає новий `backup/`
+із custom dump, release binary, manifest, незалежними artifacts/sources;
+`restored/` — другі звірені файлові копії, `.pgdata/` — свіжий schema 4 cluster.
+17 таблиць/sequences, prefix index/ledger та HTTP/cursors збігаються з source;
+усі 736 shards, index і 992 downloads перевірені через target HTTP.
+[Evidence](../docs/_assessments/2026-11-08-schema4-restore/REPORT.md).
+
+Власний runtime й temporary reader/operator LOGINs прибрані; bind data й файли
+збережені. Source admin і новий target owner/admin конфіг приватні; старі ports,
+container IDs і видалені LOGINs не використовувати повторно.
+`target-private.json`, `*-private.json`, `*.env`, raw logs і HTTP paths не публікувати.
+One-off scratch — `tmp/schema4-restore-retry/`; повторний inventory — Go minion.
+
+Попередня спроба `experiments/schema4-restore-2026-11-08/` перервана reboot під час
+source inventory, до dump/target; її receipts і `tmp/schema4-restore/` збережено.
+Повторний повний source inventory підтвердив збіг із PR27 після reboot.
+Дозвіл видалення стосувався лише старого schema 3 restored cluster; інші копії
+не видаляти без окремого рішення. Це один host; off-host/escrow/RPO/retention відкриті.

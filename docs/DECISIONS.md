@@ -937,3 +937,24 @@ Backup і restored cluster залишені schema 3; новий full backup/res
 storage/capacity і off-host RTO. Історичні 503 та AT-16 не закриті.
 Повторюваний Go inventory harness став посіпакою `minions/corpus-inventory`;
 це помічник агента, а не utility сервісу. Oracle/legacy не задіяні.
+
+
+## Повний локальний schema 4 backup/restore — 2026-11-08
+
+Після merge PR28 і команди власника `go` виконано
+[повний restore](_assessments/2026-11-08-schema4-restore/REPORT.md) у новий cluster:
+17 таблиць/sequences, schema 4 index/ledger, файли та HTTP/cursors тотожні.
+Source вимкнено перед target acceptance; restricted ACL і operator retry пройшли.
+Це локальне технічне підтвердження FR-13/AT-13, не production/off-host RTO.
+
+Власник окремо дозволив видалити **тільки** старий schema 3 restored `.pgdata`
+у `data/experiments/corpus-restore-2026-11-04/`: звільнено 58.56 GiB.
+Старий backup bundle, restored files та початкова schema 4 БД збережені.
+Перша спроба перервана reboot під час source inventory; повтор виконано в новому
+каталозі зі свіжим повним inventory, який збігся з PR27. Receipts збережено.
+Це не дозвіл на інші видалення. Нових продуктових рішень не додано.
+
+Далі — ширші HTTP/cache/contention workloads; AT-16, crawler budget, причина
+історичних 503, target storage/capacity, off-host RTO та escrow/RPO/retention відкриті.
+Oracle/legacy й сторонні containers не змінено; власний runtime прибрано,
+новий backup/restored cluster/file copies збережено.

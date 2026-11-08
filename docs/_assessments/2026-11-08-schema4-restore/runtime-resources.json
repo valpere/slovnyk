@@ -1,0 +1,12 @@
+{
+  "source": {
+    "oom_killed": false,
+    "memory_limit_bytes": 8589934592,
+    "nano_cpus": 2000000000
+  },
+  "target": {
+    "oom_killed": false,
+    "memory_limit_bytes": 8589934592,
+    "nano_cpus": 2000000000
+  }
+}

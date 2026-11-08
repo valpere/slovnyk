@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-08T09:23:52.972608+00:00",
+  "owner_authorized": true,
+  "removed_only": "data/experiments/corpus-restore-2026-11-04/.pgdata",
+  "measured_allocated_bytes": 62878351360,
+  "free_before_bytes": 110119419904,
+  "free_after_bytes": 172997771264,
+  "backup_original_schema4_and_file_copies_preserved": true,
+  "no_existing_container_mounts": true,
+  "oracle_or_legacy_actions": false,
+  "budget": {
+    "available_before_cleanup_gib": 102.55670166015625,
+    "prior_observed_restore_peak_bytes": 76943044608,
+    "prior_dump_bytes": 6400095751,
+    "prior_files_per_copy_bytes": 5186357559,
+    "schema4_prefix_index_bytes": 2607292416,
+    "reserve_bytes": 32212254720,
+    "estimate_note": "prior observed peak plus new prefix index, dump, two independent file copies and 30 GiB reserve; not an upper bound; runtime guard remains required",
+    "estimated_required_bytes": 128535402613
+  }
+}

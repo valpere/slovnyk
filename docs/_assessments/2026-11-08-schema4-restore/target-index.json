@@ -1,0 +1,33 @@
+{
+  "bytes": 2607292416,
+  "valid": true,
+  "ledger": [
+    {
+      "version": 1,
+      "checksum": "\\xea2f8e4ba4b14ccf1abcb1fed413290382fe388c4e10f80d40114a8229adbd4a",
+      "applied_at": "2026-10-25T08:50:54.130004+00:00"
+    },
+    {
+      "version": 2,
+      "checksum": "\\xfa5d4c3d3e201f0a2460a2e5634becac1b8f869d2ca475d085c1db1e642f0525",
+      "applied_at": "2026-10-25T08:50:54.131072+00:00"
+    },
+    {
+      "version": 3,
+      "checksum": "\\xb68db3c7bd24ff455f01865f7cb4b6d13fa7be456cc2a769dab27f34a60bb476",
+      "applied_at": "2026-10-25T08:50:54.137071+00:00"
+    },
+    {
+      "version": 4,
+      "checksum": "\\x0427f3190790565801b9a5ae0d94eb31f6eda0c53e7402e3a50ffd4ef471176b",
+      "applied_at": "2026-11-04T14:47:22.777071+00:00"
+    }
+  ],
+  "versions": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "definition": "CREATE INDEX translations_prefix64 ON slovnyk.translations USING btree (dataset_id, source_locale, target_locale, \"left\"(source_key, 64))"
+}

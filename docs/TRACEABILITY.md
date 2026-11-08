@@ -803,3 +803,26 @@ memory peak включає cache; cgroup OOM counters 0.
 Початкова dev-БД тепер schema 4, backup/restored копії schema 3 не змінено.
 Власні runtime/LOGIN прибрані. Schema 4 full backup/restore, ширші
 cache/contention workloads, server/storage capacity, off-host RTO й AT-16 відкриті.
+
+
+## FR-13 / AT-13 — повний schema 4 restore, 2026-11-08
+
+[Evidence/self-review](_assessments/2026-11-08-schema4-restore/REPORT.md),
+[summary](_assessments/2026-11-08-schema4-restore/summary.json): новий custom dump
+і fresh cluster із новим owner; повні 17 table multisets/sequences/config,
+ledger 1–4 та prefix index definition/validity збігаються. 56 455 068 translations,
+992 pairs, ready/active generation 1 збережено. Незалежні copies 1731 artifacts
+і 992 sources перевірені за sizes/SHA-256; source вимкнено перед target acceptance.
+
+HTTP controls: 55/55 200 із тотожними body sizes/SHA-256,
+Content-Type/Cache-Control: 16 exact, 16 prefix, 16 word, 7 старих continuations.
+Усі 736 shards, index і 992 downloads повністю звірені через target HTTP.
+Missing artifacts дають readiness/sitemap 503; restricted ACL, новий owner,
+operator export/registration retry перевірені фактично. State після retry тотожний.
+
+Від початку dump до acceptance 3359.010 s;
+це локальне вимірювання без preflight/source inventory, не production/off-host RTO.
+`make check test test-race test-smoke` — PASS; фактичний one-off harness у
+`tmp/schema4-restore-retry/`, відсутній у clean checkout; inventory —
+`minions/corpus-inventory`. Public receipts містять metadata, приватні paths/keys лишилися ignored.
+Власний runtime прибрано. AT-16, capacity, cache/contention та off-host gates відкриті.

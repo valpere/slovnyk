@@ -3,6 +3,10 @@
 FR-13 / AT-13, без користувацького запису. Production та off-host відновлення
 ще не виконано. Synthetic репетиція та [повний локальний restore](_assessments/2026-11-04-corpus-restore/REPORT.md) перевірили окремий fresh cluster;
 вони не доводять production/off-host RTO <=24 h для повного корпусу.
+[Повторний повний restore schema 4](_assessments/2026-11-08-schema4-restore/REPORT.md)
+2026-11-08 відновив також prefix index і ledger: 17 таблиць/sequences, повні
+файли та HTTP/cursors тотожні; target acceptance виконано з вимкненим source.
+Виміряний локальний elapsed не є off-host або target-server RTO acceptance.
 
 ## Що зберігати разом
 

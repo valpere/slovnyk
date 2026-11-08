@@ -1,0 +1,23 @@
+{
+  "schema": 4,
+  "tables": 17,
+  "translations": 56455068,
+  "language_pairs": 992,
+  "application_inventories_and_sequences_identical": true,
+  "ledger_and_prefix_definition_preserved": true,
+  "http_status_size_sha256_content_type_cache_control_match": true,
+  "http_counts": {
+    "exact": 16,
+    "prefix": 16,
+    "word": 16,
+    "continuation": 7
+  },
+  "http_total": 55,
+  "source_offline_for_target_http": true,
+  "artifact_files": 1731,
+  "source_files": 992,
+  "minimum_observed_restore_free_bytes": 81650626560,
+  "production_or_offhost_rto_accepted": false,
+  "historical_503_cause_proven": false,
+  "independent_reviewer": false
+}

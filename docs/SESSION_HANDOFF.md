@@ -1,7 +1,8 @@
-# Передача сесії — 2026-11-04
+# Стан сесії — 2026-11-08
 
-Роботу призупинено на прохання власника до завтра, 2026-11-05.
-Продовжувати технічні роботи лише після його наступної команди.
+Після merge PR #28 (`7dddd6750ea7ab4240523c1294794e27b3756662`) і команди
+власника `go` завершено повний локальний backup/restore schema 4.
+Перша спроба перервана reboot до dump; retry виконано в окремому каталозі.
 Це поточна пам’ятка продовження; вимоги й контракти визначає [INDEX](INDEX.md).
 
 ## Підтверджений стан
@@ -23,6 +24,19 @@
   [Повний звіт](_assessments/2026-11-04-full-prefix/REPORT.md) містить методику,
   metadata, межі доказів та послідовне self-review; окремого reviewer не було.
 
+- [Новий повний backup/restore schema 4](_assessments/2026-11-08-schema4-restore/REPORT.md)
+  відновив 17 table multisets/sequences/config, ledger 1–4 та valid prefix index
+  у fresh cluster із новим non-superuser owner. Source/target inventories тотожні.
+  Restored DB — 60.011 GiB без WAL/artifacts.
+- 55/55 HTTP 200 тотожні за sizes/body hashes/Content-Type/Cache-Control:
+  16 exact, 16 prefix, 16 word і 7 pre-restore continuations. Усі 736 shards,
+  index і 992 downloads повністю звірені через target HTTP з вимкненим source.
+  Missing artifacts, restricted ACL та operator retry перевірені фактично.
+- Від початку dump до acceptance — 3359.010 s,
+  мінімальний observed restore free — 76.043 GiB.
+  Це один host, не off-host RTO/capacity acceptance. Власний runtime прибрано.
+  `make check test test-race test-smoke` — PASS; code не змінювався.
+
 ## Що збережено локально
 
 Усі шляхи нижче відносні до кореня checkout; `data/experiments/` ignored.
@@ -33,41 +47,52 @@ Credentials, реальні терміни, raw plans, keyring і HTTP paths н�
 | Початкова dev-БД | `data/experiments/postgres-corpus-preflight-2026-10-25/.pgdata`, schema 4 |
 | Immutable exports/report/sitemaps | `data/experiments/corpus-verification-2026-11-04-retry/artifacts/` |
 | Попередній backup bundle | `data/experiments/corpus-restore-2026-11-04/backup/`, schema 3 |
-| Попередній restored cluster | `data/experiments/corpus-restore-2026-11-04/.pgdata`, schema 3 |
+| Попередній restored cluster | Видалений 2026-11-08 з окремого дозволу власника; звільнено 58.56 GiB |
 | Попередні restored files | `data/experiments/corpus-restore-2026-11-04/restored/` |
 | Останні inventories/diagnostics | `data/experiments/full-prefix-2026-11-04/` |
 | Одноразові harness scripts | `tmp/full-prefix/`, `tmp/corpus-restore/`; відсутні в clean checkout |
+| Перервана schema 4 спроба | `data/experiments/schema4-restore-2026-11-08/`, scratch `tmp/schema4-restore/` |
+| Успішний schema 4 backup/restored cluster/files | `data/experiments/schema4-restore-2026-11-08-retry/`, scratch `tmp/schema4-restore-retry/` |
 | Повторюваний агентський inventory | `minions/corpus-inventory/`, Go, 17 таблиць + sequences |
 
 Зафіксований cleanup прибрав власні containers/networks і тимчасовий reader LOGIN.
-На момент паузи працюють лише сторонні `docker-mongodb-1` і `open-webui`;
-їх не чіпати. Bind data, backup, restored copies та inputs збережено.
-Вільно приблизно 101 GiB — датований замір, перед новою роботою перевірити знову.
+Початкові bind data, backup bundle, restored files та inputs збережено;
+видалений лише старий restored DB bind за окремим рішенням власника.
+На початку нової сесії працювали сторонні `sla-testdb`, `docker-mongodb-1`
+та `open-webui`; їх не чіпати. Після цієї репетиції доступно близько 84.7 GiB.
 Старі ephemeral ports/container IDs і видалені LOGINs повторно не використовувати.
 [Карта даних](../data/README.md) пояснює історію й приватні inputs.
 
-## Перша задача після відновлення
+## Наступна задача
 
-**Повний локальний backup/restore schema 4** за [процедурою](BACKUP_RESTORE.md).
-Попередній успішний full restore перевіряв schema 3; новий індекс у ньому відсутній.
+Після merge PR з цим evidence — **ширші локальні HTTP/cache/contention probes**.
+Спершу перевірити Git/PR/CI та прочитати INDEX, останній
+[restore звіт](_assessments/2026-11-08-schema4-restore/REPORT.md) і
+[prefix evidence](_assessments/2026-11-04-full-prefix/REPORT.md).
+Не повторювати import, reconciliation, schema upgrade або успішний full restore.
 
-1. Перевірити Git/стан PR цієї пам’ятки, прочитати INDEX, останній full-prefix
-   звіт і попередній [full restore](_assessments/2026-11-04-corpus-restore/REPORT.md).
-   Не повторювати import, reconciliation чи upgrade вже оновленої dev-БД.
-2. До запуску оцінити storage для нового dump, копій artifacts/sources, fresh
-   cluster, index build, WAL/temp і запасу щонайменше 30 GiB. Не припускати,
-   що поточних 101 GiB вистачить. За дефіциту запропонувати конкретні варіанти;
-   не видаляти збережені backup/restored/source copies без окремого рішення.
-3. Створити нову run directory та окремий fresh cluster; попередній schema 3
-   bundle і restored cluster не перезаписувати. Rediscover source bind/image/
-   private config, зафіксувати ресурсні ліміти й тримати всіх writers зупиненими
-   під час dump та копіювання файлів. Keyring зберігати приватно.
-4. Перевірити dump/hash, усі 17 таблиць/sequences, index definition/validity,
-   artifact/source inventories, новий owner/ACL і operator retry. Перед HTTP —
-   ANALYZE; source вимкнути для target acceptance. Перевірити readiness,
-   exact/prefix/cursors, downloads/sitemaps та відмови за відсутніх artifacts.
-5. Зафіксувати elapsed/storage/WAL/resource/privacy evidence, прибрати лише
-   власний runtime, зберегти всі результати; review → commit → PR → green CI.
+1. Визначити bounded workload із negative, prefix, leading-wildcard/infix,
+   continuations, skew/різними парами та concurrency; поточні 16 positive cases
+   не є репрезентативним traffic model. Зберігати реальні terms/paths приватно.
+2. Розрізняти application/DB/OS cache й contention; перезапуск containers
+   не означає cold OS cache. Не скидати host caches і не створювати глобальний
+   pressure на машині зі сторонніми containers. Спершу обрати ізольовану методику.
+3. Rediscover bind/image/private config і вільний диск. Source та restored DB
+   тепер schema 4; запускати лише явно обрану ціль із фіксованими caps і restricted
+   LOGIN. Зберегти state/inventories; не змінювати schema/deadline без доказів.
+4. Відокремлювати діагностику latency/503 від доказів causality й AT-16 acceptance;
+   звітувати workload, caps, errors, sample size/cache limits. Oracle не задіювати.
+5. Прибрати власний runtime, зберегти дані, review → commit → PR → green CI.
+   Merge виконує власник. Жодних додаткових видалень не погоджено.
+
+## Відновлення після переривання
+
+Стара спроба `schema4-restore-2026-11-08/` зберігає interruption/storage receipts;
+її `run.py` не є resumable, повторно не запускати. Успішний retry —
+`schema4-restore-2026-11-08-retry/`: усі metadata, `lifecycle.json`, backup,
+restored cluster/files збережені. Після reboot source повністю переінвентаризовано,
+збіг із PR27 підтверджено. Дозвіл видалення стосувався лише старого
+`corpus-restore-2026-11-04/.pgdata` і вже виконаний; інші копії не видаляти.
 
 ## Що залишається відкритим
 
