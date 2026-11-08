@@ -1,0 +1,45 @@
+{
+  "selection": "top 8 by unique_count DESC, source_locale, target_locale; first eligible term in prefix64/id order, no latency filtering",
+  "pairs": [
+    {
+      "source_locale": "en-us",
+      "target_locale": "de-de",
+      "unique_count": 360698
+    },
+    {
+      "source_locale": "en-us",
+      "target_locale": "fr-fr",
+      "unique_count": 358927
+    },
+    {
+      "source_locale": "fr-fr",
+      "target_locale": "en-us",
+      "unique_count": 290888
+    },
+    {
+      "source_locale": "de-de",
+      "target_locale": "en-us",
+      "unique_count": 274104
+    },
+    {
+      "source_locale": "en-us",
+      "target_locale": "it-it",
+      "unique_count": 272146
+    },
+    {
+      "source_locale": "en-us",
+      "target_locale": "nl-nl",
+      "unique_count": 269248
+    },
+    {
+      "source_locale": "en-us",
+      "target_locale": "ru-ru",
+      "unique_count": 248520
+    },
+    {
+      "source_locale": "de-de",
+      "target_locale": "fr-fr",
+      "unique_count": 244632
+    }
+  ]
+}

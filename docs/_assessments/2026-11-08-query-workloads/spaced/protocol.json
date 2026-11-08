@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-08T14:22:01.817590+00:00",
+  "code_revision": "f752e36ae984729ab63fea6db70a484d6327ab51",
+  "image": "postgres:17.11-alpine@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+  "db_memory_bytes": 8589934592,
+  "db_cpus": 2,
+  "http_memory_bytes": 536870912,
+  "http_cpus": 1,
+  "http_shared_slots": 8,
+  "server_deadline_ms": 2000,
+  "cache": "fresh PostgreSQL process/shared buffers; OS cache uncontrolled; no global flush",
+  "disk_floor_bytes": 32212254720,
+  "runtime_deadline_seconds": 1500,
+  "unrelated_container_names": [
+    "docker-mongodb-1",
+    "open-webui",
+    "sla-testdb"
+  ],
+  "source_cluster_started": false
+}

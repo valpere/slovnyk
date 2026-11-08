@@ -1,0 +1,10 @@
+{
+  "controls": 55,
+  "additional_cases": 192,
+  "source_sample_count": 128,
+  "selection": "indices 0,4,...,124 from prior deterministic equally spaced shard sample; no latency filtering",
+  "selected_rows": 32,
+  "directed_pairs": 32,
+  "negative_marker_exact_absence_checked_pairs": 32,
+  "new_cases_have_independent_response_oracles": false
+}

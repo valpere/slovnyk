@@ -826,3 +826,28 @@ operator export/registration retry перевірені фактично. State 
 `tmp/schema4-restore-retry/`, відсутній у clean checkout; inventory —
 `minions/corpus-inventory`. Public receipts містять metadata, приватні paths/keys лишилися ignored.
 Власний runtime прибрано. AT-16, capacity, cache/contention та off-host gates відкриті.
+
+
+## REQ-NFR-03 / AT-16 diagnostic subset — 2026-11-08
+
+[Методика, результати та self-review](_assessments/2026-11-08-query-workloads/REPORT.md),
+[усі агрегати](_assessments/2026-11-08-query-workloads/summary.json):
+1858/1858 HTTP 200 на restored schema 4, DB 2 CPU/8 GiB, HTTP 1 CPU/512 MiB.
+Дві фіксовані вибірки: 32 spaced pairs і 8 largest pairs; exact positive/negative,
+short prefix, leading/infix masks, word/cursors, 10/s ordinary/mask/mixed,
+16-worker one-pair burst і recovery. 330/330 prior response oracles та
+508/508 negative message body hashes збігаються. Client errors/SQLSTATE 57014 — 0.
+Largest burst client HTTP p95 1513.180 ms, scheduled-to-complete p95 4370.988 ms;
+черга клієнта не є server-side timing. OS cache не скидали; host не ексклюзивний.
+
+Після обох запусків повні 17 table inventories/sequences й application state
+тотожні попередньому restore. Lifetime memory peaks включають startup/cache:
+largest HTTP досяг ~512 MiB cap ще до controls, OOM/kill — 0; це не Go heap.
+Власні runtime/LOGINs прибрані, дані збережені; Oracle/legacy не задіяні.
+
+`minions/http-probe/main_test.go`: all-arrival/queue accounting, paced scheduling,
+oracle mismatch, redirects, body cap, timeout/503, output failure/privacy,
+exclusive outputs, config permissions/loopback/size. Oversize config regression
+відтворено red; після перевірки file size green. `make check test test-race test-smoke` — PASS на фінальному diff. Посіпака не є service/CI dependency.
+AT-16, server-side timing, approved traffic/crawler budget, cold-host/low-memory,
+target-server capacity та причина історичних 503 залишаються відкритими.

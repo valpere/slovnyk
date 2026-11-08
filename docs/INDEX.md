@@ -5,9 +5,11 @@
 
 ## Статус і правила
 
-**Стан 2026-11-08:** PR #28 змержено; повний локальний backup/restore schema 4
-[перевірено](_assessments/2026-11-08-schema4-restore/REPORT.md). Далі — ширші HTTP/cache/contention probes;
-[SESSION_HANDOFF](SESSION_HANDOFF.md) містить карту даних і порядок продовження.
+**Стан 2026-11-08:** PR #29 змержено; schema 4 backup/restore завершено.
+[Ширші HTTP/cache/contention probes](_assessments/2026-11-08-query-workloads/REPORT.md):
+1858/1858 HTTP 200, 17 таблиць/sequences незмінні після обох запусків.
+Далі — server-side measurements і погодження traffic/crawler/resource profile;
+AT-16 відкрито. [SESSION_HANDOFF](SESSION_HANDOFF.md) містить точку продовження.
 
 **Мета, уточнена користувачем 2026-10-23:** перенести сервіс на нову реалізацію.
 Старий код і дані доступні як джерело інформації про сервіс. Перенесення

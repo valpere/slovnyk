@@ -281,7 +281,10 @@ Unicode/escaping/64-codepoint collisions, C seek, signed cursors, ready-data upg
 135 тотожних HTTP responses. [Повний backup/restore schema 4](_assessments/2026-11-08-schema4-restore/REPORT.md)
 пройшов 2026-11-08: 17 таблиць/sequences, index/ledger, файли та HTTP/cursors
 тотожні при вимкненому source. Попередній schema 3 bundle збережено.
-Далі — ширші HTTP/cache/contention probes,
+Ширші HTTP/cache/contention probes виконано 2026-11-08:
+[1858/1858 HTTP 200](_assessments/2026-11-08-query-workloads/REPORT.md),
+два post-workload inventories незмінні. Далі — server-side timings
+і погоджений traffic/crawler/resource profile,
 розширений workload, storage/capacity
 та off-host/target-server restore gates;
 adapter не дозволяє exceptions/rejected records.

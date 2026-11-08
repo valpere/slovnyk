@@ -1,0 +1,10 @@
+{
+  "lifecycle_fields_only": true,
+  "events": {
+    "http_started": 1,
+    "http_draining": 1,
+    "http_stopped": 1
+  },
+  "sha256": "f0b9f374e288cfb6c90b2839128fff8404f7723748914e82e59c2eb153d5800d",
+  "raw_logs_committed": false
+}

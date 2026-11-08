@@ -1,8 +1,8 @@
 # Стан сесії — 2026-11-08
 
-Після merge PR #28 (`7dddd6750ea7ab4240523c1294794e27b3756662`) і команди
-власника `go` завершено повний локальний backup/restore schema 4.
-Перша спроба перервана reboot до dump; retry виконано в окремому каталозі.
+Після merge [PR #29](https://github.com/valpere/slovnyk/pull/29)
+(`f752e36ae984729ab63fea6db70a484d6327ab51`) і команди власника `go`
+завершено ширші локальні HTTP/cache/contention probes на restored schema 4.
 Це поточна пам’ятка продовження; вимоги й контракти визначає [INDEX](INDEX.md).
 
 ## Підтверджений стан
@@ -37,6 +37,21 @@
   Це один host, не off-host RTO/capacity acceptance. Власний runtime прибрано.
   `make check test test-race test-smoke` — PASS; code не змінювався.
 
+- [Нові HTTP/cache/contention probes](_assessments/2026-11-08-query-workloads/REPORT.md):
+  **1858/1858 HTTP 200**, 330 prior response oracles і 508 negative body checks
+  збігаються. Client errors/SQLSTATE 57014/OOM — 0 у виміряних фазах.
+  32 spaced і 8 largest pairs; serial/warm, ordinary/mask/mixed 10/s,
+  16-worker one-pair bursts і recovery. Largest burst HTTP p95 1513.180 ms,
+  client scheduled-to-complete p95 4370.988 ms; це не server timing.
+- Після **обох** запусків повні 17 table inventories/sequences і state збігаються
+  з restore. DB 2 CPU/8 GiB, HTTP 1 CPU/512 MiB; source лишався вимкненим.
+  OS cache не скидали. Largest HTTP lifetime peak ~512 MiB включає startup/file cache;
+  це не heap. Cgroup memory.max events були до controls, OOM/kill — 0.
+- Новий Go-посіпака `minions/http-probe` обліковує arrivals/queue/response hashes
+  без URL/тіл у результатах. Oversize private config regression виправлено red→green.
+  `make check test test-race test-smoke` — PASS на фінальному code diff.
+  Послідовне self-review; незалежного reviewer не було. Власний runtime прибрано.
+
 ## Що збережено локально
 
 Усі шляхи нижче відносні до кореня checkout; `data/experiments/` ignored.
@@ -53,37 +68,37 @@ Credentials, реальні терміни, raw plans, keyring і HTTP paths н�
 | Одноразові harness scripts | `tmp/full-prefix/`, `tmp/corpus-restore/`; відсутні в clean checkout |
 | Перервана schema 4 спроба | `data/experiments/schema4-restore-2026-11-08/`, scratch `tmp/schema4-restore/` |
 | Успішний schema 4 backup/restored cluster/files | `data/experiments/schema4-restore-2026-11-08-retry/`, scratch `tmp/schema4-restore-retry/` |
+| Нові workload runs | `data/experiments/query-workloads-2026-11-08-retry/`, `data/experiments/query-workloads-largest-2026-11-08/`; scratch `tmp/query-workloads/` |
+| Перша workload preflight спроба | `data/experiments/query-workloads-2026-11-08/`, зупинена до runtime через host permissions PGDATA |
 | Повторюваний агентський inventory | `minions/corpus-inventory/`, Go, 17 таблиць + sequences |
 
 Зафіксований cleanup прибрав власні containers/networks і тимчасовий reader LOGIN.
 Початкові bind data, backup bundle, restored files та inputs збережено;
 видалений лише старий restored DB bind за окремим рішенням власника.
 На початку нової сесії працювали сторонні `sla-testdb`, `docker-mongodb-1`
-та `open-webui`; їх не чіпати. Після цієї репетиції доступно близько 84.7 GiB.
+та `open-webui`; їх не чіпати. Після цієї репетиції доступно близько 84.6 GiB.
 Старі ephemeral ports/container IDs і видалені LOGINs повторно не використовувати.
 [Карта даних](../data/README.md) пояснює історію й приватні inputs.
 
 ## Наступна задача
 
-Після merge PR з цим evidence — **ширші локальні HTTP/cache/contention probes**.
-Спершу перевірити Git/PR/CI та прочитати INDEX, останній
-[restore звіт](_assessments/2026-11-08-schema4-restore/REPORT.md) і
-[prefix evidence](_assessments/2026-11-04-full-prefix/REPORT.md).
-Не повторювати import, reconciliation, schema upgrade або успішний full restore.
+Після merge PR із цим evidence — **безпечні server-side measurements** перед
+подальшими capacity висновками. Спершу перевірити Git/PR/CI, прочитати INDEX і
+[останній звіт](_assessments/2026-11-08-query-workloads/REPORT.md).
+Не повторювати import, reconciliation, schema upgrade, full restore або щойно
+завершені workloads без нової причини.
 
-1. Визначити bounded workload із negative, prefix, leading-wildcard/infix,
-   continuations, skew/різними парами та concurrency; поточні 16 positive cases
-   не є репрезентативним traffic model. Зберігати реальні terms/paths приватно.
-2. Розрізняти application/DB/OS cache й contention; перезапуск containers
-   не означає cold OS cache. Не скидати host caches і не створювати глобальний
-   pressure на машині зі сторонніми containers. Спершу обрати ізольовану методику.
-3. Rediscover bind/image/private config і вільний диск. Source та restored DB
-   тепер schema 4; запускати лише явно обрану ціль із фіксованими caps і restricted
-   LOGIN. Зберегти state/inventories; не змінювати schema/deadline без доказів.
-4. Відокремлювати діагностику latency/503 від доказів causality й AT-16 acceptance;
-   звітувати workload, caps, errors, sample size/cache limits. Oracle не задіювати.
-5. Прибрати власний runtime, зберегти дані, review → commit → PR → green CI.
-   Merge виконує власник. Жодних додаткових видалень не погоджено.
+1. Описати й реалізувати мінімальні server-side search timings/класи результатів
+   без raw query/URL/DSN. Відділити admission/connect/SQL/handler та client queue;
+   нові метрики не повинні непомітно змінювати deadline чи відповіді.
+2. Погоджений traffic/crawler/resource profile потрібен для AT-16. Нинішні
+   fixed samples і client p95 не є server SLO або deployment acceptance.
+   Historical 503 у нових runs не відтворилися; їхню причину не оголошувати доведеною.
+3. Перед новими DB probes rediscover потрібний bind/private config, free disk,
+   створити власні capped runtime/restricted LOGIN. Старі ports/IDs/roles вже невалідні.
+   Startup/readiness cache charging, cold-host та довгі маски окремо відкриті.
+4. Прибрати власний runtime, зберегти retained data, review → commit → PR → green CI.
+   Merge виконує власник. Oracle зайнятий; додаткові видалення не дозволені.
 
 ## Відновлення після переривання
 
@@ -96,10 +111,11 @@ restored cluster/files збережені. Після reboot source повніс
 
 ## Що залишається відкритим
 
-AT-16, cold-cache/negative/infix/concurrency workloads, crawler budget,
+AT-16, server-side timings, інші cold-host/low-memory/довгі mask workloads, crawler budget,
 причина історичних HTTP 503, target server/storage capacity, off-host RTO,
-secret escrow/RPO/retention та мовне/дизайн-приймання. Поточна positive локальна
-вибірка не закриває ці gates. Oracle root близько 45 GiB за старим заміром
+secret escrow/RPO/retention та мовне/дизайн-приймання. Нові bounded локальні
+вибірки включають negative/infix/concurrency, але не закривають ці gates.
+Oracle root близько 45 GiB за старим заміром
 не вміщує поточну БД; нового server probe не було.
 
 ## Правила продовження

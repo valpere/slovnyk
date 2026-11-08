@@ -1,0 +1,148 @@
+{
+  "requests": 1858,
+  "http_200": 1858,
+  "client_errors": 0,
+  "prior_oracle_checked": 330,
+  "prior_oracle_matches": 330,
+  "negative_message_checks": 508,
+  "negative_message_sha256": "f75f6b6b5c3334b9d7a0609b1cbf96a2f1e5460e248c8559b2cceb5bf37daddf",
+  "negative_message_bytes": 73,
+  "negative_oracle": "en no_matches message plus newline from web/locales/en.json and plain renderer; post-run independent body/hash check",
+  "phases": [
+    {
+      "cohort": "spaced",
+      "phase": "expanded-serial",
+      "requests": 192,
+      "status_200": 192,
+      "client_p95_ms": 61.53287,
+      "dispatch_lag_p95_ms": 5265.684308,
+      "scheduled_to_complete_p95_ms": 5280.820169
+    },
+    {
+      "cohort": "spaced",
+      "phase": "first-touch-controls",
+      "requests": 55,
+      "status_200": 55,
+      "client_p95_ms": 15.256696,
+      "dispatch_lag_p95_ms": 632.000802,
+      "scheduled_to_complete_p95_ms": 644.807127
+    },
+    {
+      "cohort": "spaced",
+      "phase": "mask-10rps",
+      "requests": 160,
+      "status_200": 160,
+      "client_p95_ms": 59.551325,
+      "dispatch_lag_p95_ms": 1.036715,
+      "scheduled_to_complete_p95_ms": 60.604341
+    },
+    {
+      "cohort": "spaced",
+      "phase": "ordinary-10rps",
+      "requests": 300,
+      "status_200": 300,
+      "client_p95_ms": 15.676157,
+      "dispatch_lag_p95_ms": 1.020518,
+      "scheduled_to_complete_p95_ms": 16.367444
+    },
+    {
+      "cohort": "spaced",
+      "phase": "pair-skew-burst",
+      "requests": 64,
+      "status_200": 64,
+      "client_p95_ms": 492.976517,
+      "dispatch_lag_p95_ms": 1329.004333,
+      "scheduled_to_complete_p95_ms": 1740.8341
+    },
+    {
+      "cohort": "spaced",
+      "phase": "recovery-controls",
+      "requests": 55,
+      "status_200": 55,
+      "client_p95_ms": 14.977037,
+      "dispatch_lag_p95_ms": 623.240144,
+      "scheduled_to_complete_p95_ms": 637.114793
+    },
+    {
+      "cohort": "spaced",
+      "phase": "warm-controls",
+      "requests": 55,
+      "status_200": 55,
+      "client_p95_ms": 15.784786,
+      "dispatch_lag_p95_ms": 619.669358,
+      "scheduled_to_complete_p95_ms": 633.723418
+    },
+    {
+      "cohort": "largest",
+      "phase": "expanded-serial",
+      "requests": 48,
+      "status_200": 48,
+      "client_p95_ms": 76.021072,
+      "dispatch_lag_p95_ms": 1797.571437,
+      "scheduled_to_complete_p95_ms": 1867.389372
+    },
+    {
+      "cohort": "largest",
+      "phase": "first-touch-controls",
+      "requests": 55,
+      "status_200": 55,
+      "client_p95_ms": 14.878019,
+      "dispatch_lag_p95_ms": 619.538265,
+      "scheduled_to_complete_p95_ms": 633.666724
+    },
+    {
+      "cohort": "largest",
+      "phase": "mask-10rps",
+      "requests": 160,
+      "status_200": 160,
+      "client_p95_ms": 75.203143,
+      "dispatch_lag_p95_ms": 1.006647,
+      "scheduled_to_complete_p95_ms": 76.111823
+    },
+    {
+      "cohort": "largest",
+      "phase": "mixed-10rps",
+      "requests": 240,
+      "status_200": 240,
+      "client_p95_ms": 71.786295,
+      "dispatch_lag_p95_ms": 1.045003,
+      "scheduled_to_complete_p95_ms": 72.72638
+    },
+    {
+      "cohort": "largest",
+      "phase": "ordinary-10rps",
+      "requests": 300,
+      "status_200": 300,
+      "client_p95_ms": 15.692751,
+      "dispatch_lag_p95_ms": 1.026961,
+      "scheduled_to_complete_p95_ms": 16.284158
+    },
+    {
+      "cohort": "largest",
+      "phase": "pair-skew-burst",
+      "requests": 64,
+      "status_200": 64,
+      "client_p95_ms": 1513.179823,
+      "dispatch_lag_p95_ms": 3562.228054,
+      "scheduled_to_complete_p95_ms": 4370.987842
+    },
+    {
+      "cohort": "largest",
+      "phase": "recovery-controls",
+      "requests": 55,
+      "status_200": 55,
+      "client_p95_ms": 15.115387,
+      "dispatch_lag_p95_ms": 623.146782,
+      "scheduled_to_complete_p95_ms": 638.005522
+    },
+    {
+      "cohort": "largest",
+      "phase": "warm-controls",
+      "requests": 55,
+      "status_200": 55,
+      "client_p95_ms": 15.076126,
+      "dispatch_lag_p95_ms": 613.137275,
+      "scheduled_to_complete_p95_ms": 627.993714
+    }
+  ]
+}
