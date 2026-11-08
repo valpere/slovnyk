@@ -278,8 +278,10 @@ Unicode/escaping/64-codepoint collisions, C seek, signed cursors, ready-data upg
 Наступний [повний локальний upgrade](_assessments/2026-11-04-full-prefix/REPORT.md)
 пройшов: початкова dev-БД schema 4, index 2.428 GiB/~177 s,
 16 application inventories/sequences незмінні, 32 actual production plans,
-135 тотожних HTTP responses. Backup/restored copies лишаються schema 3.
-Далі — schema 4 full backup/restore, ширші HTTP/cache/contention probes,
+135 тотожних HTTP responses. [Повний backup/restore schema 4](_assessments/2026-11-08-schema4-restore/REPORT.md)
+пройшов 2026-11-08: 17 таблиць/sequences, index/ledger, файли та HTTP/cursors
+тотожні при вимкненому source. Попередній schema 3 bundle збережено.
+Далі — ширші HTTP/cache/contention probes,
 розширений workload, storage/capacity
 та off-host/target-server restore gates;
 adapter не дозволяє exceptions/rejected records.

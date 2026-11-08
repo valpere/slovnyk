@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 2314.079,
+  "flags": [
+    "--no-owner",
+    "--role=new-non-superuser-owner",
+    "--exit-on-error",
+    "--single-transaction"
+  ],
+  "guards_triggered": false,
+  "free_bytes": 90928123904
+}

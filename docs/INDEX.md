@@ -5,9 +5,9 @@
 
 ## Статус і правила
 
-**Пауза 2026-11-04:** PR #27 змержено; підсумок сесії, карта збережених даних
-і перша задача після відновлення — [SESSION_HANDOFF](SESSION_HANDOFF.md).
-Технічні роботи призупинені до наступної команди власника.
+**Стан 2026-11-08:** PR #28 змержено; повний локальний backup/restore schema 4
+[перевірено](_assessments/2026-11-08-schema4-restore/REPORT.md). Далі — ширші HTTP/cache/contention probes;
+[SESSION_HANDOFF](SESSION_HANDOFF.md) містить карту даних і порядок продовження.
 
 **Мета, уточнена користувачем 2026-10-23:** перенести сервіс на нову реалізацію.
 Старий код і дані доступні як джерело інформації про сервіс. Перенесення
@@ -133,8 +133,10 @@ Schema 4 / `ReadPage` bounded prefix prefilter реалізовано з synthet
 початкова dev-БД тепер schema 4 на всіх 56 455 068 translations; index 2.428 GiB,
 команда ~177 s, application hashes/sequences незмінні. 32/32 actual ReadPage
 plans мають prefix Index Cond; 135 HTTP results тотожні, включно з 7 cursors.
-БД тепер 66.744 GiB; backup/restored copies залишені schema 3.
-Далі — schema 4 full backup/restore, ширші HTTP/cache/contention probes;
+БД після upgrade — 66.744 GiB. [Новий повний backup/restore schema 4](_assessments/2026-11-08-schema4-restore/REPORT.md)
+пройшов 2026-11-08: 17 таблиць/sequences, ledger/index, файли й HTTP тотожні.
+Попередній schema 3 bundle збережено; його restored DB видалено з дозволу власника.
+Далі — ширші HTTP/cache/contention probes;
 AT-16 і capacity acceptance відкриті.
 До schema 4 один dataset/indexes — 64.315 GiB плюс WAL: на root ~45 GiB із профілю Oracle
 2026-10-23 цей layout не поміщається. Нового server probe не було; локальні

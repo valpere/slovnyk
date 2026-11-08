@@ -1,0 +1,16 @@
+{
+  "recorded_utc": "2026-11-08T12:17:33.484964+00:00",
+  "reason": "user reports session interrupted by reboot",
+  "last_started_phase": "source-inventory",
+  "source_inventory_complete": false,
+  "backup_started": false,
+  "fresh_target_created": false,
+  "source_container_status": "exited",
+  "source_exit_code": 0,
+  "source_oom_killed": false,
+  "postgres_shutdown_complete_logged": true,
+  "prior_owner_authorized_removal_completed": true,
+  "old_schema3_backup_bundle_and_restored_files_preserved": true,
+  "free_bytes": 173418491904,
+  "recovery": "preserve interrupted run and logs; use fresh retry receipt/output paths; do not rerun prepare.py or overwrite x-mode receipts; restart and rediscover source, repeat complete inventory before dump"
+}

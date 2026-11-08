@@ -1,0 +1,17 @@
+{
+  "utc": "2026-11-08T12:29:59.135409+00:00",
+  "name": "slovnyk-corpus-restore-db-20261108",
+  "image": "postgres:17.11-alpine@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+  "source_system_identifier": "7700525250795130915",
+  "target_system_identifier": "7705776886302887989",
+  "distinct_clusters": true,
+  "source_owner_initially_absent": true,
+  "application_groups_initially_absent": true,
+  "application_schema_initially_absent": true,
+  "owner": "corpus_restore_owner",
+  "owner_nologin_non_superuser": true,
+  "memory_bytes": 8589934592,
+  "nano_cpus": 2000000000,
+  "durability": "fsync/full_page_writes/synchronous_commit default on",
+  "loopback_only": true
+}

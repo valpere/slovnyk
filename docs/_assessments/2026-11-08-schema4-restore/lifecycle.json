@@ -1,0 +1,11 @@
+{
+  "completed_utc": "2026-11-08T13:18:21.290035+00:00",
+  "elapsed_start_to_acceptance_seconds": 3359.01,
+  "elapsed_start_through_cleanup_seconds": 3360.094,
+  "all_own_containers_and_networks_removed": true,
+  "temporary_http_and_operator_logins_removed": true,
+  "source_bind_backup_bundle_restored_bind_and_file_copies_retained": true,
+  "source_and_target_active_generation": 1,
+  "free_bytes": 90962702336,
+  "oracle_or_legacy_actions": false
+}

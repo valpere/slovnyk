@@ -1,0 +1,29 @@
+{
+  "base_revision": "7dddd6750ea7ab4240523c1294794e27b3756662",
+  "scope": "8 updated Markdown documents and all new schema4 restore metadata/report; application code unchanged",
+  "review": "sequential self-review using code-review and verification-before-completion; no independent reviewer",
+  "findings_after_review": [],
+  "reviewed_files_excluding_this_receipt": 50,
+  "reviewed_tree_sha256": "5b67dfae8d5aee2b4a59607a571cc4b18a2250f41de34790b18812f286e705e7",
+  "tree_hash_framing": "sorted relative POSIX paths, each uint64be length+path then uint64be length+file bytes; excludes validation.json",
+  "checks": {
+    "make check": "PASS",
+    "make test": "PASS",
+    "make test-race": "PASS",
+    "make test-smoke": "PASS",
+    "full_local_schema4_backup_restore": "PASS",
+    "tables_sequences_index_ledger_files_http_acl_operator_retry": "PASS",
+    "metadata_privacy_scan": "PASS",
+    "relative_markdown_links_checked": 351,
+    "git diff --check": "PASS"
+  },
+  "ci": "required on PR head; not part of these local check results",
+  "open_gates": [
+    "production/offhost RTO",
+    "secret escrow/RPO/retention",
+    "AT-16/cache/contention/crawler budget",
+    "historical HTTP503 causality",
+    "target storage/server capacity",
+    "language/design acceptance"
+  ]
+}

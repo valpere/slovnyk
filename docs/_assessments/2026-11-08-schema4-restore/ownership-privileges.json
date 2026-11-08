@@ -1,0 +1,31 @@
+{
+  "new_owner_all_schema_relations_functions_types": true,
+  "unsafe_role_attributes": 0,
+  "actual_denials": [
+    {
+      "role": "corpus_restore_http",
+      "case": 0,
+      "sqlstate": "42501"
+    },
+    {
+      "role": "corpus_restore_http",
+      "case": 1,
+      "sqlstate": "42501"
+    },
+    {
+      "role": "corpus_restore_http",
+      "case": 2,
+      "sqlstate": "42501"
+    },
+    {
+      "role": "corpus_restore_operator",
+      "case": 0,
+      "sqlstate": "42501"
+    },
+    {
+      "role": "corpus_restore_operator",
+      "case": 1,
+      "sqlstate": "42501"
+    }
+  ]
+}

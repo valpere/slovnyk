@@ -1,0 +1,9 @@
+{
+  "container": "259fb8f03cd41ecd07dad5b70416bc460f254c48cdd8e7f97ab750065ae8b92c",
+  "name": "slovnyk-corpus-restore-http-target-20261108",
+  "loopback_only": true,
+  "readonly_rootfs_and_mounts": true,
+  "memory_bytes": 536870912,
+  "nano_cpus": 1000000000,
+  "reader": "corpus_restore_http"
+}
