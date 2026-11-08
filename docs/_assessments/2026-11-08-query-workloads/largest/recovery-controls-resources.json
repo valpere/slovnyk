@@ -1,0 +1,120 @@
+{
+  "phase": "recovery-controls",
+  "before": {
+    "db": {
+      "memory_current_bytes": 2608062464,
+      "memory_lifetime_peak_bytes": 2626457600,
+      "counters": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0",
+        "usage_usec": "62571125",
+        "user_usec": "33105107",
+        "system_usec": "29466018",
+        "nice_usec": "0",
+        "core_sched.force_idle_usec": "0",
+        "nr_periods": "1039",
+        "nr_throttled": "53",
+        "throttled_usec": "47196742",
+        "nr_bursts": "0",
+        "burst_usec": "0"
+      }
+    },
+    "http": {
+      "memory_current_bytes": 462315520,
+      "memory_lifetime_peak_bytes": 536875008,
+      "counters": {
+        "low": "0",
+        "high": "0",
+        "max": "13034",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0",
+        "usage_usec": "41111859",
+        "user_usec": "37919011",
+        "system_usec": "3192847",
+        "nice_usec": "0",
+        "core_sched.force_idle_usec": "0",
+        "nr_periods": "1199",
+        "nr_throttled": "341",
+        "throttled_usec": "1501863",
+        "nr_bursts": "0",
+        "burst_usec": "0"
+      }
+    },
+    "database": {
+      "blks_read": 27731724,
+      "blks_hit": 44663766,
+      "temp_bytes": 44675063888,
+      "temp_files": 58,
+      "deadlocks": 0,
+      "sessions": 5464,
+      "sessions_abandoned": 0,
+      "sessions_fatal": 0
+    },
+    "sqlstate_57014_total": 0,
+    "free_bytes": 90822111232
+  },
+  "after": {
+    "db": {
+      "memory_current_bytes": 2644758528,
+      "memory_lifetime_peak_bytes": 2649141248,
+      "counters": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0",
+        "usage_usec": "63378073",
+        "user_usec": "33334984",
+        "system_usec": "30043088",
+        "nice_usec": "0",
+        "core_sched.force_idle_usec": "0",
+        "nr_periods": "1060",
+        "nr_throttled": "53",
+        "throttled_usec": "47196742",
+        "nr_bursts": "0",
+        "burst_usec": "0"
+      }
+    },
+    "http": {
+      "memory_current_bytes": 462487552,
+      "memory_lifetime_peak_bytes": 536875008,
+      "counters": {
+        "low": "0",
+        "high": "0",
+        "max": "13034",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0",
+        "usage_usec": "41274235",
+        "user_usec": "38038878",
+        "system_usec": "3235357",
+        "nice_usec": "0",
+        "core_sched.force_idle_usec": "0",
+        "nr_periods": "1209",
+        "nr_throttled": "341",
+        "throttled_usec": "1501863",
+        "nr_bursts": "0",
+        "burst_usec": "0"
+      }
+    },
+    "database": {
+      "blks_read": 27731903,
+      "blks_hit": 44756197,
+      "temp_bytes": 44675063888,
+      "temp_files": 58,
+      "deadlocks": 0,
+      "sessions": 5559,
+      "sessions_abandoned": 0,
+      "sessions_fatal": 0
+    },
+    "sqlstate_57014_total": 0,
+    "free_bytes": 90822029312
+  },
+  "wall_seconds": 2.120865004000734
+}

@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "phases": [
+    "first-touch-controls",
+    "warm-controls",
+    "expanded-serial",
+    "ordinary-10rps",
+    "mask-10rps",
+    "pair-skew-burst",
+    "mixed-10rps",
+    "recovery-controls"
+  ],
+  "inventory_matches_prior_17_tables_and_sequences": true,
+  "application_state_unchanged": true,
+  "schema_changed": false,
+  "deadline_changed": false,
+  "client_latencies_are_not_server_timings": true,
+  "at16_closed": false
+}

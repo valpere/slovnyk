@@ -6,6 +6,7 @@
 
 | Посіпака | Виклик агента | Призначення |
 |---|---|---|
+| `http-probe` | `go run ./minions/http-probe PRIVATE_CONFIG_JSON NEW_OUTPUT_DIRECTORY` | Обмежені loopback HTTP probes із чергою, latency та response hashes; без URL і тіл у результатах |
 | `corpus-inventory` | `go run ./minions/corpus-inventory PRIVATE_JSON OUTPUT_JSON` | Агентська повна звірка 17 таблиць dev-БД і sequences через streaming binary COPY; лише metadata/hash output |
 | `corpus-progress` | `go run ./minions/corpus-progress RUN_DIRECTORY MANIFEST_JSON` | Показує elapsed, free disk та останній спостережений файл локальної звірки; читає лише progress/manifest metadata, без DB-запитів |
 | `check-repository` | `go run ./minions/check-repository` | Знаходить checkout і одним викликом запускає проєктну перевірку з докладним звітом |
@@ -44,3 +45,22 @@ Output створюється ексклюзивно з mode 0600; новий з
 не зберігає raw rows і не змінює дані. Повне читання створює I/O навантаження;
 не запускайте його на зайнятому Oracle. Count + sum/XOR row SHA-256 —
 probabilistic multiset oracle, не canonical source reconciliation.
+
+`http-probe` читає приватний JSON (mode 0600, до 2 MiB): `base` — числова loopback IP
+з портом, `phase` — безпечна мітка, `workers` (1–16), `interval_ms` (0 або
+50–10000), `timeout_ms` (1–10000), `maximum_seconds` (1–1800), `body_limit`
+(до 8 MiB), `cases` і `schedule`. Кожен case має числовий `id`, безпечний
+`kind`, приватний relative `path` та необов’язковий `expected` із `status`,
+`bytes`, `sha256`, `content_type`, `cache_control`. `schedule` містить до
+5000 case IDs. Реальні paths/терміни тримайте тільки в ignored inputs.
+
+Інтервал задає заплановані arrivals; 0 ставить усі requests у bounded чергу
+одразу. Результати розрізняють dispatch lag, client HTTP/body elapsed та час
+від запланованого arrival до завершення; це не server-side timer. Keep-alive,
+proxy й redirects вимкнені. Усі outcomes враховуються у nearest-rank p50/p95.
+Нова output directory створюється з mode 0700, JSONL/summary — 0600; старі
+результати не перезаписуються. Exit 0 означає повний облік schedule, а не
+відсутність HTTP помилок: перевіряйте status/error counts та oracle matches.
+Без `expected` hashes є спостереженням, а не доказом правильності відповіді.
+Неповний запуск лишає partial JSONL без complete summary. Посіпака не керує
+Docker/БД і не перевіряє їхні ресурси; caps, disk guard та cleanup задає агент.

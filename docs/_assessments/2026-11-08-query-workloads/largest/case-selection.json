@@ -1,0 +1,10 @@
+{
+  "controls": 55,
+  "additional_cases": 48,
+  "source_sample_count": 8,
+  "selection": "top 8 by unique_count DESC, source_locale, target_locale; first eligible term in prefix64/id order, no latency filtering",
+  "selected_rows": 8,
+  "directed_pairs": 8,
+  "negative_marker_exact_absence_checked_pairs": 8,
+  "new_cases_have_independent_response_oracles": false
+}

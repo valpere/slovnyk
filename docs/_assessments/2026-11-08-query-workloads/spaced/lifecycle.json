@@ -1,0 +1,24 @@
+{
+  "phases_completed": [
+    "first-touch-controls",
+    "warm-controls",
+    "expanded-serial",
+    "ordinary-10rps",
+    "mask-10rps",
+    "pair-skew-burst",
+    "recovery-controls"
+  ],
+  "retained_bind_and_artifacts": true,
+  "unrelated_containers_untouched": true,
+  "elapsed_seconds": 332.78390163100084,
+  "http_removed": true,
+  "reader_removed": true,
+  "db_removed": true,
+  "network_removed": true,
+  "remaining_container_names": [
+    "docker-mongodb-1",
+    "open-webui",
+    "sla-testdb"
+  ],
+  "free_bytes": 90825003008
+}

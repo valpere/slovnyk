@@ -958,3 +958,16 @@ Source вимкнено перед target acceptance; restricted ACL і operator
 історичних 503, target storage/capacity, off-host RTO та escrow/RPO/retention відкриті.
 Oracle/legacy й сторонні containers не змінено; власний runtime прибрано,
 новий backup/restored cluster/file copies збережено.
+
+
+## Ширші локальні HTTP probes — 2026-11-08
+
+Після merge PR29 виконано [два bounded workloads](_assessments/2026-11-08-query-workloads/REPORT.md)
+на відновленій schema 4: 1858/1858 HTTP 200; усі 17 table inventories/sequences
+незмінні. Application code, schema та deadline не змінювалися. Повторюваний
+HTTP runner реалізовано Go-посіпакою агента `minions/http-probe`, окремо від utilities.
+
+Це evidence, не нове продуктове рішення або AT-16 acceptance. Затримки клієнта,
+черга й cgroup cache/heap не ототожнюються; historical 503 не відтворено й не
+пояснено. Потрібні server-side measurements, погоджені traffic/crawler/resource
+profiles і target capacity. Власний runtime прибрано; retained data не видаляли.

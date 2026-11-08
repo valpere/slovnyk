@@ -219,3 +219,21 @@ source inventory, до dump/target; її receipts і `tmp/schema4-restore/` зб
 Повторний повний source inventory підтвердив збіг із PR27 після reboot.
 Дозвіл видалення стосувався лише старого schema 3 restored cluster; інші копії
 не видаляти без окремого рішення. Це один host; off-host/escrow/RPO/retention відкриті.
+
+
+## HTTP/cache/contention probes — 2026-11-08
+
+`experiments/query-workloads-2026-11-08-retry/` та
+`experiments/query-workloads-largest-2026-11-08/` зберігають дві завершені
+[діагностичні серії](../docs/_assessments/2026-11-08-query-workloads/REPORT.md):
+private configs/paths, ресурси, observations, приватні PG logs і post-workload
+inventories. Обидві використовували лише успішний schema 4 restored bind
+`experiments/schema4-restore-2026-11-08-retry/.pgdata` та його artifacts;
+нових DB copies не створювали. Inventories тотожні restore; data збережено.
+
+Runtime/reader LOGINs прибрані; ephemeral ports/IDs у `runtime-private.json`
+не використовувати повторно. Keyring/DSN/passwords, terms/paths і raw logs
+не публікувати. Scratch — `tmp/query-workloads/`; повторюваний runner —
+Go-посіпака `minions/http-probe`. Перший `query-workloads-2026-11-08/`
+зберігає preflight failure receipt (PGDATA host permissions), runtime не запускався.
+Додаткових видалень не погоджено й не виконано. Oracle/legacy не задіяні.

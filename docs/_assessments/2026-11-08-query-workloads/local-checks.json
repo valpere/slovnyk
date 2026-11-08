@@ -1,0 +1,30 @@
+{
+  "commands": "make check test test-race test-smoke",
+  "exit_code": 0,
+  "log_bytes": 11934,
+  "log_sha256": "8632aeb1c4f59d9aa6bed55347fdccc290933e67a1c04d7e5b9622136d8979dc",
+  "scope": "new Go minion plus existing application checks; experiment requests finished before these checks",
+  "initial_minion_sources": {
+    "minions/http-probe/main.go": "8d4873a597dc00b4f1a341100bd820c82d2408434a279e41c5f4a33bfdd18f2b",
+    "minions/http-probe/main_test.go": "ec106865798e5841564c113cafcb20bd8305410ddb31afd0faa485781146db9f"
+  },
+  "final_minion_sources": {
+    "minions/http-probe/main.go": "17cf5a13dd001cc386dda3c0ec83f90cb0c45680260b7936883dbbd00884c0d6",
+    "minions/http-probe/main_test.go": "daeb1b3deae021f91e7a708b9b4de5ce20fe1b06dc2cea0030eb4222f88c859e"
+  },
+  "final_checks": {
+    "commands": "make check test test-race test-smoke",
+    "exit_code": 0,
+    "log_bytes": 11934,
+    "log_sha256": "c9fb46dd642f4e95e491b0e2ba12ed5a34e4dff578220db7e57410f56f41c1a6"
+  },
+  "oversize_regression_red": {
+    "commands": "go test ./minions/http-probe -run TestOversizedConfigRejectsHiddenTrailingData -count=1",
+    "exit_code": 1,
+    "log_bytes": 210,
+    "log_sha256": "a67972c5a14253cd28540895ee633121d6aa96d74cc28dd8ddba965f464acc8c"
+  },
+  "probe_binary_sha256": "159b2a7a4590bafbb1d7d8fcb2b59cf010ccdb5bb15e8caf61c1e12c3d6ec6ca",
+  "application_binary_sha256": "0341b7f28953d9c0669cc7448b3cc4d30dd86a6b73aa00ad339c8d067ba53610",
+  "probe_binary_scope": "Built from initial main.go; final main.go only adds >2 MiB config rejection. Measured configs below limit; request execution/measurement unchanged. Test-only timeout margin/regression additions followed."
+}

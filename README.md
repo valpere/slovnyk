@@ -6,6 +6,9 @@
 
 Джерело істини та порядок читання: [docs/INDEX.md](docs/INDEX.md).
 
+[Ширші локальні HTTP probes](docs/_assessments/2026-11-08-query-workloads/REPORT.md):
+1858/1858 HTTP 200; дані незмінні. Це діагностика, AT-16 ще відкрито.
+
 Стан сесії та наступні перевірки: [підсумок і точка продовження](docs/SESSION_HANDOFF.md).
 
 Підтверджені рішення та наступні питання: [журнал](docs/DECISIONS.md).
