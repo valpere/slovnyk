@@ -29,3 +29,8 @@ Owner review steps and current synthetic desktop/mobile screenshots are in
 (search explicitly names masks; interface language replaces “working language”).
 These replacements have `ai` origin; the legacy file/hash still identifies the
 source catalog. No locale status or owner acceptance changed.
+
+Swedish was refreshed on 2026-11-09 from the owner's updated `slovnyk.sv-se.po`.
+Seven compatible messages are retained verbatim with `legacy-po` origins and
+the new source SHA-256. The other 22 messages remain AI drafts; this does not
+constitute acceptance of the whole new Swedish UI. [Mapping and checks](../docs/_assessments/2026-11-09-swedish-locale/REPORT.md).

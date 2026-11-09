@@ -5,7 +5,7 @@
 
 ## Статус і правила
 
-**Стан 2026-11-09:** PR #32 змержено; schema 4 backup/restore завершено.
+**Стан 2026-11-09:** PR #34 змержено; schema 4 backup/restore завершено.
 [Ширші HTTP/cache/contention probes](_assessments/2026-11-08-query-workloads/REPORT.md):
 1858/1858 HTTP 200, 17 таблиць/sequences незмінні після обох запусків.
 [Opt-in server timings](SEARCH_TIMING.md) додано й
