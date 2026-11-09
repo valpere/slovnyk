@@ -10,6 +10,7 @@
 | `corpus-inventory` | `go run ./minions/corpus-inventory PRIVATE_JSON OUTPUT_JSON` | Агентська повна звірка 17 таблиць dev-БД і sequences через streaming binary COPY; лише metadata/hash output |
 | `corpus-progress` | `go run ./minions/corpus-progress RUN_DIRECTORY MANIFEST_JSON` | Показує elapsed, free disk та останній спостережений файл локальної звірки; читає лише progress/manifest metadata, без DB-запитів |
 | `check-repository` | `go run ./minions/check-repository` | Знаходить checkout і одним викликом запускає проєктну перевірку з докладним звітом |
+| `ui-preview` | `go run ./minions/ui-preview [-port 8787]` | Loopback preview actual HTTP templates на fixed synthetic callbacks, без БД; для агентських UI/мовних review |
 | `capture-cdp.mjs` | `node minions/capture-cdp.mjs http://127.0.0.1:PORT/path tmp/preview.png 390 844` | Знімок loopback preview через наявний Chromium CDP 9222; JS сторінки вимкнено, створює й закриває лише власну вкладку |
 
 Потрібні Go та Git. Для виклику поза checkout можна зібрати binary у `bin/`;
@@ -18,7 +19,7 @@ root визначається за модулем у cwd/ancestors, шляхом
 Для CDP-посіпаки потрібен Node.js 22+ з built-in fetch/WebSocket та вже
 запущений Chromium на loopback port 9222. Він не запускає browser process,
 не використовує Playwright та не залежить від сервісу або CI. Output directory
-має існувати; одноразові preview servers та captures зберігайте в `tmp/`,
+має існувати; одноразові captures зберігайте в `tmp/`,
 review screenshots можна включати до відповідного assessment.
 
 Колишні Python-посіпаки переписано на Go та розділено за призначенням:
@@ -64,3 +65,20 @@ proxy й redirects вимкнені. Усі outcomes враховуються у
 Без `expected` hashes є спостереженням, а не доказом правильності відповіді.
 Неповний запуск лишає partial JSONL без complete summary. Посіпака не керує
 Docker/БД і не перевіряє їхні ресурси; caps, disk guard та cleanup задає агент.
+
+`ui-preview` замінює повторно використаний scratch preview. Запускайте з root
+checkout; адреса й synthetic article path друкуються одним JSON. Слухає тільки
+`127.0.0.1`; порт 0 обирає вільний. Власні CSV.gz створює в новій `tmp/ui-preview-*`
+і прибирає на SIGINT/SIGTERM; існуючих даних не читає й не змінює. Зупиняйте
+саме свій процес. Примусове kill/reboot може залишити тільки ці scratch файли.
+
+Синтетичні пари: `en-us → uk-ua` (`hello`), `uk-ua → en-us` (`привіт`),
+`ar-sa → en-us` (`مرحبا`, RTL/multiline/довгий рядок). `*` показує fixture пари,
+`missing` — no-match, `failure` — search 503; невідома пара — 404. Решта запитів
+без збігів. Це fixed visual cases, **не** реалізація SQL search/masks/pagination,
+readiness, sitemap чи capacity. Downloads віддають справжні, але synthetic CSV.gz
+із узгодженими rows/hash/bytes. UI/localization/preferences/templates — actual
+handler. Посіпака не є командою сервісу чи deployment procedure.
+
+Для чистого першого візиту використовуйте окремий тимчасовий CDP browser context:
+loopback cookies спільні між портами. Не очищайте cookies/вкладки користувача.

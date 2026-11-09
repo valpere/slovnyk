@@ -1,0 +1,21 @@
+{
+  "README.md": "cc8e55c429ee70348c071a2f81346676499447a9f7241c3822934d0ef5279ef2",
+  "docs/INDEX.md": "a4ab15453c64a72a83cfa10d92ccd7987f023ebb501f1a51932e686d741ce6dd",
+  "docs/LAUNCH_PLAN.md": "b92afce3c45aa66336be480cbdd68183dfd292ed402fd8e72c073df487c2d7b2",
+  "docs/SESSION_HANDOFF.md": "646e25b5c0039887fac3c8f5cd573d3dab6d48268ee826f11b65a3a895bcc533",
+  "docs/TRACEABILITY.md": "e2f649872bdba5e41dbc21f3240bdaa95056875ef6baa3dc6d0be7fc389f38fe",
+  "docs/UI_REVIEW.md": "f776496ac2d529bebeaefa909ed99c9e71c072057d99ff3529f912399b84742b",
+  "docs/_assessments/2026-11-09-ui-review/browser-results.json": "672e01689cfd32438cfb9d2021ca771b3cef2c46296026521546f0c5d63207ca",
+  "docs/_assessments/2026-11-09-ui-review/en-home-desktop.png": "0cea97e291da123b2b19b3e7faf9b2968c68c61d9f2a68cce6b39f2df38422ca",
+  "docs/_assessments/2026-11-09-ui-review/en-search-mobile.png": "6dff7a96a4ef168ede535ecb145569ad7654e2894028cdec61c87810b9f9256e",
+  "docs/_assessments/2026-11-09-ui-review/rtl-entry-mobile.png": "5cc7883b5ba39fd31dc12c768454d0bdb777ef13b73f1161bd82c2d0f98e9373",
+  "docs/_assessments/2026-11-09-ui-review/uk-downloads-desktop.png": "c406b18988ae668bfff5bfed29011c2a1519feb0bda3be5c1e2ac6b1a893da60",
+  "docs/_assessments/2026-11-09-ui-review/uk-home-desktop.png": "ac6f43f6594b067b819d70025f020ec72ab9055959746843fa05e8d643f76e0f",
+  "docs/_assessments/2026-11-09-ui-review/uk-no-match-mobile.png": "38ae52c840326097862c8baecdf11cdb6efa28cac151d3330984c026643b533e",
+  "docs/_assessments/2026-11-09-ui-review/uk-search-mobile.png": "e11c0ddf26dd0ebb9fe965a28eae07d024b0864abb94446163980f05f320e816",
+  "minions/README.md": "9e3c5cfc05c76e30b233611315599c57cc6e7d1d59f1c78144c1517781376f0d",
+  "minions/ui-preview/main.go": "9af7958d62506e649615e6e01d0183de009330b57de369190c29e0ef296e7907",
+  "minions/ui-preview/main_test.go": "9ab601ffb41103f4ea8448061300642a13c5b3b188edac4d2ac4590f25b659ab",
+  "web/README.md": "9d716b1c74f7fbef603d4b69422f9f11962e217cf4489decdd5fa3c141906c55",
+  "web/locales/uk.json": "5a0909a3e506bb6d15f168fe6c200e35dc8449fed2be86bcd7c99cb4b7adb40b"
+}

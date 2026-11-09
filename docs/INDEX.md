@@ -5,7 +5,7 @@
 
 ## Статус і правила
 
-**Стан 2026-11-09:** PR #31 змержено; schema 4 backup/restore завершено.
+**Стан 2026-11-09:** PR #32 змержено; schema 4 backup/restore завершено.
 [Ширші HTTP/cache/contention probes](_assessments/2026-11-08-query-workloads/REPORT.md):
 1858/1858 HTTP 200, 17 таблиць/sequences незмінні після обох запусків.
 [Opt-in server timings](SEARCH_TIMING.md) додано й
@@ -13,7 +13,8 @@
 1010/1010 HTTP 200, ordinary handler p95 18.998 ms. Traffic/crawler profile
 погоджено 2026-11-09 у [DECISIONS](DECISIONS.md); далі — вибір сервера й resource budget;
 AT-16 відкрито. [План першого запуску](LAUNCH_PLAN.md) містить storage budget
-і послідовність target/UI/DNS приймання. [SESSION_HANDOFF](SESSION_HANDOFF.md) містить точку продовження.
+і послідовність target/UI/DNS приймання. [UI review](UI_REVIEW.md) містить
+поточні screenshots і кроки ручного мовного/дизайн-приймання. [SESSION_HANDOFF](SESSION_HANDOFF.md) містить точку продовження.
 
 **Мета, уточнена користувачем 2026-10-23:** перенести сервіс на нову реалізацію.
 Старий код і дані доступні як джерело інформації про сервіс. Перенесення

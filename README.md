@@ -518,3 +518,7 @@ AT-16 відкрито. Поточна БД 66.744 GiB без WAL/artifacts.
 UI/translation acceptance та DNS/TLS кроки. Локальні rehearsals завершено;
 traffic/crawler profile погоджено 2026-11-09. Цільовий сервер і production
 deployment ще не визначені; Oracle залишається зайнятим.
+
+[Матеріали UI-приймання](docs/UI_REVIEW.md): поточні desktop/mobile screenshots,
+synthetic preview й порядок ручної перевірки перекладів. Статус усіх 31 мов
+залишається `ai-draft`; остаточне приймання — за власником.

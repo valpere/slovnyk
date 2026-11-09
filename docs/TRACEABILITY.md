@@ -873,3 +873,19 @@ Ordinary/mixed handler p95 — 18.998/20.365 ms; admission/connect/lookup/catalo
 пізніше доданий admission test пройшов `go test -race ./internal/ops`.
 Це diagnostic subset, не AT-16 acceptance. Запропонований mix і crawler budget
 ще не погоджені; target-server/cold-host/UI/translation gates лишаються відкритими.
+
+## REQ-FR-05 — матеріали owner UI/translation review, 2026-11-09
+
+[Матеріали](UI_REVIEW.md), [evidence](_assessments/2026-11-09-ui-review/REPORT.md).
+`minions/ui-preview/main_test.go` звіряє synthetic downloadable CSV.gz з видимими
+fixture-перекладами, bytes/hash, article links і невідомим dataset, а також
+success/no-match/failure в усіх 31 UI catalogs через actual handler.
+Це tests агентського preview, не заміна production SQL/integration tests.
+
+`make check test test-race test-smoke` — PASS. Existing Chromium CDP, scripts off:
+31 locales × 4 views на 320px без horizontal overflow; uk browser negotiation,
+saved manual override, RTL/довгий текст та keyboard native submit — PASS.
+Сім screenshots переглянуто. Screen-reader speech, інші browser engines і
+масштаб списків повного корпусу не перевірялися. Всі catalogs `ai-draft`;
+owner language/design acceptance ще відкрите. Traffic/crawler profile окремо
+погоджено власником 2026-11-09 (DECISIONS); це не закриває target AT-16.
