@@ -7,6 +7,16 @@
 
 ## Підтверджений стан
 
+- [PR #33](https://github.com/valpere/slovnyk/pull/33) змержено власником;
+  merge `5472976f0157298d101f6ce08e3e121e39ae9e2d`, усі чотири CI jobs SUCCESS
+  на head `7b389d5618805ca9bd5d893ada2aeaa158a24e8c`.
+- Наступний локальний зріз — [дизайн](UI_DESIGN.md) за наданими власником
+  Town brief, брендбуком і кремовим зразком. [Screenshots/review](_assessments/2026-11-09-brand-design/REPORT.md)
+  містять synthetic дані; остаточне дизайн/мовне приймання ще відкрите.
+  Локальний `localhost:8787` переведено на справжній restored corpus для
+  ручного перегляду; службові імена/cleanup збережено лише в ignored checkpoint.
+  Стан старіших runtime cleanup нижче — історичний. Oracle не чіпали.
+
 - [PR #32](https://github.com/valpere/slovnyk/pull/32) змержено власником
   2026-11-09 13:52:32 UTC, merge `c26a2cace0abc2954ee5a2d61bdd829498365cfa`.
   Чотири CI jobs SUCCESS на head `970523816146f85189c22caf11f660519e4a7f1e`.

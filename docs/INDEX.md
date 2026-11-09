@@ -13,7 +13,8 @@
 1010/1010 HTTP 200, ordinary handler p95 18.998 ms. Traffic/crawler profile
 погоджено 2026-11-09 у [DECISIONS](DECISIONS.md); далі — вибір сервера й resource budget;
 AT-16 відкрито. [План першого запуску](LAUNCH_PLAN.md) містить storage budget
-і послідовність target/UI/DNS приймання. [UI review](UI_REVIEW.md) містить
+і послідовність target/UI/DNS приймання. [Дизайн](UI_DESIGN.md) поєднує надані власником візуальні джерела;
+[UI review](UI_REVIEW.md) містить
 поточні screenshots і кроки ручного мовного/дизайн-приймання. [SESSION_HANDOFF](SESSION_HANDOFF.md) містить точку продовження.
 
 **Мета, уточнена користувачем 2026-10-23:** перенести сервіс на нову реалізацію.
