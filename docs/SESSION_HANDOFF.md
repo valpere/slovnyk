@@ -1,4 +1,4 @@
-# Стан сесії — 2026-11-08
+# Стан сесії — 2026-11-09
 
 Після merge [PR #30](https://github.com/valpere/slovnyk/pull/30)
 (`78fe284097a4e5f278a37a19d8f8bf1185ca9bfe`) і команди власника `go`
@@ -6,6 +6,11 @@
 Це поточна пам’ятка продовження; вимоги й контракти визначає [INDEX](INDEX.md).
 
 ## Підтверджений стан
+
+- [PR #31](https://github.com/valpere/slovnyk/pull/31) змержено власником
+  2026-11-08 15:44:44 UTC, merge `68655c445527851dc5aa630731014eadb124362b`.
+  Чотири CI jobs SUCCESS на head `4655d79bd0ef8d773df039914f93ec2d501ed3f6`.
+  Локальна main синхронізована після merge; feature branch видалено.
 
 - [PR #27](https://github.com/valpere/slovnyk/pull/27) змержено власником
   2026-11-04; merge commit `991b72173dc68edc4e691df35b106ba00d79145b`.
@@ -82,6 +87,14 @@ Credentials, реальні терміни, raw plans, keyring і HTTP paths н�
 
 ## Останній зріз і наступна задача
 
+[План першого запуску](LAUNCH_PLAN.md) підготовлено локально 2026-11-09:
+serving payload ~71.575 GiB, сценарій restore із локальним bundle і плановими
+WAL/temp/reserve ~134.384 GiB **без ОС**. Це припущення для вибору цілі,
+не upper bound чи погоджений бюджет. Нових DB/server probes не було.
+Власник погодив весь traffic/crawler/download profile (див. DECISIONS)
+і підтвердив: Oracle ще зайнятий, зараз готуємо вимоги; SSH не виконували.
+Resource/storage budget, сервер і deployment залишаються відкритими.
+
 [Search timings](SEARCH_TIMING.md) opt-in, default off, INFO; ніяких query/URL/pair/error
 strings. [Run](_assessments/2026-11-08-server-timings/REPORT.md): 1010/1010 HTTP 200,
 978/978 events, 110/110 prior response oracles; ordinary/mixed handler p95
@@ -91,9 +104,10 @@ full inventory не повторювали. Inputs і raw logs — ignored
 Окремого незалежного reviewer не було; послідовне self-review й локальні checks
 зафіксовано у звіті. CI/merge перевіряти через GitHub, не припускати завершення.
 
-1. Погодити запропонований mix: 50% exact positive, 25% exact negative,
-   20% prefix, 5% інших masks; crawler/resource budget у звіті — теж пропозиція.
-   AT-16 відкрито до погодження й перевірки на обраному сервері.
+1. Погоджено власником 2026-11-09 mix: 50% exact positive, 25% exact negative,
+   20% prefix, 5% інших masks, до 10 searches/s; crawler до 1 page/s,
+   до 2 concurrent requests, один download stream. Resource budget відкрито.
+   AT-16 відкрито до перевірки на обраному сервері.
 2. Вибрати сервер/storage і виконати одну адресну target acceptance з цим
    профілем, readiness й off-host restore; UI/translation приймає власник.
    Cold-host/low-memory/startup, backup escrow/RPO/retention ще відкриті.
@@ -114,7 +128,7 @@ restored cluster/files збережені. Після reboot source повніс
 
 ## Що залишається відкритим
 
-AT-16, server-side timings, інші cold-host/low-memory/довгі mask workloads, crawler budget,
+AT-16, target/cold-host/low-memory/startup приймання, реалізація/перевірка crawler budget,
 причина історичних HTTP 503, target server/storage capacity, off-host RTO,
 secret escrow/RPO/retention та мовне/дизайн-приймання. Нові bounded локальні
 вибірки включають negative/infix/concurrency, але не закривають ці gates.

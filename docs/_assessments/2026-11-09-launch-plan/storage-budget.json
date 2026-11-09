@@ -1,0 +1,28 @@
+{
+  "kind": "planning arithmetic from existing evidence; no new runtime experiment",
+  "observations": {
+    "source_database_bytes": 71666300595,
+    "restored_database_bytes": 64436672179,
+    "artifacts_bytes": 4650590911,
+    "source_csv_bytes": 535766648,
+    "bundle_payload_bytes": 11606111142,
+    "bundle_payload_excludes_small_inventory_and_protocol_files": true
+  },
+  "assumptions_not_owner_approved": {
+    "database_planning_bytes": 71666300595,
+    "wal_allowance_bytes": 2147483648,
+    "temporary_files_allowance_bytes": 21474836480,
+    "free_reserve_bytes": 32212254720,
+    "os_and_unrelated_services_included": false,
+    "allowances_are_not_enforced_global_limits": true
+  },
+  "serving_payload_bytes": 76852658154,
+  "restore_with_local_bundle_budget_bytes": 144293344144,
+  "second_dataset_extra_bytes": 76316891506,
+  "budget_is_not_a_peak_upper_bound": true,
+  "input_sha256": {
+    "docs/_assessments/2026-11-08-schema4-restore/file-inventory.json": "da6b114897c91c796ab30371f88aa6eafe5dc6264088355a41a563670ee87551",
+    "docs/_assessments/2026-11-08-schema4-restore/source-storage.json": "de5328cd714e554743fea4a8219103a69cb8997261f68545f7fa3e993bcb970b",
+    "docs/_assessments/2026-11-08-schema4-restore/target-storage.json": "a61407df38a4d68f286f84ed94c072ae869b132dda56a763e39d3f903f3743aa"
+  }
+}

@@ -511,3 +511,10 @@ AT-16 відкрито. Поточна БД 66.744 GiB без WAL/artifacts.
 не поміщається на root близько 45 GiB із виміру Oracle 2026-10-23; нової
 перевірки сервера не було. Локальний import змінював memory cap PostgreSQL
 512 MiB → 8 → 16 GiB при 1 CPU; це не Micro capacity/SLO acceptance.
+
+## Підготовка першого запуску
+
+[План запуску](docs/LAUNCH_PLAN.md) зводить storage budget, target restore/capacity,
+UI/translation acceptance та DNS/TLS кроки. Локальні rehearsals завершено;
+traffic/crawler profile погоджено 2026-11-09. Цільовий сервер і production
+deployment ще не визначені; Oracle залишається зайнятим.
