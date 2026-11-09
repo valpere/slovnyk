@@ -38,6 +38,9 @@ to the shared search/entry CSP. No new translated strings; 31 catalogs stay draf
 [UI acceptance and screenshots](../../UI_REVIEW.md). Scratch scripts/results and
 logs stay under ignored `tmp/ui-brand-2026-11-09/`; full imports, restores,
 load probes and local PostgreSQL integration were not repeated for this UI change.
+First CI rejected an upstream trailing space in the OFL text; it was removed
+without changing the license wording. The failure was reproduced with the
+base-to-head patch check; that check is required again after the follow-up.
 Normal CI includes isolated PostgreSQL tests. This report does not claim CI success.
 
 ## Review
