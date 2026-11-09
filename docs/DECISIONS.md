@@ -985,3 +985,20 @@ Mix 50/25/20/5 exact positive/negative/prefix/other masks і crawler budget
 Ширші локальні серії не повторювати без конкретного нового ризику; наступні
 кроки — погодження профілю, вибір сервера й target acceptance, owner UI/переклади.
 Oracle залишається зайнятим; retained data не видаляти без окремого дозволу.
+
+
+## Профіль приймання та стан сервера — 2026-11-09
+
+Власник погодив **весь запропонований профіль**: до 10 searches/s,
+50% exact positive, 25% exact negative, 20% prefix, 5% інших masks;
+crawler до 1 word page/s і 2 одночасних crawler requests; один потік
+завантаження artifact. Це профіль майбутнього target acceptance, не доказ
+AT-16 і не реалізовані rate limits. Resource/bandwidth budgets, RPO/retention
+та secret escrow залишаються відкритими. Планова тривалість target run —
+5 хвилин; окремого погодження тривалості власником не зафіксовано.
+
+Oracle ще зайнятий іншим проєктом; поточний крок — **готувати вимоги**,
+без SSH, розгортання чи навантаження сервера. [План запуску](LAUNCH_PLAN.md)
+містить storage arithmetic з існуючого evidence: serving payload ~71.575 GiB,
+restore scenario ~134.384 GiB без ОС. WAL/temp/reserve — явні планові
+припущення, не погоджений ресурсний бюджет чи гарантована верхня межа.

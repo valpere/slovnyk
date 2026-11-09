@@ -5,14 +5,15 @@
 
 ## Статус і правила
 
-**Стан 2026-11-08:** PR #30 змержено; schema 4 backup/restore завершено.
+**Стан 2026-11-09:** PR #31 змержено; schema 4 backup/restore завершено.
 [Ширші HTTP/cache/contention probes](_assessments/2026-11-08-query-workloads/REPORT.md):
 1858/1858 HTTP 200, 17 таблиць/sequences незмінні після обох запусків.
 [Opt-in server timings](SEARCH_TIMING.md) додано й
 [локально виміряно](_assessments/2026-11-08-server-timings/REPORT.md):
-1010/1010 HTTP 200, ordinary handler p95 18.998 ms. Далі — погодження
-запропонованого traffic/crawler/resource profile та вибір сервера;
-AT-16 відкрито. [SESSION_HANDOFF](SESSION_HANDOFF.md) містить точку продовження.
+1010/1010 HTTP 200, ordinary handler p95 18.998 ms. Traffic/crawler profile
+погоджено 2026-11-09 у [DECISIONS](DECISIONS.md); далі — вибір сервера й resource budget;
+AT-16 відкрито. [План першого запуску](LAUNCH_PLAN.md) містить storage budget
+і послідовність target/UI/DNS приймання. [SESSION_HANDOFF](SESSION_HANDOFF.md) містить точку продовження.
 
 **Мета, уточнена користувачем 2026-10-23:** перенести сервіс на нову реалізацію.
 Старий код і дані доступні як джерело інформації про сервіс. Перенесення
@@ -121,7 +122,7 @@ Production, crawler/search SLO та full-corpus off-host restore відкрит�
 Наступна [локальна змішана проба](_assessments/2026-11-04-corpus-load/REPORT.md):
 2 112/2 112 HTTP/content checks успішні; 10 search/s плюс у середній фазі
 5 word pages/s і 0.2 shards/s. Короткий warm-cache прогін обмеженої вибірки
-не закриває AT-16, crawler budget або target-server capacity.
+не закриває AT-16 або target-server capacity; crawler budget погоджено 2026-11-09.
 Під час restore preparation окрема проба 16 масок із `limit=1` дала 6 HTTP 503
 приблизно через 2 s; exact 16/16 успішні.
 [Подальша діагностика](_assessments/2026-11-04-mask-plans/REPORT.md): 160/160 HTTP 200
