@@ -1,0 +1,12 @@
+{
+  "browser": "Chrome/157.0.8103.38",
+  "ui_catalogs": 31,
+  "viewport_width": 320,
+  "results": [
+    "PASS browser negotiation: uk-UA -> uk; first-visit uk-ua -> en-us proposal",
+    "PASS no-JS saved manual en overrides later de-DE browser preference",
+    "PASS 31 UI catalogs x 4 views at 320px: home, languages, downloads, no-match; correct lang, no horizontal overflow",
+    "PASS RTL article, multiline and long unbroken text at 320px; full-page screenshots captured",
+    "PASS keyboard: skip -> main -> query -> native GET submit with q/from/to, scripts disabled"
+  ]
+}

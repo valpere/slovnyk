@@ -7,6 +7,14 @@
 
 ## Підтверджений стан
 
+- [PR #32](https://github.com/valpere/slovnyk/pull/32) змержено власником
+  2026-11-09 13:52:32 UTC, merge `c26a2cace0abc2954ee5a2d61bdd829498365cfa`.
+  Чотири CI jobs SUCCESS на head `970523816146f85189c22caf11f660519e4a7f1e`.
+- Новий локальний зріз — [UI review](UI_REVIEW.md): synthetic Go-посіпака
+  `minions/ui-preview`, desktop/mobile screenshots і ручний checklist.
+  Чотири українські labels уточнено, origins змінено на `ai`; всі 31 catalogs
+  залишаються `ai-draft`. Мовне/дизайн-приймання власником ще відкрите.
+
 - [PR #31](https://github.com/valpere/slovnyk/pull/31) змержено власником
   2026-11-08 15:44:44 UTC, merge `68655c445527851dc5aa630731014eadb124362b`.
   Чотири CI jobs SUCCESS на head `4655d79bd0ef8d773df039914f93ec2d501ed3f6`.

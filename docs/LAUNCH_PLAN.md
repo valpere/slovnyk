@@ -79,6 +79,7 @@ restore, файлами, secrets і control checks; локальні ~56 хви�
 
 ## 4. Прийняти UI та підготувати домени
 
+Матеріали й порядок ручного приймання — у [UI_REVIEW](UI_REVIEW.md).
 Власник перевіряє desktop/mobile, keyboard flow, browser-language negotiation,
 ручну UI-мову й пару, no-match підказку про маски, downloads та word pages.
 Зафіксувати прийняті мови й виправлення перекладів; screenshots не означають

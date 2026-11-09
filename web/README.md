@@ -23,3 +23,9 @@ unsupported languages/scripts fall back to English. The legacy identifier `no`
 is matched as Bokmål (`nb`) to avoid Danish being selected for `nb-NO`; its UI
 identifier and dictionary codes remain unchanged. Manual selection overrides
 browser matching.
+
+Owner review steps and current synthetic desktop/mobile screenshots are in
+[UI_REVIEW](../docs/UI_REVIEW.md). Ukrainian labels updated for the new UI
+(search explicitly names masks; interface language replaces “working language”).
+These replacements have `ai` origin; the legacy file/hash still identifies the
+source catalog. No locale status or owner acceptance changed.
