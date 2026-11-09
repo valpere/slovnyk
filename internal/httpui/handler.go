@@ -39,6 +39,7 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 		apply(&config)
 	}
 	mux := http.NewServeMux()
+	mux.HandleFunc("GET /assets/rubik-v1.ttf", fontHandler)
 	serve := func(w http.ResponseWriter, r *http.Request) {
 		parsed, status := parse(r, signer)
 		lang, manual := i18n.Select(parsed.UI, cookie(r, uiCookie), r.Header.Get("Accept-Language"))
@@ -163,7 +164,7 @@ func New(search SearchFunc, signer *lookup.Signer, opts ...Option) http.Handler 
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		w.Header().Set("X-Robots-Tag", "noindex, follow")
-		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'")
+		w.Header().Set("Content-Security-Policy", pagePolicy)
 		w.WriteHeader(status)
 		if r.Method != "HEAD" {
 			_, _ = w.Write(body.Bytes())

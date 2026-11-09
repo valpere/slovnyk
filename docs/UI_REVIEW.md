@@ -5,17 +5,20 @@
 Технічні checks не підтверджують природність перекладу, screen-reader speech
 або готовність production. Пошук і завантаження — фокус першого релізу (FR-05/06).
 
+Дизайн поєднує брендбук, композицію Town і кремовий фон;
+[палітра та правила](UI_DESIGN.md), [звіт](_assessments/2026-11-09-brand-design/REPORT.md).
+
 ## Що переглянути
 
 Знімки actual HTML templates, без page JavaScript і реальних словникових даних:
 
 | Сценарій | Знімки |
 |---|---|
-| Початкова сторінка desktop | [Українська](_assessments/2026-11-09-ui-review/uk-home-desktop.png), [English](_assessments/2026-11-09-ui-review/en-home-desktop.png) |
-| Результат пошуку mobile | [Українська](_assessments/2026-11-09-ui-review/uk-search-mobile.png), [English](_assessments/2026-11-09-ui-review/en-search-mobile.png) |
-| Немає збігів, підказка масок | [Mobile](_assessments/2026-11-09-ui-review/uk-no-match-mobile.png) |
-| Список CSV.gz, version/rows/hash | [Desktop](_assessments/2026-11-09-ui-review/uk-downloads-desktop.png) |
-| RTL, довгий і multiline текст | [320px article](_assessments/2026-11-09-ui-review/rtl-entry-mobile.png) |
+| Початкова сторінка desktop | [Українська](_assessments/2026-11-09-brand-design/uk-home-desktop.png), [English](_assessments/2026-11-09-brand-design/en-home-desktop.png) |
+| Результат пошуку mobile | [Українська](_assessments/2026-11-09-brand-design/uk-search-mobile.png), [English](_assessments/2026-11-09-brand-design/en-search-mobile.png) |
+| Немає збігів, підказка масок | [Mobile](_assessments/2026-11-09-brand-design/uk-no-match-mobile.png) |
+| Список CSV.gz, version/rows/hash | [Desktop](_assessments/2026-11-09-brand-design/uk-downloads-desktop.png) |
+| RTL, довгий і multiline текст | [320px article](_assessments/2026-11-09-brand-design/rtl-entry-mobile.png) |
 
 Це повні сторінки: нижня частина mobile screenshots потребує прокрутки
 в реальному viewport. Preview показує лише три synthetic мовні пари; це
@@ -37,7 +40,7 @@
    у [каталогах](../web/locales/). `legacy-po` також потребує мовного review.
    Перевірити natural wording, native name, однакові терміни та зміст масок.
 
-Посіпака агента `go run ./minions/ui-preview -port 8787` відтворює preview
+Посіпака агента `go run ./minions/ui-preview -port 8788` відтворює preview
 локально без БД; Ctrl+C завершує процес і прибирає його synthetic scratch.
 [Межі й сценарії](../minions/README.md) відрізняють preview від справжнього
 SQL пошуку, пагінації, readiness і sitemap. Не перевіряти ними функціональну

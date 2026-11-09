@@ -101,7 +101,7 @@ func entryHandler(read EntryFunc) http.HandlerFunc {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.Header().Set("Content-Length", strconv.Itoa(body.Len()))
 		w.Header().Set("Content-Language", lang)
-		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'")
+		w.Header().Set("Content-Security-Policy", pagePolicy)
 		if q.Get("cursor") == "" {
 			w.Header().Del("X-Robots-Tag")
 		}
