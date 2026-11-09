@@ -7,6 +7,13 @@
 
 ## Підтверджений стан
 
+- [PR #34](https://github.com/valpere/slovnyk/pull/34) змержено власником;
+  merge `9c145572addad133f577854cc9215665d7a6c859`. Чотири CI jobs SUCCESS
+  на head `fd7114caa46c1ca9b0dc3f006e39ea1c0807c977`.
+- Власник оновив `slovnyk.sv-se.po`; [нове зіставлення](_assessments/2026-11-09-swedish-locale/REPORT.md)
+  переносить 7 сумісних фраз у `web/locales/sv.json` із новим source hash.
+  22 нові фрази залишаються `ai`; статус шведської локалі — `ai-draft`.
+
 - [PR #33](https://github.com/valpere/slovnyk/pull/33) змержено власником;
   merge `5472976f0157298d101f6ce08e3e121e39ae9e2d`, усі чотири CI jobs SUCCESS
   на head `7b389d5618805ca9bd5d893ada2aeaa158a24e8c`.

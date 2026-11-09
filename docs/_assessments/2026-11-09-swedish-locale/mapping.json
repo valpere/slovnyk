@@ -1,0 +1,43 @@
+{
+  "source_file": "slovnyk.sv-se.po",
+  "source_sha256": "054433ee4acb560221c2234f696395848781c33f3ff36bd537e5f175a3888b87",
+  "status": "ai-draft",
+  "reused": [
+    {
+      "key": "intro",
+      "msgid": "the multilanguage dictionary",
+      "msgstr": "den flerspråkiga ordboken"
+    },
+    {
+      "key": "from",
+      "msgid": "Translate from",
+      "msgstr": "Översätt från"
+    },
+    {
+      "key": "to",
+      "msgid": "Translate to",
+      "msgstr": "Översätt till"
+    },
+    {
+      "key": "translate",
+      "msgid": "Translate",
+      "msgstr": "Översätt"
+    },
+    {
+      "key": "ui",
+      "msgid": "Interface language",
+      "msgstr": "Gränssnitts-språk"
+    },
+    {
+      "key": "home",
+      "msgid": "Home",
+      "msgstr": "Startsida"
+    },
+    {
+      "key": "downloads",
+      "msgid": "Downloads",
+      "msgstr": "Nedladdningar"
+    }
+  ],
+  "remaining_ai_messages": 22
+}
