@@ -6,6 +6,11 @@
 
 Джерело істини та порядок читання: [docs/INDEX.md](docs/INDEX.md).
 
+Підготовка запуску: [профіль сервера](docs/SERVER_PROFILE.md),
+[deployment config і runbook](deploy/README.md),
+[backup policy](docs/BACKUP_RESTORE.md#політика-першого-read-only-запуску-2026-11-10).
+Це локальна підготовка; production і target/off-host acceptance ще попереду.
+
 [Ширші локальні HTTP probes](docs/_assessments/2026-11-08-query-workloads/REPORT.md):
 1858/1858 HTTP 200; дані незмінні. Це діагностика, AT-16 ще відкрито.
 

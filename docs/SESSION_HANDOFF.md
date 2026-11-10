@@ -5,6 +5,24 @@
 додано server-side timings і завершено короткий локальний run на restored schema 4.
 Це поточна пам’ятка продовження; вимоги й контракти визначає [INDEX](INDEX.md).
 
+## Поточне продовження — підготовка запуску 2026-11-10
+
+Власник змержив PR #37; main `0bac9ef834fcaaf73e8817eb7f80deb7ba9fdfb4`.
+Далі погодив готувати запуск локально: [профіль сервера](SERVER_PROFILE.md),
+[deployment](../deploy/README.md), майбутнє target приймання й переклади.
+Запропоновано 4 vCPU/16 GiB/200 GiB data плюс ОС; це не виміряний мінімум або тариф.
+Backup обрано до відкриття та після оновлень, без daily timer/auto-delete;
+off-host на цей комп’ютер, alerts у Telegram. Credentials відсутні, нічого не
+надсилали. Реальний transfer, secret escrow, зовнішній outage watchdog,
+конкретна ціль, load/RTO <=24 h та мовне приймання залишаються відкритими.
+
+Новий Go operator tool `utilities/check-deployment` — утиліта сервісу, не посіпака.
+Конфігурації systemd/PostgreSQL/NGINX підготовлено; не встановлено на хост.
+Локальний preview http://localhost:8787/ із реальним restored corpus лишається
+доступним. Oracle, legacy, retained дані й сторонні containers не змінено.
+[Локальні перевірки](_assessments/2026-11-10-deployment-preparation/REPORT.md)
+не означають target acceptance. Старі записи нижче — історичні.
+
 ## Пауза над сервісом — посіпаки 2026-11-10
 
 Власник змержив PR #36 (`99f4f95`); локальний main синхронізовано.

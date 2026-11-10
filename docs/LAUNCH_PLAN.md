@@ -1,11 +1,15 @@
 # План першого запуску Slovnyk
 
-Стан: **підготовка, production не розгорнуто**. PR #31 змержено;
+Стан: **підготовка, production не розгорнуто**. PR #37 змержено;
 локальна schema 4, пошук, exports, sitemaps і restore перевірені.
 Цей документ визначає наступні операторські кроки, не підтверджує готовність
 сервера й не дає дозволу змінювати зайнятий Oracle, DNS або сторонні сервіси.
 Traffic/crawler profile погоджено; власник ще обирає сервер і приймає
 UI/переклади та відкриття доменів.
+
+[Початковий профіль сервера](SERVER_PROFILE.md) і [deployment runbook](../deploy/README.md)
+підготовлено локально: systemd, PostgreSQL, TLS proxy, readiness/disk і Telegram.
+Налаштування цілі, credentials, зовнішній watchdog і off-host restore ще попереду.
 
 ## 1. Вибрати ціль і перевірити місткість
 
@@ -65,8 +69,10 @@ DB/artifacts, до WAL/temp; початковий бюджет не покрив
 20% short prefix, 5% інших masks, до 10 searches/s. Для target run планується 5 хвилин.
 Також погоджено crawler/download budget: 1 word page/s, до 2 concurrent crawler
 requests і один artifact download stream. Actual bandwidth/resource budgets
-та RPO/retention/secret escrow ще не визначені. Ці числа не є реалізованими
-rate limits; `/robots.txt` не забезпечує їх дотримання.
+і місткість retention ще не визначені.
+Backup: до відкриття й після оновлень, off-host на локальний комп’ютер;
+[політика](BACKUP_RESTORE.md#політика-першого-read-only-запуску-2026-11-10).
+Secret escrow ще не перевірено. Traffic/crawler числа не є реалізованими rate limits; `/robots.txt` не забезпечує їх дотримання.
 
 На обраній цілі перевірити ordinary subset handler p95 <=1 s,
 DB budget 2 s, HTTP errors/timeouts, memory/OOM, CPU throttling, WAL/temp/disk

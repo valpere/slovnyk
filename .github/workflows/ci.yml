@@ -30,6 +30,8 @@ jobs:
           CI_DIFF_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: ./tests/check-patch.sh "$CI_DIFF_BASE"
       - run: make check
+      - name: Validate deployment Compose template
+        run: docker compose --env-file deploy/postgres.env.example -f deploy/compose.yaml config --quiet
       - run: make utilities
       - run: make test
       - run: make test-race

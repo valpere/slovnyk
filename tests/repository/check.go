@@ -109,7 +109,7 @@ func check(root string, args []string) report {
 	r := report{Errors: []string{}}
 	paths := args
 	if len(paths) == 0 {
-		paths = []string{"README.md", "data/README.md", "minions/README.md", "utilities/README.md", "tests/README.md", "testdata/README.md"}
+		paths = []string{"README.md", "deploy/README.md", "data/README.md", "minions/README.md", "utilities/README.md", "tests/README.md", "testdata/README.md"}
 		docs, err := filepath.Glob(filepath.Join(root, "docs", "*.md"))
 		if err != nil {
 			r.Errors = append(r.Errors, "Cannot list documents")
@@ -153,7 +153,7 @@ func check(root string, args []string) report {
 		}
 	}
 	sources := []string{"data/README.md"}
-	for _, dir := range []string{"minions", "utilities", "tests", "testdata"} {
+	for _, dir := range []string{"deploy", "minions", "utilities", "tests", "testdata"} {
 		list, e := files(root, dir)
 		if e != nil {
 			r.Errors = append(r.Errors, "Cannot list sources: "+dir)
