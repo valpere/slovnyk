@@ -1,0 +1,21 @@
+[Unit]
+Description=Check Slovnyk readiness and free disk
+After=slovnyk.service
+RequiresMountsFor=/srv/slovnyk
+
+[Service]
+Type=oneshot
+User=slovnyk
+Group=slovnyk
+EnvironmentFile=/etc/slovnyk/alerts.env
+StateDirectory=slovnyk-monitor
+StateDirectoryMode=0700
+ExecStart=/opt/slovnyk/current/check-deployment -url http://127.0.0.1:8080 -data /srv/slovnyk -min-free-gib 30 -notify-telegram -state /var/lib/slovnyk-monitor/state.json
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+TimeoutStartSec=25

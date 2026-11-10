@@ -1,0 +1,41 @@
+[Unit]
+Description=Slovnyk read-only HTTP service
+Wants=slovnyk-postgres.service
+After=slovnyk-postgres.service network-online.target
+RequiresMountsFor=/srv/slovnyk/artifacts
+StartLimitIntervalSec=300
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=slovnyk
+Group=slovnyk
+EnvironmentFile=/etc/slovnyk/http.env
+WorkingDirectory=/opt/slovnyk/current
+ExecStart=/opt/slovnyk/current/slovnyk serve
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=20
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+ReadOnlyPaths=/srv/slovnyk/artifacts
+MemoryMax=1G
+CPUQuota=100%
+TasksMax=64
+LimitCORE=0
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=slovnyk
+
+[Install]
+WantedBy=multi-user.target

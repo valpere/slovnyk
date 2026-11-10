@@ -906,3 +906,16 @@ head `4c55cc94b955d59cd2e70de09e2148b6607a4daa`. Через наявний Chrom
 та HTTP 503 повернули nonzero й partial failure JSON; після cleanup власних
 вкладок не залишилося. Існуючі PNG та output directory не перезаписуються.
 Scratch evidence залишається в ignored `tmp/minions-2026-11-10/`.
+
+
+## Підготовка експлуатації — 2026-11-10
+
+[Звіт](_assessments/2026-11-10-deployment-preparation/REPORT.md): локальні
+Compose parsing, isolated systemd unit verification, synthetic PostgreSQL startup
+і NGINX HTTPS/redirect/cookie/privacy probes для [deployment](../deploy/README.md).
+`utilities/check-deployment/main_test.go` перевіряє readiness проти health-only,
+disk failure/reserve, loopback-only і redirect rejection. `telegram_test.go`
+перевіряє API acknowledgement, safe errors, state transitions/dedup/reminder,
+retry після невдалої доставки та invalid config при здоровому startup.
+Fake transport не надсилає реальних повідомлень. Це часткові NFR-04/FR-13
+operator checks; AT-13/16/17 і target/off-host RTO не закрито.

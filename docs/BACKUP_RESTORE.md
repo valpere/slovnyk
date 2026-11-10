@@ -8,6 +8,68 @@ FR-13 / AT-13, без користувацького запису. Production т
 файли та HTTP/cursors тотожні; target acceptance виконано з вимкненим source.
 Виміряний локальний elapsed не є off-host або target-server RTO acceptance.
 
+## Політика першого read-only запуску — 2026-11-10
+
+Власник погодив повний комплект **перед відкриттям і після кожного оновлення
+даних**; щоденні копії поки не потрібні. Старі комплекти автоматично не видаляти.
+Off-host сховище майбутнього сервера — цей локальний комп’ютер. Пропонований
+каталог `~/backups/slovnyk/` приватний (0700); bundle files — 0600 або суворіші.
+Cloud→local передавання ще не виконано. Нинішній backup на комп’ютері, де
+зараз працює preview, не є off-host захистом цього preview.
+
+RPO прив’язаний до оновлення dataset, а не до щодобового часу: завершеним
+операторське оновлення вважати лише після перевіреної зовнішньої копії. До
+передавання нова версія ще не має підтвердженого off-host захисту. Всі writers
+мають лишатися призупиненими до завершення узгодженого snapshot; HTTP читає
+дані. Якщо потрібно не показувати ще не захищену версію, зупинити публічний
+traffic на час publication і формування/перевірки backup, потім відкрити знову.
+Зміна secrets/keyring/release config також потребує оновлення recovery комплекту.
+
+Для кожної копії:
+
+1. Перерахувати вільне місце на сервері **та** комп’ютері: поточний bundle
+   ~10.809 GiB, додатково врахувати staging/encryption workspace, retained copies
+   й резерв. Цей розмір історичний, не гарантія для нового snapshot.
+2. Виконати «Узгоджений snapshot» нижче у новий приватний каталог із унікальним
+   ID; зберегти DB dump, artifacts, CSV, manifests, release/hash і role/config
+   manifest. Зафіксувати relative-path SHA-256 inventory всіх payload files.
+   Cursor keyring/DSNs/Telegram secrets не включати у публічні inventories;
+   приватний recovery config передати окремо зашифрованим, зі збереженим поза
+   сервером ключем розшифрування. Не вважати конфіг без secrets достатнім restore.
+3. З локального комп’ютера pull через SSH/rsync з обраного cloud host у **новий**
+   каталог. Перевірити SSH host key; не вимикати host verification і не
+   використовувати `--delete`. Приклад після визначення host і snapshot ID:
+
+   ```sh
+   umask 077
+   mkdir -p "$HOME/backups/slovnyk"
+   # Спочатку створити новий приватний destination; не використовувати старий ID.
+   mkdir "$HOME/backups/slovnyk/NEW_ID"
+   rsync -a --no-perms --no-owner --no-group backup@HOST:/PRIVATE/NEW_ID/ \
+     "$HOME/backups/slovnyk/NEW_ID/"
+   cd "$HOME/backups/slovnyk/NEW_ID"
+   sha256sum --quiet --check inventory.sha256
+   ```
+
+   `HOST`, source directory та account — placeholders; налаштувати account для
+   читання тільки backup staging, без owner/app credentials. Джерело й inventory
+   мають бути довіреними; не виконувати довільний manifest із стороннього джерела.
+4. Перевірити exit status, повноту списку/path/bytes, hashes і доступність
+   recovery secrets. `sha256sum -c` перевіряє перелічені файли, але не доводить
+   повноту комплекту. Тільки тоді записати приватний receipt «off-host verified».
+   Помилка transfer/hash/secret escrow — незавершений backup, повторити; не
+   підтверджувати оновлення і не видаляти попередню копію.
+5. До відкриття відновити на окремій цілі з cloud source недоступним. Виміряти
+   повний elapsed включно з transfer, config/secrets і controls: <=24 h.
+   Перевірка hashes не замінює restore, а локальні ~56 хвилин не є target RTO.
+
+Додаткову незалежну копію на випадок втрати самого комп’ютера та чисельний
+retention budget ще потрібно визначити. Автоматичного backup timer немає.
+Telegram обрано для сповіщень; credentials і реальна доставка ще не перевірені.
+[Розгортання](../deploy/README.md) описує timer readiness/disk та його межі;
+він не перевіряє актуальність off-host bundle й не сигналізує про повний outage
+власного хоста. До запуску потрібна окрема зовнішня перевірка доступності.
+
 ## Що зберігати разом
 
 - Повний logical dump нової БД: schema/migration checksums, canonical manifests,
@@ -35,8 +97,9 @@ FR-13 / AT-13, без користувацького запису. Production т
 3. Скопіювати artifacts та CSV snapshots у нове окреме місце. Зафіксувати всі
    relative paths, byte sizes і SHA-256; звірити копію. Не перезаписувати попередній
    backup. Успіх копіювання не замінює перевірку durability вибраного сховища.
-4. Лише після повного комплекту й перевірки відновити operator jobs. Off-host
-   місце, спосіб захисту конфігурації, розклад/RPO та retention ще потрібно визначити.
+4. Лише після повного комплекту й перевірки відновити operator jobs. Політику
+   й off-host місце визначено вище; фактичні transfer, secret escrow, restore
+   та місткість retention ще потрібно перевірити.
 
 ## Відновлення на окремій цілі
 

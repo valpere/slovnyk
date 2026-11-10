@@ -1,0 +1,16 @@
+/var/log/nginx/slovnyk-metrics.log {
+    daily
+    maxsize 20M
+    rotate 7
+    missingok
+    notifempty
+    compress
+    delaycompress
+    create 0640 root adm
+    sharedscripts
+    postrotate
+        if [ -s /run/nginx.pid ]; then
+            /usr/sbin/nginx -s reopen
+        fi
+    endscript
+}
