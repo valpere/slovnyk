@@ -11,7 +11,9 @@
 | `corpus-progress` | `go run ./minions/corpus-progress RUN_DIRECTORY MANIFEST_JSON` | Показує elapsed, free disk та останній спостережений файл локальної звірки; читає лише progress/manifest metadata, без DB-запитів |
 | `check-repository` | `go run ./minions/check-repository` | Знаходить checkout і одним викликом запускає проєктну перевірку з докладним звітом |
 | `ui-preview` | `go run ./minions/ui-preview [-port 8787]` | Loopback preview actual HTTP templates на fixed synthetic callbacks, без БД; для агентських UI/мовних review |
-| `capture-cdp.mjs` | `node minions/capture-cdp.mjs http://127.0.0.1:PORT/path tmp/preview.png 390 844` | Знімок loopback preview через наявний Chromium CDP 9222; JS сторінки вимкнено, створює й закриває лише власну вкладку |
+| `pr-status` | `go run ./minions/pr-status 36` | Read-only статус точного head PR: по два jobs push/PR, без merge чи rerun |
+| `ui-review-cdp.mjs` | `node minions/ui-review-cdp.mjs http://127.0.0.1:8788 minions/ui-review.example.json tmp/ui-review-NEW` | Матриця сторінок/ширин: HTTP 200, html lang, overflow, optional full-page screenshots |
+| `capture-cdp.mjs` | `node minions/capture-cdp.mjs http://127.0.0.1:PORT/path tmp/preview.png 390 844` | Знімок loopback preview через наявний Chromium CDP 9222; JS сторінки вимкнено, створює й прибирає лише власний ізольований context |
 
 Потрібні Go та Git. Для виклику поза checkout можна зібрати binary у `bin/`;
 root визначається за модулем у cwd/ancestors, шляхом binary або source.
@@ -20,7 +22,8 @@ root визначається за модулем у cwd/ancestors, шляхом
 запущений Chromium на loopback port 9222. Він не запускає browser process,
 не використовує Playwright та не залежить від сервісу або CI. Output directory
 має існувати; одноразові captures зберігайте в `tmp/`,
-review screenshots можна включати до відповідного assessment.
+review screenshots можна включати до відповідного assessment, лише якщо дані synthetic.
+`capture-cdp.mjs` відмовляється перезаписувати існуючий output файл.
 
 Колишні Python-посіпаки переписано на Go та розділено за призначенням:
 `prepare-artifacts` — [утиліта сервісу](../utilities/README.md);
@@ -82,3 +85,46 @@ handler. Посіпака не є командою сервісу чи deploymen
 
 Для чистого першого візиту використовуйте окремий тимчасовий CDP browser context:
 loopback cookies спільні між портами. Не очищайте cookies/вкладки користувача.
+
+## Статус PR одним викликом
+
+`pr-status` потребує authenticated `gh` і запуску в цьому checkout. Обирає
+найновіший run workflow `ci.yml` для кожного event `push` / `pull_request`
+на поточному head та branch PR. Перевіряє точні назви двох jobs, completed/success
+для jobs і workflow; skipped/cancelled не є успіхом. Повторно читає head після
+запитів: зміна head робить результат недійсним. Це одноразове спостереження,
+не approval, merge gate чи автоматичний watcher; нічого не змінює у Git/GitHub.
+
+Exit codes binary: `0` — усі чотири jobs успішні; `1` — failure, неочікуваний
+набір jobs або помилка; `2` — pending/відсутній run. `go run` для nonzero
+друкує `exit status N`, але сам повертає 1; для machine-readable exit code
+зібрати `go build -o tmp/pr-status ./minions/pr-status`. Запити обмежені
+90 секундами; список — останні 100 runs на branch/head.
+
+## Повторюваний UI review
+
+Спочатку агент запускає synthetic `ui-preview` на окремому порту, потім
+`ui-review-cdp.mjs` із [прикладом](ui-review.example.json). Посіпака не запускає
+сервер чи browser process. Спільний `cdp-session.mjs` використовує лише
+наявний CDP 9222, створює окремий context і прибирає його також після помилки.
+Особисті cookies/вкладки не очищає. `capture-cdp.mjs` використовує той самий код.
+
+JSON задає `accept_language`, `widths` (1–10, кожна 200–4096), `height`
+(200–4096), `cases` (1–200). Кожен case: унікальний filename-safe `name`,
+relative `path` на base origin, очікуваний `lang`, optional `screenshot: true`.
+Сценарії й ширини виконуються послідовно в одному context: cookies між ними
+зберігаються; лише перша навігація перевіряє чистий візит. Для нового набору
+browser-language headers потрібен новий запуск. Page JavaScript вимкнено,
+viewport задає CSS-ширину без touch/device emulation. Це Chromium-перевірка
+розмітки, не мовне, screen-reader чи capacity приймання.
+
+Новий output directory — mode 0700, `results.json` і PNG — 0600; існуючу
+директорію не перезаписує. Зупиняється на першій помилці й залишає partial
+звіт із `passed: false`, виходить nonzero. PNG знімає всю сторінку, до 20000px
+висоти; single capture — лише viewport. Output містить labels/metrics/lang,
+без paths; PNG може містити весь видимий текст. Для публічних доказів
+використовуйте виключно synthetic preview, реальні terms/paths — лише в `tmp/`.
+
+Перевірки агента: `go test ./minions/pr-status` та
+`node --test minions/cdp-session.test.mjs`; реальний browser smoke запускайте
+окремо через CDP, без додавання browser dependency до CI.
