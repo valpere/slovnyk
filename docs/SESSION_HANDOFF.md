@@ -5,6 +5,18 @@
 додано server-side timings і завершено короткий локальний run на restored schema 4.
 Це поточна пам’ятка продовження; вимоги й контракти визначає [INDEX](INDEX.md).
 
+## Вибір сервера — 2026-11-10
+
+PR #38 змержено власником; main `f4c5ae9d9e9759f5a30e213fc72e88e1b9bef518`.
+Після `go` перевірено [кандидатів](SERVER_CANDIDATES.md) за офіційними сторінками.
+Запропоновано netcup Lite 3, 16 GB/320 GB, показана ціна €16.66 із 19% VAT,
+2-month billing/minimum term; можливі provisioning delays. Остаточні billing
+country, quote/строк, наявність і вибір власника ще потрібні. Старі 4 OCPU/24 GB
+Oracle не вважати поточною free guarantee: актуальні docs вказують 2 OCPU/12 GB,
+200 GB boot+block сумарно. Tenancy не перевіряли. Ціль не купували, Oracle не чіпали;
+локальний preview 8787 лишається доступним. Deployment/backup/Telegram й
+мовне приймання — стан нижче; нових target tests не було.
+
 ## Поточне продовження — підготовка запуску 2026-11-10
 
 Власник змержив PR #37; main `0bac9ef834fcaaf73e8817eb7f80deb7ba9fdfb4`.
