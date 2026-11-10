@@ -5,7 +5,7 @@
 
 ## Статус і правила
 
-**Стан 2026-11-10:** PR #37 змержено; schema 4 backup/restore завершено.
+**Стан 2026-11-10:** PR #38 змержено; schema 4 backup/restore завершено.
 [Ширші HTTP/cache/contention probes](_assessments/2026-11-08-query-workloads/REPORT.md):
 1858/1858 HTTP 200, 17 таблиць/sequences незмінні після обох запусків.
 [Opt-in server timings](SEARCH_TIMING.md) додано й
@@ -14,7 +14,9 @@
 погоджено 2026-11-09 у [DECISIONS](DECISIONS.md); далі — вибір сервера й resource budget;
 AT-16 відкрито. [План першого запуску](LAUNCH_PLAN.md) містить storage budget
 і послідовність target/UI/DNS приймання. [Профіль сервера](SERVER_PROFILE.md)
-та [deployment runbook](../deploy/README.md) підготовлено локально; backup після
+та [deployment runbook](../deploy/README.md) підготовлено локально;
+[перевірені кандидати](SERVER_CANDIDATES.md) містять рекомендацію й актуальні
+обмеження тарифів, остаточного вибору немає; backup після
 оновлень на локальний комп’ютер і Telegram обрано власником, реальне
 розгортання/доставка/off-host restore ще не виконані. [Дизайн](UI_DESIGN.md) поєднує надані власником візуальні джерела;
 [UI review](UI_REVIEW.md) містить
