@@ -1,0 +1,12 @@
+{
+  "accept_language": "sv-SE,en;q=0.5",
+  "widths": [320, 390, 1280],
+  "height": 900,
+  "cases": [
+    {"name": "browser-sv", "path": "/", "lang": "sv"},
+    {"name": "uk-home", "path": "/?ui=uk", "lang": "uk", "screenshot": true},
+    {"name": "sv-search", "path": "/search?from=en-us&to=uk-ua&q=hello&ui=sv", "lang": "sv", "screenshot": true},
+    {"name": "sv-downloads", "path": "/downloads?ui=sv", "lang": "sv"},
+    {"name": "sv-languages", "path": "/languages?ui=sv", "lang": "sv"}
+  ]
+}

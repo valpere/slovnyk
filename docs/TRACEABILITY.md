@@ -889,3 +889,20 @@ saved manual override, RTL/довгий текст та keyboard native submit �
 масштаб списків повного корпусу не перевірялися. Всі catalogs `ai-draft`;
 owner language/design acceptance ще відкрите. Traffic/crawler profile окремо
 погоджено власником 2026-11-09 (DECISIONS); це не закриває target AT-16.
+
+## Агентські посіпаки — 2026-11-10
+
+Це перевірки особистих помічників агента, не нові acceptance gates сервісу.
+`minions/pr-status/main_test.go`: точний head/event/latest run, відсутні/дубльовані
+jobs, pending, skipped, failure і cancelled workflow не дають false green.
+`minions/cdp-session.test.mjs`: loopback-only inputs, відмова від credentials,
+обмеження viewport. `make check test test-race` та `node --test
+minions/cdp-session.test.mjs` — PASS.
+
+`pr-status 36` на справжньому merged PR повернув чотири успішні jobs точного
+head `4c55cc94b955d59cd2e70de09e2148b6607a4daa`. Через наявний Chromium CDP
+на synthetic preview: example matrix 5 cases × 3 widths — PASS, scripts off,
+очікувана мова/HTTP 200/no overflow. Single capture — PASS. Wrong language
+та HTTP 503 повернули nonzero й partial failure JSON; після cleanup власних
+вкладок не залишилося. Існуючі PNG та output directory не перезаписуються.
+Scratch evidence залишається в ignored `tmp/minions-2026-11-10/`.
